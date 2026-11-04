@@ -52,7 +52,16 @@ export class Router {
       return;
     }
 
-    // 3. Bookmarks View: #bookmarks
+    // 3. 15-Line Mushaf Page View: #mushaf/:page
+    const mushafMatch = pathPart.match(/^mushaf\/(\d+)$/);
+    if (mushafMatch) {
+      const page = parseInt(mushafMatch[1], 10);
+      const handler = this.routes.get('mushaf');
+      if (handler) handler({ page });
+      return;
+    }
+
+    // 4. Bookmarks View: #bookmarks
     if (pathPart === 'bookmarks') {
       const handler = this.routes.get('bookmarks');
       if (handler) handler();

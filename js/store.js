@@ -13,6 +13,7 @@ class QuranStore {
         basmeih: null,
         sahih: null,
         pickthall: null,
+        kemenag: null,
       },
       tafsir: new Map(),
       searchIndex: null,
@@ -25,10 +26,20 @@ class QuranStore {
       speed: 1.0,
       loopAyah: false,
       autoScroll: true,
+      jawiMode: false,
+      hifz: {
+        active: false,
+        repeatCount: 1,
+        delaySeconds: 0,
+        blurArabic: false,
+        rangeStart: 1,
+        rangeEnd: null,
+      },
       activeTranslations: {
         basmeih: true,
         sahih: true,
         pickthall: false,
+        kemenag: true,
       },
     };
 
@@ -190,6 +201,14 @@ class QuranStore {
           .catch(() => (t.pickthall = {}))
       );
     }
+    if (!t.kemenag) {
+      fetchPromises.push(
+        fetch('./data/translations/id/kemenag.json')
+          .then((r) => r.json())
+          .then((d) => (t.kemenag = d))
+          .catch(() => (t.kemenag = {}))
+      );
+    }
 
     if (fetchPromises.length) {
       await Promise.all(fetchPromises);
@@ -197,10 +216,10 @@ class QuranStore {
     return t;
   }
 
-  async fetchTafsir(surahNum, ayahNum) {
-    const key = `${surahNum}:${ayahNum}`;
+  async fetchTafsir(surahNum, ayahNum, edition = 'en-al-jalalayn') {
+    const key = `${edition}:${surahNum}:${ayahNum}`;
     if (this.cache.tafsir.has(key)) return this.cache.tafsir.get(key);
-    const url = `https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir/en-al-jalalayn/${surahNum}/${ayahNum}.json`;
+    const url = `https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir/${edition}/${surahNum}/${ayahNum}.json`;
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`Tafsir not found: ${res.status}`);
@@ -210,7 +229,7 @@ class QuranStore {
     } catch (err) {
       return {
         text: 'Tafsir commentary currently unavailable for this ayah.',
-        source: 'Tafsir al-Jalalayn',
+        source: edition === 'en-ibn-kathir' ? 'Tafsir Ibn Kathir' : 'Tafsir al-Jalalayn',
         error: true,
       };
     }

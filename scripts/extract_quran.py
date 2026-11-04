@@ -22,6 +22,7 @@ ARABIC_DIR = DATA_DIR / "arabic"
 MORPHOLOGY_DIR = DATA_DIR / "morphology"
 TRANSLATIONS_MS_DIR = DATA_DIR / "translations" / "ms"
 TRANSLATIONS_EN_DIR = DATA_DIR / "translations" / "en"
+TRANSLATIONS_ID_DIR = DATA_DIR / "translations" / "id"
 
 SEED_SURAHS = [1, 112, 113, 114]
 TOTAL_SURAHS = 114
@@ -149,7 +150,7 @@ def load_morphology_cache(target_surahs: set[int]) -> dict:
 
 
 def ensure_directories():
-    for d in [DATA_DIR, ARABIC_DIR, MORPHOLOGY_DIR, TRANSLATIONS_MS_DIR, TRANSLATIONS_EN_DIR]:
+    for d in [DATA_DIR, ARABIC_DIR, MORPHOLOGY_DIR, TRANSLATIONS_MS_DIR, TRANSLATIONS_EN_DIR, TRANSLATIONS_ID_DIR]:
         d.mkdir(parents=True, exist_ok=True)
 
 
@@ -194,17 +195,35 @@ def main():
     # 2. Load morphology dictionary for target surahs
     morph_data = load_morphology_cache(target_surahs)
 
+    # 3. Fetch Pages & Juz metadata index
+    print("Fetching Pages & Juz metadata index...")
+    try:
+        meta_raw = fetch_json("https://api.alquran.cloud/v1/meta")
+        pages_references = meta_raw.get("data", {}).get("pages", {}).get("references", [])
+        juzs_references = meta_raw.get("data", {}).get("juzs", {}).get("references", [])
+        pages_file = DATA_DIR / "pages-meta.json"
+        with open(pages_file, "w", encoding="utf-8") as f:
+            json.dump({
+                "pages": pages_references,
+                "juzs": juzs_references
+            }, f, ensure_ascii=False, indent=2)
+        print(f"Saved {len(pages_references)} page references to {pages_file}")
+    except Exception as e:
+        print(f"  [Warning] Failed to fetch pages meta: {e}")
+
     # Prepare containers for translations and search index
     ms_basmeih = {}
     en_sahih = {}
     en_pickthall = {}
+    id_kemenag = {}
     search_index = []
 
-    # If partial runs already exist, we can preserve existing translations
+    # If partial runs already exist, preserve existing translations
     for filepath, container in [
         (TRANSLATIONS_MS_DIR / "basmeih.json", ms_basmeih),
         (TRANSLATIONS_EN_DIR / "sahih.json", en_sahih),
         (TRANSLATIONS_EN_DIR / "pickthall.json", en_pickthall),
+        (TRANSLATIONS_ID_DIR / "kemenag.json", id_kemenag),
     ]:
         if filepath.exists():
             try:
@@ -218,10 +237,10 @@ def main():
 
     for idx, s_num in enumerate(sorted_surahs, 1):
         print(f"[{idx}/{total_to_process}] Processing Surah {s_num}...")
-        # Fetch Arabic (uthmani & simple-clean) and 3 translations in one call
+        # Fetch Arabic (uthmani & simple-clean) and 4 translations in one call
         editions_url = (
             f"https://api.alquran.cloud/v1/surah/{s_num}/editions/"
-            "quran-uthmani,quran-simple-clean,ms.basmeih,en.sahih,en.pickthall"
+            "quran-uthmani,quran-simple-clean,ms.basmeih,en.sahih,en.pickthall,id.indonesian"
         )
         editions_resp = fetch_json(editions_url)
         editions_data = {ed["edition"]["identifier"]: ed["ayahs"] for ed in editions_resp.get("data", [])}
@@ -231,6 +250,7 @@ def main():
         ms_ayahs = editions_data.get("ms.basmeih", [])
         sahih_ayahs = editions_data.get("en.sahih", [])
         pickthall_ayahs = editions_data.get("en.pickthall", [])
+        id_ayahs = editions_data.get("id.indonesian", [])
 
         # Build Arabic chapter file
         arabic_doc = {"surah": s_num, "ayahs": {}}
@@ -238,6 +258,7 @@ def main():
         ms_basmeih[s_str] = {}
         en_sahih[s_str] = {}
         en_pickthall[s_str] = {}
+        id_kemenag[s_str] = {}
 
         for i, a_obj in enumerate(uthmani_ayahs):
             a_num = a_obj["numberInSurah"]
@@ -256,16 +277,20 @@ def main():
             arabic_doc["ayahs"][a_str] = {
                 "uthmani": clean_uthmani,
                 "simple": clean_simple,
+                "page": a_obj.get("page", 1),
+                "juz": a_obj.get("juz", 1),
             }
 
             # Translations
             ms_text = ms_ayahs[i]["text"].replace("\ufeff", "").strip() if i < len(ms_ayahs) else ""
             sahih_text = sahih_ayahs[i]["text"].replace("\ufeff", "").strip() if i < len(sahih_ayahs) else ""
             pickthall_text = pickthall_ayahs[i]["text"].replace("\ufeff", "").strip() if i < len(pickthall_ayahs) else ""
+            id_text = id_ayahs[i]["text"].replace("\ufeff", "").strip() if i < len(id_ayahs) else ""
 
             ms_basmeih[s_str][a_str] = ms_text
             en_sahih[s_str][a_str] = sahih_text
             en_pickthall[s_str][a_str] = pickthall_text
+            id_kemenag[s_str][a_str] = id_text
 
             # Search Index item
             search_index.append({
@@ -275,6 +300,7 @@ def main():
                 "ar": normalize_arabic(clean_simple or clean_uthmani),
                 "ms": ms_text,
                 "en": sahih_text,
+                "id": id_text,
             })
 
         arabic_file = ARABIC_DIR / f"{s_num}.json"
@@ -337,6 +363,8 @@ def main():
         json.dump(en_sahih, f, ensure_ascii=False, indent=2)
     with open(TRANSLATIONS_EN_DIR / "pickthall.json", "w", encoding="utf-8") as f:
         json.dump(en_pickthall, f, ensure_ascii=False, indent=2)
+    with open(TRANSLATIONS_ID_DIR / "kemenag.json", "w", encoding="utf-8") as f:
+        json.dump(id_kemenag, f, ensure_ascii=False, indent=2)
 
     # 5. Save Search Index
     print(f"Writing search index with {len(search_index)} indexed verses...")

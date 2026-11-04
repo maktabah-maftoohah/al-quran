@@ -40,6 +40,7 @@ class AudioEngine {
     };
 
     this.listeners = new Set();
+    this.hifzRepeatTracker = 1;
     this.initAudioEvents();
   }
 
@@ -99,6 +100,10 @@ class AudioEngine {
   async playAyah(surah, ayah, options = {}) {
     const sNum = parseInt(surah, 10);
     const aNum = parseInt(ayah, 10);
+
+    if (this.state.currentSurah !== sNum || this.state.currentAyah !== aNum) {
+      this.hifzRepeatTracker = 1;
+    }
 
     this.state.currentSurah = sNum;
     this.state.currentAyah = aNum;
@@ -178,6 +183,34 @@ class AudioEngine {
   }
 
   handleAyahEnded() {
+    const hifz = store.settings.hifz || {};
+
+    // 1. Hifz Repetition Counter (repeat same ayah N times)
+    if (hifz.active && hifz.repeatCount > 1) {
+      if (this.hifzRepeatTracker < hifz.repeatCount) {
+        this.hifzRepeatTracker++;
+        const delay = (hifz.delaySeconds || 0) * 1000;
+        if (delay > 0) {
+          setTimeout(() => {
+            this.playAyah(this.state.currentSurah, this.state.currentAyah, {
+              continuous: this.state.isContinuous,
+              totalAyahs: this.state.totalAyahs,
+              surahName: this.state.surahName,
+            });
+          }, delay);
+        } else {
+          this.playAyah(this.state.currentSurah, this.state.currentAyah, {
+            continuous: this.state.isContinuous,
+            totalAyahs: this.state.totalAyahs,
+            surahName: this.state.surahName,
+          });
+        }
+        return;
+      }
+      this.hifzRepeatTracker = 1;
+    }
+
+    // 2. Single Ayah Loop
     if (store.settings.loopAyah) {
       this.playAyah(this.state.currentSurah, this.state.currentAyah, {
         continuous: this.state.isContinuous,
@@ -187,8 +220,28 @@ class AudioEngine {
       return;
     }
 
+    // 3. Hifz Range Looper (e.g. Ayah 1 to 5)
+    if (hifz.active && hifz.rangeEnd && this.state.currentAyah >= hifz.rangeEnd) {
+      const targetStart = hifz.rangeStart || 1;
+      const delay = (hifz.delaySeconds || 0) * 1000;
+      setTimeout(() => {
+        this.playAyah(this.state.currentSurah, targetStart, {
+          continuous: true,
+          totalAyahs: this.state.totalAyahs,
+          surahName: this.state.surahName,
+        });
+      }, delay);
+      return;
+    }
+
+    // 4. Continuous Playback with optional recitation delay pause
     if (this.state.isContinuous && this.state.currentAyah < this.state.totalAyahs) {
-      this.nextAyah();
+      const delay = (hifz.active ? (hifz.delaySeconds || 0) : 0) * 1000;
+      if (delay > 0) {
+        setTimeout(() => this.nextAyah(), delay);
+      } else {
+        this.nextAyah();
+      }
     } else {
       this.state.isPlaying = false;
       this.notify();

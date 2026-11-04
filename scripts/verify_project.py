@@ -112,7 +112,18 @@ def main():
     assert "actions/deploy-pages@v4" in wf_text
     print("[PASS] Check 10: GitHub Pages deploy workflow verified.")
 
-    print("\n>>> ALL 10 COMPREHENSIVE VERIFICATION CHECKS PASSED SUCCESSFULLY! <<<")
+    # 11. Check PWA, Advanced Modules & Nusantara Translation
+    assert (root / "manifest.webmanifest").exists(), "manifest.webmanifest missing"
+    assert (root / "sw.js").exists(), "sw.js missing"
+    assert (root / "data" / "icon.svg").exists(), "icon.svg missing"
+    assert (root / "data" / "pages-meta.json").exists(), "pages-meta.json missing"
+    assert (root / "data" / "translations" / "id" / "kemenag.json").exists(), "kemenag.json missing"
+    assert (root / "js" / "jawi.js").exists(), "jawi.js missing"
+    assert (root / "js" / "card-generator.js").exists(), "card-generator.js missing"
+    assert (root / "js" / "mushaf.js").exists(), "mushaf.js missing"
+    print("[PASS] Check 11: PWA manifest, service worker, Jawi, Mushaf, and Indonesian translation verified.")
+
+    print("\n>>> ALL 11 COMPREHENSIVE VERIFICATION CHECKS PASSED SUCCESSFULLY! <<<")
 
 
 if __name__ == "__main__":

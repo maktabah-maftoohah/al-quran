@@ -7,6 +7,9 @@ import { store } from './store.js';
 import { audio, RECITERS } from './audio.js';
 import { searchEngine } from './search.js';
 import { router } from './router.js';
+import { rumiToJawi } from './jawi.js';
+import { cardGenerator } from './card-generator.js';
+import { mushafViewer } from './mushaf.js';
 
 class App {
   constructor() {
@@ -22,6 +25,8 @@ class App {
   async init() {
     store.applySettingsToDOM();
     searchEngine.init();
+    cardGenerator.init();
+    this.initPWA();
     this.initSidebar();
     this.initTypographyPopover();
     this.initStickyAudioPlayer();
@@ -31,10 +36,21 @@ class App {
     // Register routes
     router.addRoute('surah', (params) => this.renderSurahView(params));
     router.addRoute('ayah', (params) => this.renderAyahDeepDive(params));
+    router.addRoute('mushaf', (params) => this.renderMushafView(params));
     router.addRoute('bookmarks', () => this.renderBookmarksView());
 
     // Start routing
     router.init();
+  }
+
+  initPWA() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch((err) => {
+          console.warn('Service worker registration failed:', err);
+        });
+      });
+    }
   }
 
   // --- UI Notifications & Utilities ---
@@ -257,13 +273,17 @@ class App {
     const toggleBasmeih = document.getElementById('toggle-trans-basmeih');
     const toggleSahih = document.getElementById('toggle-trans-sahih');
     const togglePickthall = document.getElementById('toggle-trans-pickthall');
+    const toggleKemenag = document.getElementById('toggle-trans-kemenag');
+    const toggleJawi = document.getElementById('toggle-jawi-script');
 
     const updateTransSettings = () => {
       store.updateSettings({
+        jawiMode: toggleJawi ? toggleJawi.checked : false,
         activeTranslations: {
           basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
           sahih: toggleSahih ? toggleSahih.checked : true,
           pickthall: togglePickthall ? togglePickthall.checked : false,
+          kemenag: toggleKemenag ? toggleKemenag.checked : true,
         },
       });
       this.updateActiveTranslationsDisplay();
@@ -281,6 +301,18 @@ class App {
       togglePickthall.checked = store.settings.activeTranslations.pickthall;
       togglePickthall.addEventListener('change', updateTransSettings);
     }
+    if (toggleKemenag) {
+      toggleKemenag.checked = store.settings.activeTranslations.kemenag;
+      toggleKemenag.addEventListener('change', updateTransSettings);
+    }
+    if (toggleJawi) {
+      toggleJawi.checked = store.settings.jawiMode;
+      toggleJawi.addEventListener('change', () => {
+        store.updateSettings({ jawiMode: toggleJawi.checked });
+        // Re-render current view to reflect Jawi switch immediately
+        router.handleRouting();
+      });
+    }
   }
 
   updateActiveTranslationsDisplay() {
@@ -293,6 +325,9 @@ class App {
     });
     document.querySelectorAll('.translation-block-pickthall').forEach((el) => {
       el.style.display = act.pickthall ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.translation-block-kemenag').forEach((el) => {
+      el.style.display = act.kemenag ? 'flex' : 'none';
     });
   }
 
@@ -463,6 +498,26 @@ class App {
   // --- Keyboard & Global Events ---
 
   initGlobalEvents() {
+    const hifzBtn = document.getElementById('hifz-mode-btn');
+    if (hifzBtn) {
+      if (store.settings.hifz?.active) {
+        hifzBtn.classList.add('btn-primary');
+      }
+      hifzBtn.addEventListener('click', () => {
+        const currentActive = store.settings.hifz?.active || false;
+        const nextActive = !currentActive;
+        store.updateSettings({
+          hifz: {
+            ...(store.settings.hifz || {}),
+            active: nextActive,
+          },
+        });
+        hifzBtn.classList.toggle('btn-primary', nextActive);
+        this.showToast(nextActive ? '🧠 Tahfiz / Hifz Mode Activated' : 'Tahfiz Mode Deactivated');
+        router.handleRouting();
+      });
+    }
+
     window.addEventListener('keydown', (e) => {
       // Space for play/pause if not focused on inputs
       if (e.code === 'Space' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
@@ -525,6 +580,56 @@ class App {
       const basmeihSurah = translations.basmeih?.[sStr] || {};
       const sahihSurah = translations.sahih?.[sStr] || {};
       const pickthallSurah = translations.pickthall?.[sStr] || {};
+      const kemenagSurah = translations.kemenag?.[sStr] || {};
+
+      // Hifz Memorization Toolbar
+      const hifz = store.settings.hifz || {};
+      const hifzToolbarHtml = hifz.active
+        ? `
+          <div class="hifz-toolbar" id="hifz-active-toolbar">
+            <div class="hifz-toolbar-title">
+              <span>🧠 Tahfiz / Hifz Controls</span>
+            </div>
+            <div class="hifz-controls-group">
+              <label style="font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.35rem;">
+                <span>Repeat:</span>
+                <select id="hifz-repeat-select" class="select-input" style="padding: 0.2rem 0.4rem; font-size: 0.8rem;">
+                  <option value="1" ${hifz.repeatCount === 1 ? 'selected' : ''}>1x</option>
+                  <option value="2" ${hifz.repeatCount === 2 ? 'selected' : ''}>2x</option>
+                  <option value="3" ${hifz.repeatCount === 3 ? 'selected' : ''}>3x</option>
+                  <option value="5" ${hifz.repeatCount === 5 ? 'selected' : ''}>5x</option>
+                  <option value="10" ${hifz.repeatCount === 10 ? 'selected' : ''}>10x</option>
+                </select>
+              </label>
+
+              <label style="font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.35rem;">
+                <span>Pause:</span>
+                <select id="hifz-delay-select" class="select-input" style="padding: 0.2rem 0.4rem; font-size: 0.8rem;">
+                  <option value="0" ${hifz.delaySeconds === 0 ? 'selected' : ''}>0s</option>
+                  <option value="1" ${hifz.delaySeconds === 1 ? 'selected' : ''}>1s</option>
+                  <option value="2" ${hifz.delaySeconds === 2 ? 'selected' : ''}>2s</option>
+                  <option value="3" ${hifz.delaySeconds === 3 ? 'selected' : ''}>3s</option>
+                  <option value="5" ${hifz.delaySeconds === 5 ? 'selected' : ''}>5s</option>
+                </select>
+              </label>
+
+              <label style="font-size: 0.8rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.35rem;">
+                <span>Range:</span>
+                <input type="number" id="hifz-range-start" min="1" max="${meta.total_ayahs}" value="${hifz.rangeStart || 1}" style="width: 44px; padding: 2px 4px; background: var(--bg-main); border: 1px solid var(--border-subtle); color: #fff; text-align: center; border-radius: 4px; font-size: 0.8rem;">
+                <span>to</span>
+                <input type="number" id="hifz-range-end" min="1" max="${meta.total_ayahs}" value="${hifz.rangeEnd || meta.total_ayahs}" style="width: 44px; padding: 2px 4px; background: var(--bg-main); border: 1px solid var(--border-subtle); color: #fff; text-align: center; border-radius: 4px; font-size: 0.8rem;">
+              </label>
+
+              <label style="font-size: 0.8rem; color: var(--accent-gold); display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                <input type="checkbox" id="hifz-blur-toggle" ${hifz.blurArabic ? 'checked' : ''}>
+                <span>Blur (Recall Test)</span>
+              </label>
+
+              <button class="btn" id="hifz-toggle-all-reveal-btn" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">Reveal / Hide All</button>
+            </div>
+          </div>
+        `
+        : '';
 
       // Basmalah Banner logic: Show on 2-114 except 9
       const showBasmalah = surah !== 1 && surah !== 9;
@@ -537,14 +642,22 @@ class App {
         : '';
 
       // Generate Verse Cards
+      const isJawi = store.settings.jawiMode;
+      const isBlurred = hifz.active && hifz.blurArabic;
+
       const verseCardsHtml = Object.entries(arabicData.ayahs)
         .map(([ayahNumStr, textObj]) => {
           const aNum = parseInt(ayahNumStr, 10);
           const ref = `${surah}:${aNum}`;
           const isSaved = store.isBookmarked(ref);
-          const msText = basmeihSurah[ayahNumStr] || '';
+          const msRawText = basmeihSurah[ayahNumStr] || '';
+          const msDisplayText = isJawi ? rumiToJawi(msRawText) : msRawText;
           const enSahihText = sahihSurah[ayahNumStr] || '';
           const enPickthallText = pickthallSurah[ayahNumStr] || '';
+          const idKemenagText = kemenagSurah[ayahNumStr] || '';
+
+          const arabicClass = isBlurred ? 'verse-arabic hifz-blurred' : 'verse-arabic';
+          const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
 
           return `
             <div class="verse-card" data-surah="${surah}" data-ayah="${aNum}" id="verse-${surah}-${aNum}">
@@ -553,6 +666,9 @@ class App {
                 <div class="verse-actions">
                   <button class="verse-action-btn btn-play-ayah" data-surah="${surah}" data-ayah="${aNum}">
                     ▶ Play
+                  </button>
+                  <button class="verse-action-btn btn-share-card" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
+                    📸 Card
                   </button>
                   <button class="verse-action-btn btn-bookmark-ayah ${isSaved ? 'bookmarked' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
                     ★ ${isSaved ? 'Saved' : 'Bookmark'}
@@ -566,12 +682,16 @@ class App {
                 </div>
               </div>
 
-              <div class="verse-arabic">${textObj.uthmani}</div>
+              <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${textObj.uthmani}</div>
 
               <div class="verse-translations">
                 <div class="translation-block translation-block-basmeih">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih (Bahasa Melayu)</span>
-                  <p class="translation-text">${msText}</p>
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
+                  <p class="${msClass}">${msDisplayText}</p>
+                </div>
+                <div class="translation-block translation-block-kemenag">
+                  <span class="translation-label"><span class="lang-flag">🇮🇩</span> Kemenag (Bahasa Indonesia)</span>
+                  <p class="translation-text">${idKemenagText}</p>
                 </div>
                 <div class="translation-block translation-block-sahih">
                   <span class="translation-label"><span class="lang-flag">🇬🇧</span> Sahih International (English)</span>
@@ -597,12 +717,23 @@ class App {
             <span class="meta-badge">${meta.total_ayahs} Verses</span>
             <span class="meta-badge">Surah #${meta.number}</span>
           </div>
-          <button class="btn btn-primary" id="btn-play-surah-continuous">
-            ▶ Play Full Surah Continuous
-          </button>
+          <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="btn-play-surah-continuous">
+              ▶ Play Full Surah Continuous
+            </button>
+            <a href="#mushaf/1" class="btn" style="text-decoration: none;">
+              📄 Open in Mushaf View
+            </a>
+          </div>
         </div>
 
+        ${hifzToolbarHtml}
         ${basmalahHtml}
+
+        <div class="verses-container">
+          ${verseCardsHtml}
+        </div>
+      `;
 
         <div class="verses-container">
           ${verseCardsHtml}
@@ -725,6 +856,84 @@ class App {
         this.copyToClipboard(clipboardText, `Copied Ayah ${ref} to clipboard`);
       });
     });
+
+    // Shareable Verse Card
+    this.mainContainer.querySelectorAll('.btn-share-card').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const ref = btn.getAttribute('data-ref');
+        const [s, a] = ref.split(':');
+        const ar = arabicData.ayahs[a]?.uthmani || '';
+        const trans = basmeihSurah[a] || sahihSurah[a] || '';
+        const transLabel = basmeihSurah[a] ? 'Abdullah Muhammad Basmeih' : 'Saheeh International';
+        cardGenerator.open({
+          ar,
+          trans,
+          transLabel,
+          surahName: meta.name_latin,
+          ref,
+        });
+      });
+    });
+
+    // Hifz Blur Click-To-Reveal
+    this.mainContainer.querySelectorAll('.verse-arabic.hifz-blurred').forEach((el) => {
+      el.addEventListener('click', () => {
+        el.classList.toggle('revealed');
+      });
+    });
+
+    // Hifz Reveal/Hide All Toggle
+    const toggleRevealBtn = document.getElementById('hifz-toggle-all-reveal-btn');
+    if (toggleRevealBtn) {
+      toggleRevealBtn.addEventListener('click', () => {
+        const blurredEls = this.mainContainer.querySelectorAll('.verse-arabic.hifz-blurred');
+        const allRevealed = Array.from(blurredEls).every((el) => el.classList.contains('revealed'));
+        blurredEls.forEach((el) => el.classList.toggle('revealed', !allRevealed));
+      });
+    }
+
+    // Hifz Setting Controls
+    const repeatSelect = document.getElementById('hifz-repeat-select');
+    if (repeatSelect) {
+      repeatSelect.addEventListener('change', () => {
+        store.updateSettings({
+          hifz: { ...(store.settings.hifz || {}), repeatCount: parseInt(repeatSelect.value, 10) },
+        });
+        this.showToast(`Hifz: Repeat set to ${repeatSelect.value}x`);
+      });
+    }
+
+    const delaySelect = document.getElementById('hifz-delay-select');
+    if (delaySelect) {
+      delaySelect.addEventListener('change', () => {
+        store.updateSettings({
+          hifz: { ...(store.settings.hifz || {}), delaySeconds: parseInt(delaySelect.value, 10) },
+        });
+        this.showToast(`Hifz: Pause delay set to ${delaySelect.value}s`);
+      });
+    }
+
+    const blurToggle = document.getElementById('hifz-blur-toggle');
+    if (blurToggle) {
+      blurToggle.addEventListener('change', () => {
+        store.updateSettings({
+          hifz: { ...(store.settings.hifz || {}), blurArabic: blurToggle.checked },
+        });
+        this.renderSurahView({ surah });
+      });
+    }
+
+    const rangeStart = document.getElementById('hifz-range-start');
+    const rangeEnd = document.getElementById('hifz-range-end');
+    const handleRangeChange = () => {
+      const sVal = parseInt(rangeStart?.value, 10) || 1;
+      const eVal = parseInt(rangeEnd?.value, 10) || meta.total_ayahs;
+      store.updateSettings({
+        hifz: { ...(store.settings.hifz || {}), rangeStart: sVal, rangeEnd: eVal },
+      });
+    };
+    if (rangeStart) rangeStart.addEventListener('change', handleRangeChange);
+    if (rangeEnd) rangeEnd.addEventListener('change', handleRangeChange);
   }
 
   /**
@@ -756,8 +965,13 @@ class App {
       const uthmaniText = arabicData.ayahs[aStr]?.uthmani || '';
       const tokens = morphologyData.ayahs[aStr] || [];
       const msText = translations.basmeih?.[sStr]?.[aStr] || '';
+      const idText = translations.kemenag?.[sStr]?.[aStr] || '';
       const sahihText = translations.sahih?.[sStr]?.[aStr] || '';
       const pickthallText = translations.pickthall?.[sStr]?.[aStr] || '';
+
+      const isJawi = store.settings.jawiMode;
+      const msDisplayText = isJawi ? rumiToJawi(msText) : msText;
+      const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
 
       store.setLastRead(surah, ayah, meta.name_latin);
       this.updateContinueBanner();
@@ -850,8 +1064,12 @@ class App {
             <div class="tab-pane active" id="pane-translations">
               <div class="verse-translations" style="border: none; padding: 0;">
                 <div class="translation-block">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu — Abdullah Muhammad Basmeih</span>
-                  <p class="translation-text" style="font-size: 1.1rem; color: var(--text-primary);">${msText}</p>
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu — Abdullah Muhammad Basmeih (${isJawi ? 'توليسن جاوي' : 'Rumi'})</span>
+                  <p class="${msClass}" style="font-size: 1.1rem; color: var(--text-primary);">${msDisplayText}</p>
+                </div>
+                <div class="translation-block" style="margin-top: 1rem;">
+                  <span class="translation-label"><span class="lang-flag">🇮🇩</span> Bahasa Indonesia — Kemenag</span>
+                  <p class="translation-text" style="font-size: 1.05rem; color: var(--text-primary);">${idText}</p>
                 </div>
                 <div class="translation-block" style="margin-top: 1rem;">
                   <span class="translation-label"><span class="lang-flag">🇬🇧</span> English — Saheeh International</span>
@@ -865,9 +1083,15 @@ class App {
             </div>
 
             <div class="tab-pane" id="pane-tafsir">
-              <div class="tafsir-source">Source: Tafsir al-Jalalayn (Jalal al-Din al-Mahalli & Jalal al-Din al-Suyuti)</div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
+                <span class="tafsir-source" style="margin: 0;">Classical Commentary</span>
+                <select id="tafsir-edition-select" class="select-input">
+                  <option value="en-al-jalalayn" selected>Tafsir al-Jalalayn</option>
+                  <option value="en-ibn-kathir">Tafsir Ibn Kathir</option>
+                </select>
+              </div>
               <div class="tafsir-content" id="tafsir-body-text">
-                <div style="color: var(--text-muted);">Click to load tafsir commentary for ${surah}:${ayah}...</div>
+                <div style="color: var(--text-muted);">Click to load commentary for ${surah}:${ayah}...</div>
               </div>
             </div>
           </div>
@@ -950,6 +1174,23 @@ class App {
     const paneTranslations = document.getElementById('pane-translations');
     const paneTafsir = document.getElementById('pane-tafsir');
     const tafsirBody = document.getElementById('tafsir-body-text');
+    const tafsirSelect = document.getElementById('tafsir-edition-select');
+
+    const loadTafsirContent = async () => {
+      const edition = tafsirSelect ? tafsirSelect.value : 'en-al-jalalayn';
+      const label = edition === 'en-ibn-kathir' ? 'Tafsir Ibn Kathir' : 'Tafsir al-Jalalayn';
+      tafsirBody.innerHTML = `<div style="color: var(--accent-emerald);">Fetching ${label} from CDN...</div>`;
+      const tafsirData = await store.fetchTafsir(surah, ayah, edition);
+      tafsirBody.innerHTML = `
+        <div style="font-size: 1.05rem; line-height: 1.85; color: var(--text-primary);">
+          ${tafsirData.text || 'No commentary available for this verse.'}
+        </div>
+      `;
+    };
+
+    if (tafsirSelect) {
+      tafsirSelect.addEventListener('change', loadTafsirContent);
+    }
 
     tabBtns.forEach((btn) => {
       btn.addEventListener('click', async () => {
@@ -963,18 +1204,17 @@ class App {
         } else {
           paneTranslations.classList.remove('active');
           paneTafsir.classList.add('active');
-
-          // Lazy load tafsir
-          tafsirBody.innerHTML = '<div style="color: var(--accent-emerald);">Fetching Tafsir al-Jalalayn from CDN...</div>';
-          const tafsirData = await store.fetchTafsir(surah, ayah);
-          tafsirBody.innerHTML = `
-            <div style="font-size: 1.05rem; line-height: 1.85; color: var(--text-primary);">
-              ${tafsirData.text || 'No commentary available for this verse.'}
-            </div>
-          `;
+          await loadTafsirContent();
         }
       });
     });
+  }
+
+  /**
+   * 15-Line Madinah Mushaf Page View (#mushaf/:page)
+   */
+  async renderMushafView({ page }) {
+    await mushafViewer.renderPage(page || 1, this.mainContainer);
   }
 
   /**
