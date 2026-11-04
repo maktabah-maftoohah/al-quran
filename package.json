@@ -2,9 +2,14 @@
   "name": "al-quran",
   "version": "1.0.0",
   "description": "Open Quranic Arabic, Multilingual Translations, Word-by-Word Morphology, and Audio Recitations.",
-  "private": true,
+  "license": "MIT",
+  "homepage": "https://maktabah-maftoohah.github.io/al-quran/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maktabah-maftoohah/al-quran.git"
+  },
   "scripts": {
-    "test": "node scripts/test_ui_comprehensive.js"
+    "test": "node scripts/test_release_qa.js"
   },
   "devDependencies": {
     "playwright": "^1.55.0"
