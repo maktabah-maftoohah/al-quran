@@ -104,10 +104,17 @@ class QuranStore {
   loadLastRead() {
     try {
       const saved = localStorage.getItem('maktabah_quran_last_read');
-      return saved ? JSON.parse(saved) : { surah: 1, ayah: 1, surahName: 'Al-Faatiha' };
+      return saved ? JSON.parse(saved) : null;
     } catch {
-      return { surah: 1, ayah: 1, surahName: 'Al-Faatiha' };
+      return null;
     }
+  }
+
+  getLastRead() {
+    if (!this.lastRead) {
+      this.lastRead = this.loadLastRead();
+    }
+    return this.lastRead;
   }
 
   setLastRead(surah, ayah, surahName) {

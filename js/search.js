@@ -105,8 +105,8 @@ export class SearchEngine {
     const results = [];
     const surahs = await store.fetchSurahs();
 
-    // 1. Direct Verse Jump Check: e.g. "112:1" or "1:7"
-    const verseJumpMatch = rawQuery.match(/^(\d{1,3}):(\d{1,3})$/);
+    // 1. Direct Verse Jump Check: e.g. "112:1", "112: 1", or "112 1"
+    const verseJumpMatch = rawQuery.match(/^(\d{1,3})\s*[:\s]\s*(\d{1,3})$/);
     if (verseJumpMatch) {
       const s = parseInt(verseJumpMatch[1], 10);
       const a = parseInt(verseJumpMatch[2], 10);
@@ -229,9 +229,15 @@ export class SearchEngine {
         }
 
         // Verse result
+        const highlightedAr = item.matchedField === 'ar'
+          ? this.highlightMatch(item.ar, this.normalizeArabic(item.rawQuery))
+          : item.ar;
+
         const highlightedTrans = item.matchedField === 'ms'
           ? this.highlightMatch(item.ms, item.rawQuery)
-          : this.highlightMatch(item.en, item.rawQuery);
+          : (item.matchedField === 'en'
+              ? this.highlightMatch(item.en, item.rawQuery)
+              : (item.en || item.ms || ''));
 
         return `
           <div class="search-result-item ${isSelected}" data-index="${index}" data-url="${item.url}">
@@ -239,7 +245,7 @@ export class SearchEngine {
               <span class="search-result-ref">${item.surahName} (${item.ref})</span>
               <a href="#ayah/${item.surah}/${item.ayah}" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();">Deep-Dive</a>
             </div>
-            <div class="search-result-ar">${item.ar}</div>
+            <div class="search-result-ar">${highlightedAr}</div>
             <div class="search-result-trans">${highlightedTrans}</div>
           </div>
         `;

@@ -501,6 +501,12 @@ class App {
         el.classList.toggle('active', el.getAttribute('data-surah') === String(surah));
       });
 
+      // Check if chapter is seeded before fetching network assets
+      if (!meta.seeded) {
+        this.renderUnseededSurahView(meta);
+        return;
+      }
+
       // Try fetching Arabic & translations
       let arabicData, translations;
       try {
@@ -731,6 +737,11 @@ class App {
       const meta = await store.getSurahMeta(surah);
       if (!meta) {
         this.mainContainer.innerHTML = `<div style="padding: 2rem; color: var(--danger);">Surah ${surah} not found.</div>`;
+        return;
+      }
+
+      if (!meta.seeded) {
+        this.renderUnseededSurahView(meta);
         return;
       }
 
