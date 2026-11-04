@@ -11,6 +11,7 @@ class QuranStore {
       morphology: new Map(),
       translations: {
         basmeih: null,
+        jalalayn: null,
         sahih: null,
         pickthall: null,
         kemenag: null,
@@ -37,6 +38,7 @@ class QuranStore {
       },
       activeTranslations: {
         basmeih: true,
+        jalalayn: false,
         sahih: true,
         pickthall: false,
         kemenag: true,
@@ -175,7 +177,7 @@ class QuranStore {
 
   async fetchTranslations(activeOnly = true) {
     const t = this.cache.translations;
-    const act = this.settings.activeTranslations || { basmeih: true, sahih: true, pickthall: false, kemenag: true };
+    const act = this.settings.activeTranslations || { basmeih: true, jalalayn: false, sahih: true, pickthall: false, kemenag: true };
     const fetchPromises = [];
 
     if ((!activeOnly || act.basmeih) && !t.basmeih) {
@@ -184,6 +186,14 @@ class QuranStore {
           .then((r) => r.json())
           .then((d) => (t.basmeih = d))
           .catch(() => (t.basmeih = {}))
+      );
+    }
+    if ((!activeOnly || act.jalalayn) && !t.jalalayn) {
+      fetchPromises.push(
+        fetch('./data/translations/ms/jalalayn.json')
+          .then((r) => r.json())
+          .then((d) => (t.jalalayn = d))
+          .catch(() => (t.jalalayn = {}))
       );
     }
     if ((!activeOnly || act.sahih) && !t.sahih) {
@@ -217,9 +227,29 @@ class QuranStore {
     return t;
   }
 
-  async fetchTafsir(surahNum, ayahNum, edition = 'en-al-jalalayn') {
+  async fetchTafsir(surahNum, ayahNum, edition = 'ms-al-jalalayn') {
     const key = `${edition}:${surahNum}:${ayahNum}`;
     if (this.cache.tafsir.has(key)) return this.cache.tafsir.get(key);
+
+    if (edition === 'ms-al-jalalayn') {
+      try {
+        if (!this.cache.translations.jalalayn) {
+          const res = await fetch('./data/translations/ms/jalalayn.json');
+          if (res.ok) {
+            this.cache.translations.jalalayn = await res.json();
+          }
+        }
+        const sStr = String(surahNum);
+        const aStr = String(ayahNum);
+        const text = this.cache.translations.jalalayn?.[sStr]?.[aStr] || 'Ulasan tafsir tidak tersedia untuk ayat ini.';
+        const result = { text, source: 'Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)', error: false };
+        this.cache.tafsir.set(key, result);
+        return result;
+      } catch {
+        return { text: 'Ulasan tafsir tidak tersedia.', source: 'Tafsir al-Jalalayn', error: true };
+      }
+    }
+
     const url = `https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir/${edition}/${surahNum}/${ayahNum}.json`;
     try {
       const res = await fetch(url);

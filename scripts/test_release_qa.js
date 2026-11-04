@@ -223,6 +223,16 @@ server.listen(PORT, async () => {
     const popoverOpen = await page.$eval('#typography-popover', el => el.classList.contains('open'));
     assert(popoverOpen, 'Typography popover opens');
 
+    // Toggle Jalalayn Translation
+    const toggleJalalayn = await page.$('#toggle-trans-jalalayn');
+    assert(toggleJalalayn !== null, 'Tafsir al-Jalalayn checkbox present in Typography settings');
+    await page.click('#toggle-trans-jalalayn');
+    await page.waitForTimeout(500);
+
+    const jalalaynBlocks = await page.$$('.translation-block-jalalayn');
+    const jalalaynVisible = await page.$eval('.translation-block-jalalayn', el => window.getComputedStyle(el).display !== 'none');
+    assert(jalalaynVisible, 'Tafsir al-Jalalayn (Bahasa Melayu) translation block visible upon toggle');
+
     // Toggle Jawi
     await page.click('#toggle-jawi-script');
     await page.waitForTimeout(400);

@@ -22,11 +22,12 @@
 ### 🔬 Word-by-Word Morphology & Deep-Dive
 * **Token-Level Analysis**: Interactive Arabic token cards showing phonetic transliteration, Malay/English gloss, part-of-speech (POS) tags, lemmas, and root words (`الجذر`).
 * **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the Quranic Arabic Corpus.
-* **Tafsir al-Jalalayn**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view.
+* **Tafsir al-Jalalayn & Ibn Kathir**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view (featuring Bahasa Melayu / Nusantara and English).
 
 ### 🌍 Multilingual Translations & Jawi Script
-* **4 Full Translation Editions**:
-  * 🇲🇾 **Bahasa Melayu** — Abdullah Muhammad Basmeih
+* **5 Full Translation & Exegesis Editions**:
+  * 🇲🇾 **Bahasa Melayu (JAKIM)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
+  * 🇲🇾 **Tafsir al-Jalalayn** — Classical Exegesis in Bahasa Melayu / Nusantara (Jalaluddin al-Mahalli & Jalaluddin as-Suyuti)
   * 🇬🇧 **English** — Saheeh International
   * 🇬🇧 **English (Literary)** — Muhammad Marmaduke Pickthall
   * 🇮🇩 **Bahasa Indonesia** — Kementerian Agama Republik Indonesia (Kemenag)
@@ -86,7 +87,7 @@ This project adheres to strict architectural principles designed for longevity, 
    * Zero npm runtime dependencies.
 2. **Subpath Hosting Compatibility**:
    * All network requests use strictly relative paths (`./data/...`, `./css/...`, `./js/...`), ensuring flawless execution on subpath environments like GitHub Pages (`https://<org>.github.io/<repo>/`).
-3. **Offline-First PWA (Service Worker v4)**:
+3. **Offline-First PWA (Service Worker v6)**:
    * Stale-while-revalidate caching provides instantaneous offline boot while seamlessly pulling background updates from GitHub.
 4. **Storage Architecture**:
    * **IndexedDB** (`maktabah_quran_db`): Persistent offline audio MP3 blobs and user study notes.

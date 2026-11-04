@@ -369,6 +369,7 @@ class App {
 
     // Translation Toggles
     const toggleBasmeih = document.getElementById('toggle-trans-basmeih');
+    const toggleJalalayn = document.getElementById('toggle-trans-jalalayn');
     const toggleSahih = document.getElementById('toggle-trans-sahih');
     const togglePickthall = document.getElementById('toggle-trans-pickthall');
     const toggleKemenag = document.getElementById('toggle-trans-kemenag');
@@ -377,6 +378,7 @@ class App {
     const updateTransSettings = async () => {
       const activeTranslations = {
         basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
+        jalalayn: toggleJalalayn ? toggleJalalayn.checked : false,
         sahih: toggleSahih ? toggleSahih.checked : true,
         pickthall: togglePickthall ? togglePickthall.checked : false,
         kemenag: toggleKemenag ? toggleKemenag.checked : true,
@@ -393,6 +395,10 @@ class App {
     if (toggleBasmeih) {
       toggleBasmeih.checked = store.settings.activeTranslations.basmeih;
       toggleBasmeih.addEventListener('change', updateTransSettings);
+    }
+    if (toggleJalalayn) {
+      toggleJalalayn.checked = Boolean(store.settings.activeTranslations.jalalayn);
+      toggleJalalayn.addEventListener('change', updateTransSettings);
     }
     if (toggleSahih) {
       toggleSahih.checked = store.settings.activeTranslations.sahih;
@@ -420,6 +426,9 @@ class App {
     const act = store.settings.activeTranslations;
     document.querySelectorAll('.translation-block-basmeih').forEach((el) => {
       el.style.display = act.basmeih ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.translation-block-jalalayn').forEach((el) => {
+      el.style.display = act.jalalayn ? 'flex' : 'none';
     });
     document.querySelectorAll('.translation-block-sahih').forEach((el) => {
       el.style.display = act.sahih ? 'flex' : 'none';
@@ -449,6 +458,12 @@ class App {
         const pEl = card.querySelector('.translation-block-basmeih p');
         if (pEl && !pEl.textContent.trim()) {
           pEl.textContent = store.settings.jawiMode ? rumiToJawi(t.basmeih[sNum][aNum]) : t.basmeih[sNum][aNum];
+        }
+      }
+      if (t.jalalayn && t.jalalayn[sNum]?.[aNum]) {
+        const pEl = card.querySelector('.translation-block-jalalayn p');
+        if (pEl && !pEl.textContent.trim()) {
+          pEl.textContent = t.jalalayn[sNum][aNum];
         }
       }
       if (t.sahih && t.sahih[sNum]?.[aNum]) {
@@ -1039,6 +1054,7 @@ class App {
 
       const sStr = String(surah);
       const basmeihSurah = translations.basmeih?.[sStr] || {};
+      const jalalaynSurah = translations.jalalayn?.[sStr] || {};
       const sahihSurah = translations.sahih?.[sStr] || {};
       const pickthallSurah = translations.pickthall?.[sStr] || {};
       const kemenagSurah = translations.kemenag?.[sStr] || {};
@@ -1115,6 +1131,7 @@ class App {
           const hasNote = Boolean(note);
           const msRawText = basmeihSurah[ayahNumStr] || '';
           const msDisplayText = isJawi ? rumiToJawi(msRawText) : msRawText;
+          const msJalalaynText = jalalaynSurah[ayahNumStr] || '';
           const enSahihText = sahihSurah[ayahNumStr] || '';
           const enPickthallText = pickthallSurah[ayahNumStr] || '';
           const idKemenagText = kemenagSurah[ayahNumStr] || '';
@@ -1152,8 +1169,12 @@ class App {
 
               <div class="verse-translations">
                 <div class="translation-block translation-block-basmeih">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
                   <p class="${msClass}">${msDisplayText}</p>
+                </div>
+                <div class="translation-block translation-block-jalalayn">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>
+                  <p class="translation-text">${msJalalaynText}</p>
                 </div>
                 <div class="translation-block translation-block-kemenag">
                   <span class="translation-label"><span class="lang-flag">🇮🇩</span> Kemenag (Bahasa Indonesia)</span>
@@ -1511,6 +1532,7 @@ class App {
       const uthmaniText = arabicData.ayahs[aStr]?.uthmani || '';
       const tokens = morphologyData.ayahs[aStr] || [];
       const msText = translations.basmeih?.[sStr]?.[aStr] || '';
+      const msJalalayn = translations.jalalayn?.[sStr]?.[aStr] || '';
       const idText = translations.kemenag?.[sStr]?.[aStr] || '';
       const sahihText = translations.sahih?.[sStr]?.[aStr] || '';
       const pickthallText = translations.pickthall?.[sStr]?.[aStr] || '';
@@ -1619,8 +1641,12 @@ class App {
             <div class="tab-pane active" id="pane-translations">
               <div class="verse-translations" style="border: none; padding: 0;">
                 <div class="translation-block">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu — Abdullah Muhammad Basmeih (${isJawi ? 'توليسن جاوي' : 'Rumi'})</span>
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu — JAKIM / Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Rumi'})</span>
                   <p class="${msClass}" style="font-size: 1.1rem; color: var(--text-primary);">${msDisplayText}</p>
+                </div>
+                <div class="translation-block" style="margin-top: 1rem;">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu / Nusantara — Tafsir al-Jalalayn</span>
+                  <p class="translation-text" style="font-size: 1.05rem; color: var(--text-primary);">${msJalalayn}</p>
                 </div>
                 <div class="translation-block" style="margin-top: 1rem;">
                   <span class="translation-label"><span class="lang-flag">🇮🇩</span> Bahasa Indonesia — Kemenag</span>
@@ -1641,8 +1667,9 @@ class App {
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
                 <span class="tafsir-source" style="margin: 0;">Classical Commentary</span>
                 <select id="tafsir-edition-select" class="select-input">
-                  <option value="en-al-jalalayn" selected>Tafsir al-Jalalayn</option>
-                  <option value="en-ibn-kathir">Tafsir Ibn Kathir</option>
+                  <option value="ms-al-jalalayn" selected>🇲🇾 Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</option>
+                  <option value="en-al-jalalayn">🇬🇧 Tafsir al-Jalalayn (English)</option>
+                  <option value="en-ibn-kathir">🇬🇧 Tafsir Ibn Kathir (English)</option>
                 </select>
               </div>
               <div class="tafsir-content" id="tafsir-body-text">
@@ -1744,13 +1771,15 @@ class App {
     const tafsirSelect = document.getElementById('tafsir-edition-select');
 
     const loadTafsirContent = async () => {
-      const edition = tafsirSelect ? tafsirSelect.value : 'en-al-jalalayn';
-      const label = edition === 'en-ibn-kathir' ? 'Tafsir Ibn Kathir' : 'Tafsir al-Jalalayn';
-      tafsirBody.innerHTML = `<div style="color: var(--accent-emerald);">Fetching ${label} from CDN...</div>`;
+      const edition = tafsirSelect ? tafsirSelect.value : 'ms-al-jalalayn';
+      const label = edition === 'en-ibn-kathir'
+        ? 'Tafsir Ibn Kathir'
+        : (edition === 'en-al-jalalayn' ? 'Tafsir al-Jalalayn (English)' : 'Tafsir al-Jalalayn (Melayu)');
+      tafsirBody.innerHTML = `<div style="color: var(--accent-emerald);">Loading ${label}...</div>`;
       const tafsirData = await store.fetchTafsir(surah, ayah, edition);
       tafsirBody.innerHTML = `
         <div style="font-size: 1.05rem; line-height: 1.85; color: var(--text-primary);">
-          ${tafsirData.text || 'No commentary available for this verse.'}
+          ${this.escapeHtml(tafsirData.text || 'Ulasan tafsir tidak tersedia untuk ayat ini.')}
         </div>
       `;
     };

@@ -83,6 +83,7 @@ def run_checks():
     # 4. translations
     trans_files = [
         DATA_DIR / "translations" / "ms" / "basmeih.json",
+        DATA_DIR / "translations" / "ms" / "jalalayn.json",
         DATA_DIR / "translations" / "en" / "sahih.json",
         DATA_DIR / "translations" / "en" / "pickthall.json",
         DATA_DIR / "translations" / "id" / "kemenag.json",
