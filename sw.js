@@ -3,7 +3,7 @@
  * Enables offline caching and PWA installation.
  */
 
-const CACHE_NAME = 'maktabah-quran-v12';
+const CACHE_NAME = 'maktabah-quran-v13';
 
 const APP_SHELL = [
   './',
