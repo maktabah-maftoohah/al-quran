@@ -45,6 +45,16 @@ export class VerseCardGenerator {
     if (copyBtn) {
       copyBtn.addEventListener('click', () => this.copyToClipboard());
     }
+
+    // Native Web Share API
+    const shareBtn = document.getElementById('btn-share-card-native');
+    if (shareBtn) {
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        shareBtn.addEventListener('click', () => this.shareNative());
+      } else {
+        shareBtn.style.display = 'none';
+      }
+    }
   }
 
   open(data) {
@@ -230,6 +240,45 @@ export class VerseCardGenerator {
         if (window.app && window.app.showToast) {
           window.app.showToast('Could not copy image directly to clipboard.');
         }
+      }
+    });
+  }
+
+  async shareNative() {
+    if (!this.canvas || !this.currentData) return;
+    this.canvas.toBlob(async (blob) => {
+      if (!blob) return;
+      const filename = `quran_${this.currentData.ref.replace(':', '_')}.png`;
+      const file = new File([blob], filename, { type: 'image/png' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            title: `Surah ${this.currentData.surahName} (${this.currentData.ref})`,
+            text: `Al-Quran — Surah ${this.currentData.surahName} [${this.currentData.ref}]\n${this.currentData.trans}`,
+            files: [file],
+          });
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.warn('Share error:', err);
+          }
+        }
+      } else if (navigator.share) {
+        try {
+          await navigator.share({
+            title: `Surah ${this.currentData.surahName} (${this.currentData.ref})`,
+            text: `Al-Quran — Surah ${this.currentData.surahName} [${this.currentData.ref}]\n${this.currentData.ar}\n\n${this.currentData.trans}`,
+            url: window.location.href,
+          });
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.warn('Share error:', err);
+          }
+        }
+      } else {
+        this.downloadCard();
       }
     });
   }

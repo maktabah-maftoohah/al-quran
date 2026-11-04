@@ -1516,3 +1516,28 @@ input[type="range"] {
   border-color: rgba(16, 185, 129, 0.4);
   color: var(--accent-emerald);
 }
+
+.offline-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-gold);
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  animation: pulse-offline 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-offline {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; border-color: rgba(245, 158, 11, 0.75); }
+}
+
+#wake-lock-btn.active {
+  color: var(--accent-gold);
+  border-color: rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.15);
+}

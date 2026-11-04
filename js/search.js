@@ -14,6 +14,8 @@ export class SearchEngine {
     this.selectedIndex = -1;
     this.currentResults = [];
     this.isLoaded = false;
+    this.worker = null;
+    this.queryId = 0;
   }
 
   init() {
@@ -22,6 +24,15 @@ export class SearchEngine {
     this.resultsList = document.getElementById('search-results-list');
 
     if (!this.modal || !this.input || !this.resultsList) return;
+
+    if (typeof Worker !== 'undefined') {
+      try {
+        this.worker = new Worker('./js/search-worker.js');
+      } catch (err) {
+        console.warn('Search Worker fallback to main thread:', err);
+        this.worker = null;
+      }
+    }
 
     // Trigger buttons
     document.querySelectorAll('[data-action="open-search"]').forEach((btn) => {
@@ -64,8 +75,11 @@ export class SearchEngine {
     // Lazy load index on first open
     if (!this.isLoaded) {
       try {
-        await store.fetchSearchIndex();
+        const index = await store.fetchSearchIndex();
         this.isLoaded = true;
+        if (this.worker) {
+          this.worker.postMessage({ action: 'INIT_INDEX', data: index });
+        }
       } catch (err) {
         console.error('Failed to load search index:', err);
       }
@@ -158,50 +172,87 @@ export class SearchEngine {
       }
     }
 
-    // 4. Full Verse Content Search (Arabic, Malay, English)
-    const index = await store.fetchSearchIndex();
-    const normalizedArQuery = this.normalizeArabic(rawQuery);
-
-    let matchCount = 0;
-    const MAX_INDEX_RESULTS = 30;
-
-    for (const item of index) {
-      if (matchCount >= MAX_INDEX_RESULTS) break;
-
-      let matched = false;
-      let matchedText = '';
-      let matchField = '';
-
-      if (normalizedArQuery.length >= 2 && item.ar.includes(normalizedArQuery)) {
-        matched = true;
-        matchField = 'ar';
-        matchedText = item.ar;
-      } else if (item.ms && item.ms.toLowerCase().includes(lowerQuery)) {
-        matched = true;
-        matchField = 'ms';
-        matchedText = item.ms;
-      } else if (item.en && item.en.toLowerCase().includes(lowerQuery)) {
-        matched = true;
-        matchField = 'en';
-        matchedText = item.en;
-      }
-
-      if (matched) {
-        matchCount++;
-        const surahMeta = surahs.find((s) => s.number === item.s);
-        results.push({
-          type: 'verse',
-          ref: item.ref,
-          surah: item.s,
-          ayah: item.a,
-          surahName: surahMeta ? surahMeta.name_latin : `Surah ${item.s}`,
-          ar: item.ar,
-          ms: item.ms,
-          en: item.en,
-          matchedField: matchField,
-          rawQuery,
-          url: `#surah/${item.s}?ayah=${item.a}`,
+    // 4. Full Verse Content Search (Worker or Main Thread fallback)
+    if (this.worker && this.isLoaded) {
+      const qId = ++this.queryId;
+      try {
+        const workerResults = await new Promise((resolve) => {
+          const timeout = setTimeout(() => resolve([]), 500);
+          const handler = (e) => {
+            if (e.data.action === 'SEARCH_RESULTS' && e.data.id === qId) {
+              clearTimeout(timeout);
+              this.worker.removeEventListener('message', handler);
+              resolve(e.data.results);
+            }
+          };
+          this.worker.addEventListener('message', handler);
+          this.worker.postMessage({
+            action: 'SEARCH',
+            id: qId,
+            data: { query: rawQuery, limit: 30 },
+          });
         });
+
+        for (const item of workerResults) {
+          const surahMeta = surahs.find((s) => s.number === item.s);
+          results.push({
+            type: 'verse',
+            ref: item.ref,
+            surah: item.s,
+            ayah: item.a,
+            surahName: surahMeta ? surahMeta.name_latin : `Surah ${item.s}`,
+            ar: item.ar,
+            ms: item.ms,
+            en: item.en,
+            matchedField: item.matchField,
+            rawQuery,
+            url: `#surah/${item.s}?ayah=${item.a}`,
+          });
+        }
+      } catch (err) {
+        console.warn('Worker search error:', err);
+      }
+    } else {
+      // Main-thread fallback
+      const index = await store.fetchSearchIndex();
+      const normalizedArQuery = this.normalizeArabic(rawQuery);
+      let matchCount = 0;
+      const MAX_INDEX_RESULTS = 30;
+
+      for (const item of index) {
+        if (matchCount >= MAX_INDEX_RESULTS) break;
+
+        let matched = false;
+        let matchField = '';
+
+        if (normalizedArQuery.length >= 2 && item.ar.includes(normalizedArQuery)) {
+          matched = true;
+          matchField = 'ar';
+        } else if (item.ms && item.ms.toLowerCase().includes(lowerQuery)) {
+          matched = true;
+          matchField = 'ms';
+        } else if (item.en && item.en.toLowerCase().includes(lowerQuery)) {
+          matched = true;
+          matchField = 'en';
+        }
+
+        if (matched) {
+          matchCount++;
+          const surahMeta = surahs.find((s) => s.number === item.s);
+          results.push({
+            type: 'verse',
+            ref: item.ref,
+            surah: item.s,
+            ayah: item.a,
+            surahName: surahMeta ? surahMeta.name_latin : `Surah ${item.s}`,
+            ar: item.ar,
+            ms: item.ms,
+            en: item.en,
+            matchedField: matchField,
+            rawQuery,
+            url: `#surah/${item.s}?ayah=${item.a}`,
+          });
+        }
       }
     }
 

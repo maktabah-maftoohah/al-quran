@@ -11,6 +11,8 @@ import { rumiToJawi } from './jawi.js';
 import { cardGenerator } from './card-generator.js';
 import { mushafViewer } from './mushaf.js';
 import { storageDB } from './storage-db.js';
+import { wakeLockController } from './wake-lock.js';
+import { backupManager } from './backup.js';
 
 class App {
   constructor() {
@@ -37,6 +39,9 @@ class App {
     this.initMorphologyDrawer();
     this.initNoteModal();
     this.initStorageStats();
+    this.initWakeLock();
+    this.initNetworkStatus();
+    this.initBackupControls();
     this.initGlobalEvents();
 
     // Register routes
@@ -815,17 +820,152 @@ class App {
         }
       });
     }
+
+    const persistBtn = document.getElementById('btn-request-persist');
+    if (persistBtn) {
+      persistBtn.addEventListener('click', async () => {
+        const granted = await storageDB.requestPersistence();
+        this.updateStorageStatsDisplay();
+        this.showToast(
+          granted
+            ? '🔒 Storage marked as persistent (Protected from browser eviction)'
+            : 'Persistence could not be granted by browser'
+        );
+      });
+    }
   }
 
   async updateStorageStatsDisplay() {
     const statEl = document.getElementById('storage-audio-stat');
-    if (!statEl) return;
+    const statusEl = document.getElementById('storage-persist-status');
+    const persistBtn = document.getElementById('btn-request-persist');
+
     try {
       const stats = await storageDB.getAudioStorageStats();
       const mb = (stats.bytes / (1024 * 1024)).toFixed(1);
-      statEl.textContent = `Audio: ${stats.count} files (${mb} MB)`;
+      if (statEl) statEl.textContent = `Audio: ${stats.count} files (${mb} MB)`;
+
+      const quota = await storageDB.getStorageQuota();
+      if (quota && statusEl) {
+        if (quota.isPersistent) {
+          statusEl.textContent = '🔒 Protected';
+          statusEl.title = 'Storage is protected by the browser from automatic eviction.';
+          if (persistBtn) persistBtn.style.display = 'none';
+        } else {
+          statusEl.textContent = 'Best-Effort';
+          statusEl.title = 'Browser may evict storage if disk space becomes extremely low.';
+          if (persistBtn) persistBtn.style.display = 'inline-block';
+        }
+      }
     } catch {
-      statEl.textContent = 'Audio: 0 KB';
+      if (statEl) statEl.textContent = 'Audio: 0 KB';
+    }
+  }
+
+  // --- Network Status (Online / Offline Indicator) ---
+
+  initNetworkStatus() {
+    const pill = document.getElementById('offline-status-pill');
+    const updateStatus = (isOnline, showNotification = true) => {
+      if (pill) {
+        pill.style.display = isOnline ? 'none' : 'flex';
+      }
+      if (showNotification) {
+        this.showToast(
+          isOnline
+            ? '🌐 Connection restored — Back online'
+            : '📶 Offline Mode — Reading from local cache & storage'
+        );
+      }
+    };
+
+    updateStatus(navigator.onLine, false);
+    window.addEventListener('online', () => updateStatus(true, true));
+    window.addEventListener('offline', () => updateStatus(false, true));
+  }
+
+  // --- Screen Wake Lock API ---
+
+  initWakeLock() {
+    const wakeLockBtn = document.getElementById('wake-lock-btn');
+    const toggleWakeLock = document.getElementById('toggle-wake-lock');
+
+    const updateWakeLockUI = (active) => {
+      if (wakeLockBtn) {
+        wakeLockBtn.classList.toggle('active', active);
+        wakeLockBtn.title = active
+          ? 'Screen Wake Lock Active (Screen will not dim)'
+          : 'Keep Screen Awake (Wake Lock)';
+      }
+      if (toggleWakeLock) {
+        toggleWakeLock.checked = active;
+      }
+    };
+
+    if (wakeLockBtn) {
+      if (!wakeLockController.isSupported()) {
+        wakeLockBtn.style.display = 'none';
+      } else {
+        wakeLockBtn.addEventListener('click', async () => {
+          const active = await wakeLockController.toggle();
+          updateWakeLockUI(active);
+          this.showToast(
+            active ? '💡 Screen Wake Lock ON (No screen timeout)' : 'Screen Wake Lock OFF'
+          );
+        });
+      }
+    }
+
+    if (toggleWakeLock) {
+      if (!wakeLockController.isSupported()) {
+        toggleWakeLock.parentElement.style.display = 'none';
+      } else {
+        toggleWakeLock.addEventListener('change', async () => {
+          if (toggleWakeLock.checked) {
+            await wakeLockController.request();
+          } else {
+            await wakeLockController.release();
+          }
+          updateWakeLockUI(wakeLockController.isActive());
+        });
+      }
+    }
+  }
+
+  // --- Data Backup & Restore ---
+
+  initBackupControls() {
+    const exportBtn = document.getElementById('btn-export-backup');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', async () => {
+        try {
+          const res = await backupManager.exportBackup();
+          this.showToast(
+            `Backup exported (${res.notesCount} notes, ${res.bookmarksCount} bookmarks)`
+          );
+        } catch (e) {
+          this.showToast(`Backup failed: ${e.message}`);
+        }
+      });
+    }
+
+    const importInput = document.getElementById('input-import-backup');
+    if (importInput) {
+      importInput.addEventListener('change', async () => {
+        const file = importInput.files?.[0];
+        if (!file) return;
+        try {
+          const res = await backupManager.importBackup(file);
+          this.showToast(`Restored ${res.notesCount} notes and ${res.bookmarksCount} bookmarks!`);
+          this.renderSidebarBookmarks();
+          this.renderSidebarNotes();
+          router.handleRouting();
+        } catch (e) {
+          this.showToast(`Restore failed: ${e.message}`);
+        } finally {
+          importInput.value = '';
+        }
+      });
     }
   }
 

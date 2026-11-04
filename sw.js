@@ -19,6 +19,9 @@ const APP_SHELL = [
   './js/card-generator.js',
   './js/mushaf.js',
   './js/storage-db.js',
+  './js/wake-lock.js',
+  './js/backup.js',
+  './js/search-worker.js',
   './data/icon.svg',
   './data/surahs.json'
 ];

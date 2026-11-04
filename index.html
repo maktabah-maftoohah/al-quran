@@ -64,6 +64,26 @@
         🧠 Hifz
       </button>
 
+      <!-- Offline Network Status Indicator -->
+      <div class="offline-pill" id="offline-status-pill" style="display: none;" title="Offline Mode: Cached text and audio are available">
+        📶 Offline
+      </div>
+
+      <!-- Screen Wake Lock Toggle Button -->
+      <button class="btn btn-icon" id="wake-lock-btn" aria-label="Keep screen awake" title="Keep Screen Awake (Wake Lock)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
       <!-- Typography Settings Button -->
       <button class="btn btn-icon" id="typography-btn" aria-label="Typography settings" title="Text & Display Settings">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -135,14 +155,36 @@
           <input type="checkbox" id="toggle-jawi-script">
           <span>🇲🇾 Jawi Script (tulisan Jawi)</span>
         </label>
+        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+          <input type="checkbox" id="toggle-wake-lock">
+          <span>💡 Keep Screen Awake (No Timeout)</span>
+        </label>
       </div>
 
       <!-- Offline Storage Stats & Management -->
       <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.5rem;">
-        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Offline Storage (IndexedDB)</span>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Offline Storage (IndexedDB)</span>
+          <span id="storage-persist-status" style="font-size: 0.72rem; color: var(--accent-emerald);"></span>
+        </div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; font-size: 0.82rem; color: var(--text-secondary);">
           <span id="storage-audio-stat">Audio: 0 KB</span>
-          <button class="btn" id="btn-clear-audio-cache" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Clear Audio</button>
+          <div style="display: flex; gap: 0.4rem;">
+            <button class="btn" id="btn-request-persist" style="font-size: 0.75rem; padding: 0.2rem 0.4rem; display: none;" title="Keep storage persistent so browser does not evict it">Lock</button>
+            <button class="btn" id="btn-clear-audio-cache" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Clear Audio</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Backup & Restore -->
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.5rem;">
+        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Data Backup & Restore</span>
+        <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem;">
+          <button class="btn" id="btn-export-backup" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; flex: 1;" title="Export all notes, bookmarks, and settings as JSON file">📥 Backup JSON</button>
+          <label class="btn" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; flex: 1; text-align: center; cursor: pointer;" title="Restore notes and bookmarks from JSON file">
+            📤 Restore
+            <input type="file" id="input-import-backup" accept=".json" style="display: none;">
+          </label>
         </div>
       </div>
     </div>
@@ -277,8 +319,9 @@
               <option value="9:16">Story (9:16 Portrait)</option>
             </select>
           </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button class="btn btn-primary" id="btn-download-card">💾 Download PNG</button>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <button class="btn btn-primary" id="btn-share-card-native">📤 Share</button>
+            <button class="btn" id="btn-download-card">💾 PNG</button>
             <button class="btn" id="btn-copy-card-image">📋 Copy</button>
           </div>
         </div>

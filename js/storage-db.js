@@ -326,6 +326,58 @@ export class StorageDB {
       }
     });
   }
+
+  // ==========================================
+  // Browser Storage Manager (Persistence & Quota)
+  // ==========================================
+
+  /**
+   * Requests the browser to mark origin storage as persistent (prevents eviction).
+   */
+  async requestPersistence() {
+    if (typeof navigator !== 'undefined' && navigator.storage && navigator.storage.persist) {
+      try {
+        return await navigator.storage.persist();
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Checks whether storage is currently persistent.
+   */
+  async isPersistent() {
+    if (typeof navigator !== 'undefined' && navigator.storage && navigator.storage.persisted) {
+      try {
+        return await navigator.storage.persisted();
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Estimates total origin storage usage and quota in bytes.
+   */
+  async getStorageQuota() {
+    if (typeof navigator !== 'undefined' && navigator.storage && navigator.storage.estimate) {
+      try {
+        const estimate = await navigator.storage.estimate();
+        const isPersisted = await this.isPersistent();
+        return {
+          usage: estimate.usage || 0,
+          quota: estimate.quota || 0,
+          isPersistent: Boolean(isPersisted),
+        };
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
 }
 
 export const storageDB = new StorageDB();
