@@ -392,10 +392,10 @@ def main():
     with open(TRANSLATIONS_ID_DIR / "kemenag.json", "w", encoding="utf-8") as f:
         json.dump(id_kemenag, f, ensure_ascii=False, indent=2)
 
-    # 5. Save Search Index
+    # 5. Save Search Index (compact minified JSON for performance)
     print(f"Writing search index with {len(search_index)} indexed verses...")
     with open(DATA_DIR / "search-index.json", "w", encoding="utf-8") as f:
-        json.dump(search_index, f, ensure_ascii=False, indent=2)
+        json.dump(search_index, f, ensure_ascii=False, separators=(",", ":"))
 
     print("Quran ETL Pipeline completed successfully!")
 

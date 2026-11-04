@@ -288,6 +288,8 @@ body {
   text-decoration: none;
   transition: background var(--transition-fast);
   cursor: pointer;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 45px;
 }
 
 .surah-list-item:hover {
@@ -495,6 +497,8 @@ body {
   transition: all var(--transition-normal);
   position: relative;
   box-shadow: var(--shadow-card);
+  content-visibility: auto;
+  contain-intrinsic-size: 0 160px;
 }
 
 .verse-card:hover {

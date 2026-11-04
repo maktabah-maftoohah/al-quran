@@ -173,11 +173,12 @@ class QuranStore {
     return data;
   }
 
-  async fetchTranslations() {
+  async fetchTranslations(activeOnly = true) {
     const t = this.cache.translations;
+    const act = this.settings.activeTranslations || { basmeih: true, sahih: true, pickthall: false, kemenag: true };
     const fetchPromises = [];
 
-    if (!t.basmeih) {
+    if ((!activeOnly || act.basmeih) && !t.basmeih) {
       fetchPromises.push(
         fetch('./data/translations/ms/basmeih.json')
           .then((r) => r.json())
@@ -185,7 +186,7 @@ class QuranStore {
           .catch(() => (t.basmeih = {}))
       );
     }
-    if (!t.sahih) {
+    if ((!activeOnly || act.sahih) && !t.sahih) {
       fetchPromises.push(
         fetch('./data/translations/en/sahih.json')
           .then((r) => r.json())
@@ -193,7 +194,7 @@ class QuranStore {
           .catch(() => (t.sahih = {}))
       );
     }
-    if (!t.pickthall) {
+    if ((!activeOnly || act.pickthall) && !t.pickthall) {
       fetchPromises.push(
         fetch('./data/translations/en/pickthall.json')
           .then((r) => r.json())
@@ -201,7 +202,7 @@ class QuranStore {
           .catch(() => (t.pickthall = {}))
       );
     }
-    if (!t.kemenag) {
+    if ((!activeOnly || act.kemenag) && !t.kemenag) {
       fetchPromises.push(
         fetch('./data/translations/id/kemenag.json')
           .then((r) => r.json())

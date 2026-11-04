@@ -116,13 +116,19 @@ class App {
       if (filterInput) {
         filterInput.addEventListener('input', () => {
           const q = filterInput.value.toLowerCase().trim();
-          const filtered = surahs.filter((s) =>
-            s.number.toString().includes(q) ||
-            s.name_latin.toLowerCase().includes(q) ||
-            s.name_translation.toLowerCase().includes(q) ||
-            s.name_arabic.includes(q)
-          );
-          this.renderSidebarSurahs(filtered);
+          const items = this.surahListContainer.querySelectorAll('.surah-list-item');
+          items.forEach((item) => {
+            if (!q) {
+              item.style.display = 'flex';
+              return;
+            }
+            const sNum = item.getAttribute('data-surah') || '';
+            const latin = item.getAttribute('data-latin') || '';
+            const trans = item.getAttribute('data-trans') || '';
+            const arabic = item.getAttribute('data-arabic') || '';
+            const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q);
+            item.style.display = matches ? 'flex' : 'none';
+          });
         });
       }
     } catch (err) {
@@ -171,7 +177,7 @@ class App {
           : '<span style="font-size: 0.65rem; color: var(--text-muted);">○ Unseeded</span>';
 
         return `
-          <a href="#surah/${s.number}" class="surah-list-item ${isActive}" data-surah="${s.number}">
+          <a href="#surah/${s.number}" class="surah-list-item ${isActive}" data-surah="${s.number}" data-latin="${s.name_latin.toLowerCase()}" data-trans="${s.name_translation.toLowerCase()}" data-arabic="${s.name_arabic}">
             <div class="surah-item-left">
               <div class="surah-item-num">${s.number}</div>
               <div class="surah-item-titles">
@@ -300,16 +306,19 @@ class App {
     const toggleKemenag = document.getElementById('toggle-trans-kemenag');
     const toggleJawi = document.getElementById('toggle-jawi-script');
 
-    const updateTransSettings = () => {
+    const updateTransSettings = async () => {
+      const activeTranslations = {
+        basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
+        sahih: toggleSahih ? toggleSahih.checked : true,
+        pickthall: togglePickthall ? togglePickthall.checked : false,
+        kemenag: toggleKemenag ? toggleKemenag.checked : true,
+      };
       store.updateSettings({
         jawiMode: toggleJawi ? toggleJawi.checked : false,
-        activeTranslations: {
-          basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
-          sahih: toggleSahih ? toggleSahih.checked : true,
-          pickthall: togglePickthall ? togglePickthall.checked : false,
-          kemenag: toggleKemenag ? toggleKemenag.checked : true,
-        },
+        activeTranslations,
       });
+      await store.fetchTranslations(true);
+      this.populateMissingTranslations();
       this.updateActiveTranslationsDisplay();
     };
 
@@ -352,6 +361,40 @@ class App {
     });
     document.querySelectorAll('.translation-block-kemenag').forEach((el) => {
       el.style.display = act.kemenag ? 'flex' : 'none';
+    });
+  }
+
+  populateMissingTranslations() {
+    const t = store.cache.translations;
+    document.querySelectorAll('.verse-card').forEach((card) => {
+      const sNum = card.getAttribute('data-surah');
+      const aNum = card.getAttribute('data-ayah');
+      if (!sNum || !aNum) return;
+
+      if (t.pickthall && t.pickthall[sNum]?.[aNum]) {
+        const pEl = card.querySelector('.translation-block-pickthall p');
+        if (pEl && !pEl.textContent.trim()) {
+          pEl.textContent = t.pickthall[sNum][aNum];
+        }
+      }
+      if (t.basmeih && t.basmeih[sNum]?.[aNum]) {
+        const pEl = card.querySelector('.translation-block-basmeih p');
+        if (pEl && !pEl.textContent.trim()) {
+          pEl.textContent = store.settings.jawiMode ? rumiToJawi(t.basmeih[sNum][aNum]) : t.basmeih[sNum][aNum];
+        }
+      }
+      if (t.sahih && t.sahih[sNum]?.[aNum]) {
+        const pEl = card.querySelector('.translation-block-sahih p');
+        if (pEl && !pEl.textContent.trim()) {
+          pEl.textContent = t.sahih[sNum][aNum];
+        }
+      }
+      if (t.kemenag && t.kemenag[sNum]?.[aNum]) {
+        const pEl = card.querySelector('.translation-block-kemenag p');
+        if (pEl && !pEl.textContent.trim()) {
+          pEl.textContent = t.kemenag[sNum][aNum];
+        }
+      }
     });
   }
 
@@ -998,7 +1041,7 @@ class App {
       const [arabicData, morphologyData, translations] = await Promise.all([
         store.fetchArabic(surah),
         store.fetchMorphology(surah),
-        store.fetchTranslations(),
+        store.fetchTranslations(false),
       ]);
 
       const aStr = String(ayah);

@@ -3,7 +3,7 @@
  * Enables offline caching and PWA installation.
  */
 
-const CACHE_NAME = 'maktabah-quran-v2';
+const CACHE_NAME = 'maktabah-quran-v3';
 
 const APP_SHELL = [
   './',
@@ -19,9 +19,7 @@ const APP_SHELL = [
   './js/card-generator.js',
   './js/mushaf.js',
   './data/icon.svg',
-  './data/surahs.json',
-  './data/pages-meta.json',
-  './data/search-index.json'
+  './data/surahs.json'
 ];
 
 self.addEventListener('install', (event) => {
