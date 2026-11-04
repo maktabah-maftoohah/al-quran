@@ -219,7 +219,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height) - var(--player-height));
   position: sticky;
   top: var(--header-height);
   overflow-y: hidden;

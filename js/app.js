@@ -677,6 +677,9 @@ class App {
 
     window.app = this;
     window.audioEngine = audio;
+    window.storageDB = storageDB;
+    window.wakeLockController = wakeLockController;
+    window.backupManager = backupManager;
   }
 
   escapeHtml(str) {
