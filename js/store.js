@@ -36,12 +36,13 @@ class QuranStore {
         rangeStart: 1,
         rangeEnd: null,
       },
+      language: 'ms',
       activeTranslations: {
         basmeih: true,
         jalalayn: false,
-        sahih: true,
+        sahih: false,
         pickthall: false,
-        kemenag: true,
+        kemenag: false,
       },
     };
 
@@ -54,8 +55,23 @@ class QuranStore {
 
   loadSettings() {
     try {
-      const saved = localStorage.getItem('maktabah_quran_settings');
-      return saved ? { ...this.defaultSettings, ...JSON.parse(saved) } : { ...this.defaultSettings };
+      const savedStr = localStorage.getItem('maktabah_quran_settings');
+      if (!savedStr) return { ...this.defaultSettings };
+      const saved = JSON.parse(savedStr);
+      // Migrate older settings to new defaults: JAKIM only default and default language 'ms'
+      if (!saved.schemaVersion || saved.schemaVersion < 2) {
+        saved.activeTranslations = {
+          basmeih: true,
+          jalalayn: false,
+          sahih: false,
+          pickthall: false,
+          kemenag: false,
+        };
+        saved.language = saved.language || 'ms';
+        saved.schemaVersion = 2;
+        localStorage.setItem('maktabah_quran_settings', JSON.stringify({ ...this.defaultSettings, ...saved }));
+      }
+      return { ...this.defaultSettings, ...saved };
     } catch {
       return { ...this.defaultSettings };
     }
@@ -177,7 +193,7 @@ class QuranStore {
 
   async fetchTranslations(activeOnly = true) {
     const t = this.cache.translations;
-    const act = this.settings.activeTranslations || { basmeih: true, jalalayn: false, sahih: true, pickthall: false, kemenag: true };
+    const act = this.settings.activeTranslations || { basmeih: true, jalalayn: false, sahih: false, pickthall: false, kemenag: false };
     const fetchPromises = [];
 
     if ((!activeOnly || act.basmeih) && !t.basmeih) {

@@ -5,6 +5,7 @@
  */
 
 import { store } from './store.js';
+import { i18n } from './i18n.js';
 
 export class SearchEngine {
   constructor() {
@@ -69,7 +70,7 @@ export class SearchEngine {
     this.modal.classList.add('open');
     this.input.value = '';
     this.selectedIndex = -1;
-    this.resultsList.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">Type a verse jump (e.g. 1:1, 112:1), surah name, or search query...</div>';
+    this.resultsList.innerHTML = `<div style="padding: 1rem; color: var(--text-muted); text-align: center;">${i18n.t('search.initialPrompt')}</div>`;
     this.input.focus();
 
     // Lazy load index on first open
@@ -112,7 +113,7 @@ export class SearchEngine {
     const rawQuery = this.input.value.trim();
     if (!rawQuery) {
       this.currentResults = [];
-      this.resultsList.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">Type a verse jump (e.g. 1:1, 112:1), surah name, or search query...</div>';
+      this.resultsList.innerHTML = `<div style="padding: 1rem; color: var(--text-muted); text-align: center;">${i18n.t('search.initialPrompt')}</div>`;
       return;
     }
 
@@ -262,7 +263,7 @@ export class SearchEngine {
 
   renderResults() {
     if (!this.currentResults.length) {
-      this.resultsList.innerHTML = '<div style="padding: 1rem; color: var(--text-muted); text-align: center;">No matches found.</div>';
+      this.resultsList.innerHTML = `<div style="padding: 1rem; color: var(--text-muted); text-align: center;">${i18n.t('search.noResults')}</div>`;
       return;
     }
 
@@ -272,7 +273,7 @@ export class SearchEngine {
         if (item.type === 'jump' || item.type === 'surah') {
           return `
             <div class="search-result-item ${isSelected}" data-index="${index}" data-url="${item.url}">
-              <div class="search-result-ref">${item.type === 'jump' ? '⚡ DIRECT VERSE JUMP' : '📖 SURAH'}</div>
+              <div class="search-result-ref">${item.type === 'jump' ? i18n.t('search.directJump') : i18n.t('search.surahMatch')}</div>
               <div style="font-weight: 600; color: var(--text-primary); font-size: 0.95rem;">${item.title}</div>
               <div style="font-size: 0.78rem; color: var(--text-muted);">${item.subtext}</div>
             </div>
@@ -294,7 +295,7 @@ export class SearchEngine {
           <div class="search-result-item ${isSelected}" data-index="${index}" data-url="${item.url}">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="search-result-ref">${item.surahName} (${item.ref})</span>
-              <a href="#ayah/${item.surah}/${item.ayah}" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();">Deep-Dive</a>
+              <a href="#ayah/${item.surah}/${item.ayah}" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();">${i18n.t('search.btnDeepDive')}</a>
             </div>
             <div class="search-result-ar">${highlightedAr}</div>
             <div class="search-result-trans">${highlightedTrans}</div>

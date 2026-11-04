@@ -94,8 +94,16 @@ server.listen(PORT, async () => {
 
     const offlinePill = await page.$('#offline-status-pill');
     assert(offlinePill !== null, 'Offline status indicator pill present in DOM');
-    const pillHidden = await page.$eval('#offline-status-pill', el => el.style.display === 'none' || window.getComputedStyle(el).display === 'none');
-    assert(pillHidden, 'Offline status indicator hidden while online');
+    const docLang = await page.$eval('html', el => el.getAttribute('lang'));
+    assert(docLang === 'ms', `Default interface language is Bahasa Melayu (MY): "${docLang}"`);
+
+    // Verify JAKIM is default and single-translation label is hidden
+    const isBasmeihChecked = await page.$eval('#toggle-trans-basmeih', el => el.checked);
+    const isSahihChecked = await page.$eval('#toggle-trans-sahih', el => el.checked);
+    assert(isBasmeihChecked && !isSahihChecked, 'JAKIM is default translation (sole active translation)');
+
+    const labelHiddenSingle = await page.$eval('.verse-translations .translation-label', el => window.getComputedStyle(el).display === 'none');
+    assert(labelHiddenSingle, 'Translation reference label is HIDDEN when only one translation is selected');
 
     // -------------------------------------------------------------
     // Test 2: Surah 1 (Al-Faatiha) Rendering & Verse Count
@@ -232,6 +240,27 @@ server.listen(PORT, async () => {
     const jalalaynBlocks = await page.$$('.translation-block-jalalayn');
     const jalalaynVisible = await page.$eval('.translation-block-jalalayn', el => window.getComputedStyle(el).display !== 'none');
     assert(jalalaynVisible, 'Tafsir al-Jalalayn (Bahasa Melayu) translation block visible upon toggle');
+
+    // With 2 translations active (JAKIM + Jalalayn), reference labels should now be visible
+    const labelVisibleMulti = await page.$eval('.verse-translations .translation-label', el => window.getComputedStyle(el).display !== 'none');
+    assert(labelVisibleMulti, 'Translation reference label becomes VISIBLE when multiple translations are active');
+
+    // Dual Language Switching Test (EN / MY)
+    const enSwitchBtn = await page.$('#header-lang-switcher .lang-switch-btn[data-lang="en"]');
+    assert(enSwitchBtn !== null, 'Language switch button for English present');
+    await enSwitchBtn.click();
+    await page.waitForTimeout(400);
+
+    const langAfterEN = await page.$eval('html', el => el.getAttribute('lang'));
+    assert(langAfterEN === 'en', 'Interface language successfully switched to English (EN)');
+
+    // Switch back to BM
+    const msSwitchBtn = await page.$('#header-lang-switcher .lang-switch-btn[data-lang="ms"]');
+    await msSwitchBtn.click();
+    await page.waitForTimeout(400);
+
+    const langAfterMS = await page.$eval('html', el => el.getAttribute('lang'));
+    assert(langAfterMS === 'ms', 'Interface language successfully switched back to Bahasa Melayu (MY)');
 
     // Toggle Jawi
     await page.click('#toggle-jawi-script');

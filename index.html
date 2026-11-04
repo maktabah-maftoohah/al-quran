@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,7 @@
   <!-- Top Sticky Header -->
   <header class="top-header">
     <div class="brand-section">
-      <button class="btn btn-icon" id="toggle-sidebar-btn" aria-label="Toggle navigation drawer">
+      <button class="btn btn-icon" id="toggle-sidebar-btn" aria-label="Buka/Tutup laci navigasi" data-i18n-aria="nav.toggleDrawerAria">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -45,32 +45,38 @@
 
     <div class="header-actions">
       <!-- Search Trigger Button -->
-      <button class="btn-search-trigger" data-action="open-search" aria-label="Open search engine">
+      <button class="btn-search-trigger" data-action="open-search" aria-label="Buka enjin carian" data-i18n-aria="nav.searchAria">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <span>Search Quran...</span>
+        <span data-i18n="nav.searchPlaceholder">Cari Quran...</span>
         <kbd>/</kbd>
       </button>
 
       <!-- Mushaf Page View Link -->
-      <a href="#mushaf/1" class="btn" id="mushaf-mode-btn" title="15-Line Madinah Mushaf Page View" style="text-decoration: none; font-size: 0.8rem; padding: 0.35rem 0.65rem;">
-        📄 Mushaf
+      <a href="#mushaf/1" class="btn" id="mushaf-mode-btn" title="Paparan Mushaf Madinah 15-Baris" data-i18n-title="nav.mushafTitle" style="text-decoration: none; font-size: 0.8rem; padding: 0.35rem 0.65rem;">
+        <span data-i18n="nav.mushafBtn">📄 Mushaf</span>
       </a>
 
       <!-- Tahfiz / Hifz Memorization Mode Button -->
-      <button class="btn" id="hifz-mode-btn" title="Toggle Tahfiz / Hifz Memorization Mode" style="font-size: 0.8rem; padding: 0.35rem 0.65rem;">
-        🧠 Hifz
+      <button class="btn" id="hifz-mode-btn" title="Togol Mod Ujian Hafazan (Hifz)" data-i18n-title="nav.hifzTitle" style="font-size: 0.8rem; padding: 0.35rem 0.65rem;">
+        <span data-i18n="nav.hifzBtn">🧠 Hifz</span>
       </button>
 
+      <!-- Dual Language Switcher Pill (BM | EN) -->
+      <div class="lang-switcher" id="header-lang-switcher" title="Tukar Bahasa / Switch Language" data-i18n-title="nav.languageToggle">
+        <button class="lang-switch-btn active" data-lang="ms" aria-label="Bahasa Melayu">BM</button>
+        <button class="lang-switch-btn" data-lang="en" aria-label="English">EN</button>
+      </div>
+
       <!-- Offline Network Status Indicator -->
-      <div class="offline-pill" id="offline-status-pill" style="display: none;" title="Offline Mode: Cached text and audio are available">
-        📶 Offline
+      <div class="offline-pill" id="offline-status-pill" style="display: none;" title="Mod Luar Talian: Teks dan audio sedia ada tanpa internet" data-i18n-title="nav.offlineTitle">
+        <span data-i18n="nav.offlinePill">📶 Luar Talian</span>
       </div>
 
       <!-- Screen Wake Lock Toggle Button -->
-      <button class="btn btn-icon" id="wake-lock-btn" aria-label="Keep screen awake" title="Keep Screen Awake (Wake Lock)">
+      <button class="btn btn-icon" id="wake-lock-btn" aria-label="Kekalkan Skrin Menyala (Wake Lock)" title="Kekalkan Skrin Menyala (Wake Lock)" data-i18n-title="nav.wakeLockTitle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"></circle>
           <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -85,7 +91,7 @@
       </button>
 
       <!-- Typography Settings Button -->
-      <button class="btn btn-icon" id="typography-btn" aria-label="Typography settings" title="Text & Display Settings">
+      <button class="btn btn-icon" id="typography-btn" aria-label="Tetapan Paparan & Tipografi" title="Tetapan Paparan & Tipografi" data-i18n-title="nav.typographyTitle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="4 7 4 4 20 4 20 7"></polyline>
           <line x1="9" y1="20" x2="15" y2="20"></line>
@@ -94,30 +100,39 @@
       </button>
 
       <!-- Bookmarks Direct Navigation -->
-      <a href="#bookmarks" class="btn btn-icon" aria-label="View bookmarks" title="Saved Bookmarks">
+      <a href="#bookmarks" class="btn btn-icon" aria-label="Penanda Buku" title="Penanda Buku" data-i18n-title="nav.bookmarksTitle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
         </svg>
       </a>
 
       <!-- GitHub Link -->
-      <a href="https://github.com/maktabah-maftoohah/al-quran" target="_blank" rel="noopener noreferrer" class="btn btn-icon" title="View Source on GitHub">
+      <a href="https://github.com/maktabah-maftoohah/al-quran" target="_blank" rel="noopener noreferrer" class="btn btn-icon" title="Lihat Kod Sumber di GitHub" data-i18n-title="nav.sourceGithub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
         </svg>
       </a>
     </div>
 
-    <!-- Typography Settings Popover -->
+    <!-- Typography & Display Settings Popover -->
     <div class="popover" id="typography-popover">
-      <div style="font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">
-        Display & Typography
+      <div style="font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;" data-i18n="settings.title">
+        Paparan & Tipografi
+      </div>
+
+      <!-- Interface Language Selector -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.65rem;">
+        <span style="font-size: 0.82rem; font-weight: 600;" data-i18n="settings.interfaceLanguage">Bahasa Antara Muka</span>
+        <div class="lang-segmented-control" id="popover-lang-switcher">
+          <button class="lang-opt-btn active" data-lang="ms" data-i18n="settings.langMalay">🇲🇾 Melayu</button>
+          <button class="lang-opt-btn" data-lang="en" data-i18n="settings.langEnglish">🇬🇧 English</button>
+        </div>
       </div>
 
       <!-- Arabic Font Size -->
       <div class="popover-slider-group">
         <div class="slider-label-row">
-          <span>Arabic Font Size</span>
+          <span data-i18n="settings.arabicFontSize">Saiz Fon Arab</span>
           <span id="label-arabic-size">2.1rem</span>
         </div>
         <input type="range" id="slider-arabic-size" min="1.4" max="3.5" step="0.1" value="2.1">
@@ -126,15 +141,15 @@
       <!-- Translation Font Size -->
       <div class="popover-slider-group">
         <div class="slider-label-row">
-          <span>Translation Size</span>
+          <span data-i18n="settings.translationFontSize">Saiz Terjemahan</span>
           <span id="label-trans-size">1.02rem</span>
         </div>
         <input type="range" id="slider-trans-size" min="0.8" max="1.5" step="0.05" value="1.02">
       </div>
 
-      <!-- Translations Checkboxes -->
+      <!-- Translations Checkboxes (Default: Only JAKIM checked) -->
       <div style="display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem;">
-        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Active Translations</span>
+        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;" data-i18n="settings.activeTranslations">Terjemahan Aktif</span>
         <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
           <input type="checkbox" id="toggle-trans-basmeih" checked>
           <span>🇲🇾 JAKIM — Pimpinan Ar-Rahman (Basmeih)</span>
@@ -144,7 +159,7 @@
           <span>🇲🇾 Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>
         </label>
         <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
-          <input type="checkbox" id="toggle-trans-sahih" checked>
+          <input type="checkbox" id="toggle-trans-sahih">
           <span>🇬🇧 Saheeh International (EN)</span>
         </label>
         <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
@@ -152,41 +167,41 @@
           <span>🇬🇧 Pickthall (EN Literary)</span>
         </label>
         <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
-          <input type="checkbox" id="toggle-trans-kemenag" checked>
+          <input type="checkbox" id="toggle-trans-kemenag">
           <span>🇮🇩 Kemenag (Bahasa Indonesia)</span>
         </label>
         <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; border-top: 1px dashed var(--border-subtle); padding-top: 0.4rem; margin-top: 0.2rem;">
           <input type="checkbox" id="toggle-jawi-script">
-          <span>🇲🇾 Jawi Script (tulisan Jawi)</span>
+          <span data-i18n="settings.jawiScript">🇲🇾 Tulisan Jawi (Jawi Script)</span>
         </label>
         <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
           <input type="checkbox" id="toggle-wake-lock">
-          <span>💡 Keep Screen Awake (No Timeout)</span>
+          <span data-i18n="settings.wakeLockLabel">💡 Kekalkan Skrin Menyala (Tiada Pemasa)</span>
         </label>
       </div>
 
       <!-- Offline Storage Stats & Management -->
       <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Offline Storage (IndexedDB)</span>
+          <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;" data-i18n="settings.offlineStorage">Storan Luar Talian (IndexedDB)</span>
           <span id="storage-persist-status" style="font-size: 0.72rem; color: var(--accent-emerald);"></span>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; font-size: 0.82rem; color: var(--text-secondary);">
           <span id="storage-audio-stat">Audio: 0 KB</span>
           <div style="display: flex; gap: 0.4rem;">
-            <button class="btn" id="btn-request-persist" style="font-size: 0.75rem; padding: 0.2rem 0.4rem; display: none;" title="Keep storage persistent so browser does not evict it">Lock</button>
-            <button class="btn" id="btn-clear-audio-cache" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Clear Audio</button>
+            <button class="btn" id="btn-request-persist" style="font-size: 0.75rem; padding: 0.2rem 0.4rem; display: none;" title="Kekalkan storan berterusan supaya tidak dipadam oleh pelayar" data-i18n-title="settings.lockBtnTitle" data-i18n="settings.lockBtn">Kunci</button>
+            <button class="btn" id="btn-clear-audio-cache" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;" data-i18n="settings.clearAudioBtn">Padam Audio</button>
           </div>
         </div>
       </div>
 
       <!-- Data Backup & Restore -->
       <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.5rem;">
-        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Data Backup & Restore</span>
+        <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;" data-i18n="settings.backupTitle">Sandaran & Pulihkan Data</span>
         <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem;">
-          <button class="btn" id="btn-export-backup" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; flex: 1;" title="Export all notes, bookmarks, and settings as JSON file">📥 Backup JSON</button>
-          <label class="btn" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; flex: 1; text-align: center; cursor: pointer;" title="Restore notes and bookmarks from JSON file">
-            📤 Restore
+          <button class="btn" id="btn-export-backup" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; flex: 1;" title="Eksport semua nota, penanda buku dan tetapan sebagai fail JSON" data-i18n-title="settings.backupTitleTip" data-i18n="settings.backupBtn">📥 Sandar JSON</button>
+          <label class="btn" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; flex: 1; text-align: center; cursor: pointer;" title="Pulihkan nota dan penanda buku daripada fail JSON" data-i18n-title="settings.restoreTitleTip">
+            <span data-i18n="settings.restoreBtn">📤 Pulih</span>
             <input type="file" id="input-import-backup" accept=".json" style="display: none;">
           </label>
         </div>
@@ -200,9 +215,9 @@
     <!-- Left Sidebar / Navigation Drawer -->
     <aside class="sidebar" id="app-sidebar">
       <div class="sidebar-tabs">
-        <button class="sidebar-tab active" data-tab="surahs">Surahs (114)</button>
-        <button class="sidebar-tab" data-tab="bookmarks">Bookmarks</button>
-        <button class="sidebar-tab" data-tab="notes">Notes</button>
+        <button class="sidebar-tab active" data-tab="surahs" data-i18n="sidebar.tabSurahs">Surah (114)</button>
+        <button class="sidebar-tab" data-tab="bookmarks" data-i18n="sidebar.tabBookmarks">Penanda Buku</button>
+        <button class="sidebar-tab" data-tab="notes" data-i18n="sidebar.tabNotes">Nota</button>
       </div>
 
       <!-- Continue Reading Banner -->
@@ -210,7 +225,7 @@
 
       <!-- Filter Input -->
       <div class="sidebar-filter-box">
-        <input type="text" id="sidebar-search-input" class="sidebar-search-input" placeholder="Filter by number, name, or Arabic...">
+        <input type="text" id="sidebar-search-input" class="sidebar-search-input" placeholder="Tapis nombor, nama, atau Arab..." data-i18n-placeholder="sidebar.filterPlaceholder">
       </div>
 
       <!-- Surah List Container -->
@@ -239,19 +254,19 @@
     </div>
 
     <div class="player-center-controls">
-      <button class="btn btn-icon" id="player-prev-btn" title="Previous Ayah (Alt + ←)" aria-label="Previous Ayah">
+      <button class="btn btn-icon" id="player-prev-btn" title="Ayat Sebelumnya (Alt + ←)" aria-label="Ayat Sebelumnya" data-i18n-title="player.prevAyahTitle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
         </svg>
       </button>
 
-      <button class="player-btn-main" id="player-play-pause-btn" title="Play / Pause (Space)" aria-label="Play or Pause">
+      <button class="player-btn-main" id="player-play-pause-btn" title="Main / Jeda (Space)" aria-label="Main atau Jeda" data-i18n-title="player.playPauseTitle">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
           <path d="M8 5v14l11-7z"/>
         </svg>
       </button>
 
-      <button class="btn btn-icon" id="player-next-btn" title="Next Ayah (Alt + →)" aria-label="Next Ayah">
+      <button class="btn btn-icon" id="player-next-btn" title="Ayat Seterusnya (Alt + →)" aria-label="Ayat Seterusnya" data-i18n-title="player.nextAyahTitle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
           <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
         </svg>
@@ -260,30 +275,30 @@
 
     <div class="player-right-options">
       <!-- Reciter Select -->
-      <select class="reciter-select" id="player-reciter-select" title="Change Reciter">
+      <select class="reciter-select" id="player-reciter-select" title="Tukar Qari" data-i18n-title="player.reciterTitle">
         <option value="Alafasy_128kbps">Alafasy (128k)</option>
         <option value="Husary_128kbps">Al-Husary (128k)</option>
         <option value="Abdul_Basit_Murattal_192kbps">Abdul Basit (192k)</option>
       </select>
 
       <!-- Loop Ayah Toggle -->
-      <div class="player-option-toggle" id="player-loop-toggle" title="Toggle repeat current verse">
+      <div class="player-option-toggle" id="player-loop-toggle" title="Ulang ayat semasa" data-i18n-title="player.loopTitle">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="17 1 21 5 17 9"></polyline>
           <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
           <polyline points="7 23 3 19 7 15"></polyline>
           <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
         </svg>
-        <span>Loop</span>
+        <span data-i18n="player.loopLabel">Ulang</span>
       </div>
 
       <!-- Auto Scroll Toggle -->
-      <div class="player-option-toggle active" id="player-autoscroll-toggle" title="Toggle auto-scroll to active verse">
+      <div class="player-option-toggle active" id="player-autoscroll-toggle" title="Tatal automatik ke ayat aktif" data-i18n-title="player.scrollTitle">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="5" x2="12" y2="19"></line>
           <polyline points="19 12 12 19 5 12"></polyline>
         </svg>
-        <span>Scroll</span>
+        <span data-i18n="player.scrollLabel">Tatal</span>
       </div>
     </div>
   </footer>
@@ -296,7 +311,7 @@
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="search-input-field" class="search-input-field" placeholder="Search surah, verse jump (112:1), or keywords..." autocomplete="off">
+        <input type="text" id="search-input-field" class="search-input-field" placeholder="Cari surah, lompat ayat (112:1), atau kata kunci..." data-i18n-placeholder="search.placeholder" autocomplete="off">
         <button class="btn btn-icon" data-action="close-search" aria-label="Close search">✕</button>
       </div>
       <div class="search-results-list" id="search-results-list"></div>
@@ -308,7 +323,7 @@
     <div class="verse-card-modal-content">
       <div class="drawer-header">
         <div style="font-weight: 700; font-size: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-          <span>📸 Shareable Verse Card</span>
+          <span data-i18n="card.modalTitle">📸 Kad Ayat Kongsi</span>
         </div>
         <button class="btn btn-icon" data-action="close-card-modal" aria-label="Close modal">✕</button>
       </div>
@@ -317,16 +332,16 @@
         
         <div style="display: flex; gap: 0.75rem; width: 100%; align-items: center; justify-content: space-between; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Format:</label>
+            <label style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;" data-i18n="card.formatLabel">Format:</label>
             <select id="card-ratio-select" class="select-input">
-              <option value="1:1" selected>Square (1:1 Feed / Status)</option>
-              <option value="9:16">Story (9:16 Portrait)</option>
+              <option value="1:1" selected data-i18n="card.squareOption">Segi Empat (1:1 Suapan / Status)</option>
+              <option value="9:16" data-i18n="card.storyOption">Cerita (9:16 Potret)</option>
             </select>
           </div>
           <div style="display: flex; gap: 0.5rem; align-items: center;">
-            <button class="btn btn-primary" id="btn-share-card-native">📤 Share</button>
-            <button class="btn" id="btn-download-card">💾 PNG</button>
-            <button class="btn" id="btn-copy-card-image">📋 Copy</button>
+            <button class="btn btn-primary" id="btn-share-card-native" data-i18n="card.btnShare">📤 Kongsi</button>
+            <button class="btn" id="btn-download-card" data-i18n="card.btnDownload">💾 PNG</button>
+            <button class="btn" id="btn-copy-card-image" data-i18n="card.btnCopy">📋 Salin</button>
           </div>
         </div>
       </div>
@@ -338,7 +353,7 @@
     <div class="verse-card-modal-content" style="max-width: 560px;">
       <div class="drawer-header">
         <div style="font-weight: 700; font-size: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-          <span>📝 Verse Study Note</span>
+          <span data-i18n="note.modalTitle">📝 Nota Pengajian Ayat</span>
           <span id="note-modal-ref" class="ayah-badge" style="font-size: 0.75rem;">1:1</span>
         </div>
         <button class="btn btn-icon" data-action="close-note-modal" aria-label="Close note modal">✕</button>
@@ -348,12 +363,12 @@
           <div id="note-modal-preview-arabic" style="font-family: var(--font-arabic); font-size: 1.25rem; text-align: right; color: var(--accent-gold); margin-bottom: 0.25rem;"></div>
           <div id="note-modal-preview-trans" style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;"></div>
         </div>
-        <textarea id="note-modal-textarea" class="search-input-field" style="width: 100%; height: 130px; padding: 0.75rem; border-radius: var(--radius-sm); resize: vertical; font-family: var(--font-sans); font-size: 0.9rem;" placeholder="Write your personal reflections, tafsir notes, or memorization reminders here..."></textarea>
+        <textarea id="note-modal-textarea" class="search-input-field" style="width: 100%; height: 130px; padding: 0.75rem; border-radius: var(--radius-sm); resize: vertical; font-family: var(--font-sans); font-size: 0.9rem;" placeholder="Tulis refleksi peribadi, nota tafsir, atau peringatan hafazan anda di sini..." data-i18n-placeholder="note.placeholder"></textarea>
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <button class="btn" id="note-modal-delete-btn" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.3);">🗑 Delete Note</button>
+          <button class="btn" id="note-modal-delete-btn" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.3);" data-i18n="note.btnDelete">🗑 Padam Nota</button>
           <div style="display: flex; gap: 0.5rem;">
-            <button class="btn" data-action="close-note-modal">Cancel</button>
-            <button class="btn btn-primary" id="note-modal-save-btn">💾 Save Note</button>
+            <button class="btn" data-action="close-note-modal" data-i18n="note.btnCancel">Batal</button>
+            <button class="btn btn-primary" id="note-modal-save-btn" data-i18n="note.btnSave">💾 Simpan Nota</button>
           </div>
         </div>
       </div>
@@ -364,7 +379,7 @@
   <div class="drawer-overlay" id="drawer-overlay"></div>
   <aside class="morphology-drawer" id="morphology-drawer" aria-label="Word Morphology and Root Concordance Drawer">
     <div class="drawer-header">
-      <div style="font-weight: 700; font-size: 1rem; color: var(--text-primary);">Word Morphology & Root</div>
+      <div style="font-weight: 700; font-size: 1rem; color: var(--text-primary);" data-i18n="deepDive.drawerTitle">Morfologi & Kata Dasar Perkataan</div>
       <button class="btn btn-icon" id="close-morph-drawer-btn" aria-label="Close drawer">✕</button>
     </div>
     <div class="drawer-body" id="morph-drawer-body"></div>

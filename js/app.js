@@ -13,6 +13,7 @@ import { mushafViewer } from './mushaf.js';
 import { storageDB } from './storage-db.js';
 import { wakeLockController } from './wake-lock.js';
 import { backupManager } from './backup.js';
+import { i18n } from './i18n.js';
 
 class App {
   constructor() {
@@ -29,12 +30,14 @@ class App {
   }
 
   async init() {
+    i18n.init(store.settings.language || 'ms');
     store.applySettingsToDOM();
     searchEngine.init();
     cardGenerator.init();
     this.initPWA();
     this.initSidebar();
     this.initTypographyPopover();
+    this.initLanguageSwitcher();
     this.initStickyAudioPlayer();
     this.initMorphologyDrawer();
     this.initNoteModal();
@@ -52,6 +55,45 @@ class App {
 
     // Start routing
     router.init();
+  }
+
+  initLanguageSwitcher() {
+    const updateLangUI = (lang) => {
+      document.querySelectorAll('#header-lang-switcher .lang-switch-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      document.querySelectorAll('#popover-lang-switcher .lang-opt-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    };
+
+    const handleLangSelect = (lang) => {
+      if (lang === i18n.getLanguage()) return;
+      store.updateSettings({ language: lang });
+      i18n.setLanguage(lang);
+      updateLangUI(lang);
+      this.updateContinueBanner();
+      if (this.cachedSurahs) {
+        this.renderSidebarSurahs(this.cachedSurahs);
+      }
+      router.handleRouting();
+    };
+
+    document.querySelectorAll('#header-lang-switcher .lang-switch-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleLangSelect(btn.getAttribute('data-lang'));
+      });
+    });
+
+    document.querySelectorAll('#popover-lang-switcher .lang-opt-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleLangSelect(btn.getAttribute('data-lang'));
+      });
+    });
+
+    updateLangUI(store.settings.language || 'ms');
   }
 
   initPWA() {
@@ -131,6 +173,7 @@ class App {
     // Populate Surahs list
     try {
       const surahs = await store.fetchSurahs();
+      this.cachedSurahs = surahs;
       this.renderSidebarSurahs(surahs);
 
       if (filterInput) {
@@ -189,12 +232,14 @@ class App {
     if (!this.surahListContainer) return;
     const currentHash = window.location.hash;
 
+    const isMs = i18n.getLanguage() === 'ms';
     const html = surahs
       .map((s) => {
         const isActive = currentHash.includes(`surah/${s.number}`) ? 'active' : '';
         const seededBadge = s.seeded
-          ? '<span style="font-size: 0.65rem; color: var(--accent-emerald);">● Ready</span>'
-          : '<span style="font-size: 0.65rem; color: var(--text-muted);">○ Unseeded</span>';
+          ? `<span style="font-size: 0.65rem; color: var(--accent-emerald);">● ${isMs ? 'Sedia' : 'Ready'}</span>`
+          : `<span style="font-size: 0.65rem; color: var(--text-muted);">○ ${isMs ? 'Belum' : 'Unseeded'}</span>`;
+        const ayahsLabel = isMs ? 'ayat' : 'ayahs';
 
         return `
           <a href="#surah/${s.number}" class="surah-list-item ${isActive}" data-surah="${s.number}" data-latin="${s.name_latin.toLowerCase()}" data-trans="${s.name_translation.toLowerCase()}" data-arabic="${s.name_arabic}">
@@ -207,7 +252,7 @@ class App {
             </div>
             <div class="surah-item-right">
               <span class="surah-item-arabic">${s.name_arabic}</span>
-              <span class="surah-item-ayahs">${s.total_ayahs} ayahs • ${seededBadge}</span>
+              <span class="surah-item-ayahs">${s.total_ayahs} ${ayahsLabel} • ${seededBadge}</span>
             </div>
           </a>
         `;
@@ -313,13 +358,14 @@ class App {
       this.continueBanner.style.display = 'none';
       return;
     }
+    const isMs = i18n.getLanguage() === 'ms';
     this.continueBanner.style.display = 'flex';
     this.continueBanner.innerHTML = `
       <div class="continue-info">
-        <span class="continue-label">Continue Reading</span>
-        <span class="continue-ref">${last.surahName || `Surah ${last.surah}`} : Ayah ${last.ayah}</span>
+        <span class="continue-label">${i18n.t('sidebar.continueReading')}</span>
+        <span class="continue-ref">${last.surahName || `Surah ${last.surah}`} : ${isMs ? 'Ayat' : 'Ayah'} ${last.ayah}</span>
       </div>
-      <a href="#surah/${last.surah}?ayah=${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">Resume</a>
+      <a href="#surah/${last.surah}?ayah=${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">${i18n.t('sidebar.resumeBtn')}</a>
     `;
   }
 
@@ -379,9 +425,9 @@ class App {
       const activeTranslations = {
         basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
         jalalayn: toggleJalalayn ? toggleJalalayn.checked : false,
-        sahih: toggleSahih ? toggleSahih.checked : true,
+        sahih: toggleSahih ? toggleSahih.checked : false,
         pickthall: togglePickthall ? togglePickthall.checked : false,
-        kemenag: toggleKemenag ? toggleKemenag.checked : true,
+        kemenag: toggleKemenag ? toggleKemenag.checked : false,
       };
       store.updateSettings({
         jawiMode: toggleJawi ? toggleJawi.checked : false,
@@ -401,15 +447,15 @@ class App {
       toggleJalalayn.addEventListener('change', updateTransSettings);
     }
     if (toggleSahih) {
-      toggleSahih.checked = store.settings.activeTranslations.sahih;
+      toggleSahih.checked = Boolean(store.settings.activeTranslations.sahih);
       toggleSahih.addEventListener('change', updateTransSettings);
     }
     if (togglePickthall) {
-      togglePickthall.checked = store.settings.activeTranslations.pickthall;
+      togglePickthall.checked = Boolean(store.settings.activeTranslations.pickthall);
       togglePickthall.addEventListener('change', updateTransSettings);
     }
     if (toggleKemenag) {
-      toggleKemenag.checked = store.settings.activeTranslations.kemenag;
+      toggleKemenag.checked = Boolean(store.settings.activeTranslations.kemenag);
       toggleKemenag.addEventListener('change', updateTransSettings);
     }
     if (toggleJawi) {
@@ -423,7 +469,7 @@ class App {
   }
 
   updateActiveTranslationsDisplay() {
-    const act = store.settings.activeTranslations;
+    const act = store.settings.activeTranslations || {};
     document.querySelectorAll('.translation-block-basmeih').forEach((el) => {
       el.style.display = act.basmeih ? 'flex' : 'none';
     });
@@ -438,6 +484,12 @@ class App {
     });
     document.querySelectorAll('.translation-block-kemenag').forEach((el) => {
       el.style.display = act.kemenag ? 'flex' : 'none';
+    });
+
+    const activeCount = Object.values(act).filter(Boolean).length;
+    const isSingle = activeCount <= 1;
+    document.querySelectorAll('.verse-translations').forEach((el) => {
+      el.classList.toggle('single-translation', isSingle);
     });
   }
 
@@ -617,26 +669,26 @@ class App {
 
       <div class="morph-details-grid">
         <div class="morph-kv">
-          <div class="morph-kv-label">Root (الجذر)</div>
+          <div class="morph-kv-label">${i18n.t('deepDive.drawerRoot')}</div>
           <div class="morph-kv-val" style="color: var(--accent-gold);">${token.root || 'N/A'}</div>
         </div>
         <div class="morph-kv">
-          <div class="morph-kv-label">Lemma (المعجم)</div>
+          <div class="morph-kv-label">${i18n.t('deepDive.drawerLemma')}</div>
           <div class="morph-kv-val">${token.lemma || 'N/A'}</div>
         </div>
         <div class="morph-kv">
-          <div class="morph-kv-label">Grammar / POS</div>
+          <div class="morph-kv-label">${i18n.t('deepDive.drawerPos')}</div>
           <div class="morph-kv-val" style="color: var(--accent-emerald);">${token.pos_tag || 'Particle/Noun'}</div>
         </div>
         <div class="morph-kv">
-          <div class="morph-kv-label">Token Position</div>
+          <div class="morph-kv-label">${i18n.t('deepDive.drawerPosition')}</div>
           <div class="morph-kv-val">${surahNum}:${ayahNum}:${token.pos}</div>
         </div>
       </div>
 
       <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
         <button class="btn btn-primary" style="flex: 1;" onclick="window.audioEngine.playWord(${surahNum}, ${ayahNum}, ${token.pos})">
-          🔊 Pronounce Word
+          🔊 ${i18n.t('deepDive.drawerPronounce')}
         </button>
         <a href="${token.corpus_url}" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-decoration: none;">
           Corpus Quran ↗
@@ -1121,6 +1173,8 @@ class App {
       // Generate Verse Cards
       const isJawi = store.settings.jawiMode;
       const isBlurred = hifz.active && hifz.blurArabic;
+      const activeCount = Object.values(store.settings.activeTranslations || {}).filter(Boolean).length;
+      const singleClass = activeCount <= 1 ? 'single-translation' : '';
 
       const verseCardsHtml = Object.entries(arabicData.ayahs)
         .map(([ayahNumStr, textObj]) => {
@@ -1145,29 +1199,29 @@ class App {
                 <span class="ayah-badge">${ref}</span>
                 <div class="verse-actions">
                   <button class="verse-action-btn btn-play-ayah" data-surah="${surah}" data-ayah="${aNum}">
-                    ▶ Play
+                    ▶ ${i18n.t('surah.btnPlay')}
                   </button>
                   <button class="verse-action-btn btn-share-card" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
-                    📸 Card
+                    📸 ${i18n.t('surah.btnCard')}
                   </button>
                   <button class="verse-action-btn btn-bookmark-ayah ${isSaved ? 'bookmarked' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
-                    ★ ${isSaved ? 'Saved' : 'Bookmark'}
+                    ★ ${isSaved ? i18n.t('surah.btnBookmarked') : i18n.t('surah.btnBookmark')}
                   </button>
                   <button class="verse-action-btn btn-note-ayah ${hasNote ? 'has-note' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
-                    📝 Note
+                    📝 ${i18n.t('surah.btnNote')}
                   </button>
                   <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}">
-                    📋 Copy
+                    📋 ${i18n.t('surah.btnCopy')}
                   </button>
                   <a href="#ayah/${surah}/${aNum}" class="verse-action-btn" style="text-decoration: none;">
-                    🔬 Deep-Dive
+                    🔬 ${i18n.t('surah.btnDeepDive')}
                   </a>
                 </div>
               </div>
 
               <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${textObj.uthmani}</div>
 
-              <div class="verse-translations">
+              <div class="verse-translations ${singleClass}">
                 <div class="translation-block translation-block-basmeih">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
                   <p class="${msClass}">${msDisplayText}</p>
@@ -1195,7 +1249,7 @@ class App {
                   ? `
                 <div class="verse-note-snippet" id="note-snippet-${ref}">
                   <div class="verse-note-snippet-header">
-                    <span>📝 Study Note</span>
+                    <span>${i18n.t('surah.studyNoteHeader')}</span>
                     <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">${new Date(note.updatedAt).toLocaleDateString()}</span>
                   </div>
                   <div style="line-height: 1.4;">${this.escapeHtml(note.text)}</div>
@@ -1208,25 +1262,30 @@ class App {
         })
         .join('');
 
+      const isMs = i18n.getLanguage() === 'ms';
+      const revelationText = meta.revelation_place === 'madinah' || meta.revelation_type?.toLowerCase() === 'medinan'
+        ? i18n.t('surah.medinan')
+        : i18n.t('surah.meccan');
+
       this.mainContainer.innerHTML = `
         <div class="surah-header-card">
           <div class="surah-header-arabic">${meta.name_arabic}</div>
           <div class="surah-header-latin">${meta.name_latin}</div>
           <div class="surah-header-trans">${meta.name_translation}</div>
           <div class="surah-meta-badges">
-            <span class="meta-badge revelation">${meta.revelation_type}</span>
-            <span class="meta-badge">${meta.total_ayahs} Verses</span>
-            <span class="meta-badge">Surah #${meta.number}</span>
+            <span class="meta-badge revelation">${revelationText}</span>
+            <span class="meta-badge">${i18n.t('surah.versesCount', { n: meta.total_ayahs })}</span>
+            <span class="meta-badge">${i18n.t('surah.surahNumber', { n: meta.number })}</span>
           </div>
           <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-primary" id="btn-play-surah-continuous">
-              ▶ Play Full Surah Continuous
+              ▶ ${i18n.t('surah.playFullSurah')}
             </button>
             <button class="btn btn-download-audio ${isAudioFullyDownloaded ? 'downloaded' : ''}" id="btn-download-surah-audio" data-surah="${surah}" data-total="${meta.total_ayahs}">
-              ${isAudioFullyDownloaded ? `✓ Offline Audio Ready (${meta.total_ayahs}/${meta.total_ayahs})` : cachedAudioCount > 0 ? `📥 Offline Audio (${cachedAudioCount}/${meta.total_ayahs})` : '📥 Download Offline Audio'}
+              ${isAudioFullyDownloaded ? `✓ ${isMs ? 'Audio Luar Talian Sedia' : 'Offline Audio Ready'} (${meta.total_ayahs}/${meta.total_ayahs})` : cachedAudioCount > 0 ? `📥 ${isMs ? 'Audio Luar Talian' : 'Offline Audio'} (${cachedAudioCount}/${meta.total_ayahs})` : `📥 ${isMs ? 'Muat Turun Audio Luar Talian' : 'Download Offline Audio'}`}
             </button>
             <a href="#mushaf/1" class="btn" style="text-decoration: none;">
-              📄 Open in Mushaf View
+              📄 ${i18n.t('surah.openMushaf')}
             </a>
           </div>
         </div>
@@ -1340,8 +1399,8 @@ class App {
         });
 
         btn.classList.toggle('bookmarked', isSaved);
-        btn.innerHTML = `★ ${isSaved ? 'Saved' : 'Bookmark'}`;
-        this.showToast(isSaved ? `Bookmark added for ${ref}` : `Bookmark removed for ${ref}`);
+        btn.innerHTML = `★ ${isSaved ? i18n.t('surah.btnBookmarked') : i18n.t('surah.btnBookmark')}`;
+        this.showToast(isSaved ? i18n.t('surah.toastBookmarkAdded', { ref }) : i18n.t('surah.toastBookmarkRemoved', { ref }));
         this.renderSidebarBookmarks();
       });
     });
@@ -1863,9 +1922,9 @@ class App {
     if (!bookmarks.length) {
       this.mainContainer.innerHTML = `
         <div style="padding: 3rem 1rem; text-align: center;">
-          <h2 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Saved Bookmarks</h2>
-          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">You haven't bookmarked any verses yet.</p>
-          <a href="#surah/1" class="btn btn-primary">Start Reading Al-Fatihah</a>
+          <h2 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">${i18n.t('bookmarks.title')}</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">${i18n.t('bookmarks.emptyDesc')}</p>
+          <a href="#surah/1" class="btn btn-primary">${i18n.t('bookmarks.startReading')}</a>
         </div>
       `;
       return;
@@ -1879,13 +1938,13 @@ class App {
             <span class="ayah-badge">${b.surahName} (${b.ref})</span>
             <div class="verse-actions">
               <a href="#surah/${b.surah}?ayah=${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
-                Open Verse
+                ${i18n.t('bookmarks.openVerse')}
               </a>
               <a href="#ayah/${b.surah}/${b.ayah}" class="btn" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
-                🔬 Deep-Dive
+                ${i18n.t('bookmarks.deepDive')}
               </a>
               <button class="btn btn-remove-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; color: var(--danger);">
-                ✕ Remove
+                ${i18n.t('bookmarks.btnRemove')}
               </button>
             </div>
           </div>
@@ -1898,7 +1957,7 @@ class App {
 
     this.mainContainer.innerHTML = `
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-        <h2 style="font-size: 1.5rem; color: var(--accent-gold);">Saved Bookmarks (${bookmarks.length})</h2>
+        <h2 style="font-size: 1.5rem; color: var(--accent-gold);">${i18n.t('bookmarks.title')} (${bookmarks.length})</h2>
       </div>
       <div class="verses-container">
         ${html}
@@ -1911,7 +1970,7 @@ class App {
         store.toggleBookmark({ ref });
         this.renderBookmarksView();
         this.renderSidebarBookmarks();
-        this.showToast(`Bookmark removed: ${ref}`);
+        this.showToast(i18n.t('surah.toastBookmarkRemoved', { ref }));
       });
     });
   }

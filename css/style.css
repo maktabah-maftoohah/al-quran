@@ -137,6 +137,68 @@ body {
   gap: 0.6rem;
 }
 
+/* Header & Popover Language Switchers */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-switch-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.22rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lang-switch-btn:hover {
+  color: var(--text-primary);
+}
+
+.lang-switch-btn.active {
+  background: var(--accent-emerald);
+  color: #ffffff;
+}
+
+.lang-segmented-control {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-main);
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.lang-opt-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lang-opt-btn:hover {
+  color: var(--text-primary);
+}
+
+.lang-opt-btn.active {
+  background: var(--accent-emerald);
+  color: #ffffff;
+}
+
 /* Buttons & Inputs */
 .btn {
   display: inline-flex;
@@ -609,6 +671,11 @@ body {
   display: flex;
   align-items: center;
   gap: 0.35rem;
+}
+
+/* Hide translation source label when only a single translation edition is selected */
+.verse-translations.single-translation .translation-label {
+  display: none !important;
 }
 
 .translation-label .lang-flag {

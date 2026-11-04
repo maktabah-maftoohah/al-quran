@@ -24,9 +24,11 @@
 * **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the Quranic Arabic Corpus.
 * **Tafsir al-Jalalayn & Ibn Kathir**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view (featuring Bahasa Melayu / Nusantara and English).
 
-### 🌍 Multilingual Translations & Jawi Script
+### 🌍 Multilingual Translations, Jawi Script & Dual-Language UI
+* **Dual-Language Interface (MY / EN)**: Complete native localization in **Bahasa Melayu (Default)** and **English**, with instant one-click switching via header and settings controls.
+* **Smart Single-Translation Display**: Automatically hides repetitive translation source headers when only one translation is selected for a pristine, distraction-free reading experience.
 * **5 Full Translation & Exegesis Editions**:
-  * 🇲🇾 **Bahasa Melayu (JAKIM)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
+  * 🇲🇾 **Bahasa Melayu (JAKIM - Default)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
   * 🇲🇾 **Tafsir al-Jalalayn** — Classical Exegesis in Bahasa Melayu / Nusantara (Jalaluddin al-Mahalli & Jalaluddin as-Suyuti)
   * 🇬🇧 **English** — Saheeh International
   * 🇬🇧 **English (Literary)** — Muhammad Marmaduke Pickthall
@@ -87,7 +89,7 @@ This project adheres to strict architectural principles designed for longevity, 
    * Zero npm runtime dependencies.
 2. **Subpath Hosting Compatibility**:
    * All network requests use strictly relative paths (`./data/...`, `./css/...`, `./js/...`), ensuring flawless execution on subpath environments like GitHub Pages (`https://<org>.github.io/<repo>/`).
-3. **Offline-First PWA (Service Worker v6)**:
+3. **Offline-First PWA (Service Worker v7)**:
    * Stale-while-revalidate caching provides instantaneous offline boot while seamlessly pulling background updates from GitHub.
 4. **Storage Architecture**:
    * **IndexedDB** (`maktabah_quran_db`): Persistent offline audio MP3 blobs and user study notes.

@@ -5,6 +5,7 @@
 
 import { store } from './store.js';
 import { audio } from './audio.js';
+import { i18n } from './i18n.js';
 
 export function toArabicDigits(num) {
   return String(num).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]);
@@ -30,7 +31,7 @@ export class MushafViewer {
 
   async renderPage(pageNum, container) {
     const page = Math.max(1, Math.min(604, parseInt(pageNum, 10) || 1));
-    container.innerHTML = `<div style="padding: 3rem; text-align: center; color: var(--text-muted);">Loading Mushaf Page ${page}...</div>`;
+    container.innerHTML = `<div style="padding: 3rem; text-align: center; color: var(--text-muted);">${i18n.t('mushaf.loading', { p: page })}</div>`;
 
     const meta = await this.loadPagesMeta();
     const surahs = await store.fetchSurahs();
@@ -145,18 +146,18 @@ export class MushafViewer {
         <!-- Top Toolbar & Navigation -->
         <div class="mushaf-nav-bar">
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            ${prevPage ? `<a href="#mushaf/${prevPage}" class="btn" title="Previous Page (Alt+P)">← Page ${prevPage}</a>` : ''}
+            ${prevPage ? `<a href="#mushaf/${prevPage}" class="btn" title="Previous Page (Alt+P)">${i18n.t('mushaf.prevPage', { p: prevPage })}</a>` : ''}
             <div style="display: flex; align-items: center; gap: 0.35rem;">
-              <span style="font-size: 0.85rem; color: var(--text-muted);">Page</span>
+              <span style="font-size: 0.85rem; color: var(--text-muted);">${i18n.t('mushaf.pageLabel')}</span>
               <input type="number" id="mushaf-page-jump-input" min="1" max="604" value="${page}" style="width: 58px; background: var(--bg-surface); border: 1px solid var(--border-subtle); color: var(--text-primary); border-radius: 4px; padding: 0.25rem 0.4rem; text-align: center; font-size: 0.85rem;">
               <span style="font-size: 0.85rem; color: var(--text-muted);">/ 604</span>
             </div>
-            ${nextPage ? `<a href="#mushaf/${nextPage}" class="btn" title="Next Page (Alt+N)">Page ${nextPage} →</a>` : ''}
+            ${nextPage ? `<a href="#mushaf/${nextPage}" class="btn" title="Next Page (Alt+N)">${i18n.t('mushaf.nextPage', { p: nextPage })}</a>` : ''}
           </div>
 
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <a href="#surah/${primarySurah.surah}?ayah=${primarySurah.ayah}" class="btn">
-              📖 Surah Reading View
+              ${i18n.t('mushaf.readingView')}
             </a>
           </div>
         </div>
