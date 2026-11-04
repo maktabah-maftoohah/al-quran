@@ -182,17 +182,28 @@ server.listen(PORT, async () => {
     assert(clipboardText.includes('قُل'), 'Clipboard text contains Arabic ayat text');
     assert(clipboardText.includes('Bertanyalah') || clipboardText.includes('Say'), 'Clipboard text contains translation text');
 
-    // Test short-form route #6/12
+    // Test Copy Direct Link Button (Colon format: #surah/6:12)
+    await directLinkBtn.click();
+    await page.waitForTimeout(300);
+    const copiedDirectLink = await page.evaluate(() => navigator.clipboard.readText());
+    assert(copiedDirectLink.includes('#surah/6:12'), `Copied direct link uses colon notation: "${copiedDirectLink}"`);
+
+    // Test short-form route #6:12 and #6/12
+    await page.goto(`http://localhost:${PORT}/index.html#6:12`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+    const cardShortColon = await page.$('#verse-6-12');
+    assert(cardShortColon !== null, 'Short-form route #6:12 successfully loads Surah 6 Verse 12');
+
     await page.goto(`http://localhost:${PORT}/index.html#6/12`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
     const cardShort = await page.$('#verse-6-12');
     assert(cardShort !== null, 'Short-form route #6/12 successfully loads Surah 6 Verse 12');
 
     // -------------------------------------------------------------
-    // Test 5C: Deep-Linking & Refresh Scroll Accuracy (#surah/8/57)
+    // Test 5C: Deep-Linking & Refresh Scroll Accuracy (#surah/8:57)
     // -------------------------------------------------------------
-    console.log('\n[TEST 5C] Deep-Linking & Refresh Scroll Accuracy (#surah/8/57)');
-    await page.goto(`http://localhost:${PORT}/index.html#surah/8/57`, { waitUntil: 'networkidle' });
+    console.log('\n[TEST 5C] Deep-Linking & Refresh Scroll Accuracy (#surah/8:57)');
+    await page.goto(`http://localhost:${PORT}/index.html#surah/8:57`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
 
     let scrollMetrics = await page.evaluate(() => {
@@ -205,10 +216,10 @@ server.listen(PORT, async () => {
         highlighted: el.classList.contains('highlight-target')
       };
     });
-    assert(scrollMetrics && scrollMetrics.inView, `Cold load scrolls directly to verse 8:57 (top: ${scrollMetrics?.top}px)`);
+    assert(scrollMetrics && scrollMetrics.inView, `Cold load scrolls directly to verse 8:57 with colon notation (top: ${scrollMetrics?.top}px)`);
     assert(scrollMetrics && scrollMetrics.highlighted, 'Verse 8:57 is highlighted on cold load');
 
-    // Test Reload / Refresh on deep-link
+    // Test Reload / Refresh on colon deep-link
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
 
@@ -225,10 +236,10 @@ server.listen(PORT, async () => {
     assert(scrollMetrics && scrollMetrics.inView, `Browser refresh retains accurate scroll to verse 8:57 (top: ${scrollMetrics?.top}px)`);
     assert(scrollMetrics && scrollMetrics.highlighted, 'Verse 8:57 is highlighted after browser refresh');
 
-    // Test Intra-surah navigation from 8:1 to 8:57
+    // Test Intra-surah navigation from 8:1 to 8:57 using colon
     await page.evaluate(() => { window.location.hash = '#surah/8/1'; });
     await page.waitForTimeout(300);
-    await page.evaluate(() => { window.location.hash = '#surah/8/57'; });
+    await page.evaluate(() => { window.location.hash = '#surah/8:57'; });
     await page.waitForTimeout(500);
 
     scrollMetrics = await page.evaluate(() => {

@@ -156,7 +156,7 @@ export class MushafViewer {
           </div>
 
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <a href="#surah/${primarySurah.surah}/${primarySurah.ayah}" class="btn">
+            <a href="#surah/${primarySurah.surah}:${primarySurah.ayah}" class="btn">
               ${i18n.t('mushaf.readingView')}
             </a>
           </div>

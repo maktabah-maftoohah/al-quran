@@ -297,7 +297,7 @@ class App {
     const html = bookmarks
       .map(
         (b) => `
-        <a href="#surah/${b.surah}/${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
+        <a href="#surah/${b.surah}:${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span class="ayah-badge">${b.surahName} (${b.ref})</span>
             <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
@@ -339,7 +339,7 @@ class App {
           year: 'numeric',
         });
         return `
-          <a href="#surah/${n.surah}/${n.ayah}" class="sidebar-note-item" data-ref="${n.ref}">
+          <a href="#surah/${n.surah}:${n.ayah}" class="sidebar-note-item" data-ref="${n.ref}">
             <div class="sidebar-note-ref">
               <span>${n.surahName} (${n.ref})</span>
               <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">${dateStr}</span>
@@ -375,7 +375,7 @@ class App {
         <span class="continue-label">${i18n.t('sidebar.continueReading')}</span>
         <span class="continue-ref">${last.surahName || `Surah ${last.surah}`} : ${isMs ? 'Ayat' : 'Ayah'} ${last.ayah}</span>
       </div>
-      <a href="#surah/${last.surah}/${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">${i18n.t('sidebar.resumeBtn')}</a>
+      <a href="#surah/${last.surah}:${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">${i18n.t('sidebar.resumeBtn')}</a>
     `;
   }
 
@@ -1229,7 +1229,7 @@ class App {
           return `
             <div class="verse-card" data-surah="${surah}" data-ayah="${aNum}" id="verse-${surah}-${aNum}">
               <div class="verse-card-top">
-                <a href="#surah/${surah}/${aNum}" class="ayah-badge" title="${isMs ? 'Pautan terus ke ayat ini' : 'Direct link to this verse'}">${ref}</a>
+                <a href="#surah/${surah}:${aNum}" class="ayah-badge" title="${isMs ? 'Pautan terus ke ayat ini' : 'Direct link to this verse'}">${ref}</a>
                 <div class="verse-actions">
                   <button class="verse-action-btn btn-play-ayah" data-surah="${surah}" data-ayah="${aNum}">
                     ▶ ${i18n.t('surah.btnPlay')}
@@ -1246,7 +1246,7 @@ class App {
                   <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}">
                     📋 ${i18n.t('surah.btnCopy')}
                   </button>
-                  <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#surah/' + surah + '/' + aNum + ')' : 'Copy Direct Link (#surah/' + surah + '/' + aNum + ')'}">
+                  <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#surah/' + surah + ':' + aNum + ')' : 'Copy Direct Link (#surah/' + surah + ':' + aNum + ')'}">
                     🔗 ${i18n.t('surah.btnLink')}
                   </button>
                   <a href="#ayah/${surah}/${aNum}" class="verse-action-btn" style="text-decoration: none;">
@@ -1594,7 +1594,7 @@ class App {
       btn.addEventListener('click', () => {
         const s = btn.getAttribute('data-surah');
         const a = btn.getAttribute('data-ayah');
-        const directUrl = `${window.location.origin}${window.location.pathname}#surah/${s}/${a}`;
+        const directUrl = `${window.location.origin}${window.location.pathname}#surah/${s}:${a}`;
         this.copyToClipboard(directUrl, i18n.t('surah.toastLinkCopied', { ref: `${s}:${a}` }));
       });
     });
@@ -1757,7 +1757,7 @@ class App {
       this.mainContainer.innerHTML = `
         <div class="deepdive-container">
           <div class="deepdive-nav-bar">
-            <a href="#surah/${surah}/${ayah}" class="breadcrumb-link">
+            <a href="#surah/${surah}:${ayah}" class="breadcrumb-link">
               ← ${backText}
             </a>
             <div class="deepdive-nav-controls">
@@ -2063,7 +2063,7 @@ class App {
           <div class="verse-card-top">
             <span class="ayah-badge">${b.surahName} (${b.ref})</span>
             <div class="verse-actions">
-              <a href="#surah/${b.surah}/${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
+              <a href="#surah/${b.surah}:${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
                 ${i18n.t('bookmarks.openVerse')}
               </a>
               <a href="#ayah/${b.surah}/${b.ayah}" class="btn" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
