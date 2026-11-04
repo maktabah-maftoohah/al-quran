@@ -275,7 +275,7 @@ body {
 .sidebar-list {
   flex: 1;
   overflow-y: auto;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 3.5rem 0;
 }
 
 .surah-list-item {
