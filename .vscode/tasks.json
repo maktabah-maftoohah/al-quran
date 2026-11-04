@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Web Server",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/serve.py", "--no-browser"],
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Maktabah Maftoohah",
+          "endsPattern": "Serving root"
+        }
+      }
+    },
+    {
+      "label": "Run Al-Quran Server & Open Browser",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/serve.py"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Quran ETL: Seed Mode (Surahs 1, 112, 113, 114)",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/extract_quran.py", "--seed"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Quran ETL: All 114 Surahs",
+      "type": "shell",
+      "command": "python",
+      "args": ["scripts/extract_quran.py", "--all"],
+      "problemMatcher": []
+    }
+  ]
+}

@@ -10,8 +10,8 @@ env/
 # System & IDE
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
+.vscode/*.log
 
 # Local cache
 scripts/.*cache*

@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Al-Quran App (F5)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/serve.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Launch in Chrome (Web Debug)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8000/index.html",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Start Web Server"
+    },
+    {
+      "name": "Launch in Edge (Web Debug)",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:8000/index.html",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Start Web Server"
+    }
+  ]
+}
