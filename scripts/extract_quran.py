@@ -173,21 +173,47 @@ def main():
     print("Fetching Surah metadata index...")
     surahs_api_url = "https://api.alquran.cloud/v1/surah"
     surahs_raw = fetch_json(surahs_api_url)
+
+    # Load existing MS metadata or fallback dictionary
+    existing_ms = {}
+    surahs_file = DATA_DIR / "surahs.json"
+    if surahs_file.exists():
+        try:
+            with open(surahs_file, "r", encoding="utf-8") as f:
+                old_list = json.load(f)
+                for s in old_list:
+                    if "name_ms" in s:
+                        existing_ms[s["number"]] = (s["name_ms"], s.get("translation_ms", ""))
+        except Exception:
+            pass
+
+    try:
+        from scripts.update_surah_names_ms import SURAH_MS_DATA
+    except ImportError:
+        try:
+            from update_surah_names_ms import SURAH_MS_DATA
+        except ImportError:
+            SURAH_MS_DATA = {}
+
     surahs_meta = []
     for item in surahs_raw.get("data", []):
         s_num = item["number"]
         clean_ar_name = re.sub(r"^سُورَةُ?\s*", "", item["name"]).replace("\ufeff", "").strip()
+        default_ms_name, default_ms_trans = SURAH_MS_DATA.get(s_num, (item["englishName"], item["englishNameTranslation"]))
+        name_ms, trans_ms = existing_ms.get(s_num, (default_ms_name, default_ms_trans))
+
         surahs_meta.append({
             "number": s_num,
             "name_arabic": clean_ar_name,
             "name_latin": item["englishName"],
             "name_translation": item["englishNameTranslation"],
+            "name_ms": name_ms,
+            "translation_ms": trans_ms,
             "total_ayahs": item["numberOfAyahs"],
             "revelation_type": item["revelationType"],
             "seeded": (s_num in target_surahs),
         })
 
-    surahs_file = DATA_DIR / "surahs.json"
     with open(surahs_file, "w", encoding="utf-8") as f:
         json.dump(surahs_meta, f, ensure_ascii=False, indent=2)
     print(f"Saved {len(surahs_meta)} surahs to {surahs_file}")
