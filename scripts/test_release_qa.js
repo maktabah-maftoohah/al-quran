@@ -189,6 +189,60 @@ server.listen(PORT, async () => {
     assert(cardShort !== null, 'Short-form route #6/12 successfully loads Surah 6 Verse 12');
 
     // -------------------------------------------------------------
+    // Test 5C: Deep-Linking & Refresh Scroll Accuracy (#surah/8/57)
+    // -------------------------------------------------------------
+    console.log('\n[TEST 5C] Deep-Linking & Refresh Scroll Accuracy (#surah/8/57)');
+    await page.goto(`http://localhost:${PORT}/index.html#surah/8/57`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+
+    let scrollMetrics = await page.evaluate(() => {
+      const el = document.getElementById('verse-8-57');
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      return {
+        top: Math.round(rect.top),
+        inView: rect.top >= 0 && rect.top < window.innerHeight,
+        highlighted: el.classList.contains('highlight-target')
+      };
+    });
+    assert(scrollMetrics && scrollMetrics.inView, `Cold load scrolls directly to verse 8:57 (top: ${scrollMetrics?.top}px)`);
+    assert(scrollMetrics && scrollMetrics.highlighted, 'Verse 8:57 is highlighted on cold load');
+
+    // Test Reload / Refresh on deep-link
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+
+    scrollMetrics = await page.evaluate(() => {
+      const el = document.getElementById('verse-8-57');
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      return {
+        top: Math.round(rect.top),
+        inView: rect.top >= 0 && rect.top < window.innerHeight,
+        highlighted: el.classList.contains('highlight-target')
+      };
+    });
+    assert(scrollMetrics && scrollMetrics.inView, `Browser refresh retains accurate scroll to verse 8:57 (top: ${scrollMetrics?.top}px)`);
+    assert(scrollMetrics && scrollMetrics.highlighted, 'Verse 8:57 is highlighted after browser refresh');
+
+    // Test Intra-surah navigation from 8:1 to 8:57
+    await page.evaluate(() => { window.location.hash = '#surah/8/1'; });
+    await page.waitForTimeout(300);
+    await page.evaluate(() => { window.location.hash = '#surah/8/57'; });
+    await page.waitForTimeout(500);
+
+    scrollMetrics = await page.evaluate(() => {
+      const el = document.getElementById('verse-8-57');
+      if (!el) return null;
+      const rect = el.getBoundingClientRect();
+      return {
+        top: Math.round(rect.top),
+        inView: rect.top >= 0 && rect.top < window.innerHeight
+      };
+    });
+    assert(scrollMetrics && scrollMetrics.inView, `Intra-surah hash change scrolls accurately to verse 8:57 (top: ${scrollMetrics?.top}px)`);
+
+    // -------------------------------------------------------------
     // Test 6: Ayah Deep-Dive View (#ayah/1/1) - Morphology & Tafsir
     // -------------------------------------------------------------
     console.log('\n[TEST 6] Ayah Deep-Dive View (#ayah/1/1) - Word Tokens & Morphology Drawer');

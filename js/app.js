@@ -27,9 +27,15 @@ class App {
     this.morphOverlay = document.getElementById('drawer-overlay');
     this.noteModal = document.getElementById('note-modal-overlay');
     this.activeNoteContext = null;
+    this.renderedSurah = null;
   }
 
   async init() {
+    // Disable automatic browser scroll restoration so deep links and refreshes land accurately
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     i18n.init(store.settings.language || 'ms');
     store.applySettingsToDOM();
     searchEngine.init();
@@ -76,6 +82,7 @@ class App {
       if (this.cachedSurahs) {
         this.renderSidebarSurahs(this.cachedSurahs);
       }
+      this.renderedSurah = null;
       router.handleRouting();
     };
 
@@ -465,7 +472,7 @@ class App {
       toggleJawi.checked = store.settings.jawiMode;
       toggleJawi.addEventListener('change', () => {
         store.updateSettings({ jawiMode: toggleJawi.checked });
-        // Re-render current view to reflect Jawi switch immediately
+        this.renderedSurah = null;
         router.handleRouting();
       });
     }
@@ -729,6 +736,7 @@ class App {
         });
         hifzBtn.classList.toggle('btn-primary', nextActive);
         this.showToast(nextActive ? '🧠 Tahfiz / Hifz Mode Activated' : 'Tahfiz Mode Deactivated');
+        this.renderedSurah = null;
         router.handleRouting();
       });
     }
@@ -1050,6 +1058,25 @@ class App {
    * Surah Reading View (#surah/:surah)
    */
   async renderSurahView({ surah, targetAyah }) {
+    // If surah is already rendered in the DOM and we are navigating to an ayah within the same chapter
+    if (targetAyah && this.renderedSurah === surah && document.getElementById(`verse-${surah}-${targetAyah}`)) {
+      document.querySelectorAll('.surah-list-item').forEach((el) => {
+        el.classList.toggle('active', el.getAttribute('data-surah') === String(surah));
+      });
+
+      const meta = await store.getSurahMeta(surah);
+      if (meta) {
+        const displayName = store.getSurahName(meta);
+        const displayTrans = store.getSurahTranslation(meta);
+        store.setLastRead(surah, targetAyah, displayName, displayTrans);
+        this.updateContinueBanner();
+      }
+
+      this.scrollToAyah(surah, targetAyah, { smooth: false });
+      return;
+    }
+
+    this.renderedSurah = surah;
     this.mainContainer.innerHTML = '<div style="padding: 3rem; text-align: center; color: var(--text-muted);">Loading Surah data...</div>';
 
     try {
@@ -1309,23 +1336,11 @@ class App {
       this.updateActiveTranslationsDisplay();
       this.attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah);
 
-      // Handle target ayah scroll & highlight (e.g. #surah/6/12)
+      // Handle target ayah scroll & highlight (e.g. #surah/6/12, #surah/8/57)
       if (targetAyah) {
-        const scrollToTarget = (smooth = false) => {
-          const card = document.getElementById(`verse-${surah}-${targetAyah}`);
-          if (card) {
-            card.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
-            card.classList.add('highlight-target');
-            return true;
-          }
-          return false;
-        };
-
-        // Instant position first to eliminate jump delay
-        setTimeout(() => scrollToTarget(false), 50);
-        // Follow-up smooth center once layout/fonts settle
-        setTimeout(() => scrollToTarget(true), 250);
-        setTimeout(() => scrollToTarget(true), 600);
+        this.scrollToAyah(surah, targetAyah, { smooth: false });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'auto' });
       }
     } catch (err) {
       console.error('Error rendering surah view:', err);
@@ -1333,7 +1348,51 @@ class App {
     }
   }
 
+  scrollToAyah(surah, targetAyah, { smooth = false } = {}) {
+    if (!targetAyah) return;
+    const cardId = `verse-${surah}-${targetAyah}`;
+    const card = document.getElementById(cardId);
+    if (!card) return;
+
+    // Highlight target card
+    document.querySelectorAll('.verse-card.highlight-target').forEach((c) => {
+      if (c !== card) c.classList.remove('highlight-target');
+    });
+    card.classList.add('highlight-target');
+
+    const performScroll = (behavior = 'instant') => {
+      const el = document.getElementById(cardId);
+      if (!el) return;
+      const headerEl = document.querySelector('.app-header');
+      const headerHeight = headerEl ? headerEl.offsetHeight : 64;
+      const offset = headerHeight + 20;
+      const rect = el.getBoundingClientRect();
+      const absoluteTop = window.scrollY + rect.top - offset;
+      window.scrollTo({
+        top: Math.max(0, absoluteTop),
+        behavior: behavior
+      });
+    };
+
+    // 1. Initial scroll (instant jump to position without fighting scroll-behavior: smooth)
+    performScroll(smooth ? 'smooth' : 'instant');
+
+    // 2. Refined scroll after fonts & dynamic layout settle
+    const settleScroll = () => {
+      requestAnimationFrame(() => {
+        performScroll(smooth ? 'smooth' : 'instant');
+      });
+    };
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(settleScroll);
+    }
+    setTimeout(settleScroll, 100);
+    setTimeout(settleScroll, 300);
+  }
+
   renderUnseededSurahView(meta) {
+    this.renderedSurah = null;
     const displayName = store.getSurahName(meta);
     const displayTrans = store.getSurahTranslation(meta);
     const isMs = i18n.getLanguage() === 'ms';
@@ -1602,6 +1661,7 @@ class App {
         store.updateSettings({
           hifz: { ...(store.settings.hifz || {}), blurArabic: blurToggle.checked },
         });
+        this.renderedSurah = null;
         this.renderSurahView({ surah });
       });
     }
@@ -1623,6 +1683,7 @@ class App {
    * Ayah Deep-Dive Comparison View (#ayah/:surah/:ayah)
    */
   async renderAyahDeepDive({ surah, ayah }) {
+    this.renderedSurah = null;
     this.mainContainer.innerHTML = '<div style="padding: 3rem; text-align: center; color: var(--text-muted);">Loading Ayah Deep-Dive...</div>';
 
     try {
@@ -1974,6 +2035,7 @@ class App {
    * 15-Line Madinah Mushaf Page View (#mushaf/:page)
    */
   async renderMushafView({ page }) {
+    this.renderedSurah = null;
     await mushafViewer.renderPage(page || 1, this.mainContainer);
   }
 
@@ -1981,6 +2043,7 @@ class App {
    * Bookmarks View (#bookmarks)
    */
   renderBookmarksView() {
+    this.renderedSurah = null;
     const bookmarks = store.bookmarks;
     if (!bookmarks.length) {
       this.mainContainer.innerHTML = `

@@ -559,8 +559,7 @@ body {
   transition: all var(--transition-normal);
   position: relative;
   box-shadow: var(--shadow-card);
-  content-visibility: auto;
-  contain-intrinsic-size: 0 160px;
+  scroll-margin-top: calc(var(--header-height, 64px) + 1.25rem);
 }
 
 .verse-card:hover {
@@ -576,7 +575,7 @@ body {
 .verse-card.highlight-target {
   animation: pulseHighlight 3s ease forwards;
   border-color: var(--accent-gold) !important;
-  scroll-margin-top: 15vh;
+  scroll-margin-top: calc(var(--header-height, 64px) + 1.25rem);
 }
 
 @keyframes pulseHighlight {
