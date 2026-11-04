@@ -171,6 +171,18 @@ class QuranStore {
     return surahs.find((s) => s.number === parseInt(surahNum, 10)) || null;
   }
 
+  getSurahName(meta) {
+    if (!meta) return '';
+    const lang = this.settings.language || 'ms';
+    return lang === 'ms' ? (meta.name_ms || meta.name_latin) : meta.name_latin;
+  }
+
+  getSurahTranslation(meta) {
+    if (!meta) return '';
+    const lang = this.settings.language || 'ms';
+    return lang === 'ms' ? (meta.translation_ms || meta.name_translation) : meta.name_translation;
+  }
+
   async fetchArabic(surahNum) {
     const key = parseInt(surahNum, 10);
     if (this.cache.arabic.has(key)) return this.cache.arabic.get(key);

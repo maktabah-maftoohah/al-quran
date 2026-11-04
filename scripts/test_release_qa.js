@@ -106,13 +106,15 @@ server.listen(PORT, async () => {
     assert(labelHiddenSingle, 'Translation reference label is HIDDEN when only one translation is selected');
 
     // -------------------------------------------------------------
-    // Test 2: Surah 1 (Al-Faatiha) Rendering & Verse Count
+    // Test 2: Surah 1 (Al-Fatihah) Rendering & Verse Count
     // -------------------------------------------------------------
-    console.log('\n[TEST 2] Surah 1 (Al-Faatiha) - 7 Verses Render');
+    console.log('\n[TEST 2] Surah 1 (Al-Fatihah) - 7 Verses Render');
     const verseCards1 = await page.$$('.verse-card');
     assert(verseCards1.length === 7, `Surah 1 renders exactly 7 verses, found ${verseCards1.length}`);
     const surahHeader1 = await page.textContent('.surah-header-latin');
-    assert(surahHeader1.includes('Al-Faatiha'), `Header displays Al-Faatiha: "${surahHeader1.trim()}"`);
+    const surahTrans1 = await page.textContent('.surah-header-trans');
+    assert(surahHeader1.includes('Al-Fatihah') || surahHeader1.includes('Al-Faatiha'), `Header displays Malaysian/Standard transliteration: "${surahHeader1.trim()}"`);
+    assert(surahTrans1.includes('Pembukaan') || surahTrans1.includes('The Opening'), `Header displays translation: "${surahTrans1.trim()}"`);
 
     // -------------------------------------------------------------
     // Test 3: Basmalah Banner Logic (Surah 112 vs Surah 9)
@@ -133,15 +135,17 @@ server.listen(PORT, async () => {
     assert(s9Cards.length === 129, `Surah 9 renders all 129 verses, found ${s9Cards.length}`);
 
     // -------------------------------------------------------------
-    // Test 4: Surah 114 (An-Naas - Last Surah in Quran)
+    // Test 4: Surah 114 (An-Nas - Last Surah in Quran)
     // -------------------------------------------------------------
-    console.log('\n[TEST 4] Surah 114 (An-Naas) - Final Surah');
+    console.log('\n[TEST 4] Surah 114 (An-Nas) - Final Surah');
     await page.click('a[data-surah="114"]');
     await page.waitForTimeout(500);
     const s114Cards = await page.$$('.verse-card');
     assert(s114Cards.length === 6, `Surah 114 renders exactly 6 verses`);
     const surahHeader114 = await page.textContent('.surah-header-latin');
-    assert(surahHeader114.includes('An-Naas'), `Header displays An-Naas`);
+    const surahTrans114 = await page.textContent('.surah-header-trans');
+    assert(surahHeader114.includes('An-Nas') || surahHeader114.includes('An-Naas'), `Header displays An-Nas/An-Naas: "${surahHeader114.trim()}"`);
+    assert(surahTrans114.includes('Manusia') || surahTrans114.includes('Mankind'), `Header displays translation: "${surahTrans114.trim()}"`);
 
     // -------------------------------------------------------------
     // Test 5: Full Surah 2 (Al-Baqarah - 286 Verses) & Content Visibility

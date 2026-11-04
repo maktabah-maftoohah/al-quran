@@ -65,7 +65,7 @@ export class MushafViewer {
             pageAyahs.push({
               surah: sNum,
               ayah: parseInt(aStr, 10),
-              surahName: sMeta ? sMeta.name_latin : `Surah ${sNum}`,
+              surahName: sMeta ? store.getSurahName(sMeta) : `Surah ${sNum}`,
               surahArabic: sMeta ? sMeta.name_arabic : '',
               totalAyahs: sMeta ? sMeta.total_ayahs : 7,
               uthmani: aData.uthmani,

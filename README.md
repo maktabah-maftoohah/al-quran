@@ -26,6 +26,7 @@
 
 ### 🌍 Multilingual Translations, Jawi Script & Dual-Language UI
 * **Dual-Language Interface (MY / EN)**: Complete native localization in **Bahasa Melayu (Default)** and **English**, with instant one-click switching via header and settings controls.
+* **Official Malaysian Surah Names & Titles**: In Malay mode, surah names and translations follow Malaysian standard transliteration and titles (e.g., *Al-Fatihah: Pembukaan*, *Al-Baqarah: Lembu Betina*, *Ali 'Imran: Keluarga Imran*, *An-Nisa': Wanita*, etc.).
 * **Smart Single-Translation Display**: Automatically hides repetitive translation source headers when only one translation is selected for a pristine, distraction-free reading experience.
 * **5 Full Translation & Exegesis Editions**:
   * 🇲🇾 **Bahasa Melayu (JAKIM - Default)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)

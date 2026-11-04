@@ -240,14 +240,17 @@ class App {
           ? `<span style="font-size: 0.65rem; color: var(--accent-emerald);">● ${isMs ? 'Sedia' : 'Ready'}</span>`
           : `<span style="font-size: 0.65rem; color: var(--text-muted);">○ ${isMs ? 'Belum' : 'Unseeded'}</span>`;
         const ayahsLabel = isMs ? 'ayat' : 'ayahs';
+        const displayName = store.getSurahName(s);
+        const displayTrans = store.getSurahTranslation(s);
+        const searchTags = `${s.name_latin.toLowerCase()} ${(s.name_ms || '').toLowerCase()} ${(s.name_translation || '').toLowerCase()} ${(s.translation_ms || '').toLowerCase()}`;
 
         return `
-          <a href="#surah/${s.number}" class="surah-list-item ${isActive}" data-surah="${s.number}" data-latin="${s.name_latin.toLowerCase()}" data-trans="${s.name_translation.toLowerCase()}" data-arabic="${s.name_arabic}">
+          <a href="#surah/${s.number}" class="surah-list-item ${isActive}" data-surah="${s.number}" data-latin="${searchTags}" data-trans="${searchTags}" data-arabic="${s.name_arabic}">
             <div class="surah-item-left">
               <div class="surah-item-num">${s.number}</div>
               <div class="surah-item-titles">
-                <span class="surah-item-latin">${s.name_latin}</span>
-                <span class="surah-item-trans">${s.name_translation}</span>
+                <span class="surah-item-latin">${displayName}</span>
+                <span class="surah-item-trans">${displayTrans}</span>
               </div>
             </div>
             <div class="surah-item-right">
@@ -1093,14 +1096,16 @@ class App {
 
       // Update Last Read
       const targetA = targetAyah || 1;
-      store.setLastRead(surah, targetA, meta.name_latin);
+      const displayName = store.getSurahName(meta);
+      const displayTrans = store.getSurahTranslation(meta);
+      store.setLastRead(surah, targetA, displayName);
       this.updateContinueBanner();
 
       if (!audio.state.isPlaying) {
         audio.state.currentSurah = surah;
         audio.state.currentAyah = targetA;
         audio.state.totalAyahs = meta.total_ayahs;
-        audio.state.surahName = meta.name_latin;
+        audio.state.surahName = displayName;
         audio.notify();
       }
 
@@ -1270,8 +1275,8 @@ class App {
       this.mainContainer.innerHTML = `
         <div class="surah-header-card">
           <div class="surah-header-arabic">${meta.name_arabic}</div>
-          <div class="surah-header-latin">${meta.name_latin}</div>
-          <div class="surah-header-trans">${meta.name_translation}</div>
+          <div class="surah-header-latin">${displayName}</div>
+          <div class="surah-header-trans">${displayTrans}</div>
           <div class="surah-meta-badges">
             <span class="meta-badge revelation">${revelationText}</span>
             <span class="meta-badge">${i18n.t('surah.versesCount', { n: meta.total_ayahs })}</span>
@@ -1318,21 +1323,28 @@ class App {
   }
 
   renderUnseededSurahView(meta) {
+    const displayName = store.getSurahName(meta);
+    const displayTrans = store.getSurahTranslation(meta);
+    const isMs = i18n.getLanguage() === 'ms';
+    const revelationText = isMs
+      ? (meta.revelation_type === 'Meccan' ? 'Makkiyyah' : 'Madaniyyah')
+      : meta.revelation_type;
+
     this.mainContainer.innerHTML = `
       <div class="surah-header-card">
         <div class="surah-header-arabic">${meta.name_arabic}</div>
-        <div class="surah-header-latin">${meta.name_latin}</div>
-        <div class="surah-header-trans">${meta.name_translation}</div>
+        <div class="surah-header-latin">${displayName}</div>
+        <div class="surah-header-trans">${displayTrans}</div>
         <div class="surah-meta-badges">
-          <span class="meta-badge revelation">${meta.revelation_type}</span>
-          <span class="meta-badge">${meta.total_ayahs} Verses</span>
+          <span class="meta-badge revelation">${revelationText}</span>
+          <span class="meta-badge">${i18n.t('surah.versesCount', { n: meta.total_ayahs })}</span>
         </div>
       </div>
 
       <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 2rem; text-align: center;">
         <h3 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Seed Mode Active</h3>
         <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.5rem; font-size: 0.95rem;">
-          Surah ${meta.number} (${meta.name_latin}) is indexed, but its full text has not yet been extracted locally.
+          Surah ${meta.number} (${displayName}) is indexed, but its full text has not yet been extracted locally.
           In <strong>--seed</strong> mode, Surahs 1 (Al-Fatihah), 112 (Al-Ikhlas), 113 (Al-Falaq), and 114 (An-Nas) are fully compiled.
         </p>
         <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
@@ -1346,6 +1358,9 @@ class App {
   }
 
   attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah) {
+    const displayName = store.getSurahName(meta);
+    const isMs = i18n.getLanguage() === 'ms';
+
     // Play Full Surah continuous
     const playSurahBtn = document.getElementById('btn-play-surah-continuous');
     if (playSurahBtn) {
@@ -1356,9 +1371,9 @@ class App {
           audio.playAyah(surah, 1, {
             continuous: true,
             totalAyahs: meta.total_ayahs,
-            surahName: meta.name_latin,
+            surahName: displayName,
           });
-          this.showToast(`Playing ${meta.name_latin} continuously`);
+          this.showToast(isMs ? `Memainkan ${displayName} secara berterusan` : `Playing ${displayName} continuously`);
         }
       });
     }
@@ -1373,7 +1388,7 @@ class App {
           audio.playAyah(surah, aNum, {
             continuous: false,
             totalAyahs: meta.total_ayahs,
-            surahName: meta.name_latin,
+            surahName: displayName,
           });
         }
       });
@@ -1392,7 +1407,7 @@ class App {
           ref,
           surah,
           ayah: aNum,
-          surahName: meta.name_latin,
+          surahName: displayName,
           ar,
           en,
           ms,
@@ -1417,7 +1432,7 @@ class App {
           ref,
           surah: s,
           ayah: a,
-          surahName: meta.name_latin,
+          surahName: displayName,
           ar,
           trans,
         });
@@ -1435,13 +1450,13 @@ class App {
         if (currentCount >= total) {
           if (
             confirm(
-              `Surah ${meta.name_latin} audio (${total} verses) is cached offline in IndexedDB.\n\nWould you like to delete this Surah's offline audio to free space?`
+              `Surah ${displayName} audio (${total} verses) is cached offline in IndexedDB.\n\nWould you like to delete this Surah's offline audio to free space?`
             )
           ) {
             await storageDB.deleteSurahAudio(reciter, surah);
             downloadAudioBtn.className = 'btn btn-download-audio';
             downloadAudioBtn.innerHTML = '📥 Download Offline Audio';
-            this.showToast(`Cleared offline audio for ${meta.name_latin}`);
+            this.showToast(`Cleared offline audio for ${displayName}`);
             this.updateStorageStatsDisplay();
           }
           return;
@@ -1449,7 +1464,7 @@ class App {
 
         downloadAudioBtn.disabled = true;
         downloadAudioBtn.innerHTML = `⏳ Downloading: 0/${total}...`;
-        this.showToast(`Downloading offline audio for ${meta.name_latin}...`);
+        this.showToast(`Downloading offline audio for ${displayName}...`);
 
         try {
           await audio.downloadSurahAudio(surah, total, (prog) => {
@@ -1458,7 +1473,7 @@ class App {
           downloadAudioBtn.disabled = false;
           downloadAudioBtn.className = 'btn btn-download-audio downloaded';
           downloadAudioBtn.innerHTML = `✓ Offline Audio Ready (${total}/${total})`;
-          this.showToast(`All ${total} verses of ${meta.name_latin} saved offline!`);
+          this.showToast(`All ${total} verses of ${displayName} saved offline!`);
           this.updateStorageStatsDisplay();
         } catch (e) {
           downloadAudioBtn.disabled = false;
@@ -1477,7 +1492,7 @@ class App {
         const ms = basmeihSurah[a] || '';
         const en = sahihSurah[a] || '';
 
-        const clipboardText = `Surah ${meta.name_latin} (${ref})\n\n${ar}\n\n[Basmeih - MS]: ${ms}\n\n[Sahih - EN]: ${en}`;
+        const clipboardText = `Surah ${displayName} (${ref})\n\n${ar}\n\n[Basmeih - MS]: ${ms}\n\n[Sahih - EN]: ${en}`;
         this.copyToClipboard(clipboardText, `Copied Ayah ${ref} to clipboard`);
       });
     });
@@ -1494,7 +1509,7 @@ class App {
           ar,
           trans,
           transLabel,
-          surahName: meta.name_latin,
+          surahName: displayName,
           ref,
         });
       });
@@ -1600,14 +1615,15 @@ class App {
       const msDisplayText = isJawi ? rumiToJawi(msText) : msText;
       const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
 
-      store.setLastRead(surah, ayah, meta.name_latin);
+      const displayName = store.getSurahName(meta);
+      store.setLastRead(surah, ayah, displayName);
       this.updateContinueBanner();
 
       if (!audio.state.isPlaying) {
         audio.state.currentSurah = surah;
         audio.state.currentAyah = ayah;
         audio.state.totalAyahs = meta.total_ayahs;
-        audio.state.surahName = meta.name_latin;
+        audio.state.surahName = displayName;
         audio.notify();
       }
 
@@ -1632,11 +1648,13 @@ class App {
         )
         .join('');
 
+      const backText = i18n.getLanguage() === 'ms' ? `Kembali ke ${displayName} (${surah})` : `Back to ${displayName} (${surah})`;
+
       this.mainContainer.innerHTML = `
         <div class="deepdive-container">
           <div class="deepdive-nav-bar">
             <a href="#surah/${surah}?ayah=${ayah}" class="breadcrumb-link">
-              ← Back to ${meta.name_latin} (${surah})
+              ← ${backText}
             </a>
             <div class="deepdive-nav-controls">
               ${prevAyah ? `<a href="#ayah/${surah}/${prevAyah}" class="btn">← Ayah ${prevAyah}</a>` : ''}
@@ -1759,6 +1777,8 @@ class App {
   }
 
   attachDeepDiveEvents(surah, ayah, meta, tokens) {
+    const displayName = store.getSurahName(meta);
+
     // Play Ayah button in Deep Dive
     const playBtn = document.getElementById('btn-deepdive-play');
     if (playBtn) {
@@ -1770,7 +1790,7 @@ class App {
           audio.playAyah(surah, ayah, {
             continuous: false,
             totalAyahs: meta.total_ayahs,
-            surahName: meta.name_latin,
+            surahName: displayName,
           });
           playBtn.innerHTML = '⏸ Pause Recitation';
         }
@@ -1880,7 +1900,7 @@ class App {
           await storageDB.saveNote(ref, {
             surah,
             ayah,
-            surahName: meta.name_latin,
+            surahName: displayName,
             ar: tokens.map((t) => t.ar).join(' '),
             translation: '',
             text,

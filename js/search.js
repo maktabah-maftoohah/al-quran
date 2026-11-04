@@ -127,13 +127,16 @@ export class SearchEngine {
       const a = parseInt(verseJumpMatch[2], 10);
       const surahMeta = surahs.find((item) => item.number === s);
       if (surahMeta && a <= surahMeta.total_ayahs) {
+        const sName = store.getSurahName(surahMeta);
+        const sTrans = store.getSurahTranslation(surahMeta);
+        const isMs = i18n.getLanguage() === 'ms';
         results.push({
           type: 'jump',
           ref: `${s}:${a}`,
           surah: s,
           ayah: a,
-          title: `Jump to ${surahMeta.name_latin} (${s}:${a})`,
-          subtext: `Ayah ${a} of ${surahMeta.total_ayahs} — ${surahMeta.name_translation}`,
+          title: `${isMs ? 'Lompat ke' : 'Jump to'} ${sName} (${s}:${a})`,
+          subtext: `${isMs ? 'Ayat' : 'Ayah'} ${a} / ${surahMeta.total_ayahs} — ${sTrans}`,
           url: `#surah/${s}?ayah=${a}`,
         });
       }
@@ -145,10 +148,13 @@ export class SearchEngine {
       const s = parseInt(surahJumpMatch[1], 10);
       const surahMeta = surahs.find((item) => item.number === s);
       if (surahMeta) {
+        const sName = store.getSurahName(surahMeta);
+        const sTrans = store.getSurahTranslation(surahMeta);
+        const isMs = i18n.getLanguage() === 'ms';
         results.push({
           type: 'surah',
-          title: `Surah ${surahMeta.number}: ${surahMeta.name_latin} (${surahMeta.name_arabic})`,
-          subtext: `${surahMeta.name_translation} • ${surahMeta.total_ayahs} Ayahs`,
+          title: `Surah ${surahMeta.number}: ${sName} (${surahMeta.name_arabic})`,
+          subtext: `${sTrans} • ${surahMeta.total_ayahs} ${isMs ? 'Ayat' : 'Ayahs'}`,
           url: `#surah/${s}`,
         });
       }
@@ -157,16 +163,23 @@ export class SearchEngine {
     // 3. Surah Name matches
     const lowerQuery = rawQuery.toLowerCase();
     for (const sm of surahs) {
+      const matchMsName = (sm.name_ms || '').toLowerCase().includes(lowerQuery);
+      const matchMsTrans = (sm.translation_ms || '').toLowerCase().includes(lowerQuery);
       if (
         sm.name_latin.toLowerCase().includes(lowerQuery) ||
         sm.name_translation.toLowerCase().includes(lowerQuery) ||
+        matchMsName ||
+        matchMsTrans ||
         sm.name_arabic.includes(rawQuery)
       ) {
         if (!results.some((r) => r.type === 'surah' && r.url === `#surah/${sm.number}`)) {
+          const sName = store.getSurahName(sm);
+          const sTrans = store.getSurahTranslation(sm);
+          const isMs = i18n.getLanguage() === 'ms';
           results.push({
             type: 'surah',
-            title: `Surah ${sm.number}: ${sm.name_latin} (${sm.name_arabic})`,
-            subtext: `${sm.name_translation} • ${sm.total_ayahs} Ayahs`,
+            title: `Surah ${sm.number}: ${sName} (${sm.name_arabic})`,
+            subtext: `${sTrans} • ${sm.total_ayahs} ${isMs ? 'Ayat' : 'Ayahs'}`,
             url: `#surah/${sm.number}`,
           });
         }
@@ -201,7 +214,7 @@ export class SearchEngine {
             ref: item.ref,
             surah: item.s,
             ayah: item.a,
-            surahName: surahMeta ? surahMeta.name_latin : `Surah ${item.s}`,
+            surahName: surahMeta ? store.getSurahName(surahMeta) : `Surah ${item.s}`,
             ar: item.ar,
             ms: item.ms,
             en: item.en,
@@ -245,7 +258,7 @@ export class SearchEngine {
             ref: item.ref,
             surah: item.s,
             ayah: item.a,
-            surahName: surahMeta ? surahMeta.name_latin : `Surah ${item.s}`,
+            surahName: surahMeta ? store.getSurahName(surahMeta) : `Surah ${item.s}`,
             ar: item.ar,
             ms: item.ms,
             en: item.en,
