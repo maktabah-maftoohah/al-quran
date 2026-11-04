@@ -99,12 +99,12 @@ server.listen(PORT, async () => {
     const basmalahCard = await page.$('.basmalah-card');
     assert(basmalahCard !== null, 'Basmalah card is displayed on Surah 112');
 
-    // 3. Unseeded Surah View (Surah 2)
-    console.log('\n--- 3. Unseeded Surah View (Surah 2) ---');
+    // 3. Full Surah 2 (Al-Baqarah - 286 Verses)
+    console.log('\n--- 3. Full Surah 2 (Al-Baqarah - 286 Verses) ---');
     await page.click('a[data-surah="2"]');
-    await page.waitForTimeout(500);
-    const unseededText = await page.textContent('body');
-    assert(unseededText.includes('Seed Mode Active'), 'Unseeded surah shows Seed Mode Active message');
+    await page.waitForTimeout(600);
+    const s2Cards = await page.$$('.verse-card');
+    assert(s2Cards.length === 286, `Surah 2 renders all 286 verses, found ${s2Cards.length}`);
 
     // 4. Ayah Deep-Dive View (#ayah/1/1)
     console.log('\n--- 4. Ayah Deep-Dive View (#ayah/1/1) ---');

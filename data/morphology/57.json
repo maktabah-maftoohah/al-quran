@@ -1,0 +1,5803 @@
+{
+  "surah": 57,
+  "ayahs": {
+    "1": [
+      {
+        "pos": 1,
+        "ar": "سَبَّحَ",
+        "tr": "sabbaḥa",
+        "en": "Glorifies",
+        "root": "س ب ح",
+        "lemma": "سَبَّحَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "لِلَّهِ",
+        "tr": "lillahi",
+        "en": "[to] Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "مَا",
+        "tr": "mā",
+        "en": "whatever",
+        "root": "",
+        "lemma": "ما",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "(is) in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "ٱلسَّمَـٰوَٰتِ",
+        "tr": "l-samāwāti",
+        "en": "the heavens",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَٱلْأَرْضِ ۖ",
+        "tr": "wal-arḍi",
+        "en": "and the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "وَهُوَ",
+        "tr": "wahuwa",
+        "en": "and He",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "ٱلْعَزِيزُ",
+        "tr": "l-ʿazīzu",
+        "en": "(is) the All-Mighty",
+        "root": "ع ز ز",
+        "lemma": "عَزِيز",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "ٱلْحَكِيمُ",
+        "tr": "l-ḥakīmu",
+        "en": "the All-Wise",
+        "root": "ح ك م",
+        "lemma": "حَكِيم",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:1:9)"
+      }
+    ],
+    "2": [
+      {
+        "pos": 1,
+        "ar": "لَهُۥ",
+        "tr": "lahu",
+        "en": "For Him",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "مُلْكُ",
+        "tr": "mul'ku",
+        "en": "(is the) dominion",
+        "root": "م ل ك",
+        "lemma": "مُلْك",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلسَّمَـٰوَٰتِ",
+        "tr": "l-samāwāti",
+        "en": "(of) the heavens",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱلْأَرْضِ ۖ",
+        "tr": "wal-arḍi",
+        "en": "and the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "يُحْىِۦ",
+        "tr": "yuḥ'yī",
+        "en": "He gives life",
+        "root": "ح ي ي",
+        "lemma": "أَحْيا",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَيُمِيتُ ۖ",
+        "tr": "wayumītu",
+        "en": "and causes death",
+        "root": "م و ت",
+        "lemma": "أَماتَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "وَهُوَ",
+        "tr": "wahuwa",
+        "en": "and He",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "عَلَىٰ",
+        "tr": "ʿalā",
+        "en": "(is) over",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "كُلِّ",
+        "tr": "kulli",
+        "en": "all",
+        "root": "ك ل ل",
+        "lemma": "كُلّ",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "شَىْءٍۢ",
+        "tr": "shayin",
+        "en": "things",
+        "root": "ش ي أ",
+        "lemma": "شَىْء",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "قَدِيرٌ",
+        "tr": "qadīrun",
+        "en": "All-Powerful",
+        "root": "ق د ر",
+        "lemma": "قَدِير",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:2:11)"
+      }
+    ],
+    "3": [
+      {
+        "pos": 1,
+        "ar": "هُوَ",
+        "tr": "huwa",
+        "en": "He",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلْأَوَّلُ",
+        "tr": "l-awalu",
+        "en": "(is) the First",
+        "root": "أ و ل",
+        "lemma": "أَوَّل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "وَٱلْـَٔاخِرُ",
+        "tr": "wal-ākhiru",
+        "en": "and the Last",
+        "root": "أ خ ر",
+        "lemma": "آخِر",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱلظَّـٰهِرُ",
+        "tr": "wal-ẓāhiru",
+        "en": "and the Apparent",
+        "root": "ظ ه ر",
+        "lemma": "ظاهِر",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَٱلْبَاطِنُ ۖ",
+        "tr": "wal-bāṭinu",
+        "en": "and the Unapparent",
+        "root": "ب ط ن",
+        "lemma": "باطِن",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَهُوَ",
+        "tr": "wahuwa",
+        "en": "and He",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "بِكُلِّ",
+        "tr": "bikulli",
+        "en": "(is) of every",
+        "root": "ك ل ل",
+        "lemma": "كُلّ",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "شَىْءٍ",
+        "tr": "shayin",
+        "en": "thing",
+        "root": "ش ي أ",
+        "lemma": "شَىْء",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "عَلِيمٌ",
+        "tr": "ʿalīmun",
+        "en": "All-Knower",
+        "root": "ع ل م",
+        "lemma": "عَلِيم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:3:9)"
+      }
+    ],
+    "4": [
+      {
+        "pos": 1,
+        "ar": "هُوَ",
+        "tr": "huwa",
+        "en": "He",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلَّذِى",
+        "tr": "alladhī",
+        "en": "(is) the One Who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "خَلَقَ",
+        "tr": "khalaqa",
+        "en": "created",
+        "root": "خ ل ق",
+        "lemma": "خَلَقَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱلسَّمَـٰوَٰتِ",
+        "tr": "l-samāwāti",
+        "en": "the heavens",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَٱلْأَرْضَ",
+        "tr": "wal-arḍa",
+        "en": "and the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "سِتَّةِ",
+        "tr": "sittati",
+        "en": "six",
+        "root": "س ت ت",
+        "lemma": "سِتَّة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "أَيَّامٍۢ",
+        "tr": "ayyāmin",
+        "en": "periods",
+        "root": "ي و م",
+        "lemma": "يَوْم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "ثُمَّ",
+        "tr": "thumma",
+        "en": "then",
+        "root": "",
+        "lemma": "ثُمّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "ٱسْتَوَىٰ",
+        "tr": "is'tawā",
+        "en": "He rose",
+        "root": "س و ي",
+        "lemma": "اسْتَوَى",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "عَلَى",
+        "tr": "ʿalā",
+        "en": "over",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "ٱلْعَرْشِ ۚ",
+        "tr": "l-ʿarshi",
+        "en": "the Throne",
+        "root": "ع ر ش",
+        "lemma": "عَرْش",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "يَعْلَمُ",
+        "tr": "yaʿlamu",
+        "en": "He knows",
+        "root": "ع ل م",
+        "lemma": "عَلِمَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "مَا",
+        "tr": "mā",
+        "en": "what",
+        "root": "",
+        "lemma": "ما",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "يَلِجُ",
+        "tr": "yaliju",
+        "en": "penetrates",
+        "root": "و ل ج",
+        "lemma": "يَلِجَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in(to)",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "ٱلْأَرْضِ",
+        "tr": "l-arḍi",
+        "en": "the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "and what",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "يَخْرُجُ",
+        "tr": "yakhruju",
+        "en": "comes forth",
+        "root": "خ ر ج",
+        "lemma": "خَرَجَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "مِنْهَا",
+        "tr": "min'hā",
+        "en": "from it",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "and what",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "يَنزِلُ",
+        "tr": "yanzilu",
+        "en": "descends",
+        "root": "ن ز ل",
+        "lemma": "نَزَلَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "مِنَ",
+        "tr": "mina",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "ٱلسَّمَآءِ",
+        "tr": "l-samāi",
+        "en": "the heaven",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "and what",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "يَعْرُجُ",
+        "tr": "yaʿruju",
+        "en": "ascends",
+        "root": "ع ر ج",
+        "lemma": "يَعْرُجُ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "فِيهَا ۖ",
+        "tr": "fīhā",
+        "en": "therein",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:27)"
+      },
+      {
+        "pos": 28,
+        "ar": "وَهُوَ",
+        "tr": "wahuwa",
+        "en": "and He",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:28)"
+      },
+      {
+        "pos": 29,
+        "ar": "مَعَكُمْ",
+        "tr": "maʿakum",
+        "en": "(is) with you",
+        "root": "",
+        "lemma": "مَع",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:29)"
+      },
+      {
+        "pos": 30,
+        "ar": "أَيْنَ",
+        "tr": "ayna",
+        "en": "wherever",
+        "root": "",
+        "lemma": "أَيْن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:30)"
+      },
+      {
+        "pos": 31,
+        "ar": "مَا",
+        "tr": "mā",
+        "en": "wherever",
+        "root": "",
+        "lemma": "ما",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:31)"
+      },
+      {
+        "pos": 32,
+        "ar": "كُنتُمْ ۚ",
+        "tr": "kuntum",
+        "en": "you are",
+        "root": "ك و ن",
+        "lemma": "كانَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:32)"
+      },
+      {
+        "pos": 33,
+        "ar": "وَٱللَّهُ",
+        "tr": "wal-lahu",
+        "en": "And Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:33)"
+      },
+      {
+        "pos": 34,
+        "ar": "بِمَا",
+        "tr": "bimā",
+        "en": "of what",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:34)"
+      },
+      {
+        "pos": 35,
+        "ar": "تَعْمَلُونَ",
+        "tr": "taʿmalūna",
+        "en": "you do",
+        "root": "ع م ل",
+        "lemma": "عَمِلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:35)"
+      },
+      {
+        "pos": 36,
+        "ar": "بَصِيرٌۭ",
+        "tr": "baṣīrun",
+        "en": "(is) All-seer",
+        "root": "ب ص ر",
+        "lemma": "بَصِير",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:4:36)"
+      }
+    ],
+    "5": [
+      {
+        "pos": 1,
+        "ar": "لَّهُۥ",
+        "tr": "lahu",
+        "en": "For Him",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "مُلْكُ",
+        "tr": "mul'ku",
+        "en": "(is the) dominion",
+        "root": "م ل ك",
+        "lemma": "مُلْك",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلسَّمَـٰوَٰتِ",
+        "tr": "l-samāwāti",
+        "en": "(of) the heavens",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱلْأَرْضِ ۚ",
+        "tr": "wal-arḍi",
+        "en": "and the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَإِلَى",
+        "tr": "wa-ilā",
+        "en": "and to",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "تُرْجَعُ",
+        "tr": "tur'jaʿu",
+        "en": "will be returned",
+        "root": "ر ج ع",
+        "lemma": "رَجَعَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "ٱلْأُمُورُ",
+        "tr": "l-umūru",
+        "en": "the matters",
+        "root": "أ م ر",
+        "lemma": "أَمْر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:5:8)"
+      }
+    ],
+    "6": [
+      {
+        "pos": 1,
+        "ar": "يُولِجُ",
+        "tr": "yūliju",
+        "en": "He merges",
+        "root": "و ل ج",
+        "lemma": "يُولِجُ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلَّيْلَ",
+        "tr": "al-layla",
+        "en": "the night",
+        "root": "ل ي ل",
+        "lemma": "لَيْل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "into",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱلنَّهَارِ",
+        "tr": "l-nahāri",
+        "en": "the day",
+        "root": "ن ه ر",
+        "lemma": "نَهار",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَيُولِجُ",
+        "tr": "wayūliju",
+        "en": "and He merges",
+        "root": "و ل ج",
+        "lemma": "يُولِجُ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "ٱلنَّهَارَ",
+        "tr": "l-nahāra",
+        "en": "the day",
+        "root": "ن ه ر",
+        "lemma": "نَهار",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "into",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "ٱلَّيْلِ ۚ",
+        "tr": "al-layli",
+        "en": "the night",
+        "root": "ل ي ل",
+        "lemma": "لَيْل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "وَهُوَ",
+        "tr": "wahuwa",
+        "en": "and He",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "عَلِيمٌۢ",
+        "tr": "ʿalīmun",
+        "en": "(is) All-Knower",
+        "root": "ع ل م",
+        "lemma": "عَلِيم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "بِذَاتِ",
+        "tr": "bidhāti",
+        "en": "of what is in the breasts",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "ٱلصُّدُورِ",
+        "tr": "l-ṣudūri",
+        "en": "of what is in the breasts",
+        "root": "ص د ر",
+        "lemma": "صَدْر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:6:12)"
+      }
+    ],
+    "7": [
+      {
+        "pos": 1,
+        "ar": "ءَامِنُوا۟",
+        "tr": "āminū",
+        "en": "Believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "بِٱللَّهِ",
+        "tr": "bil-lahi",
+        "en": "in Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "وَرَسُولِهِۦ",
+        "tr": "warasūlihi",
+        "en": "and His Messenger",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَأَنفِقُوا۟",
+        "tr": "wa-anfiqū",
+        "en": "and spend",
+        "root": "ن ف ق",
+        "lemma": "أَنفَقَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "مِمَّا",
+        "tr": "mimmā",
+        "en": "of what",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "جَعَلَكُم",
+        "tr": "jaʿalakum",
+        "en": "He has made you",
+        "root": "ج ع ل",
+        "lemma": "جَعَلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "مُّسْتَخْلَفِينَ",
+        "tr": "mus'takhlafīna",
+        "en": "trustees",
+        "root": "خ ل ف",
+        "lemma": "مُسْتَخْلَف",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "فِيهِ ۖ",
+        "tr": "fīhi",
+        "en": "therein",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "فَٱلَّذِينَ",
+        "tr": "fa-alladhīna",
+        "en": "And those",
+        "root": "",
+        "lemma": "ف",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "ءَامَنُوا۟",
+        "tr": "āmanū",
+        "en": "who believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "مِنكُمْ",
+        "tr": "minkum",
+        "en": "among you",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَأَنفَقُوا۟",
+        "tr": "wa-anfaqū",
+        "en": "and spend",
+        "root": "ن ف ق",
+        "lemma": "أَنفَقَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "لَهُمْ",
+        "tr": "lahum",
+        "en": "for them",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "أَجْرٌۭ",
+        "tr": "ajrun",
+        "en": "(is) a reward",
+        "root": "أ ج ر",
+        "lemma": "أَجْر",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "كَبِيرٌۭ",
+        "tr": "kabīrun",
+        "en": "great",
+        "root": "ك ب ر",
+        "lemma": "كَبِير",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:7:15)"
+      }
+    ],
+    "8": [
+      {
+        "pos": 1,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "And what",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "لَكُمْ",
+        "tr": "lakum",
+        "en": "(is) for you",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "لَا",
+        "tr": "lā",
+        "en": "(that) not",
+        "root": "",
+        "lemma": "لا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "تُؤْمِنُونَ",
+        "tr": "tu'minūna",
+        "en": "you believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "بِٱللَّهِ ۙ",
+        "tr": "bil-lahi",
+        "en": "in Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَٱلرَّسُولُ",
+        "tr": "wal-rasūlu",
+        "en": "while the Messenger",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "يَدْعُوكُمْ",
+        "tr": "yadʿūkum",
+        "en": "calls you",
+        "root": "د ع و",
+        "lemma": "دَعا",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "لِتُؤْمِنُوا۟",
+        "tr": "litu'minū",
+        "en": "that you believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "بِرَبِّكُمْ",
+        "tr": "birabbikum",
+        "en": "in your Lord",
+        "root": "ر ب ب",
+        "lemma": "رَبّ",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَقَدْ",
+        "tr": "waqad",
+        "en": "and indeed",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "أَخَذَ",
+        "tr": "akhadha",
+        "en": "He has taken",
+        "root": "أ خ ذ",
+        "lemma": "أَخَذَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "مِيثَـٰقَكُمْ",
+        "tr": "mīthāqakum",
+        "en": "your covenant",
+        "root": "و ث ق",
+        "lemma": "مِيثاق",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "إِن",
+        "tr": "in",
+        "en": "if",
+        "root": "",
+        "lemma": "إِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "كُنتُم",
+        "tr": "kuntum",
+        "en": "you are",
+        "root": "ك و ن",
+        "lemma": "كانَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "مُّؤْمِنِينَ",
+        "tr": "mu'minīna",
+        "en": "believers",
+        "root": "أ م ن",
+        "lemma": "مُؤْمِن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:8:15)"
+      }
+    ],
+    "9": [
+      {
+        "pos": 1,
+        "ar": "هُوَ",
+        "tr": "huwa",
+        "en": "He",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلَّذِى",
+        "tr": "alladhī",
+        "en": "(is) the One Who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "يُنَزِّلُ",
+        "tr": "yunazzilu",
+        "en": "sends down",
+        "root": "ن ز ل",
+        "lemma": "نَزَّلَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "عَلَىٰ",
+        "tr": "ʿalā",
+        "en": "upon",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "عَبْدِهِۦٓ",
+        "tr": "ʿabdihi",
+        "en": "His slave",
+        "root": "ع ب د",
+        "lemma": "عَبْد",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "ءَايَـٰتٍۭ",
+        "tr": "āyātin",
+        "en": "Verses",
+        "root": "أ ي ي",
+        "lemma": "آيَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "بَيِّنَـٰتٍۢ",
+        "tr": "bayyinātin",
+        "en": "clear",
+        "root": "ب ي ن",
+        "lemma": "بَيِّنَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "لِّيُخْرِجَكُم",
+        "tr": "liyukh'rijakum",
+        "en": "that He may bring you out",
+        "root": "خ ر ج",
+        "lemma": "أَخْرَجَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "مِّنَ",
+        "tr": "mina",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "ٱلظُّلُمَـٰتِ",
+        "tr": "l-ẓulumāti",
+        "en": "the darkness[es]",
+        "root": "ظ ل م",
+        "lemma": "ظُلُمَة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "إِلَى",
+        "tr": "ilā",
+        "en": "into",
+        "root": "",
+        "lemma": "إِلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "ٱلنُّورِ ۚ",
+        "tr": "l-nūri",
+        "en": "the light",
+        "root": "ن و ر",
+        "lemma": "نُور",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "وَإِنَّ",
+        "tr": "wa-inna",
+        "en": "And indeed",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "بِكُمْ",
+        "tr": "bikum",
+        "en": "to you",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "لَرَءُوفٌۭ",
+        "tr": "laraūfun",
+        "en": "(is the) Most Kind",
+        "root": "ر أ ف",
+        "lemma": "رَءُوف",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "رَّحِيمٌۭ",
+        "tr": "raḥīmun",
+        "en": "(the) Most Merciful",
+        "root": "ر ح م",
+        "lemma": "رَحِيم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:9:17)"
+      }
+    ],
+    "10": [
+      {
+        "pos": 1,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "And what",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "لَكُمْ",
+        "tr": "lakum",
+        "en": "(is) for you",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "أَلَّا",
+        "tr": "allā",
+        "en": "that not",
+        "root": "",
+        "lemma": "أَن",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "تُنفِقُوا۟",
+        "tr": "tunfiqū",
+        "en": "you spend",
+        "root": "ن ف ق",
+        "lemma": "أَنفَقَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "سَبِيلِ",
+        "tr": "sabīli",
+        "en": "(the) way",
+        "root": "س ب ل",
+        "lemma": "سَبِيل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "وَلِلَّهِ",
+        "tr": "walillahi",
+        "en": "while for Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "مِيرَٰثُ",
+        "tr": "mīrāthu",
+        "en": "(is the) heritage",
+        "root": "و ر ث",
+        "lemma": "مِيراث",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "ٱلسَّمَـٰوَٰتِ",
+        "tr": "l-samāwāti",
+        "en": "(of) the heavens",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "وَٱلْأَرْضِ ۚ",
+        "tr": "wal-arḍi",
+        "en": "and the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "لَا",
+        "tr": "lā",
+        "en": "Not",
+        "root": "",
+        "lemma": "لا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "يَسْتَوِى",
+        "tr": "yastawī",
+        "en": "are equal",
+        "root": "س و ي",
+        "lemma": "اسْتَوَى",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "مِنكُم",
+        "tr": "minkum",
+        "en": "among you",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "مَّنْ",
+        "tr": "man",
+        "en": "(those) who",
+        "root": "",
+        "lemma": "مَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "أَنفَقَ",
+        "tr": "anfaqa",
+        "en": "spent",
+        "root": "ن ف ق",
+        "lemma": "أَنفَقَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "before",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "قَبْلِ",
+        "tr": "qabli",
+        "en": "before",
+        "root": "ق ب ل",
+        "lemma": "قَبْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "ٱلْفَتْحِ",
+        "tr": "l-fatḥi",
+        "en": "the victory",
+        "root": "ف ت ح",
+        "lemma": "فَتْح",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "وَقَـٰتَلَ ۚ",
+        "tr": "waqātala",
+        "en": "and fought",
+        "root": "ق ت ل",
+        "lemma": "قاتَلَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "أُو۟لَـٰٓئِكَ",
+        "tr": "ulāika",
+        "en": "Those",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "أَعْظَمُ",
+        "tr": "aʿẓamu",
+        "en": "(are) greater",
+        "root": "ع ظ م",
+        "lemma": "أَعْظَم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "دَرَجَةًۭ",
+        "tr": "darajatan",
+        "en": "(in) degree",
+        "root": "د ر ج",
+        "lemma": "دَرَجَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "مِّنَ",
+        "tr": "mina",
+        "en": "than",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "ٱلَّذِينَ",
+        "tr": "alladhīna",
+        "en": "those who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "أَنفَقُوا۟",
+        "tr": "anfaqū",
+        "en": "spent",
+        "root": "ن ف ق",
+        "lemma": "أَنفَقَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "مِنۢ",
+        "tr": "min",
+        "en": "afterwards",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:27)"
+      },
+      {
+        "pos": 28,
+        "ar": "بَعْدُ",
+        "tr": "baʿdu",
+        "en": "afterwards",
+        "root": "ب ع د",
+        "lemma": "بَعْد",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:28)"
+      },
+      {
+        "pos": 29,
+        "ar": "وَقَـٰتَلُوا۟ ۚ",
+        "tr": "waqātalū",
+        "en": "and fought",
+        "root": "ق ت ل",
+        "lemma": "قاتَلَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:29)"
+      },
+      {
+        "pos": 30,
+        "ar": "وَكُلًّۭا",
+        "tr": "wakullan",
+        "en": "But to all",
+        "root": "ك ل ل",
+        "lemma": "كُلّ",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:30)"
+      },
+      {
+        "pos": 31,
+        "ar": "وَعَدَ",
+        "tr": "waʿada",
+        "en": "Allah has promised",
+        "root": "و ع د",
+        "lemma": "وَعَدَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:31)"
+      },
+      {
+        "pos": 32,
+        "ar": "ٱللَّهُ",
+        "tr": "l-lahu",
+        "en": "Allah has promised",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:32)"
+      },
+      {
+        "pos": 33,
+        "ar": "ٱلْحُسْنَىٰ ۚ",
+        "tr": "l-ḥus'nā",
+        "en": "the best",
+        "root": "ح س ن",
+        "lemma": "حُسْنَى",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:33)"
+      },
+      {
+        "pos": 34,
+        "ar": "وَٱللَّهُ",
+        "tr": "wal-lahu",
+        "en": "And Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:34)"
+      },
+      {
+        "pos": 35,
+        "ar": "بِمَا",
+        "tr": "bimā",
+        "en": "of what",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:35)"
+      },
+      {
+        "pos": 36,
+        "ar": "تَعْمَلُونَ",
+        "tr": "taʿmalūna",
+        "en": "you do",
+        "root": "ع م ل",
+        "lemma": "عَمِلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:36)"
+      },
+      {
+        "pos": 37,
+        "ar": "خَبِيرٌۭ",
+        "tr": "khabīrun",
+        "en": "(is) All-Aware",
+        "root": "خ ب ر",
+        "lemma": "خَبِير",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:10:37)"
+      }
+    ],
+    "11": [
+      {
+        "pos": 1,
+        "ar": "مَّن",
+        "tr": "man",
+        "en": "Who (is)",
+        "root": "",
+        "lemma": "مَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ذَا",
+        "tr": "dhā",
+        "en": "the one who",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلَّذِى",
+        "tr": "alladhī",
+        "en": "the one who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "يُقْرِضُ",
+        "tr": "yuq'riḍu",
+        "en": "will loan",
+        "root": "ق ر ض",
+        "lemma": "أَقْرَضُ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "(to) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "قَرْضًا",
+        "tr": "qarḍan",
+        "en": "a loan",
+        "root": "ق ر ض",
+        "lemma": "قَرْض",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "حَسَنًۭا",
+        "tr": "ḥasanan",
+        "en": "goodly",
+        "root": "ح س ن",
+        "lemma": "حَسَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "فَيُضَـٰعِفَهُۥ",
+        "tr": "fayuḍāʿifahu",
+        "en": "so He will multiply it",
+        "root": "ض ع ف",
+        "lemma": "يُضاعِفُ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "لَهُۥ",
+        "tr": "lahu",
+        "en": "for him",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَلَهُۥٓ",
+        "tr": "walahu",
+        "en": "and for him",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "أَجْرٌۭ",
+        "tr": "ajrun",
+        "en": "(is) a reward",
+        "root": "أ ج ر",
+        "lemma": "أَجْر",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "كَرِيمٌۭ",
+        "tr": "karīmun",
+        "en": "noble",
+        "root": "ك ر م",
+        "lemma": "كَرِيم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:11:12)"
+      }
+    ],
+    "12": [
+      {
+        "pos": 1,
+        "ar": "يَوْمَ",
+        "tr": "yawma",
+        "en": "(On the) Day",
+        "root": "ي و م",
+        "lemma": "يَوْم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "تَرَى",
+        "tr": "tarā",
+        "en": "you will see",
+        "root": "ر أ ي",
+        "lemma": "رَأَى",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلْمُؤْمِنِينَ",
+        "tr": "l-mu'minīna",
+        "en": "the believing men",
+        "root": "أ م ن",
+        "lemma": "مُؤْمِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱلْمُؤْمِنَـٰتِ",
+        "tr": "wal-mu'mināti",
+        "en": "and the believing women",
+        "root": "أ م ن",
+        "lemma": "مُؤْمِنَة",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "يَسْعَىٰ",
+        "tr": "yasʿā",
+        "en": "running",
+        "root": "س ع ي",
+        "lemma": "سَعَى",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "نُورُهُم",
+        "tr": "nūruhum",
+        "en": "their light",
+        "root": "ن و ر",
+        "lemma": "نُور",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "بَيْنَ",
+        "tr": "bayna",
+        "en": "before them",
+        "root": "ب ي ن",
+        "lemma": "بَيْن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "أَيْدِيهِمْ",
+        "tr": "aydīhim",
+        "en": "before them",
+        "root": "ي د ي",
+        "lemma": "يَد",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "وَبِأَيْمَـٰنِهِم",
+        "tr": "wabi-aymānihim",
+        "en": "and on their right",
+        "root": "ي م ن",
+        "lemma": "يَمِين",
+        "pos_tag": "P+P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "بُشْرَىٰكُمُ",
+        "tr": "bush'rākumu",
+        "en": "Glad tidings for you",
+        "root": "ب ش ر",
+        "lemma": "بُشْرَى",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "ٱلْيَوْمَ",
+        "tr": "l-yawma",
+        "en": "this Day ",
+        "root": "ي و م",
+        "lemma": "يَوْم",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "جَنَّـٰتٌۭ",
+        "tr": "jannātun",
+        "en": "gardens",
+        "root": "ج ن ن",
+        "lemma": "جَنَّة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "تَجْرِى",
+        "tr": "tajrī",
+        "en": "flowing",
+        "root": "ج ر ي",
+        "lemma": "جَرَيْ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "تَحْتِهَا",
+        "tr": "taḥtihā",
+        "en": "underneath it",
+        "root": "ت ح ت",
+        "lemma": "تَحْت",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "ٱلْأَنْهَـٰرُ",
+        "tr": "l-anhāru",
+        "en": "the rivers",
+        "root": "ن ه ر",
+        "lemma": "نَهَر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "خَـٰلِدِينَ",
+        "tr": "khālidīna",
+        "en": "abiding forever",
+        "root": "خ ل د",
+        "lemma": "خالِد",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "فِيهَا ۚ",
+        "tr": "fīhā",
+        "en": "therein",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "ذَٰلِكَ",
+        "tr": "dhālika",
+        "en": "That",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N+P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "هُوَ",
+        "tr": "huwa",
+        "en": "[it] (is)",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "ٱلْفَوْزُ",
+        "tr": "l-fawzu",
+        "en": "the success",
+        "root": "ف و ز",
+        "lemma": "فَوْز",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "ٱلْعَظِيمُ",
+        "tr": "l-ʿaẓīmu",
+        "en": "the great",
+        "root": "ع ظ م",
+        "lemma": "عَظِيم",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:12:22)"
+      }
+    ],
+    "13": [
+      {
+        "pos": 1,
+        "ar": "يَوْمَ",
+        "tr": "yawma",
+        "en": "(On the) Day",
+        "root": "ي و م",
+        "lemma": "يَوْم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "يَقُولُ",
+        "tr": "yaqūlu",
+        "en": "will say",
+        "root": "ق و ل",
+        "lemma": "قالَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلْمُنَـٰفِقُونَ",
+        "tr": "l-munāfiqūna",
+        "en": "the hypocrite men",
+        "root": "ن ف ق",
+        "lemma": "مُنافِق",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱلْمُنَـٰفِقَـٰتُ",
+        "tr": "wal-munāfiqātu",
+        "en": "and the hypocrite women",
+        "root": "ن ف ق",
+        "lemma": "مُنافِقَة",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "لِلَّذِينَ",
+        "tr": "lilladhīna",
+        "en": "to those who",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "ءَامَنُوا۟",
+        "tr": "āmanū",
+        "en": "believed",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "ٱنظُرُونَا",
+        "tr": "unẓurūnā",
+        "en": "Wait for us",
+        "root": "ن ظ ر",
+        "lemma": "نَظَرَ",
+        "pos_tag": "V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "نَقْتَبِسْ",
+        "tr": "naqtabis",
+        "en": "we may acquire",
+        "root": "ق ب س",
+        "lemma": "نَقْتَبِسْ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "of",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "نُّورِكُمْ",
+        "tr": "nūrikum",
+        "en": "your light",
+        "root": "ن و ر",
+        "lemma": "نُور",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "قِيلَ",
+        "tr": "qīla",
+        "en": "It will be said",
+        "root": "ق و ل",
+        "lemma": "قالَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "ٱرْجِعُوا۟",
+        "tr": "ir'jiʿū",
+        "en": "Go back",
+        "root": "ر ج ع",
+        "lemma": "رَجَعَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "وَرَآءَكُمْ",
+        "tr": "warāakum",
+        "en": "behind you",
+        "root": "و ر ي",
+        "lemma": "وَراء",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "فَٱلْتَمِسُوا۟",
+        "tr": "fal-tamisū",
+        "en": "and seek",
+        "root": "ل م س",
+        "lemma": "الْتَمِسُ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "نُورًۭا",
+        "tr": "nūran",
+        "en": "light",
+        "root": "ن و ر",
+        "lemma": "نُور",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "فَضُرِبَ",
+        "tr": "faḍuriba",
+        "en": "Then will be put up",
+        "root": "ض ر ب",
+        "lemma": "ضَرَبَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "بَيْنَهُم",
+        "tr": "baynahum",
+        "en": "between them",
+        "root": "ب ي ن",
+        "lemma": "بَيْن",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "بِسُورٍۢ",
+        "tr": "bisūrin",
+        "en": "a wall",
+        "root": "س و ر",
+        "lemma": "سُور",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "لَّهُۥ",
+        "tr": "lahu",
+        "en": "for it",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "بَابٌۢ",
+        "tr": "bābun",
+        "en": "a gate",
+        "root": "ب و ب",
+        "lemma": "باب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "بَاطِنُهُۥ",
+        "tr": "bāṭinuhu",
+        "en": "its interior",
+        "root": "ب ط ن",
+        "lemma": "باطِن",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "فِيهِ",
+        "tr": "fīhi",
+        "en": "in it",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "ٱلرَّحْمَةُ",
+        "tr": "l-raḥmatu",
+        "en": "(is) mercy",
+        "root": "ر ح م",
+        "lemma": "رَحْمَة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "وَظَـٰهِرُهُۥ",
+        "tr": "waẓāhiruhu",
+        "en": "but its exterior",
+        "root": "ظ ه ر",
+        "lemma": "ظاهِر",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "facing towards [it]",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "قِبَلِهِ",
+        "tr": "qibalihi",
+        "en": "facing towards [it]",
+        "root": "ق ب ل",
+        "lemma": "قِبَل",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "ٱلْعَذَابُ",
+        "tr": "l-ʿadhābu",
+        "en": "the punishment",
+        "root": "ع ذ ب",
+        "lemma": "عَذاب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:13:27)"
+      }
+    ],
+    "14": [
+      {
+        "pos": 1,
+        "ar": "يُنَادُونَهُمْ",
+        "tr": "yunādūnahum",
+        "en": "They will call them",
+        "root": "ن د ي",
+        "lemma": "نادَى",
+        "pos_tag": "V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَلَمْ",
+        "tr": "alam",
+        "en": "Were not",
+        "root": "",
+        "lemma": "أ",
+        "pos_tag": "N+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "نَكُن",
+        "tr": "nakun",
+        "en": "we",
+        "root": "ك و ن",
+        "lemma": "كانَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "مَّعَكُمْ ۖ",
+        "tr": "maʿakum",
+        "en": "with you",
+        "root": "",
+        "lemma": "مَع",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "قَالُوا۟",
+        "tr": "qālū",
+        "en": "They will say",
+        "root": "ق و ل",
+        "lemma": "قالَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "بَلَىٰ",
+        "tr": "balā",
+        "en": "Yes",
+        "root": "",
+        "lemma": "بَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "وَلَـٰكِنَّكُمْ",
+        "tr": "walākinnakum",
+        "en": "but you",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "فَتَنتُمْ",
+        "tr": "fatantum",
+        "en": "led to temptation",
+        "root": "ف ت ن",
+        "lemma": "فَتَنُ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "أَنفُسَكُمْ",
+        "tr": "anfusakum",
+        "en": "yourselves",
+        "root": "ن ف س",
+        "lemma": "نَفْس",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَتَرَبَّصْتُمْ",
+        "tr": "watarabbaṣtum",
+        "en": "and you awaited",
+        "root": "ر ب ص",
+        "lemma": "تَرَبَّصْ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "وَٱرْتَبْتُمْ",
+        "tr": "wa-ir'tabtum",
+        "en": "and you doubted",
+        "root": "ر ي ب",
+        "lemma": "ارْتابَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَغَرَّتْكُمُ",
+        "tr": "wagharratkumu",
+        "en": "and deceived you",
+        "root": "غ ر ر",
+        "lemma": "غَرَّ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "ٱلْأَمَانِىُّ",
+        "tr": "l-amāniyu",
+        "en": "the wishful thinking",
+        "root": "م ن ي",
+        "lemma": "أُمْنِيَّت",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "حَتَّىٰ",
+        "tr": "ḥattā",
+        "en": "until",
+        "root": "",
+        "lemma": "حَتَّى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "جَآءَ",
+        "tr": "jāa",
+        "en": "came",
+        "root": "ج ي أ",
+        "lemma": "جاءَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "أَمْرُ",
+        "tr": "amru",
+        "en": "(the) Command",
+        "root": "أ م ر",
+        "lemma": "أَمْر",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "وَغَرَّكُم",
+        "tr": "wagharrakum",
+        "en": "And deceived you",
+        "root": "غ ر ر",
+        "lemma": "غَرَّ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "بِٱللَّهِ",
+        "tr": "bil-lahi",
+        "en": "about Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "ٱلْغَرُورُ",
+        "tr": "l-gharūru",
+        "en": "the deceiver",
+        "root": "غ ر ر",
+        "lemma": "غَرُور",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:14:20)"
+      }
+    ],
+    "15": [
+      {
+        "pos": 1,
+        "ar": "فَٱلْيَوْمَ",
+        "tr": "fal-yawma",
+        "en": "So today",
+        "root": "ي و م",
+        "lemma": "يَوْم",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "لَا",
+        "tr": "lā",
+        "en": "not",
+        "root": "",
+        "lemma": "لا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "يُؤْخَذُ",
+        "tr": "yu'khadhu",
+        "en": "will be accepted",
+        "root": "أ خ ذ",
+        "lemma": "أَخَذَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "مِنكُمْ",
+        "tr": "minkum",
+        "en": "from you",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "فِدْيَةٌۭ",
+        "tr": "fid'yatun",
+        "en": "any ransom",
+        "root": "ف د ي",
+        "lemma": "فِدْيَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَلَا",
+        "tr": "walā",
+        "en": "and not",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "مِنَ",
+        "tr": "mina",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "ٱلَّذِينَ",
+        "tr": "alladhīna",
+        "en": "those who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "كَفَرُوا۟ ۚ",
+        "tr": "kafarū",
+        "en": "disbelieved",
+        "root": "ك ف ر",
+        "lemma": "كَفَرَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "مَأْوَىٰكُمُ",
+        "tr": "mawākumu",
+        "en": "Your abode",
+        "root": "أ و ي",
+        "lemma": "مَأْوَى",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "ٱلنَّارُ ۖ",
+        "tr": "l-nāru",
+        "en": "(is) the Fire",
+        "root": "ن و ر",
+        "lemma": "نار",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "هِىَ",
+        "tr": "hiya",
+        "en": "it (is)",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "مَوْلَىٰكُمْ ۖ",
+        "tr": "mawlākum",
+        "en": "your protector",
+        "root": "و ل ي",
+        "lemma": "مَوْلَى",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "وَبِئْسَ",
+        "tr": "wabi'sa",
+        "en": "and wretched is",
+        "root": "ب أ س",
+        "lemma": "بِئْسَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "ٱلْمَصِيرُ",
+        "tr": "l-maṣīru",
+        "en": "the destination",
+        "root": "ص ي ر",
+        "lemma": "مَصِير",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:15:15)"
+      }
+    ],
+    "16": [
+      {
+        "pos": 1,
+        "ar": "۞ أَلَمْ",
+        "tr": "alam",
+        "en": "Has not",
+        "root": "",
+        "lemma": "أ",
+        "pos_tag": "N+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "يَأْنِ",
+        "tr": "yani",
+        "en": "come (the) time",
+        "root": "أ ن ي",
+        "lemma": "يَأْنِ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "لِلَّذِينَ",
+        "tr": "lilladhīna",
+        "en": "for those who",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ءَامَنُوٓا۟",
+        "tr": "āmanū",
+        "en": "believed",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "أَن",
+        "tr": "an",
+        "en": "that",
+        "root": "",
+        "lemma": "أَن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "تَخْشَعَ",
+        "tr": "takhshaʿa",
+        "en": "become humble",
+        "root": "خ ش ع",
+        "lemma": "خَشَعَتِ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "قُلُوبُهُمْ",
+        "tr": "qulūbuhum",
+        "en": "their hearts",
+        "root": "ق ل ب",
+        "lemma": "قَلْب",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "لِذِكْرِ",
+        "tr": "lidhik'ri",
+        "en": "at (the) remembrance (of) Allah",
+        "root": "ذ ك ر",
+        "lemma": "ذِكْر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "at (the) remembrance (of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "and what",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "نَزَلَ",
+        "tr": "nazala",
+        "en": "has come down",
+        "root": "ن ز ل",
+        "lemma": "نَزَلَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "مِنَ",
+        "tr": "mina",
+        "en": "of",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "ٱلْحَقِّ",
+        "tr": "l-ḥaqi",
+        "en": "the truth",
+        "root": "ح ق ق",
+        "lemma": "حَقّ",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "وَلَا",
+        "tr": "walā",
+        "en": "And not",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "يَكُونُوا۟",
+        "tr": "yakūnū",
+        "en": "they become",
+        "root": "ك و ن",
+        "lemma": "كانَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "كَٱلَّذِينَ",
+        "tr": "ka-alladhīna",
+        "en": "like those who",
+        "root": "",
+        "lemma": "ك",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "أُوتُوا۟",
+        "tr": "ūtū",
+        "en": "were given",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "ٱلْكِتَـٰبَ",
+        "tr": "l-kitāba",
+        "en": "the Book",
+        "root": "ك ت ب",
+        "lemma": "كِتاب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "before",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "قَبْلُ",
+        "tr": "qablu",
+        "en": "before",
+        "root": "ق ب ل",
+        "lemma": "قَبْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "فَطَالَ",
+        "tr": "faṭāla",
+        "en": "(and) was prolonged",
+        "root": "ط و ل",
+        "lemma": "طالَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "عَلَيْهِمُ",
+        "tr": "ʿalayhimu",
+        "en": "for them",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "ٱلْأَمَدُ",
+        "tr": "l-amadu",
+        "en": "the term",
+        "root": "أ م د",
+        "lemma": "أَمَد",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "فَقَسَتْ",
+        "tr": "faqasat",
+        "en": "so hardened",
+        "root": "ق س و",
+        "lemma": "قَسَتْ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "قُلُوبُهُمْ ۖ",
+        "tr": "qulūbuhum",
+        "en": "their hearts",
+        "root": "ق ل ب",
+        "lemma": "قَلْب",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "وَكَثِيرٌۭ",
+        "tr": "wakathīrun",
+        "en": "and many",
+        "root": "ك ث ر",
+        "lemma": "كَثِير",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "مِّنْهُمْ",
+        "tr": "min'hum",
+        "en": "of them",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:27)"
+      },
+      {
+        "pos": 28,
+        "ar": "فَـٰسِقُونَ",
+        "tr": "fāsiqūna",
+        "en": "(are) defiantly disobedient",
+        "root": "ف س ق",
+        "lemma": "فاسِق",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:16:28)"
+      }
+    ],
+    "17": [
+      {
+        "pos": 1,
+        "ar": "ٱعْلَمُوٓا۟",
+        "tr": "iʿ'lamū",
+        "en": "Know",
+        "root": "ع ل م",
+        "lemma": "عَلِمَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَنَّ",
+        "tr": "anna",
+        "en": "that",
+        "root": "",
+        "lemma": "أَنّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "يُحْىِ",
+        "tr": "yuḥ'yī",
+        "en": "gives life",
+        "root": "ح ي ي",
+        "lemma": "أَحْيا",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "ٱلْأَرْضَ",
+        "tr": "l-arḍa",
+        "en": "(to) the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "بَعْدَ",
+        "tr": "baʿda",
+        "en": "after",
+        "root": "ب ع د",
+        "lemma": "بَعْد",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "مَوْتِهَا ۚ",
+        "tr": "mawtihā",
+        "en": "its death",
+        "root": "م و ت",
+        "lemma": "مَوْت",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "قَدْ",
+        "tr": "qad",
+        "en": "Indeed",
+        "root": "",
+        "lemma": "قَد",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "بَيَّنَّا",
+        "tr": "bayyannā",
+        "en": "We have made clear",
+        "root": "ب ي ن",
+        "lemma": "بَيَّنُ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "لَكُمُ",
+        "tr": "lakumu",
+        "en": "to you",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "ٱلْـَٔايَـٰتِ",
+        "tr": "l-āyāti",
+        "en": "the Signs",
+        "root": "أ ي ي",
+        "lemma": "آيَة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "لَعَلَّكُمْ",
+        "tr": "laʿallakum",
+        "en": "so that you may",
+        "root": "",
+        "lemma": "لَعَلّ",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "تَعْقِلُونَ",
+        "tr": "taʿqilūna",
+        "en": "understand",
+        "root": "ع ق ل",
+        "lemma": "عَقَلُ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:17:13)"
+      }
+    ],
+    "18": [
+      {
+        "pos": 1,
+        "ar": "إِنَّ",
+        "tr": "inna",
+        "en": "Indeed",
+        "root": "",
+        "lemma": "إِنّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلْمُصَّدِّقِينَ",
+        "tr": "l-muṣadiqīna",
+        "en": "the men who give charity",
+        "root": "ص د ق",
+        "lemma": "مُصَّدِّق",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "وَٱلْمُصَّدِّقَـٰتِ",
+        "tr": "wal-muṣadiqāti",
+        "en": "and the women who give charity",
+        "root": "ص د ق",
+        "lemma": "مُصَّدِّقَة",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَأَقْرَضُوا۟",
+        "tr": "wa-aqraḍū",
+        "en": "and who lend",
+        "root": "ق ر ض",
+        "lemma": "أَقْرَضُ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "(to) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "قَرْضًا",
+        "tr": "qarḍan",
+        "en": "a loan",
+        "root": "ق ر ض",
+        "lemma": "قَرْض",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "حَسَنًۭا",
+        "tr": "ḥasanan",
+        "en": "goodly",
+        "root": "ح س ن",
+        "lemma": "حَسَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "يُضَـٰعَفُ",
+        "tr": "yuḍāʿafu",
+        "en": "it will be multiplied",
+        "root": "ض ع ف",
+        "lemma": "يُضاعِفُ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "لَهُمْ",
+        "tr": "lahum",
+        "en": "for them",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَلَهُمْ",
+        "tr": "walahum",
+        "en": "and for them",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "أَجْرٌۭ",
+        "tr": "ajrun",
+        "en": "(is) a reward",
+        "root": "أ ج ر",
+        "lemma": "أَجْر",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "كَرِيمٌۭ",
+        "tr": "karīmun",
+        "en": "noble",
+        "root": "ك ر م",
+        "lemma": "كَرِيم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:18:12)"
+      }
+    ],
+    "19": [
+      {
+        "pos": 1,
+        "ar": "وَٱلَّذِينَ",
+        "tr": "wa-alladhīna",
+        "en": "And those who",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ءَامَنُوا۟",
+        "tr": "āmanū",
+        "en": "believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "بِٱللَّهِ",
+        "tr": "bil-lahi",
+        "en": "in Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَرُسُلِهِۦٓ",
+        "tr": "warusulihi",
+        "en": "and His Messengers",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "أُو۟لَـٰٓئِكَ",
+        "tr": "ulāika",
+        "en": "[those]",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "هُمُ",
+        "tr": "humu",
+        "en": "they",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "ٱلصِّدِّيقُونَ ۖ",
+        "tr": "l-ṣidīqūna",
+        "en": "(are) the truthful",
+        "root": "ص د ق",
+        "lemma": "صِدِّيق",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "وَٱلشُّهَدَآءُ",
+        "tr": "wal-shuhadāu",
+        "en": "and the martyrs",
+        "root": "ش ه د",
+        "lemma": "شَهِيد",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "عِندَ",
+        "tr": "ʿinda",
+        "en": "(are) with",
+        "root": "ع ن د",
+        "lemma": "عِند",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "رَبِّهِمْ",
+        "tr": "rabbihim",
+        "en": "their Lord",
+        "root": "ر ب ب",
+        "lemma": "رَبّ",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "لَهُمْ",
+        "tr": "lahum",
+        "en": "For them",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "أَجْرُهُمْ",
+        "tr": "ajruhum",
+        "en": "(is) their reward",
+        "root": "أ ج ر",
+        "lemma": "أَجْر",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "وَنُورُهُمْ ۖ",
+        "tr": "wanūruhum",
+        "en": "and their light",
+        "root": "ن و ر",
+        "lemma": "نُور",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "وَٱلَّذِينَ",
+        "tr": "wa-alladhīna",
+        "en": "But those who",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "كَفَرُوا۟",
+        "tr": "kafarū",
+        "en": "disbelieve",
+        "root": "ك ف ر",
+        "lemma": "كَفَرَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "وَكَذَّبُوا۟",
+        "tr": "wakadhabū",
+        "en": "and deny",
+        "root": "ك ذ ب",
+        "lemma": "كَذَّبَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "بِـَٔايَـٰتِنَآ",
+        "tr": "biāyātinā",
+        "en": "Our Verses",
+        "root": "أ ي ي",
+        "lemma": "آيَة",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "أُو۟لَـٰٓئِكَ",
+        "tr": "ulāika",
+        "en": "those",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "أَصْحَـٰبُ",
+        "tr": "aṣḥābu",
+        "en": "(are the) companions",
+        "root": "ص ح ب",
+        "lemma": "أَصْحاب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "ٱلْجَحِيمِ",
+        "tr": "l-jaḥīmi",
+        "en": "(of) the Hellfire",
+        "root": "ج ح م",
+        "lemma": "جَحِيم",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:19:20)"
+      }
+    ],
+    "20": [
+      {
+        "pos": 1,
+        "ar": "ٱعْلَمُوٓا۟",
+        "tr": "iʿ'lamū",
+        "en": "Know",
+        "root": "ع ل م",
+        "lemma": "عَلِمَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَنَّمَا",
+        "tr": "annamā",
+        "en": "that",
+        "root": "",
+        "lemma": "أَنّ",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلْحَيَوٰةُ",
+        "tr": "l-ḥayatu",
+        "en": "the life",
+        "root": "ح ي ي",
+        "lemma": "حَياة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱلدُّنْيَا",
+        "tr": "l-dun'yā",
+        "en": "(of) the world",
+        "root": "د ن و",
+        "lemma": "دُنْيا",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "لَعِبٌۭ",
+        "tr": "laʿibun",
+        "en": "(is) play",
+        "root": "ل ع ب",
+        "lemma": "لَعِب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَلَهْوٌۭ",
+        "tr": "walahwun",
+        "en": "and amusement",
+        "root": "ل ه و",
+        "lemma": "لَهْو",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "وَزِينَةٌۭ",
+        "tr": "wazīnatun",
+        "en": "and adornment",
+        "root": "ز ي ن",
+        "lemma": "زِينَة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "وَتَفَاخُرٌۢ",
+        "tr": "watafākhurun",
+        "en": "and boasting",
+        "root": "ف خ ر",
+        "lemma": "تَفاخُر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "بَيْنَكُمْ",
+        "tr": "baynakum",
+        "en": "among you",
+        "root": "ب ي ن",
+        "lemma": "بَيْن",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَتَكَاثُرٌۭ",
+        "tr": "watakāthurun",
+        "en": "and competition in increase",
+        "root": "ك ث ر",
+        "lemma": "تَكاثُر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "of",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "ٱلْأَمْوَٰلِ",
+        "tr": "l-amwāli",
+        "en": "the wealth",
+        "root": "م و ل",
+        "lemma": "مال",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "وَٱلْأَوْلَـٰدِ ۖ",
+        "tr": "wal-awlādi",
+        "en": "and the children",
+        "root": "و ل د",
+        "lemma": "وَلَد",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "كَمَثَلِ",
+        "tr": "kamathali",
+        "en": "like (the) example",
+        "root": "م ث ل",
+        "lemma": "مَثَل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "غَيْثٍ",
+        "tr": "ghaythin",
+        "en": "(of) a rain",
+        "root": "غ ي ث",
+        "lemma": "غَيْث",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "أَعْجَبَ",
+        "tr": "aʿjaba",
+        "en": "pleases",
+        "root": "ع ج ب",
+        "lemma": "أَعْجَبَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "ٱلْكُفَّارَ",
+        "tr": "l-kufāra",
+        "en": "the tillers",
+        "root": "ك ف ر",
+        "lemma": "كافِر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "نَبَاتُهُۥ",
+        "tr": "nabātuhu",
+        "en": "its growth",
+        "root": "ن ب ت",
+        "lemma": "نَبات",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "ثُمَّ",
+        "tr": "thumma",
+        "en": "then",
+        "root": "",
+        "lemma": "ثُمّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "يَهِيجُ",
+        "tr": "yahīju",
+        "en": "it dries",
+        "root": "ه ي ج",
+        "lemma": "يَهِيجُ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "فَتَرَىٰهُ",
+        "tr": "fatarāhu",
+        "en": "and you see it",
+        "root": "ر أ ي",
+        "lemma": "رَأَى",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "مُصْفَرًّۭا",
+        "tr": "muṣ'farran",
+        "en": "turning yellow",
+        "root": "ص ف ر",
+        "lemma": "مُصْفَرّ",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "ثُمَّ",
+        "tr": "thumma",
+        "en": "then",
+        "root": "",
+        "lemma": "ثُمّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "يَكُونُ",
+        "tr": "yakūnu",
+        "en": "becomes",
+        "root": "ك و ن",
+        "lemma": "كانَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "حُطَـٰمًۭا ۖ",
+        "tr": "ḥuṭāman",
+        "en": "debris",
+        "root": "ح ط م",
+        "lemma": "حُطام",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "وَفِى",
+        "tr": "wafī",
+        "en": "And in",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "ٱلْـَٔاخِرَةِ",
+        "tr": "l-ākhirati",
+        "en": "the Hereafter",
+        "root": "أ خ ر",
+        "lemma": "آخِر",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:27)"
+      },
+      {
+        "pos": 28,
+        "ar": "عَذَابٌۭ",
+        "tr": "ʿadhābun",
+        "en": "(is) a punishment",
+        "root": "ع ذ ب",
+        "lemma": "عَذاب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:28)"
+      },
+      {
+        "pos": 29,
+        "ar": "شَدِيدٌۭ",
+        "tr": "shadīdun",
+        "en": "severe",
+        "root": "ش د د",
+        "lemma": "شَدِيد",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:29)"
+      },
+      {
+        "pos": 30,
+        "ar": "وَمَغْفِرَةٌۭ",
+        "tr": "wamaghfiratun",
+        "en": "and forgiveness",
+        "root": "غ ف ر",
+        "lemma": "مَغْفِرَة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:30)"
+      },
+      {
+        "pos": 31,
+        "ar": "مِّنَ",
+        "tr": "mina",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:31)"
+      },
+      {
+        "pos": 32,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:32)"
+      },
+      {
+        "pos": 33,
+        "ar": "وَرِضْوَٰنٌۭ ۚ",
+        "tr": "wariḍ'wānun",
+        "en": "and Pleasure",
+        "root": "ر ض و",
+        "lemma": "رِضْوان",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:33)"
+      },
+      {
+        "pos": 34,
+        "ar": "وَمَا",
+        "tr": "wamā",
+        "en": "But not",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:34)"
+      },
+      {
+        "pos": 35,
+        "ar": "ٱلْحَيَوٰةُ",
+        "tr": "l-ḥayatu",
+        "en": "(is) the life",
+        "root": "ح ي ي",
+        "lemma": "حَياة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:35)"
+      },
+      {
+        "pos": 36,
+        "ar": "ٱلدُّنْيَآ",
+        "tr": "l-dun'yā",
+        "en": "(of) the world",
+        "root": "د ن و",
+        "lemma": "دُنْيا",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:36)"
+      },
+      {
+        "pos": 37,
+        "ar": "إِلَّا",
+        "tr": "illā",
+        "en": "except",
+        "root": "",
+        "lemma": "إِلّا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:37)"
+      },
+      {
+        "pos": 38,
+        "ar": "مَتَـٰعُ",
+        "tr": "matāʿu",
+        "en": "(the) enjoyment",
+        "root": "م ت ع",
+        "lemma": "مَتاع",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:38)"
+      },
+      {
+        "pos": 39,
+        "ar": "ٱلْغُرُورِ",
+        "tr": "l-ghurūri",
+        "en": "(of) delusion",
+        "root": "غ ر ر",
+        "lemma": "غُرُور",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:20:39)"
+      }
+    ],
+    "21": [
+      {
+        "pos": 1,
+        "ar": "سَابِقُوٓا۟",
+        "tr": "sābiqū",
+        "en": "Race",
+        "root": "س ب ق",
+        "lemma": "سابِقُ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "إِلَىٰ",
+        "tr": "ilā",
+        "en": "to",
+        "root": "",
+        "lemma": "إِلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "مَغْفِرَةٍۢ",
+        "tr": "maghfiratin",
+        "en": "(the) forgiveness",
+        "root": "غ ف ر",
+        "lemma": "مَغْفِرَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "مِّن",
+        "tr": "min",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "رَّبِّكُمْ",
+        "tr": "rabbikum",
+        "en": "your Lord",
+        "root": "ر ب ب",
+        "lemma": "رَبّ",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَجَنَّةٍ",
+        "tr": "wajannatin",
+        "en": "and a Garden",
+        "root": "ج ن ن",
+        "lemma": "جَنَّة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "عَرْضُهَا",
+        "tr": "ʿarḍuhā",
+        "en": "its width",
+        "root": "ع ر ض",
+        "lemma": "عَرْض",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "كَعَرْضِ",
+        "tr": "kaʿarḍi",
+        "en": "(is) like (the) width",
+        "root": "ع ر ض",
+        "lemma": "عَرْض",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "ٱلسَّمَآءِ",
+        "tr": "l-samāi",
+        "en": "(of) the heaven",
+        "root": "س م و",
+        "lemma": "سَماء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَٱلْأَرْضِ",
+        "tr": "wal-arḍi",
+        "en": "and the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "أُعِدَّتْ",
+        "tr": "uʿiddat",
+        "en": "prepared",
+        "root": "ع د د",
+        "lemma": "أَعَدَّ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "لِلَّذِينَ",
+        "tr": "lilladhīna",
+        "en": "for those who",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "ءَامَنُوا۟",
+        "tr": "āmanū",
+        "en": "believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "بِٱللَّهِ",
+        "tr": "bil-lahi",
+        "en": "in Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "وَرُسُلِهِۦ ۚ",
+        "tr": "warusulihi",
+        "en": "and His Messengers",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "ذَٰلِكَ",
+        "tr": "dhālika",
+        "en": "That",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N+P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "فَضْلُ",
+        "tr": "faḍlu",
+        "en": "(is the) Bounty",
+        "root": "ف ض ل",
+        "lemma": "فَضْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "يُؤْتِيهِ",
+        "tr": "yu'tīhi",
+        "en": "He gives",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "مَن",
+        "tr": "man",
+        "en": "(to) whom",
+        "root": "",
+        "lemma": "مَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "يَشَآءُ ۚ",
+        "tr": "yashāu",
+        "en": "He wills",
+        "root": "ش ي أ",
+        "lemma": "شاءَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "وَٱللَّهُ",
+        "tr": "wal-lahu",
+        "en": "And Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "ذُو",
+        "tr": "dhū",
+        "en": "(is) the Possessor of Bounty",
+        "root": "",
+        "lemma": "ذُو",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "ٱلْفَضْلِ",
+        "tr": "l-faḍli",
+        "en": "(is) the Possessor of Bounty",
+        "root": "ف ض ل",
+        "lemma": "فَضْل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "ٱلْعَظِيمِ",
+        "tr": "l-ʿaẓīmi",
+        "en": "the Great",
+        "root": "ع ظ م",
+        "lemma": "عَظِيم",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:21:25)"
+      }
+    ],
+    "22": [
+      {
+        "pos": 1,
+        "ar": "مَآ",
+        "tr": "mā",
+        "en": "Not",
+        "root": "",
+        "lemma": "ما",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَصَابَ",
+        "tr": "aṣāba",
+        "en": "strikes",
+        "root": "ص و ب",
+        "lemma": "أَصابَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "any",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "مُّصِيبَةٍۢ",
+        "tr": "muṣībatin",
+        "en": "disaster",
+        "root": "ص و ب",
+        "lemma": "مُصِيبَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "ٱلْأَرْضِ",
+        "tr": "l-arḍi",
+        "en": "the earth",
+        "root": "أ ر ض",
+        "lemma": "أَرْض",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "وَلَا",
+        "tr": "walā",
+        "en": "and not",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "فِىٓ",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "أَنفُسِكُمْ",
+        "tr": "anfusikum",
+        "en": "yourselves",
+        "root": "ن ف س",
+        "lemma": "نَفْس",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "إِلَّا",
+        "tr": "illā",
+        "en": "but",
+        "root": "",
+        "lemma": "إِلّا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "كِتَـٰبٍۢ",
+        "tr": "kitābin",
+        "en": "a Register",
+        "root": "ك ت ب",
+        "lemma": "كِتاب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "مِّن",
+        "tr": "min",
+        "en": "before",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "قَبْلِ",
+        "tr": "qabli",
+        "en": "before",
+        "root": "ق ب ل",
+        "lemma": "قَبْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "أَن",
+        "tr": "an",
+        "en": "that",
+        "root": "",
+        "lemma": "أَن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "نَّبْرَأَهَآ ۚ",
+        "tr": "nabra-ahā",
+        "en": "We bring it into existence",
+        "root": "ب ر أ",
+        "lemma": "نَبْرَأَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "إِنَّ",
+        "tr": "inna",
+        "en": "Indeed",
+        "root": "",
+        "lemma": "إِنّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "ذَٰلِكَ",
+        "tr": "dhālika",
+        "en": "that",
+        "root": "",
+        "lemma": "ذا",
+        "pos_tag": "N+P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "عَلَى",
+        "tr": "ʿalā",
+        "en": "for",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "يَسِيرٌۭ",
+        "tr": "yasīrun",
+        "en": "(is) easy",
+        "root": "ي س ر",
+        "lemma": "يَسِير",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:22:21)"
+      }
+    ],
+    "23": [
+      {
+        "pos": 1,
+        "ar": "لِّكَيْلَا",
+        "tr": "likaylā",
+        "en": "So that you may not",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "تَأْسَوْا۟",
+        "tr": "tasaw",
+        "en": "grieve",
+        "root": "أ س و",
+        "lemma": "تَأْسَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "عَلَىٰ",
+        "tr": "ʿalā",
+        "en": "over",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "مَا",
+        "tr": "mā",
+        "en": "what",
+        "root": "",
+        "lemma": "ما",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "فَاتَكُمْ",
+        "tr": "fātakum",
+        "en": "has escaped you",
+        "root": "ف و ت",
+        "lemma": "فاتَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَلَا",
+        "tr": "walā",
+        "en": "and (do) not",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "تَفْرَحُوا۟",
+        "tr": "tafraḥū",
+        "en": "exult",
+        "root": "ف ر ح",
+        "lemma": "فَرِحَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "بِمَآ",
+        "tr": "bimā",
+        "en": "at what",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "ءَاتَىٰكُمْ ۗ",
+        "tr": "ātākum",
+        "en": "He has given you",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَٱللَّهُ",
+        "tr": "wal-lahu",
+        "en": "And Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "لَا",
+        "tr": "lā",
+        "en": "(does) not",
+        "root": "",
+        "lemma": "لا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "يُحِبُّ",
+        "tr": "yuḥibbu",
+        "en": "love",
+        "root": "ح ب ب",
+        "lemma": "أَحْبَبْ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "كُلَّ",
+        "tr": "kulla",
+        "en": "every",
+        "root": "ك ل ل",
+        "lemma": "كُلّ",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "مُخْتَالٍۢ",
+        "tr": "mukh'tālin",
+        "en": "self-deluded",
+        "root": "خ ي ل",
+        "lemma": "مُخْتال",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "فَخُورٍ",
+        "tr": "fakhūrin",
+        "en": "boaster",
+        "root": "ف خ ر",
+        "lemma": "فَخُور",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:23:15)"
+      }
+    ],
+    "24": [
+      {
+        "pos": 1,
+        "ar": "ٱلَّذِينَ",
+        "tr": "alladhīna",
+        "en": "Those who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "يَبْخَلُونَ",
+        "tr": "yabkhalūna",
+        "en": "are stingy",
+        "root": "ب خ ل",
+        "lemma": "بَخِلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "وَيَأْمُرُونَ",
+        "tr": "wayamurūna",
+        "en": "and enjoin",
+        "root": "أ م ر",
+        "lemma": "أَمَرَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱلنَّاسَ",
+        "tr": "l-nāsa",
+        "en": "(on) the people",
+        "root": "أ ن س",
+        "lemma": "ناس",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "بِٱلْبُخْلِ ۗ",
+        "tr": "bil-bukh'li",
+        "en": "stinginess",
+        "root": "ب خ ل",
+        "lemma": "بُخْل",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَمَن",
+        "tr": "waman",
+        "en": "And whoever",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "يَتَوَلَّ",
+        "tr": "yatawalla",
+        "en": "turns away",
+        "root": "و ل ي",
+        "lemma": "تَوَلَّى",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "فَإِنَّ",
+        "tr": "fa-inna",
+        "en": "then indeed",
+        "root": "",
+        "lemma": "ف",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "هُوَ",
+        "tr": "huwa",
+        "en": "He",
+        "root": "",
+        "lemma": "",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "ٱلْغَنِىُّ",
+        "tr": "l-ghaniyu",
+        "en": "(is) Free of need",
+        "root": "غ ن ي",
+        "lemma": "غَنِيّ",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "ٱلْحَمِيدُ",
+        "tr": "l-ḥamīdu",
+        "en": "the Praiseworthy",
+        "root": "ح م د",
+        "lemma": "حَمِيد",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:24:12)"
+      }
+    ],
+    "25": [
+      {
+        "pos": 1,
+        "ar": "لَقَدْ",
+        "tr": "laqad",
+        "en": "Certainly",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَرْسَلْنَا",
+        "tr": "arsalnā",
+        "en": "We sent",
+        "root": "ر س ل",
+        "lemma": "أَرْسَلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "رُسُلَنَا",
+        "tr": "rusulanā",
+        "en": "Our Messengers",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "بِٱلْبَيِّنَـٰتِ",
+        "tr": "bil-bayināti",
+        "en": "with clear proofs",
+        "root": "ب ي ن",
+        "lemma": "بَيِّنَة",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَأَنزَلْنَا",
+        "tr": "wa-anzalnā",
+        "en": "and We sent down",
+        "root": "ن ز ل",
+        "lemma": "أَنزَلَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "مَعَهُمُ",
+        "tr": "maʿahumu",
+        "en": "with them",
+        "root": "",
+        "lemma": "مَع",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "ٱلْكِتَـٰبَ",
+        "tr": "l-kitāba",
+        "en": "the Scripture",
+        "root": "ك ت ب",
+        "lemma": "كِتاب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "وَٱلْمِيزَانَ",
+        "tr": "wal-mīzāna",
+        "en": "and the Balance",
+        "root": "و ز ن",
+        "lemma": "مِيزان",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "لِيَقُومَ",
+        "tr": "liyaqūma",
+        "en": "that may establish",
+        "root": "ق و م",
+        "lemma": "قامَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "ٱلنَّاسُ",
+        "tr": "l-nāsu",
+        "en": "the people",
+        "root": "أ ن س",
+        "lemma": "ناس",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "بِٱلْقِسْطِ ۖ",
+        "tr": "bil-qis'ṭi",
+        "en": "justice",
+        "root": "ق س ط",
+        "lemma": "قِسْط",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَأَنزَلْنَا",
+        "tr": "wa-anzalnā",
+        "en": "And We sent down",
+        "root": "ن ز ل",
+        "lemma": "أَنزَلَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "ٱلْحَدِيدَ",
+        "tr": "l-ḥadīda",
+        "en": "[the] iron",
+        "root": "ح د د",
+        "lemma": "حَدِيد",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "فِيهِ",
+        "tr": "fīhi",
+        "en": "wherein",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "بَأْسٌۭ",
+        "tr": "basun",
+        "en": "(is) power",
+        "root": "ب أ س",
+        "lemma": "بَأْس",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "شَدِيدٌۭ",
+        "tr": "shadīdun",
+        "en": "mighty",
+        "root": "ش د د",
+        "lemma": "شَدِيد",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "وَمَنَـٰفِعُ",
+        "tr": "wamanāfiʿu",
+        "en": "and benefits",
+        "root": "ن ف ع",
+        "lemma": "مَنافِع",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "لِلنَّاسِ",
+        "tr": "lilnnāsi",
+        "en": "for the people",
+        "root": "أ ن س",
+        "lemma": "ناس",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "وَلِيَعْلَمَ",
+        "tr": "waliyaʿlama",
+        "en": "and so that Allah may make evident",
+        "root": "ع ل م",
+        "lemma": "عَلِمَ",
+        "pos_tag": "P+P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "ٱللَّهُ",
+        "tr": "l-lahu",
+        "en": "and so that Allah may make evident",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "مَن",
+        "tr": "man",
+        "en": "(he) who",
+        "root": "",
+        "lemma": "مَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "يَنصُرُهُۥ",
+        "tr": "yanṣuruhu",
+        "en": "helps Him",
+        "root": "ن ص ر",
+        "lemma": "نَصَرَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "وَرُسُلَهُۥ",
+        "tr": "warusulahu",
+        "en": "and His Messengers",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "بِٱلْغَيْبِ ۚ",
+        "tr": "bil-ghaybi",
+        "en": "unseen",
+        "root": "غ ي ب",
+        "lemma": "غَيْب",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "إِنَّ",
+        "tr": "inna",
+        "en": "Indeed",
+        "root": "",
+        "lemma": "إِنّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "قَوِىٌّ",
+        "tr": "qawiyyun",
+        "en": "(is) All-Strong",
+        "root": "ق و ي",
+        "lemma": "قَوِيّ",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:27)"
+      },
+      {
+        "pos": 28,
+        "ar": "عَزِيزٌۭ",
+        "tr": "ʿazīzun",
+        "en": "All-Mighty",
+        "root": "ع ز ز",
+        "lemma": "عَزِيز",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:25:28)"
+      }
+    ],
+    "26": [
+      {
+        "pos": 1,
+        "ar": "وَلَقَدْ",
+        "tr": "walaqad",
+        "en": "And certainly",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَرْسَلْنَا",
+        "tr": "arsalnā",
+        "en": "We sent",
+        "root": "ر س ل",
+        "lemma": "أَرْسَلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "نُوحًۭا",
+        "tr": "nūḥan",
+        "en": "Nuh",
+        "root": "",
+        "lemma": "نُوح",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَإِبْرَٰهِيمَ",
+        "tr": "wa-ib'rāhīma",
+        "en": "and Ibrahim",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَجَعَلْنَا",
+        "tr": "wajaʿalnā",
+        "en": "and We placed",
+        "root": "ج ع ل",
+        "lemma": "جَعَلَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "ذُرِّيَّتِهِمَا",
+        "tr": "dhurriyyatihimā",
+        "en": "their offspring",
+        "root": "ذ ر ر",
+        "lemma": "ذُرِّيَّة",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "ٱلنُّبُوَّةَ",
+        "tr": "l-nubuwata",
+        "en": "Prophethood",
+        "root": "ن ب أ",
+        "lemma": "نُبُوَّة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "وَٱلْكِتَـٰبَ ۖ",
+        "tr": "wal-kitāba",
+        "en": "and the Scripture",
+        "root": "ك ت ب",
+        "lemma": "كِتاب",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "فَمِنْهُم",
+        "tr": "famin'hum",
+        "en": "and among them",
+        "root": "",
+        "lemma": "ف",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "مُّهْتَدٍۢ ۖ",
+        "tr": "muh'tadin",
+        "en": "(is) a guided one",
+        "root": "ه د ي",
+        "lemma": "مُهْتَد",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَكَثِيرٌۭ",
+        "tr": "wakathīrun",
+        "en": "but most",
+        "root": "ك ث ر",
+        "lemma": "كَثِير",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "مِّنْهُمْ",
+        "tr": "min'hum",
+        "en": "of them",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "فَـٰسِقُونَ",
+        "tr": "fāsiqūna",
+        "en": "(are) defiantly disobediently",
+        "root": "ف س ق",
+        "lemma": "فاسِق",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:26:14)"
+      }
+    ],
+    "27": [
+      {
+        "pos": 1,
+        "ar": "ثُمَّ",
+        "tr": "thumma",
+        "en": "Then",
+        "root": "",
+        "lemma": "ثُمّ",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "قَفَّيْنَا",
+        "tr": "qaffaynā",
+        "en": "We sent",
+        "root": "ق ف و",
+        "lemma": "قَفَّيْ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "عَلَىٰٓ",
+        "tr": "ʿalā",
+        "en": "on",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ءَاثَـٰرِهِم",
+        "tr": "āthārihim",
+        "en": "their footsteps",
+        "root": "أ ث ر",
+        "lemma": "أَثَر",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "بِرُسُلِنَا",
+        "tr": "birusulinā",
+        "en": "Our Messengers",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَقَفَّيْنَا",
+        "tr": "waqaffaynā",
+        "en": "and We followed",
+        "root": "ق ف و",
+        "lemma": "قَفَّيْ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "بِعِيسَى",
+        "tr": "biʿīsā",
+        "en": "with Isa",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "ٱبْنِ",
+        "tr": "ib'ni",
+        "en": "son",
+        "root": "ب ن ي",
+        "lemma": "ابْن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "مَرْيَمَ",
+        "tr": "maryama",
+        "en": "(of) Maryam",
+        "root": "",
+        "lemma": "مَرْيَم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "وَءَاتَيْنَـٰهُ",
+        "tr": "waātaynāhu",
+        "en": "and We gave him",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "P+V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "ٱلْإِنجِيلَ",
+        "tr": "l-injīla",
+        "en": "the Injeel",
+        "root": "",
+        "lemma": "ال",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَجَعَلْنَا",
+        "tr": "wajaʿalnā",
+        "en": "And We placed",
+        "root": "ج ع ل",
+        "lemma": "جَعَلَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "in",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "قُلُوبِ",
+        "tr": "qulūbi",
+        "en": "(the) hearts",
+        "root": "ق ل ب",
+        "lemma": "قَلْب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "ٱلَّذِينَ",
+        "tr": "alladhīna",
+        "en": "(of) those who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "ٱتَّبَعُوهُ",
+        "tr": "ittabaʿūhu",
+        "en": "followed him",
+        "root": "ت ب ع",
+        "lemma": "اتَّبَعَ",
+        "pos_tag": "V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "رَأْفَةًۭ",
+        "tr": "rafatan",
+        "en": "compassion",
+        "root": "ر أ ف",
+        "lemma": "رَأْفَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "وَرَحْمَةًۭ",
+        "tr": "waraḥmatan",
+        "en": "and mercy",
+        "root": "ر ح م",
+        "lemma": "رَحْمَة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "وَرَهْبَانِيَّةً",
+        "tr": "warahbāniyyatan",
+        "en": "But monasticism",
+        "root": "ر ه ب",
+        "lemma": "رَهْبانِيَّة",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "ٱبْتَدَعُوهَا",
+        "tr": "ib'tadaʿūhā",
+        "en": "they innovated ",
+        "root": "ب د ع",
+        "lemma": "ابْتَدَعُ",
+        "pos_tag": "V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "مَا",
+        "tr": "mā",
+        "en": "not",
+        "root": "",
+        "lemma": "ما",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "كَتَبْنَـٰهَا",
+        "tr": "katabnāhā",
+        "en": "We prescribed it",
+        "root": "ك ت ب",
+        "lemma": "كَتَبَ",
+        "pos_tag": "V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:22)"
+      },
+      {
+        "pos": 23,
+        "ar": "عَلَيْهِمْ",
+        "tr": "ʿalayhim",
+        "en": "for them ",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:23)"
+      },
+      {
+        "pos": 24,
+        "ar": "إِلَّا",
+        "tr": "illā",
+        "en": "only",
+        "root": "",
+        "lemma": "إِلّا",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:24)"
+      },
+      {
+        "pos": 25,
+        "ar": "ٱبْتِغَآءَ",
+        "tr": "ib'tighāa",
+        "en": "seeking",
+        "root": "ب غ ي",
+        "lemma": "ابْتِغاء",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:25)"
+      },
+      {
+        "pos": 26,
+        "ar": "رِضْوَٰنِ",
+        "tr": "riḍ'wāni",
+        "en": "(the) pleasure",
+        "root": "ر ض و",
+        "lemma": "رِضْوان",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:26)"
+      },
+      {
+        "pos": 27,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:27)"
+      },
+      {
+        "pos": 28,
+        "ar": "فَمَا",
+        "tr": "famā",
+        "en": "but not",
+        "root": "",
+        "lemma": "ف",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:28)"
+      },
+      {
+        "pos": 29,
+        "ar": "رَعَوْهَا",
+        "tr": "raʿawhā",
+        "en": "they observed it",
+        "root": "ر ع ي",
+        "lemma": "رَعَ",
+        "pos_tag": "V+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:29)"
+      },
+      {
+        "pos": 30,
+        "ar": "حَقَّ",
+        "tr": "ḥaqqa",
+        "en": "(with) right",
+        "root": "ح ق ق",
+        "lemma": "حَقّ",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:30)"
+      },
+      {
+        "pos": 31,
+        "ar": "رِعَايَتِهَا ۖ",
+        "tr": "riʿāyatihā",
+        "en": "observance",
+        "root": "ر ع ي",
+        "lemma": "رِعايَت",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:31)"
+      },
+      {
+        "pos": 32,
+        "ar": "فَـَٔاتَيْنَا",
+        "tr": "faātaynā",
+        "en": "So We gave",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:32)"
+      },
+      {
+        "pos": 33,
+        "ar": "ٱلَّذِينَ",
+        "tr": "alladhīna",
+        "en": "those who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:33)"
+      },
+      {
+        "pos": 34,
+        "ar": "ءَامَنُوا۟",
+        "tr": "āmanū",
+        "en": "believed",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:34)"
+      },
+      {
+        "pos": 35,
+        "ar": "مِنْهُمْ",
+        "tr": "min'hum",
+        "en": "among them",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:35)"
+      },
+      {
+        "pos": 36,
+        "ar": "أَجْرَهُمْ ۖ",
+        "tr": "ajrahum",
+        "en": "their reward",
+        "root": "أ ج ر",
+        "lemma": "أَجْر",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:36)"
+      },
+      {
+        "pos": 37,
+        "ar": "وَكَثِيرٌۭ",
+        "tr": "wakathīrun",
+        "en": "but most",
+        "root": "ك ث ر",
+        "lemma": "كَثِير",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:37)"
+      },
+      {
+        "pos": 38,
+        "ar": "مِّنْهُمْ",
+        "tr": "min'hum",
+        "en": "of them",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:38)"
+      },
+      {
+        "pos": 39,
+        "ar": "فَـٰسِقُونَ",
+        "tr": "fāsiqūna",
+        "en": "(are) defiantly disobediently",
+        "root": "ف س ق",
+        "lemma": "فاسِق",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:27:39)"
+      }
+    ],
+    "28": [
+      {
+        "pos": 1,
+        "ar": "يَـٰٓأَيُّهَا",
+        "tr": "yāayyuhā",
+        "en": "O you who believe",
+        "root": "أ ي ي",
+        "lemma": "أَيّ",
+        "pos_tag": "P+N+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلَّذِينَ",
+        "tr": "alladhīna",
+        "en": "O you who believe",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ءَامَنُوا۟",
+        "tr": "āmanū",
+        "en": "O you who believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱتَّقُوا۟",
+        "tr": "ittaqū",
+        "en": "Fear",
+        "root": "و ق ي",
+        "lemma": "اتَّقَى",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "ٱللَّهَ",
+        "tr": "l-laha",
+        "en": "Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "وَءَامِنُوا۟",
+        "tr": "waāminū",
+        "en": "and believe",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "بِرَسُولِهِۦ",
+        "tr": "birasūlihi",
+        "en": "in His Messenger",
+        "root": "ر س ل",
+        "lemma": "رَسُول",
+        "pos_tag": "P+N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "يُؤْتِكُمْ",
+        "tr": "yu'tikum",
+        "en": "He will give you",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "كِفْلَيْنِ",
+        "tr": "kif'layni",
+        "en": "double portion",
+        "root": "ك ف ل",
+        "lemma": "كِفْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "مِن",
+        "tr": "min",
+        "en": "of",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "رَّحْمَتِهِۦ",
+        "tr": "raḥmatihi",
+        "en": "His Mercy",
+        "root": "ر ح م",
+        "lemma": "رَحْمَة",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَيَجْعَل",
+        "tr": "wayajʿal",
+        "en": "and He will make",
+        "root": "ج ع ل",
+        "lemma": "جَعَلَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "لَّكُمْ",
+        "tr": "lakum",
+        "en": "for you",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "نُورًۭا",
+        "tr": "nūran",
+        "en": "a light",
+        "root": "ن و ر",
+        "lemma": "نُور",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "تَمْشُونَ",
+        "tr": "tamshūna",
+        "en": "you will walk",
+        "root": "م ش ي",
+        "lemma": "مَشَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "بِهِۦ",
+        "tr": "bihi",
+        "en": "with it",
+        "root": "",
+        "lemma": "ب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "وَيَغْفِرْ",
+        "tr": "wayaghfir",
+        "en": "and He will forgive",
+        "root": "غ ف ر",
+        "lemma": "غَفَرَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "لَكُمْ ۚ",
+        "tr": "lakum",
+        "en": "you",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "وَٱللَّهُ",
+        "tr": "wal-lahu",
+        "en": "And Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "غَفُورٌۭ",
+        "tr": "ghafūrun",
+        "en": "(is) Oft-Forgiving",
+        "root": "غ ف ر",
+        "lemma": "غَفُور",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "رَّحِيمٌۭ",
+        "tr": "raḥīmun",
+        "en": "Most Merciful",
+        "root": "ر ح م",
+        "lemma": "رَحِيم",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:28:21)"
+      }
+    ],
+    "29": [
+      {
+        "pos": 1,
+        "ar": "لِّئَلَّا",
+        "tr": "li-allā",
+        "en": "So that",
+        "root": "",
+        "lemma": "ل",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "يَعْلَمَ",
+        "tr": "yaʿlama",
+        "en": "may know",
+        "root": "ع ل م",
+        "lemma": "عَلِمَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "أَهْلُ",
+        "tr": "ahlu",
+        "en": "(the) People",
+        "root": "أ ه ل",
+        "lemma": "أَهْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱلْكِتَـٰبِ",
+        "tr": "l-kitābi",
+        "en": "(of) the Book",
+        "root": "ك ت ب",
+        "lemma": "كِتاب",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "أَلَّا",
+        "tr": "allā",
+        "en": "that not",
+        "root": "",
+        "lemma": "أَن",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "يَقْدِرُونَ",
+        "tr": "yaqdirūna",
+        "en": "they have power",
+        "root": "ق د ر",
+        "lemma": "قَدَرَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "عَلَىٰ",
+        "tr": "ʿalā",
+        "en": "over",
+        "root": "",
+        "lemma": "عَلَى",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:7)"
+      },
+      {
+        "pos": 8,
+        "ar": "شَىْءٍۢ",
+        "tr": "shayin",
+        "en": "anything",
+        "root": "ش ي أ",
+        "lemma": "شَىْء",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:8)"
+      },
+      {
+        "pos": 9,
+        "ar": "مِّن",
+        "tr": "min",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:9)"
+      },
+      {
+        "pos": 10,
+        "ar": "فَضْلِ",
+        "tr": "faḍli",
+        "en": "(the) Bounty",
+        "root": "ف ض ل",
+        "lemma": "فَضْل",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:10)"
+      },
+      {
+        "pos": 11,
+        "ar": "ٱللَّهِ ۙ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:11)"
+      },
+      {
+        "pos": 12,
+        "ar": "وَأَنَّ",
+        "tr": "wa-anna",
+        "en": "and that",
+        "root": "",
+        "lemma": "و",
+        "pos_tag": "P+P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:12)"
+      },
+      {
+        "pos": 13,
+        "ar": "ٱلْفَضْلَ",
+        "tr": "l-faḍla",
+        "en": "the Bounty",
+        "root": "ف ض ل",
+        "lemma": "فَضْل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:13)"
+      },
+      {
+        "pos": 14,
+        "ar": "بِيَدِ",
+        "tr": "biyadi",
+        "en": "(is) in Allah's Hand",
+        "root": "ي د ي",
+        "lemma": "يَد",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:14)"
+      },
+      {
+        "pos": 15,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(is) in Allah's Hand",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:15)"
+      },
+      {
+        "pos": 16,
+        "ar": "يُؤْتِيهِ",
+        "tr": "yu'tīhi",
+        "en": "He gives it",
+        "root": "أ ت ي",
+        "lemma": "آتَى",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:16)"
+      },
+      {
+        "pos": 17,
+        "ar": "مَن",
+        "tr": "man",
+        "en": "whom",
+        "root": "",
+        "lemma": "مَن",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:17)"
+      },
+      {
+        "pos": 18,
+        "ar": "يَشَآءُ ۚ",
+        "tr": "yashāu",
+        "en": "He wills",
+        "root": "ش ي أ",
+        "lemma": "شاءَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:18)"
+      },
+      {
+        "pos": 19,
+        "ar": "وَٱللَّهُ",
+        "tr": "wal-lahu",
+        "en": "And Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:19)"
+      },
+      {
+        "pos": 20,
+        "ar": "ذُو",
+        "tr": "dhū",
+        "en": "(is) the Possessor of Bounty",
+        "root": "",
+        "lemma": "ذُو",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:20)"
+      },
+      {
+        "pos": 21,
+        "ar": "ٱلْفَضْلِ",
+        "tr": "l-faḍli",
+        "en": "(is) the Possessor of Bounty",
+        "root": "ف ض ل",
+        "lemma": "فَضْل",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:21)"
+      },
+      {
+        "pos": 22,
+        "ar": "ٱلْعَظِيمِ",
+        "tr": "l-ʿaẓīmi",
+        "en": "the Great",
+        "root": "ع ظ م",
+        "lemma": "عَظِيم",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(57:29:22)"
+      }
+    ]
+  }
+}

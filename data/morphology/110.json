@@ -1,0 +1,201 @@
+{
+  "surah": 110,
+  "ayahs": {
+    "1": [
+      {
+        "pos": 1,
+        "ar": "إِذَا",
+        "tr": "idhā",
+        "en": "When",
+        "root": "",
+        "lemma": "إِذا",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:1:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "جَآءَ",
+        "tr": "jāa",
+        "en": "comes",
+        "root": "ج ي أ",
+        "lemma": "جاءَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:1:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "نَصْرُ",
+        "tr": "naṣru",
+        "en": "(the) Help",
+        "root": "ن ص ر",
+        "lemma": "نَصْر",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:1:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:1:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَٱلْفَتْحُ",
+        "tr": "wal-fatḥu",
+        "en": "and the Victory",
+        "root": "ف ت ح",
+        "lemma": "فَتْح",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:1:5)"
+      }
+    ],
+    "2": [
+      {
+        "pos": 1,
+        "ar": "وَرَأَيْتَ",
+        "tr": "wara-ayta",
+        "en": "And you see",
+        "root": "ر أ ي",
+        "lemma": "رَأَى",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "ٱلنَّاسَ",
+        "tr": "l-nāsa",
+        "en": "the people",
+        "root": "أ ن س",
+        "lemma": "ناس",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "يَدْخُلُونَ",
+        "tr": "yadkhulūna",
+        "en": "entering",
+        "root": "د خ ل",
+        "lemma": "دَخَلَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "فِى",
+        "tr": "fī",
+        "en": "into",
+        "root": "",
+        "lemma": "فِي",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "دِينِ",
+        "tr": "dīni",
+        "en": "(the) religion",
+        "root": "د ي ن",
+        "lemma": "دِين",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "ٱللَّهِ",
+        "tr": "l-lahi",
+        "en": "(of) Allah",
+        "root": "أ ل ه",
+        "lemma": "اللَّه",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "أَفْوَاجًۭا",
+        "tr": "afwājan",
+        "en": "(in) multitudes",
+        "root": "ف و ج",
+        "lemma": "فَوْج",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:2:7)"
+      }
+    ],
+    "3": [
+      {
+        "pos": 1,
+        "ar": "فَسَبِّحْ",
+        "tr": "fasabbiḥ",
+        "en": "Then glorify",
+        "root": "س ب ح",
+        "lemma": "سَبَّحَ",
+        "pos_tag": "P+V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "بِحَمْدِ",
+        "tr": "biḥamdi",
+        "en": "with (the) praises",
+        "root": "ح م د",
+        "lemma": "حَمْد",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "رَبِّكَ",
+        "tr": "rabbika",
+        "en": "(of) your Lord",
+        "root": "ر ب ب",
+        "lemma": "رَبّ",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱسْتَغْفِرْهُ ۚ",
+        "tr": "wa-is'taghfir'hu",
+        "en": "and ask His forgiveness",
+        "root": "غ ف ر",
+        "lemma": "اسْتَغْفَرَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "إِنَّهُۥ",
+        "tr": "innahu",
+        "en": "Indeed, He",
+        "root": "",
+        "lemma": "إِنّ",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "كَانَ",
+        "tr": "kāna",
+        "en": "is",
+        "root": "ك و ن",
+        "lemma": "كانَ",
+        "pos_tag": "V",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "تَوَّابًۢا",
+        "tr": "tawwāban",
+        "en": "Oft-Returning",
+        "root": "ت و ب",
+        "lemma": "تَوّاب",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(110:3:7)"
+      }
+    ]
+  }
+}

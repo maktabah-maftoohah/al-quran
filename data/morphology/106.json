@@ -1,0 +1,183 @@
+{
+  "surah": 106,
+  "ayahs": {
+    "1": [
+      {
+        "pos": 1,
+        "ar": "لِإِيلَـٰفِ",
+        "tr": "liīlāfi",
+        "en": "For (the) familiarity",
+        "root": "أ ل ف",
+        "lemma": "إِلاف",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:1:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "قُرَيْشٍ",
+        "tr": "qurayshin",
+        "en": "(of the) Quraish",
+        "root": "ق ر ش",
+        "lemma": "قُرَيْش",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:1:2)"
+      }
+    ],
+    "2": [
+      {
+        "pos": 1,
+        "ar": "إِۦلَـٰفِهِمْ",
+        "tr": "īlāfihim",
+        "en": "Their familiarity",
+        "root": "أ ل ف",
+        "lemma": "إِلاف",
+        "pos_tag": "N+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "رِحْلَةَ",
+        "tr": "riḥ'lata",
+        "en": "(with the) journey",
+        "root": "ر ح ل",
+        "lemma": "رِحْلَة",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "ٱلشِّتَآءِ",
+        "tr": "l-shitāi",
+        "en": "(of) winter",
+        "root": "ش ت و",
+        "lemma": "شِتاء",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "وَٱلصَّيْفِ",
+        "tr": "wal-ṣayfi",
+        "en": "and summer",
+        "root": "ص ي ف",
+        "lemma": "صَيْف",
+        "pos_tag": "P+P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:4)"
+      }
+    ],
+    "3": [
+      {
+        "pos": 1,
+        "ar": "فَلْيَعْبُدُوا۟",
+        "tr": "falyaʿbudū",
+        "en": "So let them worship",
+        "root": "ع ب د",
+        "lemma": "عَبَدَ",
+        "pos_tag": "P+P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "رَبَّ",
+        "tr": "rabba",
+        "en": "(the) Lord",
+        "root": "ر ب ب",
+        "lemma": "رَبّ",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "هَـٰذَا",
+        "tr": "hādhā",
+        "en": "(of) this",
+        "root": "",
+        "lemma": "ه",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "ٱلْبَيْتِ",
+        "tr": "l-bayti",
+        "en": "House",
+        "root": "ب ي ت",
+        "lemma": "بَيْت",
+        "pos_tag": "P+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:4)"
+      }
+    ],
+    "4": [
+      {
+        "pos": 1,
+        "ar": "ٱلَّذِىٓ",
+        "tr": "alladhī",
+        "en": "The One Who",
+        "root": "",
+        "lemma": "الَّذِي",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:1)"
+      },
+      {
+        "pos": 2,
+        "ar": "أَطْعَمَهُم",
+        "tr": "aṭʿamahum",
+        "en": "feeds them",
+        "root": "ط ع م",
+        "lemma": "أَطْعَمَ",
+        "pos_tag": "V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:2)"
+      },
+      {
+        "pos": 3,
+        "ar": "مِّن",
+        "tr": "min",
+        "en": "[from]",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:3)"
+      },
+      {
+        "pos": 4,
+        "ar": "جُوعٍۢ",
+        "tr": "jūʿin",
+        "en": "(against) hunger",
+        "root": "ج و ع",
+        "lemma": "جُوع",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:4)"
+      },
+      {
+        "pos": 5,
+        "ar": "وَءَامَنَهُم",
+        "tr": "waāmanahum",
+        "en": "and gives them security",
+        "root": "أ م ن",
+        "lemma": "آمَنَ",
+        "pos_tag": "P+V+N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:5)"
+      },
+      {
+        "pos": 6,
+        "ar": "مِّنْ",
+        "tr": "min",
+        "en": "from",
+        "root": "",
+        "lemma": "مِن",
+        "pos_tag": "P",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:6)"
+      },
+      {
+        "pos": 7,
+        "ar": "خَوْفٍۭ",
+        "tr": "khawfin",
+        "en": "fear",
+        "root": "خ و ف",
+        "lemma": "خَوْف",
+        "pos_tag": "N",
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:7)"
+      }
+    ]
+  }
+}

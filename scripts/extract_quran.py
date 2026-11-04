@@ -236,6 +236,32 @@ def main():
     total_to_process = len(sorted_surahs)
 
     for idx, s_num in enumerate(sorted_surahs, 1):
+        s_str = str(s_num)
+        arabic_file = ARABIC_DIR / f"{s_num}.json"
+        morph_file = MORPHOLOGY_DIR / f"{s_num}.json"
+
+        # Resume / Cache check: skip if already extracted locally
+        if arabic_file.exists() and morph_file.exists() and s_str in ms_basmeih and len(ms_basmeih[s_str]) > 0:
+            print(f"[{idx}/{total_to_process}] Surah {s_num} already cached on disk, skipping download...")
+            try:
+                with open(arabic_file, "r", encoding="utf-8") as f:
+                    cached_ar = json.load(f)
+                for a_str, a_obj in cached_ar.get("ayahs", {}).items():
+                    a_num = int(a_str)
+                    clean_ar = a_obj.get("simple") or a_obj.get("uthmani", "")
+                    search_index.append({
+                        "ref": f"{s_num}:{a_num}",
+                        "s": s_num,
+                        "a": a_num,
+                        "ar": normalize_arabic(clean_ar),
+                        "ms": ms_basmeih.get(s_str, {}).get(a_str, ""),
+                        "en": en_sahih.get(s_str, {}).get(a_str, ""),
+                        "id": id_kemenag.get(s_str, {}).get(a_str, ""),
+                    })
+                continue
+            except Exception:
+                pass
+
         print(f"[{idx}/{total_to_process}] Processing Surah {s_num}...")
         # Fetch Arabic (uthmani & simple-clean) and 4 translations in one call
         editions_url = (
