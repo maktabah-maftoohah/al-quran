@@ -171,6 +171,17 @@ server.listen(PORT, async () => {
     const directLinkBtn = await page.$('#verse-6-12 .btn-copy-link-ayah');
     assert(directLinkBtn !== null, 'Direct link copy button present on verse card');
 
+    // Test Copy Ayat Button with (Al-Quran 6:12) Reference
+    await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
+    const copyAyahBtn = await page.$('#verse-6-12 .btn-copy-ayah');
+    assert(copyAyahBtn !== null, 'Copy verse button present on verse card');
+    await copyAyahBtn.click();
+    await page.waitForTimeout(300);
+    const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
+    assert(clipboardText.includes('(Al-Quran 6:12)'), `Clipboard text contains (Al-Quran 6:12) reference: "${clipboardText.slice(-30)}"`);
+    assert(clipboardText.includes('قُل'), 'Clipboard text contains Arabic ayat text');
+    assert(clipboardText.includes('Bertanyalah') || clipboardText.includes('Say'), 'Clipboard text contains translation text');
+
     // Test short-form route #6/12
     await page.goto(`http://localhost:${PORT}/index.html#6/12`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);

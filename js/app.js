@@ -1494,18 +1494,39 @@ class App {
       });
     }
 
-    // Copy Verse
+    // Copy Verse (Arabic + Translation + (Al-Quran S:A))
     this.mainContainer.querySelectorAll('.btn-copy-ayah').forEach((btn) => {
       btn.addEventListener('click', () => {
         const ref = btn.getAttribute('data-ref');
         const [s, a] = ref.split(':');
-        const ar = arabicData.ayahs[a]?.uthmani || '';
-        const ms = basmeihSurah[a] || '';
-        const en = sahihSurah[a] || '';
-        const directUrl = `${window.location.origin}${window.location.pathname}#surah/${s}/${a}`;
+        const card = btn.closest('.verse-card');
+        const ar = card?.querySelector('.verse-arabic')?.textContent.trim() || arabicData.ayahs[a]?.uthmani || '';
 
-        const clipboardText = `Surah ${displayName} (${ref})\n\n${ar}\n\n[Basmeih - MS]: ${ms}\n\n[Sahih - EN]: ${en}\n\nPautan: ${directUrl}`;
-        this.copyToClipboard(clipboardText, i18n.t('surah.toastCopied', { ref }));
+        // Extract visible translations from the card
+        const visibleBlocks = card
+          ? Array.from(card.querySelectorAll('.translation-block')).filter(
+              (block) => window.getComputedStyle(block).display !== 'none'
+            )
+          : [];
+
+        let translationText = '';
+        if (visibleBlocks.length > 0) {
+          const transLines = visibleBlocks
+            .map((block) => {
+              const p = block.querySelector('.translation-text');
+              return p ? p.textContent.trim() : '';
+            })
+            .filter(Boolean);
+          translationText = transLines.join('\n\n');
+        }
+
+        // Fallback if no block was found
+        if (!translationText) {
+          translationText = basmeihSurah[a] || sahihSurah[a] || '';
+        }
+
+        const clipboardText = `${ar}\n\n${translationText}\n\n(Al-Quran ${s}:${a})`;
+        this.copyToClipboard(clipboardText, i18n.t('surah.toastCopied', { ref: `${s}:${a}` }));
       });
     });
 
@@ -1985,6 +2006,9 @@ class App {
               <a href="#ayah/${b.surah}/${b.ayah}" class="btn" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
                 ${i18n.t('bookmarks.deepDive')}
               </a>
+              <button class="btn btn-copy-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">
+                📋 ${i18n.t('surah.btnCopy')}
+              </button>
               <button class="btn btn-remove-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; color: var(--danger);">
                 ${i18n.t('bookmarks.btnRemove')}
               </button>
@@ -2005,6 +2029,18 @@ class App {
         ${html}
       </div>
     `;
+
+    this.mainContainer.querySelectorAll('.btn-copy-bookmark').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const ref = btn.getAttribute('data-ref');
+        const b = bookmarks.find((item) => item.ref === ref);
+        if (b) {
+          const trans = b.ms || b.en || '';
+          const clipboardText = `${b.ar}\n\n${trans}\n\n(Al-Quran ${ref})`;
+          this.copyToClipboard(clipboardText, i18n.t('surah.toastCopied', { ref }));
+        }
+      });
+    });
 
     this.mainContainer.querySelectorAll('.btn-remove-bookmark').forEach((btn) => {
       btn.addEventListener('click', () => {
