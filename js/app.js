@@ -45,11 +45,16 @@ class App {
 
   initPWA() {
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      const register = () => {
         navigator.serviceWorker.register('./sw.js').catch((err) => {
           console.warn('Service worker registration failed:', err);
         });
-      });
+      };
+      if (document.readyState === 'complete') {
+        register();
+      } else {
+        window.addEventListener('load', register);
+      }
     }
   }
 
@@ -125,10 +130,29 @@ class App {
     }
 
     // Toggle sidebar on mobile
-    const toggleBtn = document.getElementById('toggle-sidebar-btn');
+    const toggleBtn = document.getElementById('sidebar-toggle-btn') || document.getElementById('toggle-sidebar-btn');
     if (toggleBtn && this.sidebarEl) {
-      toggleBtn.addEventListener('click', () => {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         this.sidebarEl.classList.toggle('open');
+      });
+
+      // Auto-close sidebar on mobile after clicking an item
+      this.sidebarEl.addEventListener('click', (e) => {
+        if (e.target.closest('.surah-list-item')) {
+          if (window.innerWidth <= 900) {
+            this.sidebarEl.classList.remove('open');
+          }
+        }
+      });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 900 && this.sidebarEl.classList.contains('open')) {
+          if (!this.sidebarEl.contains(e.target) && !toggleBtn.contains(e.target)) {
+            this.sidebarEl.classList.remove('open');
+          }
+        }
       });
     }
 
@@ -407,6 +431,16 @@ class App {
           btn.innerHTML = '▶ Play';
         }
       });
+
+      // Update Play Surah Continuous button if present
+      const playSurahBtn = document.getElementById('btn-play-surah-continuous');
+      if (playSurahBtn) {
+        if (state.isPlaying && state.isContinuous) {
+          playSurahBtn.innerHTML = '⏸ Pause Full Surah Continuous';
+        } else {
+          playSurahBtn.innerHTML = '▶ Play Full Surah Continuous';
+        }
+      }
     });
   }
 
@@ -576,6 +610,14 @@ class App {
       store.setLastRead(surah, targetA, meta.name_latin);
       this.updateContinueBanner();
 
+      if (!audio.state.isPlaying) {
+        audio.state.currentSurah = surah;
+        audio.state.currentAyah = targetA;
+        audio.state.totalAyahs = meta.total_ayahs;
+        audio.state.surahName = meta.name_latin;
+        audio.notify();
+      }
+
       const sStr = String(surah);
       const basmeihSurah = translations.basmeih?.[sStr] || {};
       const sahihSurah = translations.sahih?.[sStr] || {};
@@ -735,11 +777,6 @@ class App {
         </div>
       `;
 
-        <div class="verses-container">
-          ${verseCardsHtml}
-        </div>
-      `;
-
       this.updateActiveTranslationsDisplay();
       this.attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah);
 
@@ -792,12 +829,16 @@ class App {
     const playSurahBtn = document.getElementById('btn-play-surah-continuous');
     if (playSurahBtn) {
       playSurahBtn.addEventListener('click', () => {
-        audio.playAyah(surah, 1, {
-          continuous: true,
-          totalAyahs: meta.total_ayahs,
-          surahName: meta.name_latin,
-        });
-        this.showToast(`Playing ${meta.name_latin} continuously`);
+        if (audio.state.currentSurah === surah && audio.state.isPlaying && audio.state.isContinuous) {
+          audio.pause();
+        } else {
+          audio.playAyah(surah, 1, {
+            continuous: true,
+            totalAyahs: meta.total_ayahs,
+            surahName: meta.name_latin,
+          });
+          this.showToast(`Playing ${meta.name_latin} continuously`);
+        }
       });
     }
 
@@ -975,6 +1016,14 @@ class App {
 
       store.setLastRead(surah, ayah, meta.name_latin);
       this.updateContinueBanner();
+
+      if (!audio.state.isPlaying) {
+        audio.state.currentSurah = surah;
+        audio.state.currentAyah = ayah;
+        audio.state.totalAyahs = meta.total_ayahs;
+        audio.state.surahName = meta.name_latin;
+        audio.notify();
+      }
 
       // Navigation links
       const prevAyah = ayah > 1 ? ayah - 1 : null;

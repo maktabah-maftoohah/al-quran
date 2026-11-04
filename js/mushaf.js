@@ -54,8 +54,11 @@ export class MushafViewer {
 
     for (const sNum of candidateSurahs) {
       try {
-        const arDoc = await store.fetchArabic(sNum);
         const sMeta = surahs.find((s) => s.number === sNum);
+        if (sMeta && sMeta.seeded === false) {
+          continue;
+        }
+        const arDoc = await store.fetchArabic(sNum);
         for (const [aStr, aData] of Object.entries(arDoc.ayahs)) {
           if (aData.page === page || (!aData.page && page === 1 && sNum === 1)) {
             pageAyahs.push({

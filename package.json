@@ -1,0 +1,12 @@
+{
+  "name": "al-quran",
+  "version": "1.0.0",
+  "description": "Open Quranic Arabic, Multilingual Translations, Word-by-Word Morphology, and Audio Recitations.",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/test_ui_comprehensive.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}
