@@ -5,6 +5,7 @@
  */
 
 import { store } from './store.js';
+import { storageDB } from './storage-db.js';
 
 export const RECITERS = {
   Alafasy_128kbps: {
@@ -28,6 +29,7 @@ class AudioEngine {
   constructor() {
     this.recitationAudio = new Audio();
     this.wbwAudio = new Audio();
+    this.currentBlobUrl = null;
 
     this.state = {
       isPlaying: false,
@@ -112,9 +114,37 @@ class AudioEngine {
     if (options.continuous !== undefined) this.state.isContinuous = options.continuous;
 
     const reciter = store.settings.reciter || 'Alafasy_128kbps';
-    const url = this.formatEveryAyahUrl(reciter, sNum, aNum);
+    const cdnUrl = this.formatEveryAyahUrl(reciter, sNum, aNum);
 
-    this.recitationAudio.src = url;
+    // Revoke previous blob URL to prevent memory leaks
+    if (this.currentBlobUrl) {
+      URL.revokeObjectURL(this.currentBlobUrl);
+      this.currentBlobUrl = null;
+    }
+
+    // Check IndexedDB audio cache first for instant offline playback
+    let cachedBlob = null;
+    try {
+      cachedBlob = await storageDB.getAudio(reciter, sNum, aNum);
+    } catch (e) {
+      console.warn('IDB audio fetch error:', e);
+    }
+
+    if (cachedBlob) {
+      this.currentBlobUrl = URL.createObjectURL(cachedBlob);
+      this.recitationAudio.src = this.currentBlobUrl;
+    } else {
+      this.recitationAudio.src = cdnUrl;
+
+      // Asynchronously cache into IndexedDB for future offline / instant replay
+      fetch(cdnUrl)
+        .then((res) => (res.ok ? res.blob() : null))
+        .then((blob) => {
+          if (blob) storageDB.saveAudio(reciter, sNum, aNum, blob);
+        })
+        .catch(() => {});
+    }
+
     this.recitationAudio.playbackRate = store.settings.speed || 1.0;
 
     try {
@@ -123,6 +153,33 @@ class AudioEngine {
     } catch (err) {
       console.error('Audio play error:', err);
     }
+  }
+
+  /**
+   * Downloads and caches all verse audio files of a Surah into IndexedDB.
+   */
+  async downloadSurahAudio(surah, totalAyahs, onProgress) {
+    const reciter = store.settings.reciter || 'Alafasy_128kbps';
+    const sNum = parseInt(surah, 10);
+    const total = parseInt(totalAyahs, 10);
+
+    for (let a = 1; a <= total; a++) {
+      if (onProgress) onProgress({ current: a, total, status: 'downloading' });
+      const exists = await storageDB.getAudio(reciter, sNum, a);
+      if (!exists) {
+        const url = this.formatEveryAyahUrl(reciter, sNum, a);
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            const blob = await res.blob();
+            await storageDB.saveAudio(reciter, sNum, a, blob);
+          }
+        } catch (e) {
+          console.warn(`Failed to download audio for ${sNum}:${a}:`, e);
+        }
+      }
+    }
+    if (onProgress) onProgress({ current: total, total, status: 'complete' });
   }
 
   async playWord(surah, ayah, wordPos) {

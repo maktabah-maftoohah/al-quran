@@ -18,6 +18,7 @@ const APP_SHELL = [
   './js/jawi.js',
   './js/card-generator.js',
   './js/mushaf.js',
+  './js/storage-db.js',
   './data/icon.svg',
   './data/surahs.json'
 ];

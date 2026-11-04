@@ -10,16 +10,20 @@ import { router } from './router.js';
 import { rumiToJawi } from './jawi.js';
 import { cardGenerator } from './card-generator.js';
 import { mushafViewer } from './mushaf.js';
+import { storageDB } from './storage-db.js';
 
 class App {
   constructor() {
     this.mainContainer = document.getElementById('main-viewport');
     this.surahListContainer = document.getElementById('sidebar-surah-list');
     this.bookmarksListContainer = document.getElementById('sidebar-bookmarks-list');
+    this.notesListContainer = document.getElementById('sidebar-notes-list');
     this.continueBanner = document.getElementById('sidebar-continue-banner');
     this.sidebarEl = document.getElementById('app-sidebar');
     this.morphDrawer = document.getElementById('morphology-drawer');
     this.morphOverlay = document.getElementById('drawer-overlay');
+    this.noteModal = document.getElementById('note-modal-overlay');
+    this.activeNoteContext = null;
   }
 
   async init() {
@@ -31,6 +35,8 @@ class App {
     this.initTypographyPopover();
     this.initStickyAudioPlayer();
     this.initMorphologyDrawer();
+    this.initNoteModal();
+    this.initStorageStats();
     this.initGlobalEvents();
 
     // Register routes
@@ -100,10 +106,19 @@ class App {
         if (tabName === 'surahs') {
           this.surahListContainer.style.display = 'block';
           this.bookmarksListContainer.style.display = 'none';
-        } else {
+          if (this.notesListContainer) this.notesListContainer.style.display = 'none';
+        } else if (tabName === 'bookmarks') {
           this.surahListContainer.style.display = 'none';
           this.bookmarksListContainer.style.display = 'block';
+          if (this.notesListContainer) this.notesListContainer.style.display = 'none';
           this.renderSidebarBookmarks();
+        } else if (tabName === 'notes') {
+          this.surahListContainer.style.display = 'none';
+          this.bookmarksListContainer.style.display = 'none';
+          if (this.notesListContainer) {
+            this.notesListContainer.style.display = 'block';
+            this.renderSidebarNotes();
+          }
         }
       });
     });
@@ -236,6 +251,54 @@ class App {
       .join('');
 
     this.bookmarksListContainer.innerHTML = html;
+  }
+
+  async renderSidebarNotes() {
+    if (!this.notesListContainer) return;
+    let notes = [];
+    try {
+      notes = await storageDB.getAllNotes();
+    } catch (e) {
+      console.warn('Failed to load notes for sidebar:', e);
+    }
+
+    if (!notes.length) {
+      this.notesListContainer.innerHTML = `
+        <div style="padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+          No personal study notes yet.<br/>Click <span style="color: var(--accent-gold);">📝 Note</span> on any verse to write your reflections!
+        </div>
+      `;
+      return;
+    }
+
+    const html = notes
+      .map((n) => {
+        const dateStr = new Date(n.updatedAt).toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+        return `
+          <a href="#surah/${n.surah}?ayah=${n.ayah}" class="sidebar-note-item" data-ref="${n.ref}">
+            <div class="sidebar-note-ref">
+              <span>${n.surahName} (${n.ref})</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">${dateStr}</span>
+            </div>
+            <div class="sidebar-note-preview">${this.escapeHtml(n.text)}</div>
+          </a>
+        `;
+      })
+      .join('');
+
+    this.notesListContainer.innerHTML = html;
+
+    this.notesListContainer.querySelectorAll('.sidebar-note-item').forEach((el) => {
+      el.addEventListener('click', () => {
+        if (window.innerWidth <= 900 && this.sidebarEl) {
+          this.sidebarEl.classList.remove('open');
+        }
+      });
+    });
   }
 
   updateContinueBanner() {
@@ -611,6 +674,161 @@ class App {
     window.audioEngine = audio;
   }
 
+  escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // --- IndexedDB: Study Notes Modal ---
+
+  initNoteModal() {
+    if (!this.noteModal) return;
+
+    this.noteModal.addEventListener('click', (e) => {
+      if (e.target === this.noteModal || e.target.closest('[data-action="close-note-modal"]')) {
+        this.closeNoteModal();
+      }
+    });
+
+    const saveBtn = document.getElementById('note-modal-save-btn');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', async () => {
+        if (!this.activeNoteContext) return;
+        const textarea = document.getElementById('note-modal-textarea');
+        const text = textarea ? textarea.value.trim() : '';
+        const { ref, surah, ayah, surahName, ar, trans } = this.activeNoteContext;
+
+        if (!text) {
+          await storageDB.deleteNote(ref);
+          this.updateNoteInView(ref, null);
+          this.showToast(`Note for ${ref} deleted`);
+        } else {
+          await storageDB.saveNote(ref, {
+            surah,
+            ayah,
+            surahName,
+            ar,
+            translation: trans,
+            text,
+          });
+          this.updateNoteInView(ref, text);
+          this.showToast(`Note for ${ref} saved`);
+        }
+        this.closeNoteModal();
+        this.renderSidebarNotes();
+      });
+    }
+
+    const deleteBtn = document.getElementById('note-modal-delete-btn');
+    if (deleteBtn) {
+      deleteBtn.addEventListener('click', async () => {
+        if (!this.activeNoteContext) return;
+        const { ref } = this.activeNoteContext;
+        await storageDB.deleteNote(ref);
+        this.updateNoteInView(ref, null);
+        this.showToast(`Note for ${ref} deleted`);
+        this.closeNoteModal();
+        this.renderSidebarNotes();
+      });
+    }
+  }
+
+  async openNoteModal(context) {
+    this.activeNoteContext = context;
+    if (!this.noteModal) return;
+
+    const refEl = document.getElementById('note-modal-ref');
+    const arEl = document.getElementById('note-modal-preview-arabic');
+    const transEl = document.getElementById('note-modal-preview-trans');
+    const textarea = document.getElementById('note-modal-textarea');
+    const deleteBtn = document.getElementById('note-modal-delete-btn');
+
+    if (refEl) refEl.textContent = context.ref;
+    if (arEl) arEl.textContent = context.ar;
+    if (transEl) transEl.textContent = context.trans;
+
+    let existing = null;
+    try {
+      existing = await storageDB.getNote(context.ref);
+    } catch (e) {
+      console.warn('Error reading note from IDB:', e);
+    }
+
+    if (textarea) textarea.value = existing ? existing.text : '';
+    if (deleteBtn) deleteBtn.style.display = existing ? 'block' : 'none';
+
+    this.noteModal.classList.add('open');
+    if (textarea) textarea.focus();
+  }
+
+  closeNoteModal() {
+    if (this.noteModal) {
+      this.noteModal.classList.remove('open');
+    }
+    this.activeNoteContext = null;
+  }
+
+  updateNoteInView(ref, text) {
+    const btn = document.querySelector(`.btn-note-ayah[data-ref="${ref}"]`);
+    if (btn) {
+      btn.classList.toggle('has-note', Boolean(text));
+    }
+    const snippetContainer = document.getElementById(`note-snippet-${ref}`);
+    if (snippetContainer) {
+      if (text) {
+        snippetContainer.className = 'verse-note-snippet';
+        snippetContainer.innerHTML = `
+          <div class="verse-note-snippet-header">
+            <span>📝 Study Note</span>
+            <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">Just now</span>
+          </div>
+          <div style="line-height: 1.4;">${this.escapeHtml(text)}</div>
+        `;
+      } else {
+        snippetContainer.className = '';
+        snippetContainer.innerHTML = '';
+      }
+    }
+  }
+
+  // --- IndexedDB: Storage Stats Management ---
+
+  initStorageStats() {
+    this.updateStorageStatsDisplay();
+
+    const clearBtn = document.getElementById('btn-clear-audio-cache');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', async () => {
+        if (confirm('Delete all offline audio recitations stored in IndexedDB?')) {
+          await storageDB.clearAllAudio();
+          this.updateStorageStatsDisplay();
+          this.showToast('All cached offline audio deleted');
+          document.querySelectorAll('.btn-download-audio').forEach((btn) => {
+            btn.className = 'btn btn-download-audio';
+            btn.innerHTML = '📥 Download Offline Audio';
+          });
+        }
+      });
+    }
+  }
+
+  async updateStorageStatsDisplay() {
+    const statEl = document.getElementById('storage-audio-stat');
+    if (!statEl) return;
+    try {
+      const stats = await storageDB.getAudioStorageStats();
+      const mb = (stats.bytes / (1024 * 1024)).toFixed(1);
+      statEl.textContent = `Audio: ${stats.count} files (${mb} MB)`;
+    } catch {
+      statEl.textContent = 'Audio: 0 KB';
+    }
+  }
+
   // =========================================================================
   // VIEW RENDERERS
   // =========================================================================
@@ -647,6 +865,21 @@ class App {
         this.renderUnseededSurahView(meta);
         return;
       }
+
+      // Check notes and offline audio status in IndexedDB
+      const reciter = store.settings.reciter || 'Alafasy_128kbps';
+      let allNotes = [];
+      let cachedAudioCount = 0;
+      try {
+        [allNotes, cachedAudioCount] = await Promise.all([
+          storageDB.getAllNotes(),
+          storageDB.getSurahAudioCount(reciter, surah),
+        ]);
+      } catch (e) {
+        console.warn('IDB fetch in renderSurahView:', e);
+      }
+      const notesMap = new Map(allNotes.map((n) => [n.ref, n]));
+      const isAudioFullyDownloaded = cachedAudioCount >= meta.total_ayahs;
 
       // Update Last Read
       const targetA = targetAyah || 1;
@@ -735,6 +968,8 @@ class App {
           const aNum = parseInt(ayahNumStr, 10);
           const ref = `${surah}:${aNum}`;
           const isSaved = store.isBookmarked(ref);
+          const note = notesMap.get(ref);
+          const hasNote = Boolean(note);
           const msRawText = basmeihSurah[ayahNumStr] || '';
           const msDisplayText = isJawi ? rumiToJawi(msRawText) : msRawText;
           const enSahihText = sahihSurah[ayahNumStr] || '';
@@ -757,6 +992,9 @@ class App {
                   </button>
                   <button class="verse-action-btn btn-bookmark-ayah ${isSaved ? 'bookmarked' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
                     ★ ${isSaved ? 'Saved' : 'Bookmark'}
+                  </button>
+                  <button class="verse-action-btn btn-note-ayah ${hasNote ? 'has-note' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
+                    📝 Note
                   </button>
                   <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}">
                     📋 Copy
@@ -787,6 +1025,20 @@ class App {
                   <p class="translation-text">${enPickthallText}</p>
                 </div>
               </div>
+
+              ${
+                hasNote
+                  ? `
+                <div class="verse-note-snippet" id="note-snippet-${ref}">
+                  <div class="verse-note-snippet-header">
+                    <span>📝 Study Note</span>
+                    <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">${new Date(note.updatedAt).toLocaleDateString()}</span>
+                  </div>
+                  <div style="line-height: 1.4;">${this.escapeHtml(note.text)}</div>
+                </div>
+              `
+                  : `<div id="note-snippet-${ref}"></div>`
+              }
             </div>
           `;
         })
@@ -805,6 +1057,9 @@ class App {
           <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-primary" id="btn-play-surah-continuous">
               ▶ Play Full Surah Continuous
+            </button>
+            <button class="btn btn-download-audio ${isAudioFullyDownloaded ? 'downloaded' : ''}" id="btn-download-surah-audio" data-surah="${surah}" data-total="${meta.total_ayahs}">
+              ${isAudioFullyDownloaded ? `✓ Offline Audio Ready (${meta.total_ayahs}/${meta.total_ayahs})` : cachedAudioCount > 0 ? `📥 Offline Audio (${cachedAudioCount}/${meta.total_ayahs})` : '📥 Download Offline Audio'}
             </button>
             <a href="#mushaf/1" class="btn" style="text-decoration: none;">
               📄 Open in Mushaf View
@@ -927,6 +1182,69 @@ class App {
       });
     });
 
+    // Personal Study Note Button (IndexedDB)
+    this.mainContainer.querySelectorAll('.btn-note-ayah').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const ref = btn.getAttribute('data-ref');
+        const s = parseInt(btn.getAttribute('data-surah'), 10);
+        const a = parseInt(btn.getAttribute('data-ayah'), 10);
+        const ar = arabicData.ayahs[String(a)]?.uthmani || '';
+        const trans = basmeihSurah[String(a)] || sahihSurah[String(a)] || '';
+        this.openNoteModal({
+          ref,
+          surah: s,
+          ayah: a,
+          surahName: meta.name_latin,
+          ar,
+          trans,
+        });
+      });
+    });
+
+    // Download Surah Offline Audio (IndexedDB)
+    const downloadAudioBtn = document.getElementById('btn-download-surah-audio');
+    if (downloadAudioBtn) {
+      downloadAudioBtn.addEventListener('click', async () => {
+        const total = meta.total_ayahs;
+        const reciter = store.settings.reciter || 'Alafasy_128kbps';
+        const currentCount = await storageDB.getSurahAudioCount(reciter, surah);
+
+        if (currentCount >= total) {
+          if (
+            confirm(
+              `Surah ${meta.name_latin} audio (${total} verses) is cached offline in IndexedDB.\n\nWould you like to delete this Surah's offline audio to free space?`
+            )
+          ) {
+            await storageDB.deleteSurahAudio(reciter, surah);
+            downloadAudioBtn.className = 'btn btn-download-audio';
+            downloadAudioBtn.innerHTML = '📥 Download Offline Audio';
+            this.showToast(`Cleared offline audio for ${meta.name_latin}`);
+            this.updateStorageStatsDisplay();
+          }
+          return;
+        }
+
+        downloadAudioBtn.disabled = true;
+        downloadAudioBtn.innerHTML = `⏳ Downloading: 0/${total}...`;
+        this.showToast(`Downloading offline audio for ${meta.name_latin}...`);
+
+        try {
+          await audio.downloadSurahAudio(surah, total, (prog) => {
+            downloadAudioBtn.innerHTML = `⏳ Downloading: ${prog.current}/${prog.total}...`;
+          });
+          downloadAudioBtn.disabled = false;
+          downloadAudioBtn.className = 'btn btn-download-audio downloaded';
+          downloadAudioBtn.innerHTML = `✓ Offline Audio Ready (${total}/${total})`;
+          this.showToast(`All ${total} verses of ${meta.name_latin} saved offline!`);
+          this.updateStorageStatsDisplay();
+        } catch (e) {
+          downloadAudioBtn.disabled = false;
+          downloadAudioBtn.innerHTML = '📥 Download Offline Audio';
+          this.showToast(`Audio download failed: ${e.message}`);
+        }
+      });
+    }
+
     // Copy Verse
     this.mainContainer.querySelectorAll('.btn-copy-ayah').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -1038,10 +1356,11 @@ class App {
         return;
       }
 
-      const [arabicData, morphologyData, translations] = await Promise.all([
+      const [arabicData, morphologyData, translations, existingNote] = await Promise.all([
         store.fetchArabic(surah),
         store.fetchMorphology(surah),
         store.fetchTranslations(false),
+        storageDB.getNote(`${surah}:${ayah}`),
       ]);
 
       const aStr = String(ayah);
@@ -1151,6 +1470,7 @@ class App {
             <div class="tabs-header">
               <button class="tab-btn active" data-tab="translations">Categorized Translations</button>
               <button class="tab-btn" data-tab="tafsir">Tafsir al-Jalalayn</button>
+              <button class="tab-btn" data-tab="notes">📝 Personal Notes</button>
             </div>
 
             <div class="tab-pane active" id="pane-translations">
@@ -1184,6 +1504,18 @@ class App {
               </div>
               <div class="tafsir-content" id="tafsir-body-text">
                 <div style="color: var(--text-muted);">Click to load commentary for ${surah}:${ayah}...</div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="pane-notes">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span class="tafsir-source" style="margin: 0;">Personal Reflection (IndexedDB)</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">${existingNote ? `Saved: ${new Date(existingNote.updatedAt).toLocaleDateString()}` : 'No note saved yet'}</span>
+              </div>
+              <textarea id="deepdive-note-textarea" class="search-input-field" style="width: 100%; height: 130px; padding: 0.75rem; border-radius: var(--radius-sm); resize: vertical; font-family: var(--font-sans); font-size: 0.9rem;" placeholder="Write your personal reflections or tafsir study notes for this ayah...">${existingNote ? this.escapeHtml(existingNote.text) : ''}</textarea>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
+                <button class="btn" id="btn-deepdive-delete-note" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.3); ${existingNote ? '' : 'display: none;'}">🗑 Delete Note</button>
+                <button class="btn btn-primary" id="btn-deepdive-save-note">💾 Save Note</button>
               </div>
             </div>
           </div>
@@ -1290,16 +1622,58 @@ class App {
         btn.classList.add('active');
         const tab = btn.getAttribute('data-tab');
 
-        if (tab === 'translations') {
-          paneTranslations.classList.add('active');
-          paneTafsir.classList.remove('active');
-        } else {
-          paneTranslations.classList.remove('active');
-          paneTafsir.classList.add('active');
+        this.mainContainer.querySelectorAll('.tab-pane').forEach((p) => p.classList.remove('active'));
+        const targetPane = document.getElementById(`pane-${tab}`);
+        if (targetPane) targetPane.classList.add('active');
+
+        if (tab === 'tafsir') {
           await loadTafsirContent();
         }
       });
     });
+
+    // Deep Dive Note Save
+    const saveNoteBtn = document.getElementById('btn-deepdive-save-note');
+    if (saveNoteBtn) {
+      saveNoteBtn.addEventListener('click', async () => {
+        const textarea = document.getElementById('deepdive-note-textarea');
+        const text = textarea ? textarea.value.trim() : '';
+        const ref = `${surah}:${ayah}`;
+        const delBtn = document.getElementById('btn-deepdive-delete-note');
+
+        if (!text) {
+          await storageDB.deleteNote(ref);
+          this.showToast(`Note for ${ref} deleted`);
+          if (delBtn) delBtn.style.display = 'none';
+        } else {
+          await storageDB.saveNote(ref, {
+            surah,
+            ayah,
+            surahName: meta.name_latin,
+            ar: tokens.map((t) => t.ar).join(' '),
+            translation: '',
+            text,
+          });
+          this.showToast(`Note for ${ref} saved to IndexedDB`);
+          if (delBtn) delBtn.style.display = 'block';
+        }
+        this.renderSidebarNotes();
+      });
+    }
+
+    // Deep Dive Note Delete
+    const deleteNoteBtn = document.getElementById('btn-deepdive-delete-note');
+    if (deleteNoteBtn) {
+      deleteNoteBtn.addEventListener('click', async () => {
+        const ref = `${surah}:${ayah}`;
+        await storageDB.deleteNote(ref);
+        const textarea = document.getElementById('deepdive-note-textarea');
+        if (textarea) textarea.value = '';
+        deleteNoteBtn.style.display = 'none';
+        this.showToast(`Note for ${ref} deleted`);
+        this.renderSidebarNotes();
+      });
+    }
   }
 
   /**
