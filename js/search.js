@@ -137,7 +137,7 @@ export class SearchEngine {
           ayah: a,
           title: `${isMs ? 'Lompat ke' : 'Jump to'} ${sName} (${s}:${a})`,
           subtext: `${isMs ? 'Ayat' : 'Ayah'} ${a} / ${surahMeta.total_ayahs} — ${sTrans}`,
-          url: `#surah/${s}?ayah=${a}`,
+          url: `#surah/${s}/${a}`,
         });
       }
     }
@@ -220,7 +220,7 @@ export class SearchEngine {
             en: item.en,
             matchedField: item.matchField,
             rawQuery,
-            url: `#surah/${item.s}?ayah=${item.a}`,
+            url: `#surah/${item.s}/${item.a}`,
           });
         }
       } catch (err) {
@@ -264,7 +264,7 @@ export class SearchEngine {
             en: item.en,
             matchedField: matchField,
             rawQuery,
-            url: `#surah/${item.s}?ayah=${item.a}`,
+            url: `#surah/${item.s}/${item.a}`,
           });
         }
       }

@@ -157,6 +157,27 @@ server.listen(PORT, async () => {
     assert(s2Cards.length === 286, `Surah 2 renders all 286 verses, found ${s2Cards.length}`);
 
     // -------------------------------------------------------------
+    // Test 5B: Direct Single Ayat Link (#surah/6/12)
+    // -------------------------------------------------------------
+    console.log('\n[TEST 5B] Direct Single Ayat Link (#surah/6/12)');
+    await page.goto(`http://localhost:${PORT}/index.html#surah/6/12`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(700);
+    const surahHeader6 = await page.textContent('.surah-header-latin');
+    assert(surahHeader6.includes("Al-An'am"), `Header displays Al-An'am: "${surahHeader6.trim()}"`);
+    const card6_12 = await page.$('#verse-6-12');
+    assert(card6_12 !== null, 'Verse card #verse-6-12 found in DOM');
+    const isHighlighted = await page.$eval('#verse-6-12', el => el.classList.contains('highlight-target'));
+    assert(isHighlighted, 'Target verse #verse-6-12 is highlighted with highlight-target class');
+    const directLinkBtn = await page.$('#verse-6-12 .btn-copy-link-ayah');
+    assert(directLinkBtn !== null, 'Direct link copy button present on verse card');
+
+    // Test short-form route #6/12
+    await page.goto(`http://localhost:${PORT}/index.html#6/12`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+    const cardShort = await page.$('#verse-6-12');
+    assert(cardShort !== null, 'Short-form route #6/12 successfully loads Surah 6 Verse 12');
+
+    // -------------------------------------------------------------
     // Test 6: Ayah Deep-Dive View (#ayah/1/1) - Morphology & Tafsir
     // -------------------------------------------------------------
     console.log('\n[TEST 6] Ayah Deep-Dive View (#ayah/1/1) - Word Tokens & Morphology Drawer');

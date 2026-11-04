@@ -290,7 +290,7 @@ class App {
     const html = bookmarks
       .map(
         (b) => `
-        <a href="#surah/${b.surah}?ayah=${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
+        <a href="#surah/${b.surah}/${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
           <div style="display: flex; justify-content: space-between; width: 100%;">
             <span class="ayah-badge">${b.surahName} (${b.ref})</span>
             <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
@@ -332,7 +332,7 @@ class App {
           year: 'numeric',
         });
         return `
-          <a href="#surah/${n.surah}?ayah=${n.ayah}" class="sidebar-note-item" data-ref="${n.ref}">
+          <a href="#surah/${n.surah}/${n.ayah}" class="sidebar-note-item" data-ref="${n.ref}">
             <div class="sidebar-note-ref">
               <span>${n.surahName} (${n.ref})</span>
               <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">${dateStr}</span>
@@ -368,7 +368,7 @@ class App {
         <span class="continue-label">${i18n.t('sidebar.continueReading')}</span>
         <span class="continue-ref">${last.surahName || `Surah ${last.surah}`} : ${isMs ? 'Ayat' : 'Ayah'} ${last.ayah}</span>
       </div>
-      <a href="#surah/${last.surah}?ayah=${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">${i18n.t('sidebar.resumeBtn')}</a>
+      <a href="#surah/${last.surah}/${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">${i18n.t('sidebar.resumeBtn')}</a>
     `;
   }
 
@@ -1176,6 +1176,7 @@ class App {
         : '';
 
       // Generate Verse Cards
+      const isMs = i18n.getLanguage() === 'ms';
       const isJawi = store.settings.jawiMode;
       const isBlurred = hifz.active && hifz.blurArabic;
       const activeCount = Object.values(store.settings.activeTranslations || {}).filter(Boolean).length;
@@ -1201,7 +1202,7 @@ class App {
           return `
             <div class="verse-card" data-surah="${surah}" data-ayah="${aNum}" id="verse-${surah}-${aNum}">
               <div class="verse-card-top">
-                <span class="ayah-badge">${ref}</span>
+                <a href="#surah/${surah}/${aNum}" class="ayah-badge" title="${isMs ? 'Pautan terus ke ayat ini' : 'Direct link to this verse'}">${ref}</a>
                 <div class="verse-actions">
                   <button class="verse-action-btn btn-play-ayah" data-surah="${surah}" data-ayah="${aNum}">
                     ▶ ${i18n.t('surah.btnPlay')}
@@ -1217,6 +1218,9 @@ class App {
                   </button>
                   <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}">
                     📋 ${i18n.t('surah.btnCopy')}
+                  </button>
+                  <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#surah/' + surah + '/' + aNum + ')' : 'Copy Direct Link (#surah/' + surah + '/' + aNum + ')'}">
+                    🔗 ${i18n.t('surah.btnLink')}
                   </button>
                   <a href="#ayah/${surah}/${aNum}" class="verse-action-btn" style="text-decoration: none;">
                     🔬 ${i18n.t('surah.btnDeepDive')}
@@ -1267,7 +1271,6 @@ class App {
         })
         .join('');
 
-      const isMs = i18n.getLanguage() === 'ms';
       const revelationText = meta.revelation_place === 'madinah' || meta.revelation_type?.toLowerCase() === 'medinan'
         ? i18n.t('surah.medinan')
         : i18n.t('surah.meccan');
@@ -1306,15 +1309,23 @@ class App {
       this.updateActiveTranslationsDisplay();
       this.attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah);
 
-      // Handle target ayah scroll & highlight
+      // Handle target ayah scroll & highlight (e.g. #surah/6/12)
       if (targetAyah) {
-        setTimeout(() => {
+        const scrollToTarget = (smooth = false) => {
           const card = document.getElementById(`verse-${surah}-${targetAyah}`);
           if (card) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
             card.classList.add('highlight-target');
+            return true;
           }
-        }, 150);
+          return false;
+        };
+
+        // Instant position first to eliminate jump delay
+        setTimeout(() => scrollToTarget(false), 50);
+        // Follow-up smooth center once layout/fonts settle
+        setTimeout(() => scrollToTarget(true), 250);
+        setTimeout(() => scrollToTarget(true), 600);
       }
     } catch (err) {
       console.error('Error rendering surah view:', err);
@@ -1491,9 +1502,20 @@ class App {
         const ar = arabicData.ayahs[a]?.uthmani || '';
         const ms = basmeihSurah[a] || '';
         const en = sahihSurah[a] || '';
+        const directUrl = `${window.location.origin}${window.location.pathname}#surah/${s}/${a}`;
 
-        const clipboardText = `Surah ${displayName} (${ref})\n\n${ar}\n\n[Basmeih - MS]: ${ms}\n\n[Sahih - EN]: ${en}`;
-        this.copyToClipboard(clipboardText, `Copied Ayah ${ref} to clipboard`);
+        const clipboardText = `Surah ${displayName} (${ref})\n\n${ar}\n\n[Basmeih - MS]: ${ms}\n\n[Sahih - EN]: ${en}\n\nPautan: ${directUrl}`;
+        this.copyToClipboard(clipboardText, i18n.t('surah.toastCopied', { ref }));
+      });
+    });
+
+    // Copy Direct Ayah Link
+    this.mainContainer.querySelectorAll('.btn-copy-link-ayah').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const s = btn.getAttribute('data-surah');
+        const a = btn.getAttribute('data-ayah');
+        const directUrl = `${window.location.origin}${window.location.pathname}#surah/${s}/${a}`;
+        this.copyToClipboard(directUrl, i18n.t('surah.toastLinkCopied', { ref: `${s}:${a}` }));
       });
     });
 
@@ -1653,7 +1675,7 @@ class App {
       this.mainContainer.innerHTML = `
         <div class="deepdive-container">
           <div class="deepdive-nav-bar">
-            <a href="#surah/${surah}?ayah=${ayah}" class="breadcrumb-link">
+            <a href="#surah/${surah}/${ayah}" class="breadcrumb-link">
               ← ${backText}
             </a>
             <div class="deepdive-nav-controls">
@@ -1957,7 +1979,7 @@ class App {
           <div class="verse-card-top">
             <span class="ayah-badge">${b.surahName} (${b.ref})</span>
             <div class="verse-actions">
-              <a href="#surah/${b.surah}?ayah=${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
+              <a href="#surah/${b.surah}/${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
                 ${i18n.t('bookmarks.openVerse')}
               </a>
               <a href="#ayah/${b.surah}/${b.ayah}" class="btn" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">

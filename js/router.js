@@ -32,8 +32,8 @@ export class Router {
     const [pathPart, queryPart] = rawHash.split('?');
     const queryParams = new URLSearchParams(queryPart || '');
 
-    // 1. Ayah Deep-Dive: #ayah/:surah/:ayah
-    const ayahMatch = pathPart.match(/^ayah\/(\d+)\/(\d+)$/);
+    // 1. Ayah Deep-Dive: #ayah/:surah/:ayah or #ayah/:surah::ayah
+    const ayahMatch = pathPart.match(/^ayah\/(\d+)[/:](\d+)$/);
     if (ayahMatch) {
       const surah = parseInt(ayahMatch[1], 10);
       const ayah = parseInt(ayahMatch[2], 10);
@@ -42,7 +42,17 @@ export class Router {
       return;
     }
 
-    // 2. Surah View: #surah/:surah
+    // 2. Direct Surah Ayah Link: #surah/:surah/:ayah or #surah/:surah::ayah (e.g., #surah/6/12)
+    const surahAyahMatch = pathPart.match(/^surah\/(\d+)[/:](\d+)$/);
+    if (surahAyahMatch) {
+      const surah = parseInt(surahAyahMatch[1], 10);
+      const targetAyah = parseInt(surahAyahMatch[2], 10);
+      const handler = this.routes.get('surah');
+      if (handler) handler({ surah, targetAyah });
+      return;
+    }
+
+    // 3. Surah View: #surah/:surah (with optional ?ayah= query parameter)
     const surahMatch = pathPart.match(/^surah\/(\d+)$/);
     if (surahMatch) {
       const surah = parseInt(surahMatch[1], 10);
@@ -52,7 +62,27 @@ export class Router {
       return;
     }
 
-    // 3. 15-Line Mushaf Page View: #mushaf/:page
+    // 4. Short form Ayah: #6/12 or #6:12
+    const shortAyahMatch = pathPart.match(/^(\d+)[/:](\d+)$/);
+    if (shortAyahMatch) {
+      const surah = parseInt(shortAyahMatch[1], 10);
+      const targetAyah = parseInt(shortAyahMatch[2], 10);
+      const handler = this.routes.get('surah');
+      if (handler) handler({ surah, targetAyah });
+      return;
+    }
+
+    // 5. Short form Surah: #6
+    const shortSurahMatch = pathPart.match(/^(\d+)$/);
+    if (shortSurahMatch) {
+      const surah = parseInt(shortSurahMatch[1], 10);
+      const targetAyah = queryParams.get('ayah') ? parseInt(queryParams.get('ayah'), 10) : null;
+      const handler = this.routes.get('surah');
+      if (handler) handler({ surah, targetAyah });
+      return;
+    }
+
+    // 6. 15-Line Mushaf Page View: #mushaf/:page
     const mushafMatch = pathPart.match(/^mushaf\/(\d+)$/);
     if (mushafMatch) {
       const page = parseInt(mushafMatch[1], 10);
@@ -61,7 +91,7 @@ export class Router {
       return;
     }
 
-    // 4. Bookmarks View: #bookmarks
+    // 7. Bookmarks View: #bookmarks
     if (pathPart === 'bookmarks') {
       const handler = this.routes.get('bookmarks');
       if (handler) handler();

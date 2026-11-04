@@ -574,13 +574,23 @@ body {
 }
 
 .verse-card.highlight-target {
-  animation: pulseHighlight 2s ease forwards;
+  animation: pulseHighlight 3s ease forwards;
+  border-color: var(--accent-gold) !important;
+  scroll-margin-top: 15vh;
 }
 
 @keyframes pulseHighlight {
-  0% { box-shadow: 0 0 0 4px var(--accent-gold); }
-  50% { box-shadow: 0 0 20px var(--accent-gold); }
-  100% { box-shadow: 0 0 0 0 transparent; }
+  0% {
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.6), 0 0 30px rgba(245, 158, 11, 0.4);
+    border-color: var(--accent-gold);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.4), 0 0 16px rgba(245, 158, 11, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.3);
+    border-color: rgba(245, 158, 11, 0.6);
+  }
 }
 
 .verse-card-top {
@@ -603,6 +613,15 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+a.ayah-badge:hover {
+  background: rgba(245, 158, 11, 0.24);
+  border-color: var(--accent-gold);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 .verse-actions {
