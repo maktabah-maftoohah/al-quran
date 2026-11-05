@@ -21,7 +21,6 @@ class App {
     this.surahListContainer = document.getElementById('sidebar-surah-list');
     this.bookmarksListContainer = document.getElementById('sidebar-bookmarks-list');
     this.notesListContainer = document.getElementById('sidebar-notes-list');
-    this.continueBanner = document.getElementById('sidebar-continue-banner');
     this.sidebarEl = document.getElementById('app-sidebar');
     this.morphDrawer = document.getElementById('morphology-drawer');
     this.morphOverlay = document.getElementById('drawer-overlay');
@@ -78,7 +77,6 @@ class App {
       store.updateSettings({ language: lang });
       i18n.setLanguage(lang);
       updateLangUI(lang);
-      this.updateContinueBanner();
       if (this.cachedSurahs) {
         this.renderSidebarSurahs(this.cachedSurahs);
       }
@@ -231,8 +229,6 @@ class App {
         }
       });
     }
-
-    this.updateContinueBanner();
   }
 
   renderSidebarSurahs(surahs) {
@@ -359,24 +355,6 @@ class App {
         }
       });
     });
-  }
-
-  updateContinueBanner() {
-    if (!this.continueBanner) return;
-    const last = store.getLastRead();
-    if (!last) {
-      this.continueBanner.style.display = 'none';
-      return;
-    }
-    const isMs = i18n.getLanguage() === 'ms';
-    this.continueBanner.style.display = 'flex';
-    this.continueBanner.innerHTML = `
-      <div class="continue-info">
-        <span class="continue-label">${i18n.t('sidebar.continueReading')}</span>
-        <span class="continue-ref">${last.surahName || `Surah ${last.surah}`} : ${isMs ? 'Ayat' : 'Ayah'} ${last.ayah}</span>
-      </div>
-      <a href="#${last.surah}:${last.ayah}" class="btn btn-primary" style="padding: 0.3rem 0.65rem; font-size: 0.75rem;">${i18n.t('sidebar.resumeBtn')}</a>
-    `;
   }
 
   // --- Typography Popover ---
@@ -1069,7 +1047,6 @@ class App {
         const displayName = store.getSurahName(meta);
         const displayTrans = store.getSurahTranslation(meta);
         store.setLastRead(surah, targetAyah, displayName, displayTrans);
-        this.updateContinueBanner();
       }
 
       this.scrollToAyah(surah, targetAyah, { smooth: false });
@@ -1126,7 +1103,6 @@ class App {
       const displayName = store.getSurahName(meta);
       const displayTrans = store.getSurahTranslation(meta);
       store.setLastRead(surah, targetA, displayName);
-      this.updateContinueBanner();
 
       if (!audio.state.isPlaying) {
         audio.state.currentSurah = surah;
@@ -1340,6 +1316,9 @@ class App {
       if (targetAyah) {
         this.scrollToAyah(surah, targetAyah, { smooth: false });
       } else {
+        if (this.mainContainer) {
+          this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
+        }
         window.scrollTo({ top: 0, behavior: 'auto' });
       }
     } catch (err) {
@@ -1363,14 +1342,20 @@ class App {
     const performScroll = (behavior = 'instant') => {
       const el = document.getElementById(cardId);
       if (!el) return;
-      const headerEl = document.querySelector('.app-header');
-      const headerHeight = headerEl ? headerEl.offsetHeight : 64;
-      const offset = headerHeight + 20;
-      const rect = el.getBoundingClientRect();
-      const absoluteTop = window.scrollY + rect.top - offset;
+      const container = this.mainContainer;
+      if (container) {
+        const containerRect = container.getBoundingClientRect();
+        const elRect = el.getBoundingClientRect();
+        const offset = 20;
+        const targetScrollTop = container.scrollTop + (elRect.top - containerRect.top) - offset;
+        container.scrollTo({
+          top: Math.max(0, targetScrollTop),
+          behavior: behavior
+        });
+      }
       window.scrollTo({
-        top: Math.max(0, absoluteTop),
-        behavior: behavior
+        top: 0,
+        behavior: 'instant'
       });
     };
 
@@ -1684,6 +1669,9 @@ class App {
    */
   async renderAyahDeepDive({ surah, ayah }) {
     this.renderedSurah = null;
+    if (this.mainContainer) {
+      this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
+    }
     this.mainContainer.innerHTML = '<div style="padding: 3rem; text-align: center; color: var(--text-muted);">Loading Ayah Deep-Dive...</div>';
 
     try {
@@ -1721,7 +1709,6 @@ class App {
 
       const displayName = store.getSurahName(meta);
       store.setLastRead(surah, ayah, displayName);
-      this.updateContinueBanner();
 
       if (!audio.state.isPlaying) {
         audio.state.currentSurah = surah;
@@ -2036,6 +2023,9 @@ class App {
    */
   async renderMushafView({ page }) {
     this.renderedSurah = null;
+    if (this.mainContainer) {
+      this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
+    }
     await mushafViewer.renderPage(page || 1, this.mainContainer);
   }
 
@@ -2044,6 +2034,9 @@ class App {
    */
   renderBookmarksView() {
     this.renderedSurah = null;
+    if (this.mainContainer) {
+      this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
+    }
     const bookmarks = store.bookmarks;
     if (!bookmarks.length) {
       this.mainContainer.innerHTML = `

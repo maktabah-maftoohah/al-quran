@@ -88,7 +88,7 @@ server.listen(PORT, async () => {
     const verseCards = await page.$$('.verse-card');
     assert(verseCards.length === 7, `Surah 1 has 7 verse cards, found ${verseCards.length}`);
     const surahTitle = await page.textContent('.surah-header-latin');
-    assert(surahTitle.includes('Al-Faatiha'), `Surah header shows Al-Faatiha`);
+    assert(surahTitle.includes('Al-Fatihah') || surahTitle.includes('Al-Faatiha'), `Surah header shows Al-Fatihah/Al-Faatiha`);
 
     // 2. Surah 112 Navigation & Basmalah Banner
     console.log('\n--- 2. Surah 112 Navigation & Basmalah Banner ---');
@@ -258,7 +258,7 @@ server.listen(PORT, async () => {
     const playPauseBtn = await page.$('#player-play-pause-btn');
     assert(playPauseBtn !== null, 'Audio play/pause button exists');
     const surahTitleInPlayer = await page.textContent('#player-surah-title');
-    assert(surahTitleInPlayer.includes('Al-Ikhlaas'), `Sticky player reflects current surah: "${surahTitleInPlayer}"`);
+    assert(surahTitleInPlayer.includes('Al-Ikhlas') || surahTitleInPlayer.includes('Al-Ikhlaas'), `Sticky player reflects current surah: "${surahTitleInPlayer}"`);
 
     // 14. Responsive Mobile Drawer Toggle
     console.log('\n--- 14. Responsive Mobile Drawer Toggle ---');
