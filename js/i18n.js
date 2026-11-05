@@ -23,6 +23,7 @@ export const translations = {
       bookmarksTitle: "Penanda Buku",
       sourceGithub: "Lihat Kod Sumber di GitHub",
       toggleDrawerAria: "Buka/Tutup laci navigasi",
+      toggleDrawerTitle: "Togol Navigasi (Ctrl+B / [)",
       languageToggle: "Tukar Bahasa (Switch Language)",
     },
     sidebar: {
@@ -147,12 +148,15 @@ export const translations = {
       btnRemove: "✕ Padam",
     },
     mushaf: {
-      prevPage: "← Halaman {p}",
-      nextPage: "Halaman {p} →",
+      prevPage: "Halaman {p}",
+      nextPage: "Halaman {p}",
       pageLabel: "Halaman",
-      readingView: "📖 Paparan Bacaan Surah",
+      readingView: "📖 Paparan Surah",
       juz: "Juzuk",
       loading: "Memuatkan Halaman Mushaf {p}...",
+      selectSurah: "Pilih Surah",
+      selectJuz: "Pilih Juzuk",
+      sajdah: "Sujud Tilawah",
     }
   },
   en: {
@@ -174,6 +178,7 @@ export const translations = {
       bookmarksTitle: "Saved Bookmarks",
       sourceGithub: "View Source on GitHub",
       toggleDrawerAria: "Toggle navigation drawer",
+      toggleDrawerTitle: "Toggle Sidebar (Ctrl+B / [)",
       languageToggle: "Switch Language / Tukar Bahasa",
     },
     sidebar: {
@@ -298,12 +303,15 @@ export const translations = {
       btnRemove: "✕ Remove",
     },
     mushaf: {
-      prevPage: "← Page {p}",
-      nextPage: "Page {p} →",
+      prevPage: "Page {p}",
+      nextPage: "Page {p}",
       pageLabel: "Page",
-      readingView: "📖 Surah Reading View",
+      readingView: "📖 Surah View",
       juz: "Juz",
       loading: "Loading Mushaf Page {p}...",
+      selectSurah: "Select Surah",
+      selectJuz: "Select Juz",
+      sajdah: "Sajdah (Prostration)",
     }
   }
 };

@@ -545,6 +545,34 @@ server.listen(PORT, async () => {
     await page.setViewportSize({ width: 1280, height: 800 });
 
     // -------------------------------------------------------------
+    // Test 19: Desktop Sidebar Collapse & Expand (Distraction-Free)
+    // -------------------------------------------------------------
+    console.log('\n[TEST 19] Desktop Sidebar Collapse & Expand (Distraction-Free)');
+    await page.waitForTimeout(300);
+
+    const desktopToggle = await page.$('#toggle-sidebar-btn');
+    assert(desktopToggle !== null, 'Desktop sidebar toggle button found');
+
+    // Click to collapse
+    await desktopToggle.click();
+    await page.waitForTimeout(400);
+    let isCollapsed = await page.$eval('#app-sidebar', el => el.classList.contains('collapsed'));
+    assert(isCollapsed, 'Sidebar collapsed on desktop toggle click');
+
+    // Check stored setting in localStorage
+    const savedSetting = await page.evaluate(() => {
+      const data = JSON.parse(localStorage.getItem('maktabah_quran_settings') || '{}');
+      return data.sidebarCollapsed;
+    });
+    assert(savedSetting === true, 'sidebarCollapsed saved as true in settings');
+
+    // Keyboard shortcut to toggle back (press '[')
+    await page.keyboard.press('[');
+    await page.waitForTimeout(400);
+    isCollapsed = await page.$eval('#app-sidebar', el => el.classList.contains('collapsed'));
+    assert(!isCollapsed, 'Sidebar re-expanded via keyboard shortcut "["');
+
+    // -------------------------------------------------------------
     // SUMMARY
     // -------------------------------------------------------------
     console.log('\n============================================================');

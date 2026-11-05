@@ -203,12 +203,31 @@ class App {
       console.error('Sidebar surahs failed to load:', err);
     }
 
-    // Toggle sidebar on mobile
+    // Toggle sidebar on mobile and desktop
     const toggleBtn = document.getElementById('sidebar-toggle-btn') || document.getElementById('toggle-sidebar-btn');
     if (toggleBtn && this.sidebarEl) {
+      // Apply initial desktop collapsed state
+      if (store.settings.sidebarCollapsed && window.innerWidth > 900) {
+        this.sidebarEl.classList.add('collapsed');
+        toggleBtn.classList.add('collapsed');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+
       toggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        this.sidebarEl.classList.toggle('open');
+        if (window.innerWidth <= 900) {
+          // Mobile: toggle slide-over drawer
+          const isOpen = this.sidebarEl.classList.toggle('open');
+          toggleBtn.setAttribute('aria-expanded', String(isOpen));
+        } else {
+          // Desktop: toggle collapse/expand distraction-free reading mode
+          const isCollapsed = this.sidebarEl.classList.toggle('collapsed');
+          toggleBtn.classList.toggle('collapsed', isCollapsed);
+          toggleBtn.setAttribute('aria-expanded', String(!isCollapsed));
+          store.updateSettings({ sidebarCollapsed: isCollapsed });
+        }
       });
 
       // Auto-close sidebar on mobile after clicking an item
@@ -216,6 +235,7 @@ class App {
         if (e.target.closest('.surah-list-item')) {
           if (window.innerWidth <= 900) {
             this.sidebarEl.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
           }
         }
       });
@@ -225,6 +245,7 @@ class App {
         if (window.innerWidth <= 900 && this.sidebarEl.classList.contains('open')) {
           if (!this.sidebarEl.contains(e.target) && !toggleBtn.contains(e.target)) {
             this.sidebarEl.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
           }
         }
       });
@@ -535,13 +556,47 @@ class App {
     const reciterTitle = document.getElementById('player-reciter-title');
 
     if (playPauseBtn) {
-      playPauseBtn.addEventListener('click', () => audio.togglePlayPause());
+      playPauseBtn.addEventListener('click', async () => {
+        if (!audio.state.isPlaying && window.location.hash.startsWith('#mushaf')) {
+          const activeSpan = document.querySelector('.mushaf-ayah-span.active-reciting');
+          if (!activeSpan) {
+            const firstSpan = document.querySelector('.mushaf-ayah-span');
+            if (firstSpan) {
+              const sNum = parseInt(firstSpan.getAttribute('data-surah'), 10);
+              const aNum = parseInt(firstSpan.getAttribute('data-ayah'), 10);
+              const total = parseInt(firstSpan.getAttribute('data-total'), 10);
+              const meta = await store.getSurahMeta(sNum);
+              await audio.playAyah(sNum, aNum, {
+                continuous: true,
+                totalAyahs: total,
+                surahName: meta ? store.getSurahName(meta) : `Surah ${sNum}`,
+              });
+              return;
+            }
+          }
+        }
+        audio.togglePlayPause();
+      });
     }
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => audio.prevAyah());
+      prevBtn.addEventListener('click', () => {
+        if (window.location.hash.startsWith('#mushaf')) {
+          // In RTL Quran reading, moving forward goes to the left (prevBtn points left ←)
+          audio.nextAyah();
+        } else {
+          audio.prevAyah();
+        }
+      });
     }
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => audio.nextAyah());
+      nextBtn.addEventListener('click', () => {
+        if (window.location.hash.startsWith('#mushaf')) {
+          // In RTL Quran reading, moving backward goes to the right (nextBtn points right →)
+          audio.prevAyah();
+        } else {
+          audio.nextAyah();
+        }
+      });
     }
 
     if (reciterSelect) {
@@ -608,6 +663,26 @@ class App {
         }
       }
     });
+
+    this.updatePlayerControlsDirection();
+  }
+
+  updatePlayerControlsDirection() {
+    const prevBtn = document.getElementById('player-prev-btn');
+    const nextBtn = document.getElementById('player-next-btn');
+    if (!prevBtn || !nextBtn) return;
+    const isMushaf = window.location.hash.startsWith('#mushaf');
+    const isMs = (store.settings.language || 'ms') === 'ms';
+
+    if (isMushaf) {
+      prevBtn.title = isMs ? 'Ayat Seterusnya (Maju ke kiri ← / Alt+←)' : 'Next Ayah (Advance left ← / Alt+←)';
+      nextBtn.title = isMs ? 'Ayat Sebelumnya (Undur ke kanan → / Alt+→)' : 'Previous Ayah (Step back right → / Alt+→)';
+    } else {
+      prevBtn.title = isMs ? 'Ayat Sebelumnya (Alt + ←)' : 'Previous Ayah (Alt + ←)';
+      nextBtn.title = isMs ? 'Ayat Seterusnya (Alt + →)' : 'Next Ayah (Alt + →)';
+    }
+    prevBtn.setAttribute('aria-label', prevBtn.title);
+    nextBtn.setAttribute('aria-label', nextBtn.title);
   }
 
   // --- Morphology & Concordance Drawer ---
@@ -725,9 +800,21 @@ class App {
         e.preventDefault();
         audio.togglePlayPause();
       } else if (e.code === 'ArrowRight' && e.altKey) {
-        audio.nextAyah();
+        if (window.location.hash.startsWith('#mushaf')) {
+          audio.prevAyah();
+        } else {
+          audio.nextAyah();
+        }
       } else if (e.code === 'ArrowLeft' && e.altKey) {
-        audio.prevAyah();
+        if (window.location.hash.startsWith('#mushaf')) {
+          audio.nextAyah();
+        } else {
+          audio.prevAyah();
+        }
+      } else if ((e.key === '[' || (e.ctrlKey && e.key.toLowerCase() === 'b')) && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        const btn = document.getElementById('toggle-sidebar-btn') || document.getElementById('sidebar-toggle-btn');
+        if (btn) btn.click();
       }
     });
 
@@ -872,10 +959,6 @@ class App {
           await storageDB.clearAllAudio();
           this.updateStorageStatsDisplay();
           this.showToast('All cached offline audio deleted');
-          document.querySelectorAll('.btn-download-audio').forEach((btn) => {
-            btn.className = 'btn btn-download-audio';
-            btn.innerHTML = '📥 Download Offline Audio';
-          });
         }
       });
     }
@@ -1036,6 +1119,7 @@ class App {
    * Surah Reading View (#surah/:surah)
    */
   async renderSurahView({ surah, targetAyah }) {
+    this.updatePlayerControlsDirection();
     // If surah is already rendered in the DOM and we are navigating to an ayah within the same chapter
     if (targetAyah && this.renderedSurah === surah && document.getElementById(`verse-${surah}-${targetAyah}`)) {
       document.querySelectorAll('.surah-list-item').forEach((el) => {
@@ -1086,17 +1170,12 @@ class App {
       // Check notes and offline audio status in IndexedDB
       const reciter = store.settings.reciter || 'Alafasy_128kbps';
       let allNotes = [];
-      let cachedAudioCount = 0;
       try {
-        [allNotes, cachedAudioCount] = await Promise.all([
-          storageDB.getAllNotes(),
-          storageDB.getSurahAudioCount(reciter, surah),
-        ]);
+        allNotes = await storageDB.getAllNotes();
       } catch (e) {
         console.warn('IDB fetch in renderSurahView:', e);
       }
       const notesMap = new Map(allNotes.map((n) => [n.ref, n]));
-      const isAudioFullyDownloaded = cachedAudioCount >= meta.total_ayahs;
 
       // Update Last Read
       const targetA = targetAyah || 1;
@@ -1291,9 +1370,6 @@ class App {
           <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-primary" id="btn-play-surah-continuous">
               ▶ ${i18n.t('surah.playFullSurah')}
-            </button>
-            <button class="btn btn-download-audio ${isAudioFullyDownloaded ? 'downloaded' : ''}" id="btn-download-surah-audio" data-surah="${surah}" data-total="${meta.total_ayahs}">
-              ${isAudioFullyDownloaded ? `✓ ${isMs ? 'Audio Luar Talian Sedia' : 'Offline Audio Ready'} (${meta.total_ayahs}/${meta.total_ayahs})` : cachedAudioCount > 0 ? `📥 ${isMs ? 'Audio Luar Talian' : 'Offline Audio'} (${cachedAudioCount}/${meta.total_ayahs})` : `📥 ${isMs ? 'Muat Turun Audio Luar Talian' : 'Download Offline Audio'}`}
             </button>
             <a href="#mushaf/1" class="btn" style="text-decoration: none;">
               📄 ${i18n.t('surah.openMushaf')}
@@ -1493,50 +1569,6 @@ class App {
         });
       });
     });
-
-    // Download Surah Offline Audio (IndexedDB)
-    const downloadAudioBtn = document.getElementById('btn-download-surah-audio');
-    if (downloadAudioBtn) {
-      downloadAudioBtn.addEventListener('click', async () => {
-        const total = meta.total_ayahs;
-        const reciter = store.settings.reciter || 'Alafasy_128kbps';
-        const currentCount = await storageDB.getSurahAudioCount(reciter, surah);
-
-        if (currentCount >= total) {
-          if (
-            confirm(
-              `Surah ${displayName} audio (${total} verses) is cached offline in IndexedDB.\n\nWould you like to delete this Surah's offline audio to free space?`
-            )
-          ) {
-            await storageDB.deleteSurahAudio(reciter, surah);
-            downloadAudioBtn.className = 'btn btn-download-audio';
-            downloadAudioBtn.innerHTML = '📥 Download Offline Audio';
-            this.showToast(`Cleared offline audio for ${displayName}`);
-            this.updateStorageStatsDisplay();
-          }
-          return;
-        }
-
-        downloadAudioBtn.disabled = true;
-        downloadAudioBtn.innerHTML = `⏳ Downloading: 0/${total}...`;
-        this.showToast(`Downloading offline audio for ${displayName}...`);
-
-        try {
-          await audio.downloadSurahAudio(surah, total, (prog) => {
-            downloadAudioBtn.innerHTML = `⏳ Downloading: ${prog.current}/${prog.total}...`;
-          });
-          downloadAudioBtn.disabled = false;
-          downloadAudioBtn.className = 'btn btn-download-audio downloaded';
-          downloadAudioBtn.innerHTML = `✓ Offline Audio Ready (${total}/${total})`;
-          this.showToast(`All ${total} verses of ${displayName} saved offline!`);
-          this.updateStorageStatsDisplay();
-        } catch (e) {
-          downloadAudioBtn.disabled = false;
-          downloadAudioBtn.innerHTML = '📥 Download Offline Audio';
-          this.showToast(`Audio download failed: ${e.message}`);
-        }
-      });
-    }
 
     // Copy Verse (Arabic + Translation + (Al-Quran S:A))
     this.mainContainer.querySelectorAll('.btn-copy-ayah').forEach((btn) => {
@@ -2023,6 +2055,7 @@ class App {
    */
   async renderMushafView({ page }) {
     this.renderedSurah = null;
+    this.updatePlayerControlsDirection();
     if (this.mainContainer) {
       this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
     }

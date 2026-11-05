@@ -18,6 +18,7 @@ class QuranStore {
       },
       tafsir: new Map(),
       searchIndex: null,
+      pagesMeta: null,
     };
 
     this.defaultSettings = {
@@ -37,6 +38,7 @@ class QuranStore {
         rangeEnd: null,
       },
       language: 'ms',
+      sidebarCollapsed: false,
       activeTranslations: {
         basmeih: true,
         jalalayn: false,
@@ -164,6 +166,41 @@ class QuranStore {
     const data = await res.json();
     this.cache.surahs = data;
     return data;
+  }
+
+  async fetchPagesMeta() {
+    if (this.cache.pagesMeta) return this.cache.pagesMeta;
+    try {
+      const res = await fetch('./data/pages-meta.json');
+      if (res.ok) {
+        this.cache.pagesMeta = await res.json();
+      }
+    } catch (e) {
+      console.warn('Failed to load pages-meta:', e);
+    }
+    return this.cache.pagesMeta;
+  }
+
+  getPageForAyah(surah, ayah) {
+    const meta = this.cache.pagesMeta;
+    if (!meta || !meta.pages) {
+      const cached = this.cache.arabic?.get?.(parseInt(surah, 10));
+      return cached?.ayahs?.[String(ayah)]?.page || 1;
+    }
+    const s = parseInt(surah, 10);
+    const a = parseInt(ayah, 10);
+    let low = 1, high = meta.pages.length, ans = 1;
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const start = meta.pages[mid - 1];
+      if (start.surah < s || (start.surah === s && start.ayah <= a)) {
+        ans = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return ans;
   }
 
   async getSurahMeta(surahNum) {

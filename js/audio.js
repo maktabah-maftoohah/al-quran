@@ -215,12 +215,44 @@ class AudioEngine {
     }
   }
 
-  nextAyah() {
-    if (this.state.currentAyah < this.state.totalAyahs) {
-      this.playAyah(this.state.currentSurah, this.state.currentAyah + 1, {
-        continuous: this.state.isContinuous,
-        totalAyahs: this.state.totalAyahs,
-        surahName: this.state.surahName,
+  async nextAyah() {
+    const surahs = await store.fetchSurahs();
+    let sNum = this.state.currentSurah || 1;
+    let aNum = this.state.currentAyah || 0;
+    let total = this.state.totalAyahs || 7;
+    let sName = this.state.surahName;
+
+    // In Mushaf view, if no active verse on current page, pick first verse on page
+    if (window.location.hash.startsWith('#mushaf')) {
+      const activeSpan = document.querySelector('.mushaf-ayah-span.active-reciting');
+      const allSpans = Array.from(document.querySelectorAll('.mushaf-ayah-span'));
+      if (!activeSpan && allSpans.length > 0) {
+        const first = allSpans[0];
+        sNum = parseInt(first.getAttribute('data-surah'), 10);
+        aNum = parseInt(first.getAttribute('data-ayah'), 10);
+        const sMeta = surahs.find((item) => item.number === sNum);
+        total = sMeta ? sMeta.total_ayahs : 7;
+        sName = sMeta ? store.getSurahName(sMeta) : `Surah ${sNum}`;
+        await this.playAyah(sNum, aNum, { continuous: true, totalAyahs: total, surahName: sName });
+        return;
+      }
+    }
+
+    if (aNum < total) {
+      await this.playAyah(sNum, aNum + 1, {
+        continuous: true,
+        totalAyahs: total,
+        surahName: sName,
+      });
+    } else if (sNum < 114) {
+      const nextSurah = sNum + 1;
+      const nextMeta = surahs.find((s) => s.number === nextSurah);
+      const nextTotal = nextMeta ? nextMeta.total_ayahs : 7;
+      const nextName = nextMeta ? store.getSurahName(nextMeta) : `Surah ${nextSurah}`;
+      await this.playAyah(nextSurah, 1, {
+        continuous: true,
+        totalAyahs: nextTotal,
+        surahName: nextName,
       });
     } else {
       this.pause();
@@ -229,12 +261,44 @@ class AudioEngine {
     }
   }
 
-  prevAyah() {
-    if (this.state.currentAyah > 1) {
-      this.playAyah(this.state.currentSurah, this.state.currentAyah - 1, {
-        continuous: this.state.isContinuous,
-        totalAyahs: this.state.totalAyahs,
-        surahName: this.state.surahName,
+  async prevAyah() {
+    const surahs = await store.fetchSurahs();
+    let sNum = this.state.currentSurah || 1;
+    let aNum = this.state.currentAyah || 1;
+    let total = this.state.totalAyahs || 7;
+    let sName = this.state.surahName;
+
+    // In Mushaf view, if no active verse on current page, pick first verse on page
+    if (window.location.hash.startsWith('#mushaf')) {
+      const activeSpan = document.querySelector('.mushaf-ayah-span.active-reciting');
+      const allSpans = Array.from(document.querySelectorAll('.mushaf-ayah-span'));
+      if (!activeSpan && allSpans.length > 0) {
+        const first = allSpans[0];
+        sNum = parseInt(first.getAttribute('data-surah'), 10);
+        aNum = parseInt(first.getAttribute('data-ayah'), 10);
+        const sMeta = surahs.find((item) => item.number === sNum);
+        total = sMeta ? sMeta.total_ayahs : 7;
+        sName = sMeta ? store.getSurahName(sMeta) : `Surah ${sNum}`;
+        await this.playAyah(sNum, aNum, { continuous: true, totalAyahs: total, surahName: sName });
+        return;
+      }
+    }
+
+    if (aNum > 1) {
+      await this.playAyah(sNum, aNum - 1, {
+        continuous: true,
+        totalAyahs: total,
+        surahName: sName,
+      });
+    } else if (sNum > 1) {
+      const prevSurah = sNum - 1;
+      const prevMeta = surahs.find((s) => s.number === prevSurah);
+      const prevTotal = prevMeta ? prevMeta.total_ayahs : 7;
+      const prevName = prevMeta ? store.getSurahName(prevMeta) : `Surah ${prevSurah}`;
+      await this.playAyah(prevSurah, prevTotal, {
+        continuous: true,
+        totalAyahs: prevTotal,
+        surahName: prevName,
       });
     }
   }
@@ -332,6 +396,28 @@ class AudioEngine {
       if (store.settings.autoScroll) {
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+    }
+
+    // Synchronize 15-Line Madinah Mushaf View active verse
+    document.querySelectorAll('.mushaf-ayah-span').forEach((el) => el.classList.remove('active-reciting'));
+    const mushafTarget = document.querySelector(
+      `.mushaf-ayah-span[data-surah="${this.state.currentSurah}"][data-ayah="${this.state.currentAyah}"]`
+    );
+    if (mushafTarget) {
+      mushafTarget.classList.add('active-reciting');
+      mushafTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else if (window.location.hash.startsWith('#mushaf')) {
+      // Auto-turn Mushaf page when active verse transitions across page boundaries
+      store.fetchPagesMeta().then(() => {
+        const targetPage = store.getPageForAyah(this.state.currentSurah, this.state.currentAyah);
+        if (targetPage) {
+          const curMatch = window.location.hash.match(/#mushaf\/(\d+)/);
+          const curP = curMatch ? parseInt(curMatch[1], 10) : 1;
+          if (targetPage !== curP) {
+            window.location.hash = `#mushaf/${targetPage}`;
+          }
+        }
+      });
     }
   }
 
