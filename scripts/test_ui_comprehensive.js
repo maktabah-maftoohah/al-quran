@@ -68,7 +68,9 @@ server.listen(PORT, async () => {
 
   page.on('console', (msg) => {
     if (msg.type() === 'error') {
-      console.error('CONSOLE ERROR:', msg.text());
+      const text = msg.text();
+      if (text.includes('fonts.googleapis.com') || text.includes('fonts.gstatic.com')) return;
+      console.error('CONSOLE ERROR:', text);
       consoleErrors.push(msg.text());
     }
   });

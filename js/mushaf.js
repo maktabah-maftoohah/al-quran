@@ -455,7 +455,8 @@ export class MushafViewer {
     const [meta, surahs] = await Promise.all([
       this.loadPagesMeta(),
       store.fetchSurahs(),
-      store.fetchTranslations()
+      store.fetchTranslations(),
+      store.fetchAsbab().catch(() => ({})),
     ]);
     store.setLastMushafPage(page);
     const mushafNavBtn = document.getElementById('mushaf-mode-btn');
@@ -703,7 +704,12 @@ export class MushafViewer {
     const transClose = document.getElementById('mushaf-trans-close');
     const showTranslation = (s, a, name, txt) => {
       if (!transBar || !txt) return;
-      if (transRef) transRef.innerHTML = `<span>📖 ${name || `Surah ${s}`} [${s}:${a}]</span>`;
+      const hasAsbab = store.hasAsbab(s, a);
+      const isMs = i18n.getLanguage() === 'ms';
+      const asbabLink = hasAsbab
+        ? `<a href="#ayah/${s}/${a}?tab=asbab" class="mushaf-asbab-link" style="margin-left: 0.5rem;" title="${isMs ? 'Buka Asbabun Nuzul' : 'Open Asbab al-Nuzul'}">📜 ${isMs ? 'Asbabun Nuzul' : 'Asbab al-Nuzul'}</a>`
+        : '';
+      if (transRef) transRef.innerHTML = `<span>📖 ${name || `Surah ${s}`} [${s}:${a}]</span>${asbabLink}`;
       if (transTextEl) transTextEl.textContent = txt;
       transBar.style.display = 'block';
     };

@@ -124,6 +124,19 @@ def run_checks():
             else:
                 print(f"[PASS] pages-meta.json: Exactly {len(pages)} Madinah Mushaf pages indexed.")
 
+    # 7. asbabun-nuzul.json
+    asbab_file = DATA_DIR / "asbabun-nuzul.json"
+    if not asbab_file.exists():
+        errors.append("Missing data/asbabun-nuzul.json")
+    else:
+        with open(asbab_file, "r", encoding="utf-8") as f:
+            asbab_data = json.load(f)
+            entries = asbab_data.get("entries", {})
+            if len(entries) < 100:
+                errors.append(f"asbabun-nuzul.json has {len(entries)} entries, expected >= 100")
+            else:
+                print(f"[PASS] asbabun-nuzul.json: Exactly {len(entries)} revelation context entries indexed.")
+
     print("\n" + "=" * 60)
     print("PHASE 2: CODE STANDARDS & INVARIANTS CHECK")
     print("=" * 60)

@@ -21,6 +21,7 @@
    - `data/translations/{lang}/{edition}.json`: Text keyed by surah and ayah strings (`ms/basmeih`, `ms/jalalayn`, `en/sahih`, `en/pickthall`, `id/kemenag`).
    - `data/search-index.json`: Flat array of searchable tokens with normalized Arabic and multilingual translations.
    - `data/pages-meta.json`: 604 Madinah Mushaf page definitions.
+   - `data/asbabun-nuzul.json`: 657 historical revelation context objects with authentic Arabic, Malay, and English citations.
 
 5. **Verification & Testing Commands**:
    - Project & Data Integrity: `python scripts/verify_project.py` && `python scripts/verify_data_integrity.py`.

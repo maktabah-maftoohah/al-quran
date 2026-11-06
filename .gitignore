@@ -21,6 +21,11 @@ data/.cache*
 node_modules/
 dist/
 
+# Credentials & secrets
+*credentials*.json
+client_secret*.json
+*.secret*
+
 # Codebase bundles / AI context exports
 *codebase-context*
 repomix-output*

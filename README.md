@@ -31,6 +31,7 @@
 * **Token-Level Analysis**: Interactive Arabic token cards showing phonetic transliteration, Malay/English gloss, part-of-speech (POS) tags, lemmas, and root words (`الجذر`).
 * **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the Quranic Arabic Corpus.
 * **Tafsir al-Jalalayn & Ibn Kathir**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view (featuring Bahasa Melayu / Nusantara and English).
+* **Asbabun Nuzul (Sebab Turun Wahyu)**: Comprehensive historical context and revelation occasions for 657 verses across 85 surahs, unifying *Kitab Asbab an-Nuzul* (Al-Wahidi), *Lubabun Nuqul* (As-Suyuthi), and *Sahih Asbab an-Nuzul* (Ibrahim al-Ali) with authentic Arabic hadith text, Malay/Nusantara analysis, and English translations.
 
 ### 🌍 Multilingual Translations, Jawi Script & Dual-Language UI
 * **Dual-Language Interface (MY / EN)**: Complete native localization in **Bahasa Melayu (Default)** and **English**, with instant one-click switching via header and settings controls.

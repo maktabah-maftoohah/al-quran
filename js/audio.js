@@ -114,6 +114,12 @@ class AudioEngine {
     if (options.continuous !== undefined) this.state.isContinuous = options.continuous;
 
     const reciter = store.settings.reciter || 'Alafasy_128kbps';
+    if (typeof store.saveAudioState === 'function') {
+      store.saveAudioState(sNum, aNum, reciter);
+    }
+    if (typeof store.recordDailyActivity === 'function') {
+      store.recordDailyActivity();
+    }
     const cdnUrl = this.formatEveryAyahUrl(reciter, sNum, aNum);
 
     // Revoke previous blob URL to prevent memory leaks

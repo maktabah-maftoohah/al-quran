@@ -17,6 +17,7 @@ class QuranStore {
         kemenag: null,
       },
       tafsir: new Map(),
+      asbab: null,
       searchIndex: null,
       pagesMeta: null,
     };
@@ -54,6 +55,24 @@ class QuranStore {
     this.bookmarks = this.loadBookmarks();
     this.lastRead = this.loadLastRead();
     this.lastMushafPage = this.loadLastMushafPage();
+    this.khatam = this.loadKhatam();
+    this.hifzMastery = this.loadHifzMastery();
+    this.audioState = this.loadAudioState();
+    this.bookmarkFolders = this.loadBookmarkFolders();
+    this._userDataListeners = [];
+  }
+
+  onUserDataChanged(cb) {
+    if (!this._userDataListeners) this._userDataListeners = [];
+    this._userDataListeners.push(cb);
+  }
+
+  notifyUserDataChanged() {
+    if (this._userDataListeners) {
+      for (const cb of this._userDataListeners) {
+        try { cb(); } catch (e) { console.warn(e); }
+      }
+    }
   }
 
   // --- LocalStorage Helpers ---
@@ -90,6 +109,7 @@ class QuranStore {
       console.warn('Failed to save settings:', e);
     }
     this.applySettingsToDOM();
+    this.notifyUserDataChanged();
     return this.settings;
   }
 
@@ -136,6 +156,7 @@ class QuranStore {
     } catch (e) {
       console.warn('Failed to save bookmarks:', e);
     }
+    this.notifyUserDataChanged();
     return !exists;
   }
 
@@ -152,6 +173,7 @@ class QuranStore {
         ar: item.ar || '',
         en: item.en || '',
         ms: item.ms || '',
+        folder: item.folder || 'Lalai',
         timestamp: Date.now(),
       });
     }
@@ -160,6 +182,7 @@ class QuranStore {
     } catch (e) {
       console.warn('Failed to save bookmarks:', e);
     }
+    this.notifyUserDataChanged();
     return !exists;
   }
 
@@ -183,6 +206,7 @@ class QuranStore {
     this.lastRead = { surah, ayah, surahName, timestamp: Date.now() };
     try {
       localStorage.setItem('maktabah_quran_last_read', JSON.stringify(this.lastRead));
+      this.notifyUserDataChanged();
     } catch (e) {
       console.warn('Failed to save last read:', e);
     }
@@ -209,8 +233,234 @@ class QuranStore {
     this.lastMushafPage = p;
     try {
       localStorage.setItem('maktabah_quran_last_mushaf_page', String(p));
+      this.recordDailyActivity();
     } catch (e) {
       console.warn('Failed to save last mushaf page:', e);
+    }
+  }
+
+  // --- Khatam & Reading Streaks Engine ---
+
+  loadKhatam() {
+    try {
+      const saved = localStorage.getItem('maktabah_quran_khatam');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return {
+      targetDays: 30,
+      completedPages: [],
+      dailyStreak: 0,
+      streak: 0,
+      lastActiveDate: null,
+      updatedAt: 0,
+    };
+  }
+
+  getKhatam() {
+    if (!this.khatam) this.khatam = this.loadKhatam();
+    return this.khatam;
+  }
+
+  saveKhatam(partial = {}) {
+    this.khatam = { ...this.getKhatam(), ...partial, updatedAt: Date.now() };
+    try {
+      localStorage.setItem('maktabah_quran_khatam', JSON.stringify(this.khatam));
+      this.notifyUserDataChanged();
+    } catch (e) {
+      console.warn('Failed to save khatam state:', e);
+    }
+    return this.khatam;
+  }
+
+  recordDailyActivity() {
+    const today = new Date().toISOString().slice(0, 10);
+    const k = this.getKhatam();
+    if (k.lastActiveDate === today) return;
+
+    let newStreak = k.streak || k.dailyStreak || 0;
+    if (k.lastActiveDate) {
+      const lastDate = new Date(k.lastActiveDate);
+      const currDate = new Date(today);
+      const diffDays = Math.round((currDate - lastDate) / (1000 * 60 * 60 * 24));
+      if (diffDays === 1) {
+        newStreak += 1;
+      } else if (diffDays > 1) {
+        newStreak = 1;
+      }
+    } else {
+      newStreak = 1;
+    }
+
+    this.saveKhatam({
+      streak: newStreak,
+      dailyStreak: newStreak,
+      lastActiveDate: today,
+    });
+  }
+
+  togglePageCompleted(page) {
+    const p = parseInt(page, 10);
+    if (!p || p < 1 || p > 604) return false;
+    const k = this.getKhatam();
+    const set = new Set(k.completedPages || []);
+    let isCompleted = false;
+    if (set.has(p)) {
+      set.delete(p);
+    } else {
+      set.add(p);
+      isCompleted = true;
+    }
+    this.saveKhatam({
+      completedPages: Array.from(set).sort((a, b) => a - b),
+    });
+    this.recordDailyActivity();
+    return isCompleted;
+  }
+
+  // --- Hifz / Memorization Mastery Cloud Tracker ---
+
+  loadHifzMastery() {
+    try {
+      const saved = localStorage.getItem('maktabah_quran_hifz_mastery');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return {};
+  }
+
+  getHifzMastery(surahOrRef, maybeAyah) {
+    if (!this.hifzMastery) this.hifzMastery = this.loadHifzMastery();
+    const ref = maybeAyah !== undefined ? `${surahOrRef}:${maybeAyah}` : surahOrRef;
+    return this.hifzMastery[ref] || null;
+  }
+
+  getAllHifzMastery() {
+    if (!this.hifzMastery) this.hifzMastery = this.loadHifzMastery();
+    return this.hifzMastery;
+  }
+
+  setHifzMastery(surahOrRef, ayahOrStatus, maybeStatus, maybeLevel) {
+    if (!this.hifzMastery) this.hifzMastery = this.loadHifzMastery();
+    let ref;
+    let status;
+    let level;
+
+    if (typeof surahOrRef === 'number' || (typeof surahOrRef === 'string' && !surahOrRef.includes(':') && !isNaN(surahOrRef))) {
+      ref = `${surahOrRef}:${ayahOrStatus}`;
+      status = maybeStatus;
+      level = maybeLevel || (status === 'memorized' ? 3 : 1);
+    } else {
+      ref = surahOrRef;
+      status = ayahOrStatus;
+      level = maybeStatus || (status === 'memorized' ? 3 : 1);
+    }
+
+    const now = Date.now();
+    const intervals = [1, 3, 7, 14, 30];
+    const days = intervals[Math.min(level - 1, intervals.length - 1)] || 1;
+    const nextReview = now + days * 24 * 60 * 60 * 1000;
+
+    if (!status) {
+      delete this.hifzMastery[ref];
+    } else {
+      this.hifzMastery[ref] = {
+        ref,
+        status, // 'learning' | 'memorized' | 'needs_review'
+        level,
+        intervalDays: days,
+        lastReviewed: now,
+        nextReview,
+        updatedAt: now,
+      };
+    }
+    try {
+      localStorage.setItem('maktabah_quran_hifz_mastery', JSON.stringify(this.hifzMastery));
+      this.recordDailyActivity();
+      this.notifyUserDataChanged();
+    } catch (e) {
+      console.warn('Failed to save hifz mastery:', e);
+    }
+    return this.hifzMastery[ref] || null;
+  }
+
+  // --- Cross-Device Audio State Sync ---
+
+  loadAudioState() {
+    try {
+      const saved = localStorage.getItem('maktabah_quran_audio_state');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return null;
+  }
+
+  getAudioState() {
+    if (!this.audioState) this.audioState = this.loadAudioState();
+    return this.audioState;
+  }
+
+  saveAudioState(surah, ayah, reciter) {
+    this.audioState = {
+      surah: parseInt(surah, 10),
+      ayah: parseInt(ayah, 10),
+      reciter: reciter || 'Alafasy_128kbps',
+      timestamp: Date.now(),
+    };
+    try {
+      localStorage.setItem('maktabah_quran_audio_state', JSON.stringify(this.audioState));
+      this.notifyUserDataChanged();
+    } catch (e) {
+      console.warn('Failed to save audio state:', e);
+    }
+  }
+
+  // --- Thematic Bookmark Collections & Folders ---
+
+  loadBookmarkFolders() {
+    try {
+      const saved = localStorage.getItem('maktabah_quran_bookmark_folders');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return [
+      { id: 'all', name: 'Semua', icon: '📖' },
+      { id: 'doa', name: 'Doa-Doa Pilihan', icon: '🤲' },
+      { id: 'sabr', name: 'Sabar & Ketenangan', icon: '🌿' },
+      { id: 'hifz', name: 'Hafazan', icon: '🧠' },
+    ];
+  }
+
+  getBookmarkFolders() {
+    if (!this.bookmarkFolders) this.bookmarkFolders = this.loadBookmarkFolders();
+    return this.bookmarkFolders;
+  }
+
+  saveBookmarkFolders(folders) {
+    this.bookmarkFolders = folders;
+    try {
+      localStorage.setItem('maktabah_quran_bookmark_folders', JSON.stringify(folders));
+      this.notifyUserDataChanged();
+    } catch (e) {
+      console.warn('Failed to save bookmark folders:', e);
+    }
+  }
+
+  addBookmarkFolder(name, icon = '📁') {
+    const folders = this.getBookmarkFolders();
+    const id = 'f_' + Date.now().toString(36);
+    folders.push({ id, name, icon });
+    this.saveBookmarkFolders(folders);
+    return id;
+  }
+
+  setBookmarkFolder(ref, folderId) {
+    const bm = (this.bookmarks || []).find((b) => b.ref === ref);
+    if (bm) {
+      bm.folder = folderId;
+      bm.folderId = folderId || 'all';
+      try {
+        localStorage.setItem('maktabah_quran_bookmarks', JSON.stringify(this.bookmarks));
+        this.notifyUserDataChanged();
+      } catch (e) {
+        console.warn('Failed to update bookmark folder:', e);
+      }
     }
   }
 
@@ -386,6 +636,33 @@ class QuranStore {
         error: true,
       };
     }
+  }
+
+  async fetchAsbab() {
+    if (this.cache.asbab) return this.cache.asbab;
+    try {
+      const res = await fetch('./data/asbabun-nuzul.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      this.cache.asbab = data.entries || {};
+      return this.cache.asbab;
+    } catch (err) {
+      console.warn('Failed to load asbabun-nuzul:', err);
+      this.cache.asbab = {};
+      return this.cache.asbab;
+    }
+  }
+
+  getAsbab(surah, ayah) {
+    if (!this.cache.asbab) return null;
+    const key = `${parseInt(surah, 10)}:${parseInt(ayah, 10)}`;
+    return this.cache.asbab[key] || null;
+  }
+
+  hasAsbab(surah, ayah) {
+    if (!this.cache.asbab) return false;
+    const key = `${parseInt(surah, 10)}:${parseInt(ayah, 10)}`;
+    return Boolean(this.cache.asbab[key]);
   }
 
   async fetchSearchIndex() {

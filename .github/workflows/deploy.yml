@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'data/traffic/**'
+      - '.github/workflows/traffic-archive.yml'
   workflow_dispatch:
 
 permissions:

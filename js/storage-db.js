@@ -265,7 +265,7 @@ export class StorageDB {
           ar: data.ar || '',
           translation: data.translation || '',
           text: data.text || '',
-          updatedAt: Date.now(),
+          updatedAt: data.updatedAt || Date.now(),
         };
         const req = store.put(record);
         req.onsuccess = () => resolve(true);

@@ -11,6 +11,9 @@
   "scripts": {
     "test": "node scripts/test_release_qa.js",
     "test:qa": "node scripts/test_release_qa.js",
+    "test:features": "node scripts/test_advanced_features.js",
+    "test:sync": "node scripts/test_gdrive_sync.js",
+    "test:traffic": "python scripts/test_traffic_archiver.py",
     "test:ui": "node scripts/test_ui_comprehensive.js",
     "test:mushaf": "node scripts/test_mushaf_authentic.js",
     "verify": "python scripts/verify_project.py && python scripts/verify_data_integrity.py",

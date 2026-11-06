@@ -37,8 +37,9 @@ export class Router {
     if (ayahMatch) {
       const surah = parseInt(ayahMatch[1], 10);
       const ayah = parseInt(ayahMatch[2], 10);
+      const tab = queryParams.get('tab');
       const handler = this.routes.get('ayah');
-      if (handler) handler({ surah, ayah });
+      if (handler) handler({ surah, ayah, tab });
       return;
     }
 

@@ -69,10 +69,13 @@ server.listen(PORT, async () => {
 
   page.on('console', (msg) => {
     if (msg.type() === 'error') {
-      console.error('CONSOLE ERROR:', msg.text());
+      const text = msg.text();
+      if (text.includes('fonts.googleapis.com') || text.includes('fonts.gstatic.com')) return;
+      console.error('CONSOLE ERROR:', text);
       consoleErrors.push(msg.text());
     }
   });
+
 
   let passCount = 0;
   let failCount = 0;
@@ -295,6 +298,46 @@ server.listen(PORT, async () => {
       assert(tafsirContent.length > 20, 'Tafsir text successfully populated');
     }
 
+    // Asbabun Nuzul Tab
+    const asbabTabBtn = await page.$('.tab-btn[data-tab="asbab"]');
+    assert(asbabTabBtn !== null, 'Asbabun Nuzul tab button found in Deep-Dive');
+    await asbabTabBtn.click();
+    await page.waitForTimeout(400);
+    const asbabActive = await page.$eval('#pane-asbab', el => el.classList.contains('active'));
+    assert(asbabActive, 'Asbabun Nuzul tab activates on click');
+
+    // Test direct Asbab route on a verse that has asbab (e.g. 2:142)
+    await page.goto(`http://localhost:${PORT}/index.html#ayah/2/142?tab=asbab`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+    const asbabDirectActive = await page.$eval('#pane-asbab', el => el.classList.contains('active'));
+    assert(asbabDirectActive, 'Direct deep-link #ayah/2/142?tab=asbab automatically activates Asbab tab');
+    const asbabBodyText = await page.textContent('#pane-asbab');
+    assert(asbabBodyText.includes('kiblat') || asbabBodyText.includes('Qiblah') || asbabBodyText.includes('Baitul Maqdis'), 'Asbabun Nuzul text loaded correctly for 2:142');
+
+    // Test Asbab badge on Surah view for verse 2:142
+    await page.goto(`http://localhost:${PORT}/index.html#2:142`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+    const asbabBadge = await page.$('#verse-2-142 .btn-asbab-badge');
+    assert(asbabBadge !== null, 'Asbabun Nuzul badge button present on verse card 2:142 in surah view');
+
+    // Test Surah Overview Header Asbab Count Badge
+    const surahHeaderAsbabBadge = await page.$('.surah-header-card .asbab-count-badge');
+    assert(surahHeaderAsbabBadge !== null, 'Surah overview header shows Asbab count badge');
+    const badgeText = await page.textContent('.surah-header-card .asbab-count-badge');
+    assert(badgeText.includes('Asbab'), `Surah header asbab badge text contains 'Asbab': ${badgeText}`);
+
+    // Test Sidebar Asbab Directory Tab
+    const sidebarAsbabTab = await page.$('.sidebar-tab[data-tab="asbab"]');
+    assert(sidebarAsbabTab !== null, 'Sidebar contains Asbab directory tab button');
+    await sidebarAsbabTab.click();
+    await page.waitForTimeout(400);
+    const asbabListVisible = await page.$eval('#sidebar-asbab-list', el => window.getComputedStyle(el).display !== 'none');
+    assert(asbabListVisible, 'Sidebar Asbab list container is visible upon tab click');
+    const asbabSurahItems = await page.$$('#sidebar-asbab-list .sidebar-asbab-item');
+    assert(asbabSurahItems.length === 85, `Sidebar Asbab directory renders all 85 Surahs with revelation causes, got ${asbabSurahItems.length}`);
+    const firstChip = await page.$('#sidebar-asbab-list .sidebar-asbab-chip');
+    assert(firstChip !== null, 'Sidebar Asbab items have clickable verse chips');
+
     // -------------------------------------------------------------
     // Test 7: IndexedDB Storage & Study Notes Engine
     // -------------------------------------------------------------
@@ -421,6 +464,17 @@ server.listen(PORT, async () => {
     const mushafAyahs = await page.$$('.mushaf-ayah-span');
     assert(mushafAyahs.length === 7, `Mushaf page 1 contains exactly 7 ayah spans`);
 
+    // Test Mushaf Translation Bar Asbab Shortcut Link
+    await page.goto(`http://localhost:${PORT}/index.html#mushaf/22`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(600);
+    const ayah142Span = await page.$('.mushaf-ayah-span[data-surah="2"][data-ayah="142"]');
+    if (ayah142Span) {
+      await ayah142Span.click();
+      await page.waitForTimeout(400);
+      const mushafAsbabLink = await page.$('#mushaf-trans-ref .mushaf-asbab-link');
+      assert(mushafAsbabLink !== null, 'Mushaf translation bar renders 📜 Asbabun Nuzul shortcut link for verse with revelation occasion');
+    }
+
     // -------------------------------------------------------------
     // Test 12: Tahfiz / Hifz Memorization Mode
     // -------------------------------------------------------------
@@ -465,6 +519,18 @@ server.listen(PORT, async () => {
     await page.waitForTimeout(600);
     const searchResults = await page.$$('.search-result-item');
     assert(searchResults.length > 0, `Search Web Worker returned ${searchResults.length} results for 'rahman'`);
+
+    // Test Asbab action pill in search result
+    await page.fill('#search-input-field', 'kiblat');
+    await page.waitForTimeout(600);
+    const asbabSearchPill = await page.$('.search-result-item .btn-search-asbab');
+    assert(asbabSearchPill !== null, 'Search results render 📜 Asbab direct action pill for verse with asbab');
+
+    // Test Search Narrative Context matching
+    await page.fill('#search-input-field', 'Baitul Maqdis');
+    await page.waitForTimeout(600);
+    const asbabNarrativeSnippet = await page.$('.search-result-asbab-snippet');
+    assert(asbabNarrativeSnippet !== null, 'Search Web Worker returns historical context match with highlighted Asbab narrative snippet');
 
     // Test verse jump 112:1
     await page.fill('#search-input-field', '112:1');

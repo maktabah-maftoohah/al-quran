@@ -121,7 +121,8 @@ def main():
     assert (root / "js" / "jawi.js").exists(), "jawi.js missing"
     assert (root / "js" / "card-generator.js").exists(), "card-generator.js missing"
     assert (root / "js" / "mushaf.js").exists(), "mushaf.js missing"
-    print("[PASS] Check 11: PWA manifest, service worker, Jawi, Mushaf, and Indonesian translation verified.")
+    assert (root / "data" / "asbabun-nuzul.json").exists(), "asbabun-nuzul.json missing"
+    print("[PASS] Check 11: PWA manifest, service worker, Jawi, Mushaf, Asbabun Nuzul, and Indonesian translation verified.")
 
     print("\n>>> ALL 11 COMPREHENSIVE VERIFICATION CHECKS PASSED SUCCESSFULLY! <<<")
 

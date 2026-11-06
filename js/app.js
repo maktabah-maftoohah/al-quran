@@ -13,6 +13,8 @@ import { mushafViewer, SURAH_START_PAGES } from './mushaf.js';
 import { storageDB } from './storage-db.js';
 import { wakeLockController } from './wake-lock.js';
 import { backupManager } from './backup.js';
+import { gdriveSync } from './gdrive-sync.js';
+import { APP_CONFIG } from './config.js';
 import { i18n } from './i18n.js';
 
 class App {
@@ -21,12 +23,14 @@ class App {
     this.surahListContainer = document.getElementById('sidebar-surah-list');
     this.bookmarksListContainer = document.getElementById('sidebar-bookmarks-list');
     this.notesListContainer = document.getElementById('sidebar-notes-list');
+    this.asbabListContainer = document.getElementById('sidebar-asbab-list');
     this.sidebarEl = document.getElementById('app-sidebar');
     this.morphDrawer = document.getElementById('morphology-drawer');
     this.morphOverlay = document.getElementById('drawer-overlay');
     this.noteModal = document.getElementById('note-modal-overlay');
     this.activeNoteContext = null;
     this.renderedSurah = null;
+    this.activeBookmarkFolder = 'all';
   }
 
   async init() {
@@ -49,11 +53,18 @@ class App {
     this.initStorageStats();
     this.initWakeLock();
     this.initNetworkStatus();
+    window.app = this;
     this.initBackupControls();
+    this.initGDriveSync();
+    this.initKhatamTracker();
+    this.initAudioResume();
+    this.initCalendarReminders();
+    this.initGDriveExtraTools();
     this.initGlobalEvents();
     this.updateMushafNavBtn();
 
     // Register routes
+    store.fetchAsbab().catch(() => {});
     router.addRoute('surah', (params) => this.renderSurahView(params));
     router.addRoute('ayah', (params) => this.renderAyahDeepDive(params));
     router.addRoute('mushaf', (params) => this.renderMushafView(params));
@@ -160,17 +171,28 @@ class App {
           this.surahListContainer.style.display = 'block';
           this.bookmarksListContainer.style.display = 'none';
           if (this.notesListContainer) this.notesListContainer.style.display = 'none';
+          if (this.asbabListContainer) this.asbabListContainer.style.display = 'none';
         } else if (tabName === 'bookmarks') {
           this.surahListContainer.style.display = 'none';
           this.bookmarksListContainer.style.display = 'block';
           if (this.notesListContainer) this.notesListContainer.style.display = 'none';
+          if (this.asbabListContainer) this.asbabListContainer.style.display = 'none';
           this.renderSidebarBookmarks();
         } else if (tabName === 'notes') {
           this.surahListContainer.style.display = 'none';
           this.bookmarksListContainer.style.display = 'none';
+          if (this.asbabListContainer) this.asbabListContainer.style.display = 'none';
           if (this.notesListContainer) {
             this.notesListContainer.style.display = 'block';
             this.renderSidebarNotes();
+          }
+        } else if (tabName === 'asbab') {
+          this.surahListContainer.style.display = 'none';
+          this.bookmarksListContainer.style.display = 'none';
+          if (this.notesListContainer) this.notesListContainer.style.display = 'none';
+          if (this.asbabListContainer) {
+            this.asbabListContainer.style.display = 'block';
+            this.renderSidebarAsbab();
           }
         }
       });
@@ -198,6 +220,23 @@ class App {
             const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q);
             item.style.display = matches ? 'flex' : 'none';
           });
+
+          if (this.asbabListContainer) {
+            const asbabItems = this.asbabListContainer.querySelectorAll('.sidebar-asbab-item');
+            asbabItems.forEach((item) => {
+              if (!q) {
+                item.style.display = 'flex';
+                return;
+              }
+              const sNum = item.getAttribute('data-surah') || '';
+              const latin = item.getAttribute('data-latin') || '';
+              const trans = item.getAttribute('data-trans') || '';
+              const arabic = item.getAttribute('data-arabic') || '';
+              const ayahs = (item.getAttribute('data-ayahs') || '').split(',');
+              const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q) || ayahs.includes(q);
+              item.style.display = matches ? 'flex' : 'none';
+            });
+          }
         });
       }
     } catch (err) {
@@ -233,7 +272,7 @@ class App {
 
       // Auto-close sidebar on mobile after clicking an item
       this.sidebarEl.addEventListener('click', (e) => {
-        if (e.target.closest('.surah-list-item')) {
+        if (e.target.closest('.surah-list-item') || e.target.closest('.sidebar-asbab-chip') || e.target.closest('.sidebar-asbab-surah-link')) {
           if (window.innerWidth <= 900) {
             this.sidebarEl.classList.remove('open');
             toggleBtn.setAttribute('aria-expanded', 'false');
@@ -301,47 +340,129 @@ class App {
 
   renderSidebarBookmarks() {
     if (!this.bookmarksListContainer) return;
-    const bookmarks = store.bookmarks;
+    const allBookmarks = store.bookmarks || [];
+    const folders = store.getBookmarkFolders ? store.getBookmarkFolders() : ['Semua', 'Doa', 'Sabar', 'Hafazan'];
+    const activeFolder = this.activeBookmarkFolder || 'all';
 
-    if (!bookmarks.length) {
+    const filteredBookmarks = activeFolder === 'all'
+      ? allBookmarks
+      : allBookmarks.filter((b) => (b.folder || 'Lalai') === activeFolder);
+
+    const isMs = i18n.getLanguage() === 'ms';
+
+    const chipsHtml = `
+      <div class="folder-chips-bar" id="bookmark-folder-chips">
+        <button class="folder-chip ${activeFolder === 'all' ? 'active' : ''}" data-folder="all">
+          ${i18n.t('folders.all')} (${allBookmarks.length})
+        </button>
+        ${folders
+          .map(
+            (f) => `
+          <button class="folder-chip ${activeFolder === f ? 'active' : ''}" data-folder="${f}">
+            📁 ${f}
+          </button>
+        `
+          )
+          .join('')}
+        <button class="folder-chip folder-chip-add" id="btn-add-bookmark-folder">
+          ${i18n.t('folders.newFolder')}
+        </button>
+      </div>
+    `;
+
+    if (!filteredBookmarks.length) {
       this.bookmarksListContainer.innerHTML = `
+        ${chipsHtml}
         <div style="padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-          No bookmarks saved yet.<br/>Click the bookmark icon on any ayah to save it here.
+          ${allBookmarks.length === 0 ? (isMs ? 'Tiada penanda buku lagi.' : 'No bookmarks saved yet.') : (isMs ? 'Tiada penanda buku dalam folder ini.' : 'No bookmarks in this folder.')}
         </div>
       `;
+      this.attachBookmarkFolderEvents();
       return;
     }
 
-    const html = bookmarks
+    const html = filteredBookmarks
       .map((b) => {
+        const folderName = b.folder || 'Lalai';
         if (b.type === 'mushaf') {
           return `
-            <a href="#mushaf/${b.page}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
-              <div style="display: flex; justify-content: space-between; width: 100%;">
-                <span class="ayah-badge">📄 ${i18n.currentLang === 'en' ? `Page ${b.page}` : `Halaman ${b.page}`}</span>
-                <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
+            <div class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem; position: relative;">
+              <a href="#mushaf/${b.page}" style="text-decoration: none; width: 100%; color: inherit;">
+                <div style="display: flex; justify-content: space-between; width: 100%;">
+                  <span class="ayah-badge">📄 ${isMs ? `Halaman ${b.page}` : `Page ${b.page}`}</span>
+                  <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  ${b.surahName || (isMs ? `Halaman Mushaf ${b.page}` : `Mushaf Page ${b.page}`)}
+                </div>
+              </a>
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 0.2rem;">
+                <span class="bookmark-folder-badge">📁 ${folderName}</span>
+                <select class="bookmark-folder-select" data-ref="page:${b.page}">
+                  ${folders.map((f) => `<option value="${f}" ${folderName === f ? 'selected' : ''}>${f}</option>`).join('')}
+                </select>
               </div>
-              <div style="font-size: 0.85rem; color: var(--text-secondary);">
-                ${b.surahName || (i18n.currentLang === 'en' ? `Mushaf Page ${b.page}` : `Halaman Mushaf ${b.page}`)}
-              </div>
-            </a>
+            </div>
           `;
         }
         return `
-          <a href="#${b.surah}:${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
-            <div style="display: flex; justify-content: space-between; width: 100%;">
-              <span class="ayah-badge">${b.surahName} (${b.ref})</span>
-              <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
+          <div class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem; position: relative;">
+            <a href="#${b.surah}:${b.ayah}" style="text-decoration: none; width: 100%; color: inherit;">
+              <div style="display: flex; justify-content: space-between; width: 100%;">
+                <span class="ayah-badge">${b.surahName} (${b.ref})</span>
+                <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
+              </div>
+              <div style="font-family: var(--font-arabic); font-size: 1.1rem; direction: rtl; text-align: right; width: 100%; color: var(--text-primary); margin-top: 0.2rem;">
+                ${b.ar ? (b.ar.slice(0, 70) + (b.ar.length > 70 ? '...' : '')) : ''}
+              </div>
+            </a>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 0.2rem;">
+              <span class="bookmark-folder-badge">📁 ${folderName}</span>
+              <select class="bookmark-folder-select" data-ref="${b.ref}">
+                ${folders.map((f) => `<option value="${f}" ${folderName === f ? 'selected' : ''}>${f}</option>`).join('')}
+              </select>
             </div>
-            <div style="font-family: var(--font-arabic); font-size: 1.1rem; direction: rtl; text-align: right; width: 100%; color: var(--text-primary);">
-              ${b.ar ? (b.ar.slice(0, 70) + (b.ar.length > 70 ? '...' : '')) : ''}
-            </div>
-          </a>
+          </div>
         `;
       })
       .join('');
 
-    this.bookmarksListContainer.innerHTML = html;
+    this.bookmarksListContainer.innerHTML = chipsHtml + html;
+    this.attachBookmarkFolderEvents();
+  }
+
+  attachBookmarkFolderEvents() {
+    if (!this.bookmarksListContainer) return;
+    this.bookmarksListContainer.querySelectorAll('.folder-chip[data-folder]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.activeBookmarkFolder = btn.getAttribute('data-folder');
+        this.renderSidebarBookmarks();
+      });
+    });
+
+    const addBtn = this.bookmarksListContainer.querySelector('#btn-add-bookmark-folder');
+    if (addBtn) {
+      addBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const name = prompt(i18n.t('folders.promptNew'));
+        if (name && name.trim()) {
+          store.addBookmarkFolder(name.trim());
+          this.activeBookmarkFolder = name.trim();
+          this.renderSidebarBookmarks();
+        }
+      });
+    }
+
+    this.bookmarksListContainer.querySelectorAll('.bookmark-folder-select').forEach((sel) => {
+      sel.addEventListener('change', (e) => {
+        e.stopPropagation();
+        const ref = sel.getAttribute('data-ref');
+        const folder = sel.value;
+        store.setBookmarkFolder(ref, folder);
+        this.renderSidebarBookmarks();
+      });
+    });
   }
 
   async renderSidebarNotes() {
@@ -390,6 +511,77 @@ class App {
         }
       });
     });
+  }
+
+  async renderSidebarAsbab() {
+    if (!this.asbabListContainer) return;
+    const isMs = i18n.getLanguage() === 'ms';
+    const asbab = await store.fetchAsbab();
+    const surahs = this.cachedSurahs || (await store.fetchSurahs());
+
+    if (!asbab || !Object.keys(asbab).length) {
+      this.asbabListContainer.innerHTML = `
+        <div style="padding: 2rem 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+          ${i18n.t('sidebar.noAsbab')}
+        </div>
+      `;
+      return;
+    }
+
+    const surahGroups = new Map();
+    for (const key of Object.keys(asbab)) {
+      const [s, a] = key.split(':').map((v) => parseInt(v, 10));
+      if (!surahGroups.has(s)) {
+        surahGroups.set(s, []);
+      }
+      surahGroups.get(s).push(a);
+    }
+
+    for (const ayahs of surahGroups.values()) {
+      ayahs.sort((a, b) => a - b);
+    }
+
+    const sortedSurahNums = Array.from(surahGroups.keys()).sort((a, b) => a - b);
+
+    const html = sortedSurahNums
+      .map((sNum) => {
+        const meta = surahs.find((s) => s.number === sNum);
+        const sName = meta ? store.getSurahName(meta) : `Surah ${sNum}`;
+        const sTrans = meta ? store.getSurahTranslation(meta) : '';
+        const sArabic = meta ? meta.name_arabic : '';
+        const ayahs = surahGroups.get(sNum);
+        const count = ayahs.length;
+        const countLabel = isMs ? `${count} asbab` : `${count} causes`;
+
+        const chipsHtml = ayahs
+          .map(
+            (aNum) => `
+              <a href="#ayah/${sNum}/${aNum}?tab=asbab" class="sidebar-asbab-chip" title="${isMs ? `Surah ${sName} Ayat ${aNum}` : `Surah ${sName} Ayah ${aNum}`}">
+                ${isMs ? 'Ayat' : 'Ayah'} ${aNum}
+              </a>
+            `
+          )
+          .join('');
+
+        return `
+          <div class="sidebar-asbab-item" data-surah="${sNum}" data-latin="${(meta?.name_latin || '').toLowerCase()}" data-trans="${sTrans.toLowerCase()}" data-arabic="${sArabic}" data-ayahs="${ayahs.join(',')}">
+            <div class="sidebar-asbab-header">
+              <a href="#surah/${sNum}" class="sidebar-asbab-surah-link" title="${isMs ? 'Buka Surah' : 'Open Surah'}">
+                <span class="surah-number-badge">${sNum}</span>
+                <span class="sidebar-asbab-name">${sName}</span>
+                <span class="sidebar-asbab-arabic">${sArabic}</span>
+              </a>
+              <span class="sidebar-asbab-count">📜 ${countLabel}</span>
+            </div>
+            <div class="sidebar-asbab-chips">
+              ${chipsHtml}
+            </div>
+          </div>
+        `;
+      })
+      .join('');
+
+    this.asbabListContainer.innerHTML = html;
   }
 
   // --- Typography Popover ---
@@ -843,6 +1035,7 @@ class App {
     window.storageDB = storageDB;
     window.wakeLockController = wakeLockController;
     window.backupManager = backupManager;
+    window.gdriveSync = gdriveSync;
   }
 
   escapeHtml(str) {
@@ -945,6 +1138,7 @@ class App {
   }
 
   updateNoteInView(ref, text) {
+    gdriveSync.triggerDebouncedSync();
     const btn = document.querySelector(`.btn-note-ayah[data-ref="${ref}"]`);
     if (btn) {
       btn.classList.toggle('has-note', Boolean(text));
@@ -1094,6 +1288,129 @@ class App {
     }
   }
 
+  // --- Google Drive Cloud Sync ---
+
+  initGDriveSync() {
+    const connectBtn = document.getElementById('btn-gdrive-connect');
+    const syncBtn = document.getElementById('btn-gdrive-sync');
+    const disconnectBtn = document.getElementById('btn-gdrive-disconnect');
+    const statusDesc = document.getElementById('gdrive-status-desc');
+    const badge = document.getElementById('gdrive-sync-badge');
+    const clientIdInput = document.getElementById('input-gdrive-client-id');
+    const saveClientIdBtn = document.getElementById('btn-save-gdrive-client-id');
+
+    if (!connectBtn) return;
+
+    if (clientIdInput) {
+      clientIdInput.value = APP_CONFIG.getGoogleClientId();
+    }
+
+    if (saveClientIdBtn && clientIdInput) {
+      saveClientIdBtn.addEventListener('click', () => {
+        const val = clientIdInput.value.trim();
+        APP_CONFIG.setGoogleClientId(val);
+        this.showToast('Google Client ID disimpan.');
+      });
+    }
+
+    const updateUI = () => {
+      const isConn = gdriveSync.isConnected();
+      const hasSession = gdriveSync.hasSavedSession();
+
+      if (isConn || hasSession) {
+        connectBtn.style.display = 'none';
+        if (syncBtn) syncBtn.style.display = 'inline-flex';
+        if (disconnectBtn) disconnectBtn.style.display = 'inline-flex';
+        if (badge) {
+          badge.style.display = 'inline-block';
+          badge.textContent = isConn ? 'ONLINE' : 'CACHED';
+        }
+
+        const email = gdriveSync.userEmail;
+        const lastSync = gdriveSync.lastSyncedAt;
+        const timeStr = lastSync ? lastSync.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+
+        if (statusDesc) {
+          if (timeStr) {
+            statusDesc.textContent = i18n.t('settings.gdriveLastSynced', { time: timeStr });
+          } else if (email) {
+            statusDesc.textContent = i18n.t('settings.gdriveConnected', { email });
+          } else {
+            statusDesc.textContent = 'Google Drive disambung.';
+          }
+        }
+      } else {
+        connectBtn.style.display = 'inline-flex';
+        if (syncBtn) syncBtn.style.display = 'none';
+        if (disconnectBtn) disconnectBtn.style.display = 'none';
+        if (badge) badge.style.display = 'none';
+        if (statusDesc) {
+          statusDesc.textContent = i18n.t('settings.gdriveNotConnected');
+        }
+      }
+    };
+
+    gdriveSync.subscribe((event) => {
+      if (event.type === 'connecting') {
+        if (statusDesc) statusDesc.textContent = 'Menyambung ke Google...';
+      } else if (event.type === 'syncing') {
+        if (statusDesc) statusDesc.textContent = i18n.t('settings.gdriveSyncing');
+        if (syncBtn) syncBtn.classList.add('loading');
+      } else if (event.type === 'synced') {
+        if (syncBtn) syncBtn.classList.remove('loading');
+        updateUI();
+        this.showToast(`Penyegerakan berjaya (${event.notesCount} nota, ${event.bookmarksCount} penanda buku)`);
+        this.renderSidebarBookmarks();
+        this.renderSidebarNotes();
+      } else if (event.type === 'error') {
+        if (syncBtn) syncBtn.classList.remove('loading');
+        updateUI();
+        if (event.code === 'MISSING_CLIENT_ID') {
+          this.showToast('Sila masukkan Google Client ID dalam konfigurasi.');
+          const details = document.getElementById('gdrive-config-details');
+          if (details) details.open = true;
+        } else {
+          this.showToast(`Ralat penyegerakan: ${event.error}`);
+        }
+      } else if (event.type === 'disconnected') {
+        updateUI();
+        this.showToast('Google Drive diputuskan.');
+      } else {
+        updateUI();
+      }
+    });
+
+    connectBtn.addEventListener('click', async () => {
+      try {
+        await gdriveSync.connect(true);
+      } catch (e) {
+        console.warn('Connect error:', e);
+      }
+    });
+
+    if (syncBtn) {
+      syncBtn.addEventListener('click', async () => {
+        try {
+          await gdriveSync.sync();
+        } catch (e) {
+          this.showToast(`Gagal menyegerak: ${e.message}`);
+        }
+      });
+    }
+
+    if (disconnectBtn) {
+      disconnectBtn.addEventListener('click', async () => {
+        await gdriveSync.disconnect();
+      });
+    }
+
+    store.onUserDataChanged(() => {
+      gdriveSync.triggerDebouncedSync();
+    });
+
+    updateUI();
+  }
+
   // --- Data Backup & Restore ---
 
   initBackupControls() {
@@ -1181,7 +1498,11 @@ class App {
       // Try fetching Arabic & translations
       let arabicData, translations;
       try {
-        [arabicData, translations] = await Promise.all([store.fetchArabic(surah), store.fetchTranslations()]);
+        [arabicData, translations] = await Promise.all([
+          store.fetchArabic(surah),
+          store.fetchTranslations(),
+          store.fetchAsbab().catch(() => ({})),
+        ]);
       } catch (err) {
         this.renderUnseededSurahView(meta);
         return;
@@ -1291,6 +1612,7 @@ class App {
           const isSaved = store.isBookmarked(ref);
           const note = notesMap.get(ref);
           const hasNote = Boolean(note);
+          const hasAsbab = store.hasAsbab(surah, aNum);
           const msRawText = basmeihSurah[ayahNumStr] || '';
           const msDisplayText = isJawi ? rumiToJawi(msRawText) : msRawText;
           const msJalalaynText = jalalaynSurah[ayahNumStr] || '';
@@ -1300,6 +1622,21 @@ class App {
 
           const arabicClass = isBlurred ? 'verse-arabic hifz-blurred' : 'verse-arabic';
           const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
+
+          const hifzRecord = store.getHifzMastery ? store.getHifzMastery(surah, aNum) : null;
+          const hifzStatus = hifzRecord ? hifzRecord.status : null;
+          let hifzLabel = i18n.t('hifzMastery.unmarked');
+          let hifzClass = '';
+          if (hifzStatus === 'learning') {
+            hifzLabel = i18n.t('hifzMastery.learning');
+            hifzClass = 'hifz-learning';
+          } else if (hifzStatus === 'memorized') {
+            hifzLabel = i18n.t('hifzMastery.memorized');
+            hifzClass = 'hifz-memorized';
+          } else if (hifzStatus === 'needs_review') {
+            hifzLabel = i18n.t('hifzMastery.needsReview');
+            hifzClass = 'hifz-needs_review';
+          }
 
           return `
             <div class="verse-card" data-surah="${surah}" data-ayah="${aNum}" id="verse-${surah}-${aNum}">
@@ -1311,6 +1648,9 @@ class App {
                   </button>
                   <button class="verse-action-btn btn-share-card" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
                     📸 ${i18n.t('surah.btnCard')}
+                  </button>
+                  <button class="verse-action-btn btn-hifz-mastery ${hifzClass}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}" title="${i18n.t('hifzMastery.badgeTitle')}">
+                    🧠 ${hifzLabel}
                   </button>
                   <button class="verse-action-btn btn-bookmark-ayah ${isSaved ? 'bookmarked' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
                     ★ ${isSaved ? i18n.t('surah.btnBookmarked') : i18n.t('surah.btnBookmark')}
@@ -1327,6 +1667,11 @@ class App {
                   <a href="#ayah/${surah}/${aNum}" class="verse-action-btn" style="text-decoration: none;">
                     🔬 ${i18n.t('surah.btnDeepDive')}
                   </a>
+                  ${hasAsbab ? `
+                    <a href="#ayah/${surah}/${aNum}?tab=asbab" class="verse-action-btn btn-asbab-badge" title="${isMs ? 'Lihat Asbabun Nuzul (Sebab Turun Wahyu)' : 'View Asbab al-Nuzul (Occasion of Revelation)'}">
+                      📜 ${i18n.t('surah.btnAsbab')}
+                    </a>
+                  ` : ''}
                 </div>
               </div>
 
@@ -1373,6 +1718,7 @@ class App {
         })
         .join('');
 
+      const asbabVersesCount = Object.keys(arabicData.ayahs).filter((aNum) => store.hasAsbab(surah, aNum)).length;
       const revelationText = meta.revelation_place === 'madinah' || meta.revelation_type?.toLowerCase() === 'medinan'
         ? i18n.t('surah.medinan')
         : i18n.t('surah.meccan');
@@ -1386,6 +1732,7 @@ class App {
             <span class="meta-badge revelation">${revelationText}</span>
             <span class="meta-badge">${i18n.t('surah.versesCount', { n: meta.total_ayahs })}</span>
             <span class="meta-badge">${i18n.t('surah.surahNumber', { n: meta.number })}</span>
+            ${asbabVersesCount > 0 ? `<span class="meta-badge asbab-count-badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08);">📜 ${asbabVersesCount} ${isMs ? 'Asbabun Nuzul' : 'Asbab al-Nuzul'}</span>` : ''}
           </div>
           <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-primary" id="btn-play-surah-continuous">
@@ -1562,12 +1909,51 @@ class App {
           ar,
           en,
           ms,
+          folder: this.activeBookmarkFolder && this.activeBookmarkFolder !== 'all' ? this.activeBookmarkFolder : 'Lalai',
         });
 
         btn.classList.toggle('bookmarked', isSaved);
         btn.innerHTML = `★ ${isSaved ? i18n.t('surah.btnBookmarked') : i18n.t('surah.btnBookmark')}`;
         this.showToast(isSaved ? i18n.t('surah.toastBookmarkAdded', { ref }) : i18n.t('surah.toastBookmarkRemoved', { ref }));
         this.renderSidebarBookmarks();
+      });
+    });
+
+    // Hifz Mastery Button (Cloud Spaced Repetition)
+    this.mainContainer.querySelectorAll('.btn-hifz-mastery').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const s = parseInt(btn.getAttribute('data-surah'), 10);
+        const a = parseInt(btn.getAttribute('data-ayah'), 10);
+        const ref = `${s}:${a}`;
+        const cur = store.getHifzMastery ? store.getHifzMastery(s, a)?.status : null;
+        let nextStatus = null;
+        if (!cur) nextStatus = 'learning';
+        else if (cur === 'learning') nextStatus = 'memorized';
+        else if (cur === 'memorized') nextStatus = 'needs_review';
+        else nextStatus = null;
+
+        if (store.setHifzMastery) {
+          store.setHifzMastery(s, a, nextStatus);
+        }
+        if (store.recordDailyActivity) {
+          store.recordDailyActivity();
+        }
+        this.updateKhatamUI();
+
+        btn.classList.remove('hifz-learning', 'hifz-memorized', 'hifz-needs_review');
+        let label = i18n.t('hifzMastery.unmarked');
+        if (nextStatus === 'learning') {
+          label = i18n.t('hifzMastery.learning');
+          btn.classList.add('hifz-learning');
+        } else if (nextStatus === 'memorized') {
+          label = i18n.t('hifzMastery.memorized');
+          btn.classList.add('hifz-memorized');
+        } else if (nextStatus === 'needs_review') {
+          label = i18n.t('hifzMastery.needsReview');
+          btn.classList.add('hifz-needs_review');
+        }
+        btn.innerHTML = `🧠 ${label}`;
+        this.showToast(i18n.t('hifzMastery.toastUpdated', { ref, status: label }));
       });
     });
 
@@ -1719,7 +2105,7 @@ class App {
   /**
    * Ayah Deep-Dive Comparison View (#ayah/:surah/:ayah)
    */
-  async renderAyahDeepDive({ surah, ayah }) {
+  async renderAyahDeepDive({ surah, ayah, tab }) {
     this.renderedSurah = null;
     if (this.mainContainer) {
       this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
@@ -1743,7 +2129,10 @@ class App {
         store.fetchMorphology(surah),
         store.fetchTranslations(false),
         storageDB.getNote(`${surah}:${ayah}`),
+        store.fetchAsbab().catch(() => ({})),
       ]);
+
+      const asbab = store.getAsbab(surah, ayah);
 
       const aStr = String(ayah);
       const sStr = String(surah);
@@ -1755,6 +2144,7 @@ class App {
       const sahihText = translations.sahih?.[sStr]?.[aStr] || '';
       const pickthallText = translations.pickthall?.[sStr]?.[aStr] || '';
 
+      const isMs = i18n.getLanguage() === 'ms';
       const isJawi = store.settings.jawiMode;
       const msDisplayText = isJawi ? rumiToJawi(msText) : msText;
       const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
@@ -1861,6 +2251,7 @@ class App {
             <div class="tabs-header">
               <button class="tab-btn active" data-tab="translations">${i18n.t('deepDive.tabTranslations')}</button>
               <button class="tab-btn" data-tab="tafsir">${i18n.t('deepDive.tabTafsir')}</button>
+              <button class="tab-btn" data-tab="asbab">📜 ${i18n.t('deepDive.tabAsbab')}${asbab ? ' •' : ''}</button>
               <button class="tab-btn" data-tab="notes">📝 ${i18n.t('deepDive.tabNotes')}</button>
             </div>
 
@@ -1906,6 +2297,65 @@ class App {
               </div>
             </div>
 
+            <div class="tab-pane" id="pane-asbab">
+              ${asbab ? `
+                <div class="asbab-container">
+                  <div class="asbab-header-bar">
+                    <div class="asbab-badge-pill">
+                      <span class="asbab-icon">📜</span>
+                      <span class="asbab-title">${i18n.t('deepDive.asbabHeader')}</span>
+                    </div>
+                    <span class="asbab-source-tag">${this.escapeHtml(asbab.source || 'Lubabun Nuqul (As-Suyuthi)')}</span>
+                  </div>
+
+                  ${asbab.text_ar ? `
+                    <div class="asbab-arabic-card">
+                      <div class="asbab-section-title">${i18n.t('deepDive.asbabHadithText')}</div>
+                      <div class="asbab-ar-text" dir="rtl">${this.escapeHtml(asbab.text_ar)}</div>
+                    </div>
+                  ` : ''}
+
+                  <div class="asbab-narrative-card">
+                    <div class="asbab-section-title">
+                      <span class="lang-flag">${isMs ? '🇲🇾' : '🇬🇧'}</span>
+                      <span>${isMs ? 'Huraian Peristiwa & Konteks Sejarah' : 'Historical Context & Revelation Occasion'}</span>
+                    </div>
+                    <p class="asbab-text-body">${this.escapeHtml(isMs ? asbab.text : (asbab.text_en || asbab.text))}</p>
+                  </div>
+
+                  ${!isMs && asbab.text ? `
+                    <div class="asbab-narrative-card secondary" style="margin-top: 0.85rem; opacity: 0.9;">
+                      <div class="asbab-section-title">
+                        <span class="lang-flag">🇲🇾</span>
+                        <span>Nusantara / Malay Context</span>
+                      </div>
+                      <p class="asbab-text-body" style="font-size: 0.95rem;">${this.escapeHtml(asbab.text)}</p>
+                    </div>
+                  ` : ''}
+
+                  ${isMs && asbab.text_en ? `
+                    <div class="asbab-narrative-card secondary" style="margin-top: 0.85rem; opacity: 0.88;">
+                      <div class="asbab-section-title">
+                        <span class="lang-flag">🇬🇧</span>
+                        <span>English Context & Summary</span>
+                      </div>
+                      <p class="asbab-text-body" style="font-size: 0.95rem;">${this.escapeHtml(asbab.text_en)}</p>
+                    </div>
+                  ` : ''}
+                </div>
+              ` : `
+                <div class="asbab-empty-state">
+                  <div class="asbab-empty-icon">📜</div>
+                  <div class="asbab-empty-title">${i18n.t('deepDive.asbabEmptyTitle')}</div>
+                  <p class="asbab-empty-desc">${i18n.t('deepDive.asbabEmptyDesc')}</p>
+                  <div class="asbab-empty-note">
+                    <span>ℹ️</span>
+                    <span>${isMs ? 'Hanya sekitar ~500 daripada 6,236 ayat Al-Quran yang mempunyai riwayat peristiwa khusus (asbabun nuzul). Ayat-ayat selebihnya diturunkan sebagai prinsip am Islam.' : 'Only about ~500 of 6,236 verses in the Quran have specific historical revelation occasions. Other verses were revealed as universal timeless guidance.'}</span>
+                  </div>
+                </div>
+              `}
+            </div>
+
             <div class="tab-pane" id="pane-notes">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                 <span class="tafsir-source" style="margin: 0;">${i18n.t('deepDive.personalReflection')}</span>
@@ -1921,7 +2371,7 @@ class App {
         </div>
       `;
 
-      this.attachDeepDiveEvents(surah, ayah, meta, tokens);
+      this.attachDeepDiveEvents(surah, ayah, meta, tokens, tab);
       this.updateActiveTranslationsDisplay();
     } catch (err) {
       console.error('Error rendering deep dive:', err);
@@ -1929,7 +2379,7 @@ class App {
     }
   }
 
-  attachDeepDiveEvents(surah, ayah, meta, tokens) {
+  attachDeepDiveEvents(surah, ayah, meta, tokens, initialTab) {
     const displayName = store.getSurahName(meta);
 
     // Play Ayah button in Deep Dive
@@ -2036,6 +2486,13 @@ class App {
       });
     });
 
+    if (initialTab) {
+      const activeBtn = this.mainContainer.querySelector(`.tab-btn[data-tab="${initialTab}"]`);
+      if (activeBtn) {
+        activeBtn.click();
+      }
+    }
+
     // Deep Dive Note Save
     const saveNoteBtn = document.getElementById('btn-deepdive-save-note');
     if (saveNoteBtn) {
@@ -2104,6 +2561,348 @@ class App {
   /**
    * Bookmarks View (#bookmarks)
    */
+
+  // =========================================================================
+  // ADVANCED QURAN STUDY & CLOUD SUITE CONTROLLERS
+  // =========================================================================
+
+  initKhatamTracker() {
+    const btn = document.getElementById('khatam-tracker-btn');
+    const modal = document.getElementById('khatam-modal-overlay');
+    if (!btn || !modal) return;
+
+    btn.addEventListener('click', () => {
+      this.updateKhatamUI();
+      modal.classList.add('open');
+    });
+
+    modal.querySelectorAll('[data-action="close-khatam-modal"]').forEach((el) => {
+      el.addEventListener('click', () => modal.classList.remove('open'));
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    modal.querySelectorAll('.khatam-target-btn').forEach((targetBtn) => {
+      targetBtn.addEventListener('click', () => {
+        modal.querySelectorAll('.khatam-target-btn').forEach((b) => b.classList.remove('active'));
+        targetBtn.classList.add('active');
+        const days = parseInt(targetBtn.getAttribute('data-days'), 10) || 30;
+        const khatam = store.getKhatam();
+        khatam.targetDays = days;
+        store.saveKhatam(khatam);
+        this.updateKhatamUI();
+      });
+    });
+
+    const markPageBtn = document.getElementById('btn-khatam-mark-page');
+    if (markPageBtn) {
+      markPageBtn.addEventListener('click', () => {
+        let page = 1;
+        if (window.location.hash.startsWith('#mushaf/')) {
+          page = parseInt(window.location.hash.replace('#mushaf/', ''), 10) || 1;
+        } else if (this.renderedSurah && SURAH_START_PAGES) {
+          page = SURAH_START_PAGES[this.renderedSurah] || 1;
+        }
+        const isDone = store.togglePageCompleted(page);
+        this.updateKhatamUI();
+        this.showToast(isDone ? `Halaman ${page} ditanda selesai ✓` : `Tanda halaman ${page} dibatalkan`);
+      });
+    }
+
+    const resetBtn = document.getElementById('btn-khatam-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (confirm(i18n.t('khatam.resetConfirm'))) {
+          store.saveKhatam({
+            targetDays: 30,
+            completedPages: [],
+            dailyActivity: {},
+            streak: 0,
+            lastActiveDate: null,
+          });
+          this.updateKhatamUI();
+          this.showToast('Jejak khatam dimulakan semula.');
+        }
+      });
+    }
+
+    const calBtn = document.getElementById('btn-khatam-add-calendar');
+    if (calBtn) {
+      calBtn.addEventListener('click', () => {
+        this.openCalendarIntent('khatam');
+      });
+    }
+
+    this.updateKhatamUI();
+  }
+
+  updateKhatamUI() {
+    if (!store.getKhatam) return;
+    const khatam = store.getKhatam();
+    const streak = khatam.streak || 0;
+    const completed = (khatam.completedPages || []).length;
+    const totalPages = 604;
+    const pct = Math.min(100, Math.round((completed / totalPages) * 100));
+
+    const btnText = document.getElementById('khatam-btn-text');
+    if (btnText) {
+      btnText.textContent = `${streak}h | ${pct}%`;
+    }
+
+    const streakDisplay = document.getElementById('khatam-streak-display');
+    if (streakDisplay) {
+      streakDisplay.textContent = `${streak} Hari`;
+    }
+
+    const progressLabel = document.getElementById('khatam-progress-label');
+    if (progressLabel) {
+      progressLabel.textContent = `${completed} / ${totalPages} Halaman Selesai (${pct}%)`;
+    }
+
+    const pctDisplay = document.getElementById('khatam-pct-display');
+    if (pctDisplay) {
+      pctDisplay.textContent = `${pct}%`;
+    }
+
+    const fillBar = document.getElementById('khatam-progress-fill');
+    if (fillBar) {
+      fillBar.style.width = `${pct}%`;
+    }
+
+    const targetDays = khatam.targetDays || 30;
+    const remainingPages = Math.max(0, totalPages - completed);
+    const pagesPerDay = Math.max(1, Math.ceil(remainingPages / targetDays));
+    const paceEl = document.getElementById('khatam-daily-pace');
+    if (paceEl) {
+      paceEl.textContent = `Kadar Bacaan: ~${pagesPerDay} muka surat sehari (${targetDays} hari)`;
+    }
+
+    document.querySelectorAll('.khatam-target-btn').forEach((b) => {
+      b.classList.toggle('active', parseInt(b.getAttribute('data-days'), 10) === targetDays);
+    });
+  }
+
+  initAudioResume() {
+    const banner = document.getElementById('audio-resume-banner');
+    const textEl = document.getElementById('audio-resume-text');
+    const playBtn = document.getElementById('btn-audio-resume-play');
+    const dismissBtn = document.getElementById('btn-audio-resume-dismiss');
+
+    if (!banner || !playBtn || !dismissBtn) return;
+
+    let pendingAudioState = null;
+
+    const checkResume = () => {
+      if (!store.getAudioState) return;
+      const state = store.getAudioState();
+      if (!state || !state.surah || !state.ayah) return;
+      if (audio.state.isPlaying) return;
+
+      pendingAudioState = state;
+      const reciterName = RECITERS[state.reciter]?.name || state.reciter || 'Mishary Alafasy';
+      if (textEl) {
+        textEl.textContent = i18n.t('audioResume.prompt', {
+          surah: state.surah,
+          ayah: state.ayah,
+          reciter: reciterName.split(' ')[0],
+        });
+      }
+      banner.style.display = 'block';
+    };
+
+    playBtn.addEventListener('click', async () => {
+      if (pendingAudioState) {
+        banner.style.display = 'none';
+        try {
+          const surahs = await store.fetchSurahs();
+          const meta = surahs.find((s) => s.number === pendingAudioState.surah);
+          const totalAyahs = meta ? meta.total_ayahs : 7;
+          const sName = meta ? store.getSurahName(meta) : `Surah ${pendingAudioState.surah}`;
+          await audio.playAyah(pendingAudioState.surah, pendingAudioState.ayah, {
+            continuous: true,
+            totalAyahs,
+            surahName: sName,
+          });
+        } catch (e) {
+          console.warn('Audio resume error:', e);
+        }
+      }
+    });
+
+    dismissBtn.addEventListener('click', () => {
+      banner.style.display = 'none';
+    });
+
+    setTimeout(checkResume, 800);
+
+    gdriveSync.subscribe((event) => {
+      if (event.type === 'synced' || event.type === 'audio_resume_available') {
+        checkResume();
+      }
+    });
+  }
+
+  initCalendarReminders() {
+    const btn = document.getElementById('btn-calendar-reminders');
+    const modal = document.getElementById('calendar-reminders-modal');
+    const addFridayBtn = document.getElementById('btn-cal-add-friday');
+    const addKhatamBtn = document.getElementById('btn-cal-add-khatam');
+
+    if (btn && modal) {
+      btn.addEventListener('click', () => {
+        modal.classList.add('open');
+      });
+
+      modal.querySelectorAll('[data-action="close-calendar-modal"]').forEach((el) => {
+        el.addEventListener('click', () => modal.classList.remove('open'));
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('open');
+      });
+    }
+
+    if (addFridayBtn) {
+      addFridayBtn.addEventListener('click', () => {
+        this.openCalendarIntent('friday');
+      });
+    }
+
+    if (addKhatamBtn) {
+      addKhatamBtn.addEventListener('click', () => {
+        this.openCalendarIntent('khatam');
+      });
+    }
+  }
+
+  openCalendarIntent(type) {
+    if (type === 'friday') {
+      const title = encodeURIComponent("Membaca Surah Al-Kahf (Jumaat)");
+      const details = encodeURIComponent("Sunnah hari Jumaat: Membaca Surah Al-Kahf di Maktabah Maftoohah Al-Quran (https://maktabah-maftoohah.github.io/al-quran/#surah/18)");
+      const location = encodeURIComponent("Maktabah Maftoohah Al-Quran");
+      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&recur=RRULE:FREQ=WEEKLY;BYDAY=FR`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+      this.showToast('Membuka Google Calendar untuk peringatan Al-Kahf...');
+    } else if (type === 'khatam') {
+      const khatam = store.getKhatam();
+      const remainingPages = Math.max(0, 604 - (khatam.completedPages || []).length);
+      const pace = Math.max(1, Math.ceil(remainingPages / (khatam.targetDays || 30)));
+      const title = encodeURIComponent(`Tadarus Al-Quran (~${pace} halaman)`);
+      const details = encodeURIComponent(`Sasaran Khatam Al-Quran (${khatam.targetDays || 30} hari) di Maktabah Maftoohah: https://maktabah-maftoohah.github.io/al-quran/`);
+      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&recur=RRULE:FREQ=DAILY`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+      this.showToast('Membuka Google Calendar untuk jadual khatam harian...');
+    }
+  }
+
+  initGDriveExtraTools() {
+    const exportNotesBtn = document.getElementById('btn-gdrive-export-notes');
+    const revisionsBtn = document.getElementById('btn-gdrive-revisions');
+    const revModal = document.getElementById('gdrive-revisions-modal');
+    const revList = document.getElementById('gdrive-revisions-list');
+
+    if (exportNotesBtn) {
+      exportNotesBtn.addEventListener('click', async () => {
+        if (!gdriveSync.isConnected()) {
+          this.showToast('Menyambung ke Google Drive terlebih dahulu...');
+          try {
+            await gdriveSync.connect(true);
+          } catch (e) {
+            this.showToast(`Gagal menyambung: ${e.message}`);
+            return;
+          }
+        }
+        this.showToast('Sedang mengeksport nota ke Google Drive...');
+        try {
+          const notes = await storageDB.getAllNotes();
+          const bookmarks = store.bookmarks;
+          const res = await gdriveSync.exportNotesToGoogleDrive(notes, bookmarks);
+          this.showToast('Nota berjaya dieksport ke Google Drive!');
+          if (res.webViewLink) {
+            window.open(res.webViewLink, '_blank', 'noopener,noreferrer');
+          }
+        } catch (e) {
+          this.showToast(`Gagal eksport nota: ${e.message}`);
+        }
+      });
+    }
+
+    if (revisionsBtn && revModal) {
+      revisionsBtn.addEventListener('click', async () => {
+        if (!gdriveSync.isConnected()) {
+          this.showToast('Menyambung ke Google Drive terlebih dahulu...');
+          try {
+            await gdriveSync.connect(true);
+          } catch (e) {
+            this.showToast(`Gagal menyambung: ${e.message}`);
+            return;
+          }
+        }
+        revModal.classList.add('open');
+        if (revList) {
+          revList.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 1.5rem;">Memuatkan semakan dari Google Drive...</div>';
+          try {
+            const revs = await gdriveSync.getRevisionHistory();
+            if (!revs || !revs.length) {
+              revList.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 1.5rem;">${i18n.t('gdriveFeatures.revisionsEmpty')}</div>`;
+              return;
+            }
+            revList.innerHTML = revs
+              .map((r) => {
+                const dateStr = new Date(r.modifiedTime).toLocaleString();
+                const sizeKb = r.size ? `${(parseInt(r.size, 10) / 1024).toFixed(1)} KB` : 'Sandaran';
+                return `
+                  <div class="revision-item">
+                    <div class="revision-meta">
+                      <div class="revision-date">⏱️ ${dateStr}</div>
+                      <div class="revision-sub">Saiz: ${sizeKb}</div>
+                    </div>
+                    <button class="btn btn-primary btn-sm btn-restore-revision" data-id="${r.id}" data-time="${dateStr}" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">
+                      ${i18n.t('gdriveFeatures.restoreBtn')}
+                    </button>
+                  </div>
+                `;
+              })
+              .join('');
+
+            revList.querySelectorAll('.btn-restore-revision').forEach((btn) => {
+              btn.addEventListener('click', async () => {
+                const revId = btn.getAttribute('data-id');
+                const time = btn.getAttribute('data-time');
+                if (confirm(i18n.t('gdriveFeatures.restoreConfirm', { time }))) {
+                  this.showToast(i18n.t('gdriveFeatures.restoring'));
+                  try {
+                    await gdriveSync.restoreRevision(revId);
+                    this.showToast(i18n.t('gdriveFeatures.restoreSuccess'));
+                    revModal.classList.remove('open');
+                    this.renderSidebarBookmarks();
+                    this.renderSidebarNotes();
+                    this.updateKhatamUI();
+                    router.handleRouting();
+                  } catch (e) {
+                    this.showToast(i18n.t('gdriveFeatures.restoreFailed', { error: e.message }));
+                  }
+                }
+              });
+            });
+          } catch (e) {
+            revList.innerHTML = `<div style="text-align: center; color: var(--danger); padding: 1.5rem;">Gagal memuatkan semakan: ${e.message}</div>`;
+          }
+        }
+      });
+
+      revModal.querySelectorAll('[data-action="close-revisions-modal"]').forEach((el) => {
+        el.addEventListener('click', () => revModal.classList.remove('open'));
+      });
+
+      revModal.addEventListener('click', (e) => {
+        if (e.target === revModal) revModal.classList.remove('open');
+      });
+    }
+  }
+
   renderBookmarksView() {
     this.renderedSurah = null;
     if (this.mainContainer) {

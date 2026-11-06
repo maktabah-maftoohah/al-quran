@@ -5,6 +5,21 @@
  */
 
 let searchIndex = null;
+let asbabData = null;
+let verseMap = null;
+
+function getSnippet(text, query, maxLen = 140) {
+  if (!text) return '';
+  const idx = text.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) {
+    return text.length > maxLen ? text.slice(0, maxLen) + '...' : text;
+  }
+  const start = Math.max(0, idx - 40);
+  const end = Math.min(text.length, idx + query.length + 60);
+  const prefix = start > 0 ? '...' : '';
+  const suffix = end < text.length ? '...' : '';
+  return highlightMatch(prefix + text.slice(start, end) + suffix, query);
+}
 
 function normalizeArabic(text) {
   if (!text) return '';
@@ -26,7 +41,13 @@ self.onmessage = async (e) => {
   const { action, id, data } = e.data;
 
   if (action === 'INIT_INDEX') {
-    searchIndex = data;
+    if (data && data.index) {
+      searchIndex = data.index;
+      asbabData = data.asbab || null;
+    } else {
+      searchIndex = data;
+    }
+    verseMap = null;
     self.postMessage({ action: 'INDEX_READY', id });
     return;
   }
@@ -117,6 +138,69 @@ self.onmessage = async (e) => {
         });
 
         if (results.length >= limit) break;
+      }
+    }
+
+    // 3. Search Asbabun Nuzul Narratives (historical context matching)
+    if (asbabData && results.length < limit) {
+      if (!verseMap && searchIndex) {
+        verseMap = new Map();
+        for (let j = 0; j < searchIndex.length; j++) {
+          verseMap.set(`${searchIndex[j].s}:${searchIndex[j].a}`, searchIndex[j]);
+        }
+      }
+      const existingKeys = new Set(results.map((r) => `${r.s}:${r.a}`));
+      for (const k in asbabData) {
+        if (results.length >= limit) break;
+        const entry = asbabData[k];
+        let asbabMatched = false;
+        let matchedText = '';
+        if (entry.text && entry.text.toLowerCase().includes(qLower)) {
+          asbabMatched = true;
+          matchedText = entry.text;
+        } else if (entry.text_en && entry.text_en.toLowerCase().includes(qLower)) {
+          asbabMatched = true;
+          matchedText = entry.text_en;
+        } else if (qNormArabic && entry.arabic && normalizeArabic(entry.arabic).includes(qNormArabic)) {
+          asbabMatched = true;
+          matchedText = entry.arabic;
+        } else if (entry.source && entry.source.toLowerCase().includes(qLower)) {
+          asbabMatched = true;
+          matchedText = `${entry.source}: ${entry.text || ''}`;
+        }
+
+        if (asbabMatched) {
+          const verseKey = `${entry.surah}:${entry.ayah}`;
+          const snippet = getSnippet(matchedText, trimmed);
+          if (existingKeys.has(verseKey)) {
+            const existing = results.find((r) => r.s === entry.surah && r.a === entry.ayah);
+            if (existing) {
+              existing.hasAsbabMatch = true;
+              existing.asbabSnippet = snippet;
+            }
+          } else {
+            const v = verseMap ? verseMap.get(verseKey) : null;
+            if (v) {
+              results.push({
+                ref: v.ref,
+                s: v.s,
+                a: v.a,
+                ar: v.ar,
+                ms: v.ms,
+                en: v.en,
+                id: v.id,
+                matchField: 'asbab',
+                hasAsbabMatch: true,
+                asbabSnippet: snippet,
+                highlightedAr: v.ar,
+                highlightedMs: v.ms,
+                highlightedEn: v.en,
+                highlightedId: v.id,
+              });
+              existingKeys.add(verseKey);
+            }
+          }
+        }
       }
     }
 

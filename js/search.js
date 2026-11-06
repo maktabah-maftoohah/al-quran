@@ -76,10 +76,13 @@ export class SearchEngine {
     // Lazy load index on first open
     if (!this.isLoaded) {
       try {
-        const index = await store.fetchSearchIndex();
+        const [index, asbab] = await Promise.all([
+          store.fetchSearchIndex(),
+          store.fetchAsbab().catch(() => ({})),
+        ]);
         this.isLoaded = true;
         if (this.worker) {
-          this.worker.postMessage({ action: 'INIT_INDEX', data: index });
+          this.worker.postMessage({ action: 'INIT_INDEX', data: { index, asbab } });
         }
       } catch (err) {
         console.error('Failed to load search index:', err);
@@ -219,6 +222,8 @@ export class SearchEngine {
             ms: item.ms,
             en: item.en,
             matchedField: item.matchField,
+            hasAsbabMatch: item.hasAsbabMatch,
+            asbabSnippet: item.asbabSnippet,
             rawQuery,
             url: `#${item.s}:${item.a}`,
           });
@@ -309,12 +314,14 @@ export class SearchEngine {
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="search-result-ref">${item.surahName} (${item.ref})</span>
               <div style="display: flex; gap: 0.35rem; align-items: center;">
+                ${store.hasAsbab(item.surah, item.ayah) ? `<a href="#ayah/${item.surah}/${item.ayah}?tab=asbab" class="btn btn-search-asbab" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none; color: #38bdf8; border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08);" onclick="event.stopPropagation(); window.searchEngine.close();" title="Lihat Asbabun Nuzul">📜 Asbab</a>` : ''}
                 <a href="#mushaf/${store.getPageForAyah(item.surah, item.ayah)}" class="btn btn-search-mushaf" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();" title="Buka Halaman Mushaf">📄 Mushaf</a>
                 <a href="#ayah/${item.surah}/${item.ayah}" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();">${i18n.t('search.btnDeepDive')}</a>
               </div>
             </div>
             <div class="search-result-ar">${highlightedAr}</div>
             <div class="search-result-trans">${highlightedTrans}</div>
+            ${(item.hasAsbabMatch || item.matchedField === 'asbab') && item.asbabSnippet ? `<div class="search-result-asbab-snippet"><span style="font-weight: 600;">📜 ${i18n.getLanguage() === 'ms' ? 'Asbabun Nuzul' : 'Asbab al-Nuzul'}:</span> ${item.asbabSnippet}</div>` : ''}
           </div>
         `;
       })
