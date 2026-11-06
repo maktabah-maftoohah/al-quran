@@ -2918,3 +2918,27 @@ input[type="range"] {
   font-size: 0.75rem;
   color: var(--text-muted);
 }
+
+/* Header Login & Google Drive Button */
+#header-login-btn {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #38bdf8;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#header-login-btn:hover {
+  background: rgba(59, 130, 246, 0.22);
+  border-color: rgba(59, 130, 246, 0.6);
+  transform: translateY(-1px);
+}
+#header-login-btn.logged-in {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: var(--accent-emerald);
+}
+#header-login-btn.logged-in:hover {
+  background: rgba(16, 185, 129, 0.22);
+  border-color: rgba(16, 185, 129, 0.6);
+}

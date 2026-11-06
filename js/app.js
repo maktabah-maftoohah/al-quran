@@ -1298,8 +1298,11 @@ class App {
     const badge = document.getElementById('gdrive-sync-badge');
     const clientIdInput = document.getElementById('input-gdrive-client-id');
     const saveClientIdBtn = document.getElementById('btn-save-gdrive-client-id');
+    const headerLoginBtn = document.getElementById('header-login-btn');
+    const headerLoginText = document.getElementById('header-login-text');
+    const headerLoginIcon = document.getElementById('header-login-icon');
 
-    if (!connectBtn) return;
+    if (!connectBtn && !headerLoginBtn) return;
 
     if (clientIdInput) {
       clientIdInput.value = APP_CONFIG.getGoogleClientId();
@@ -1348,6 +1351,23 @@ class App {
           statusDesc.textContent = i18n.t('settings.gdriveNotConnected');
         }
       }
+
+      if (headerLoginBtn) {
+        if (isConn || hasSession) {
+          const email = gdriveSync.userEmail;
+          headerLoginBtn.classList.add('logged-in');
+          if (headerLoginText) {
+            headerLoginText.textContent = email ? email.split('@')[0] : (i18n.t('nav.loggedIn') || 'Disambung');
+          }
+          headerLoginBtn.title = email ? `Disambung (${email})` : 'Disambung ke Google Drive';
+        } else {
+          headerLoginBtn.classList.remove('logged-in');
+          if (headerLoginText) {
+            headerLoginText.textContent = i18n.t('nav.loginBtn') || 'Log Masuk';
+          }
+          headerLoginBtn.title = i18n.t('nav.loginTitle') || 'Log Masuk Google';
+        }
+      }
     };
 
     gdriveSync.subscribe((event) => {
@@ -1380,13 +1400,37 @@ class App {
       }
     });
 
-    connectBtn.addEventListener('click', async () => {
-      try {
-        await gdriveSync.connect(true);
-      } catch (e) {
-        console.warn('Connect error:', e);
-      }
-    });
+    if (connectBtn) {
+      connectBtn.addEventListener('click', async () => {
+        try {
+          await gdriveSync.connect(true);
+        } catch (e) {
+          console.warn('Connect error:', e);
+        }
+      });
+    }
+
+    if (headerLoginBtn) {
+      headerLoginBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        if (!gdriveSync.isConnected()) {
+          try {
+            await gdriveSync.connect(true);
+          } catch (err) {
+            console.warn('Header login connect error:', err);
+          }
+        } else {
+          const popover = document.getElementById('typography-popover');
+          if (popover) {
+            popover.classList.add('open');
+            const gdriveSec = document.getElementById('gdrive-actions-group');
+            if (gdriveSec) {
+              gdriveSec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }
+        }
+      });
+    }
 
     if (syncBtn) {
       syncBtn.addEventListener('click', async () => {
