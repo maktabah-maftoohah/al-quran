@@ -10,7 +10,9 @@
         "root": "ط و ر",
         "lemma": "طُور",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:1:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:1:1)",
+        "id": "demi bukit",
+        "ms": "demi bukit"
       }
     ],
     "2": [
@@ -22,7 +24,9 @@
         "root": "ك ت ب",
         "lemma": "كِتاب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:2:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:2:1)",
+        "id": "dan kitab",
+        "ms": "dan kitab"
       },
       {
         "pos": 2,
@@ -32,7 +36,9 @@
         "root": "س ط ر",
         "lemma": "مَسْطُور",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:2:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:2:2)",
+        "id": "tertulis",
+        "ms": "tertulis"
       }
     ],
     "3": [
@@ -44,7 +50,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:3:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:3:1)",
+        "id": "pada",
+        "ms": "pada"
       },
       {
         "pos": 2,
@@ -54,7 +62,9 @@
         "root": "ر ق ق",
         "lemma": "رَقّ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:3:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:3:2)",
+        "id": "lembaran",
+        "ms": "lembaran"
       },
       {
         "pos": 3,
@@ -64,7 +74,9 @@
         "root": "ن ش ر",
         "lemma": "مَنشُور",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:3:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:3:3)",
+        "id": "terbentang",
+        "ms": "terbentang"
       }
     ],
     "4": [
@@ -76,7 +88,9 @@
         "root": "ب ي ت",
         "lemma": "بَيْت",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:4:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:4:1)",
+        "id": "dan rumah",
+        "ms": "dan rumah"
       },
       {
         "pos": 2,
@@ -86,7 +100,9 @@
         "root": "ع م ر",
         "lemma": "مَعْمُور",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:4:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:4:2)",
+        "id": "dimakmurkan",
+        "ms": "dimakmurkan"
       }
     ],
     "5": [
@@ -98,7 +114,9 @@
         "root": "س ق ف",
         "lemma": "سَقْف",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:5:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:5:1)",
+        "id": "dan atap",
+        "ms": "dan atap"
       },
       {
         "pos": 2,
@@ -108,7 +126,9 @@
         "root": "ر ف ع",
         "lemma": "مَرْفُوع",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:5:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:5:2)",
+        "id": "ditinggikan",
+        "ms": "ditinggikan"
       }
     ],
     "6": [
@@ -120,7 +140,9 @@
         "root": "ب ح ر",
         "lemma": "بَحْر",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:6:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:6:1)",
+        "id": "dan laut",
+        "ms": "dan laut"
       },
       {
         "pos": 2,
@@ -130,7 +152,9 @@
         "root": "س ج ر",
         "lemma": "مَسْجُور",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:6:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:6:2)",
+        "id": "mendidih",
+        "ms": "mendidih"
       }
     ],
     "7": [
@@ -142,7 +166,9 @@
         "root": "",
         "lemma": "إِنّ",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:1)",
+        "id": "sesungguhnya",
+        "ms": "sesungguhnya"
       },
       {
         "pos": 2,
@@ -152,7 +178,9 @@
         "root": "ع ذ ب",
         "lemma": "عَذاب",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:2)",
+        "id": "azab",
+        "ms": "azab"
       },
       {
         "pos": 3,
@@ -162,7 +190,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:3)",
+        "id": "Tuhanmu",
+        "ms": "Tuhanmu"
       },
       {
         "pos": 4,
@@ -172,7 +202,9 @@
         "root": "و ق ع",
         "lemma": "واقِع",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:7:4)",
+        "id": "pasti terjadi",
+        "ms": "pasti terjadi"
       }
     ],
     "8": [
@@ -184,7 +216,9 @@
         "root": "",
         "lemma": "ما",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:1)",
+        "id": "tidak ada",
+        "ms": "tidak ada"
       },
       {
         "pos": 2,
@@ -194,7 +228,9 @@
         "root": "",
         "lemma": "ل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:2)",
+        "id": "baginya",
+        "ms": "baginya"
       },
       {
         "pos": 3,
@@ -204,7 +240,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:3)",
+        "id": "dari yang",
+        "ms": "dari yang"
       },
       {
         "pos": 4,
@@ -214,7 +252,9 @@
         "root": "د ف ع",
         "lemma": "دافِع",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:8:4)",
+        "id": "menolak",
+        "ms": "menolak"
       }
     ],
     "9": [
@@ -226,7 +266,9 @@
         "root": "ي و م",
         "lemma": "يَوْم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:1)",
+        "id": "pada hari",
+        "ms": "pada hari"
       },
       {
         "pos": 2,
@@ -236,7 +278,9 @@
         "root": "م و ر",
         "lemma": "تَمُورُ",
         "pos_tag": "V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:2)",
+        "id": "bergoncang",
+        "ms": "bergoncang"
       },
       {
         "pos": 3,
@@ -246,7 +290,9 @@
         "root": "س م و",
         "lemma": "سَماء",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:3)",
+        "id": "langit",
+        "ms": "langit"
       },
       {
         "pos": 4,
@@ -256,7 +302,9 @@
         "root": "م و ر",
         "lemma": "مَوْر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:9:4)",
+        "id": "sungguh-sungguh bergoncang",
+        "ms": "sungguh-sungguh bergoncang"
       }
     ],
     "10": [
@@ -268,7 +316,9 @@
         "root": "س ي ر",
         "lemma": "سارَ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:10:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:10:1)",
+        "id": "dan berjalan",
+        "ms": "dan berjalan"
       },
       {
         "pos": 2,
@@ -278,7 +328,9 @@
         "root": "ج ب ل",
         "lemma": "جَبَل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:10:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:10:2)",
+        "id": "gunung-gunung",
+        "ms": "gunung-gunung"
       },
       {
         "pos": 3,
@@ -288,7 +340,9 @@
         "root": "س ي ر",
         "lemma": "سَيْر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:10:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:10:3)",
+        "id": "sungguh-sungguh berjalan",
+        "ms": "sungguh-sungguh berjalan"
       }
     ],
     "11": [
@@ -300,7 +354,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:11:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:11:1)",
+        "id": "maka kecelakaanlah",
+        "ms": "maka kecelakaanlah"
       },
       {
         "pos": 2,
@@ -310,7 +366,9 @@
         "root": "ي و م",
         "lemma": "يَوْم",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:11:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:11:2)",
+        "id": "pada hari itu",
+        "ms": "pada hari itu"
       },
       {
         "pos": 3,
@@ -320,7 +378,9 @@
         "root": "ك ذ ب",
         "lemma": "مُكَذِّب",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:11:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:11:3)",
+        "id": "bagi orang-orang yang mendustakan",
+        "ms": "bagi orang-orang yang mendustakan"
       }
     ],
     "12": [
@@ -332,7 +392,9 @@
         "root": "",
         "lemma": "الَّذِي",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:1)",
+        "id": "orang-orang yang",
+        "ms": "orang-orang yang"
       },
       {
         "pos": 2,
@@ -342,7 +404,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:2)",
+        "id": "mereka",
+        "ms": "mereka"
       },
       {
         "pos": 3,
@@ -352,7 +416,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:3)",
+        "id": "dalam",
+        "ms": "dalam"
       },
       {
         "pos": 4,
@@ -362,7 +428,9 @@
         "root": "خ و ض",
         "lemma": "خَوْض",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:4)",
+        "id": "kesesatan",
+        "ms": "kesesatan"
       },
       {
         "pos": 5,
@@ -372,7 +440,9 @@
         "root": "ل ع ب",
         "lemma": "يَلْعَبْ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:12:5)",
+        "id": "mereka bermain-main",
+        "ms": "mereka bermain-main"
       }
     ],
     "13": [
@@ -384,7 +454,9 @@
         "root": "ي و م",
         "lemma": "يَوْم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:1)",
+        "id": "pada hari",
+        "ms": "pada hari"
       },
       {
         "pos": 2,
@@ -394,7 +466,9 @@
         "root": "د ع ع",
         "lemma": "يَدُعُّ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:2)",
+        "id": "mereka di dorong",
+        "ms": "mereka di dorong"
       },
       {
         "pos": 3,
@@ -404,7 +478,9 @@
         "root": "",
         "lemma": "إِلَى",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:3)",
+        "id": "kepada",
+        "ms": "kepada"
       },
       {
         "pos": 4,
@@ -414,7 +490,9 @@
         "root": "ن و ر",
         "lemma": "نار",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:4)",
+        "id": "api neraka",
+        "ms": "api neraka"
       },
       {
         "pos": 5,
@@ -424,7 +502,9 @@
         "root": "",
         "lemma": "جَهَنَّم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:5)",
+        "id": "jahanam",
+        "ms": "jahanam"
       },
       {
         "pos": 6,
@@ -434,7 +514,9 @@
         "root": "د ع ع",
         "lemma": "دَعّ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:13:6)",
+        "id": "sungguh-sungguh di dorong",
+        "ms": "sungguh-sungguh di dorong"
       }
     ],
     "14": [
@@ -446,7 +528,9 @@
         "root": "",
         "lemma": "ه",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:1)",
+        "id": "inilah",
+        "ms": "inilah"
       },
       {
         "pos": 2,
@@ -456,7 +540,9 @@
         "root": "ن و ر",
         "lemma": "نار",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:2)",
+        "id": "api/neraka",
+        "ms": "api/neraka"
       },
       {
         "pos": 3,
@@ -466,7 +552,9 @@
         "root": "",
         "lemma": "الَّذِي",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:3)",
+        "id": "yang",
+        "ms": "yang"
       },
       {
         "pos": 4,
@@ -476,7 +564,9 @@
         "root": "ك و ن",
         "lemma": "كانَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:4)",
+        "id": "kalian adalah",
+        "ms": "kalian adalah"
       },
       {
         "pos": 5,
@@ -486,7 +576,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:5)",
+        "id": "dengannya",
+        "ms": "dengannya"
       },
       {
         "pos": 6,
@@ -496,7 +588,9 @@
         "root": "ك ذ ب",
         "lemma": "كَذَّبَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:14:6)",
+        "id": "kamu mendustakan",
+        "ms": "kamu mendustakan"
       }
     ],
     "15": [
@@ -508,7 +602,9 @@
         "root": "س ح ر",
         "lemma": "سِحْر",
         "pos_tag": "N+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:1)",
+        "id": "maka apakah sihir",
+        "ms": "maka apakah sihir"
       },
       {
         "pos": 2,
@@ -518,7 +614,9 @@
         "root": "",
         "lemma": "ه",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:2)",
+        "id": "ini",
+        "ms": "ini"
       },
       {
         "pos": 3,
@@ -528,7 +626,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:3)",
+        "id": "atau",
+        "ms": "atau"
       },
       {
         "pos": 4,
@@ -538,7 +638,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:4)",
+        "id": "kamu",
+        "ms": "kamu"
       },
       {
         "pos": 5,
@@ -548,7 +650,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:5)",
+        "id": "tidak",
+        "ms": "tidak"
       },
       {
         "pos": 6,
@@ -558,7 +662,9 @@
         "root": "ب ص ر",
         "lemma": "أَبْصَرَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:15:6)",
+        "id": "kamu melihat",
+        "ms": "kamu melihat"
       }
     ],
     "16": [
@@ -570,7 +676,9 @@
         "root": "ص ل ي",
         "lemma": "يَصْلَى",
         "pos_tag": "V+N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:1)",
+        "id": "masuklah kedalam",
+        "ms": "masuklah kedalam"
       },
       {
         "pos": 2,
@@ -580,7 +688,9 @@
         "root": "ص ب ر",
         "lemma": "صَبَرَ",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:2)",
+        "id": "maka bersabarlah kamu",
+        "ms": "maka bersabarlah kamu"
       },
       {
         "pos": 3,
@@ -590,7 +700,9 @@
         "root": "",
         "lemma": "أَو",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:3)",
+        "id": "atau",
+        "ms": "atau"
       },
       {
         "pos": 4,
@@ -600,7 +712,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:4)",
+        "id": "tidak",
+        "ms": "tidak"
       },
       {
         "pos": 5,
@@ -610,7 +724,9 @@
         "root": "ص ب ر",
         "lemma": "صَبَرَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:5)",
+        "id": "kamu sabar",
+        "ms": "kamu sabar"
       },
       {
         "pos": 6,
@@ -620,7 +736,9 @@
         "root": "س و ي",
         "lemma": "سَواء",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:6)",
+        "id": "sama saja",
+        "ms": "sama saja"
       },
       {
         "pos": 7,
@@ -630,7 +748,9 @@
         "root": "",
         "lemma": "عَلَى",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:7)",
+        "id": "atas kalian",
+        "ms": "atas kalian"
       },
       {
         "pos": 8,
@@ -640,7 +760,9 @@
         "root": "",
         "lemma": "إِنّ",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:8)",
+        "id": "sesungguhnya hanyalah",
+        "ms": "sesungguhnya hanyalah"
       },
       {
         "pos": 9,
@@ -650,7 +772,9 @@
         "root": "ج ز ي",
         "lemma": "جَزَى",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:9)",
+        "id": "kamu diberi balasan",
+        "ms": "kamu diberi balasan"
       },
       {
         "pos": 10,
@@ -660,7 +784,9 @@
         "root": "",
         "lemma": "ما",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:10)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:10)",
+        "id": "apa yang",
+        "ms": "apa yang"
       },
       {
         "pos": 11,
@@ -670,7 +796,9 @@
         "root": "ك و ن",
         "lemma": "كانَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:11)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:11)",
+        "id": "kalian adalah",
+        "ms": "kalian adalah"
       },
       {
         "pos": 12,
@@ -680,7 +808,9 @@
         "root": "ع م ل",
         "lemma": "عَمِلَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:12)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:16:12)",
+        "id": "kamu perbuat",
+        "ms": "kamu perbuat"
       }
     ],
     "17": [
@@ -692,7 +822,9 @@
         "root": "",
         "lemma": "إِنّ",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:1)",
+        "id": "sesungguhnya",
+        "ms": "sesungguhnya"
       },
       {
         "pos": 2,
@@ -702,7 +834,9 @@
         "root": "و ق ي",
         "lemma": "مُتَّقي",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:2)",
+        "id": "orang-orang yang bertakwa",
+        "ms": "orang-orang yang bertakwa"
       },
       {
         "pos": 3,
@@ -712,7 +846,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:3)",
+        "id": "dalam",
+        "ms": "dalam"
       },
       {
         "pos": 4,
@@ -722,7 +858,9 @@
         "root": "ج ن ن",
         "lemma": "جَنَّة",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:4)",
+        "id": "surga",
+        "ms": "surga"
       },
       {
         "pos": 5,
@@ -732,7 +870,9 @@
         "root": "ن ع م",
         "lemma": "نَعِيم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:17:5)",
+        "id": "dan kenikmatan",
+        "ms": "dan kenikmatan"
       }
     ],
     "18": [
@@ -744,7 +884,9 @@
         "root": "ف ك ه",
         "lemma": "فاكِه",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:1)",
+        "id": "mereka bersuka ria",
+        "ms": "mereka bersuka ria"
       },
       {
         "pos": 2,
@@ -754,7 +896,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:2)",
+        "id": "dengan apa yang",
+        "ms": "dengan apa yang"
       },
       {
         "pos": 3,
@@ -764,7 +908,9 @@
         "root": "أ ت ي",
         "lemma": "آتَى",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:3)",
+        "id": "memberikan kepada mereka",
+        "ms": "memberikan kepada mereka"
       },
       {
         "pos": 4,
@@ -774,7 +920,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:4)",
+        "id": "Tuhan mereka",
+        "ms": "Tuhan mereka"
       },
       {
         "pos": 5,
@@ -784,7 +932,9 @@
         "root": "و ق ي",
         "lemma": "وَقَى",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:5)",
+        "id": "dan memelihara mereka",
+        "ms": "dan memelihara mereka"
       },
       {
         "pos": 6,
@@ -794,7 +944,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:6)",
+        "id": "Tuhan mereka",
+        "ms": "Tuhan mereka"
       },
       {
         "pos": 7,
@@ -804,7 +956,9 @@
         "root": "ع ذ ب",
         "lemma": "عَذاب",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:7)",
+        "id": "azab",
+        "ms": "azab"
       },
       {
         "pos": 8,
@@ -814,7 +968,9 @@
         "root": "ج ح م",
         "lemma": "جَحِيم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:18:8)",
+        "id": "neraka jahanam",
+        "ms": "neraka jahanam"
       }
     ],
     "19": [
@@ -826,7 +982,9 @@
         "root": "أ ك ل",
         "lemma": "أَكَلَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:1)",
+        "id": "makanlah",
+        "ms": "makanlah"
       },
       {
         "pos": 2,
@@ -836,7 +994,9 @@
         "root": "ش ر ب",
         "lemma": "شَرِبَ",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:2)",
+        "id": "dan minumlah",
+        "ms": "dan minumlah"
       },
       {
         "pos": 3,
@@ -846,7 +1006,9 @@
         "root": "ه ن أ",
         "lemma": "هَنِيئ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:3)",
+        "id": "dengan enak",
+        "ms": "dengan enak"
       },
       {
         "pos": 4,
@@ -856,7 +1018,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:4)",
+        "id": "terhadap apa",
+        "ms": "terhadap apa"
       },
       {
         "pos": 5,
@@ -866,7 +1030,9 @@
         "root": "ك و ن",
         "lemma": "كانَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:5)",
+        "id": "kalian adalah",
+        "ms": "kalian adalah"
       },
       {
         "pos": 6,
@@ -876,7 +1042,9 @@
         "root": "ع م ل",
         "lemma": "عَمِلَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:19:6)",
+        "id": "kamu kerjakan",
+        "ms": "kamu kerjakan"
       }
     ],
     "20": [
@@ -888,7 +1056,9 @@
         "root": "و ك أ",
         "lemma": "مُتَّكِئ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:1)",
+        "id": "mereka bersandar",
+        "ms": "mereka bersandar"
       },
       {
         "pos": 2,
@@ -898,7 +1068,9 @@
         "root": "",
         "lemma": "عَلَى",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:2)",
+        "id": "atas",
+        "ms": "atas"
       },
       {
         "pos": 3,
@@ -908,7 +1080,9 @@
         "root": "س ر ر",
         "lemma": "سُرُر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:3)",
+        "id": "dipan",
+        "ms": "dipan"
       },
       {
         "pos": 4,
@@ -918,7 +1092,9 @@
         "root": "ص ف ف",
         "lemma": "مَصْفُوفَة",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:4)",
+        "id": "berbaris/teratur",
+        "ms": "berbaris/teratur"
       },
       {
         "pos": 5,
@@ -928,7 +1104,9 @@
         "root": "ز و ج",
         "lemma": "زُوِّجَتْ",
         "pos_tag": "P+V+N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:5)",
+        "id": "dan Kami jodohkan mereka",
+        "ms": "dan Kami jodohkan mereka"
       },
       {
         "pos": 6,
@@ -938,7 +1116,9 @@
         "root": "ح و ر",
         "lemma": "حُور",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:6)",
+        "id": "jelita/bidadari",
+        "ms": "jelita/bidadari"
       },
       {
         "pos": 7,
@@ -948,7 +1128,9 @@
         "root": "ع ي ن",
         "lemma": "عِين",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:20:7)",
+        "id": "mata",
+        "ms": "mata"
       }
     ],
     "21": [
@@ -960,7 +1142,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:1)",
+        "id": "dan orang-orang yang",
+        "ms": "dan orang-orang yang"
       },
       {
         "pos": 2,
@@ -970,7 +1154,9 @@
         "root": "أ م ن",
         "lemma": "آمَنَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:2)",
+        "id": "beriman",
+        "ms": "beriman"
       },
       {
         "pos": 3,
@@ -980,7 +1166,9 @@
         "root": "ت ب ع",
         "lemma": "اتَّبَعَ",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:3)",
+        "id": "dan mengikuti mereka",
+        "ms": "dan mengikuti mereka"
       },
       {
         "pos": 4,
@@ -990,7 +1178,9 @@
         "root": "ذ ر ر",
         "lemma": "ذُرِّيَّة",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:4)",
+        "id": "anak cucu mereka",
+        "ms": "anak cucu mereka"
       },
       {
         "pos": 5,
@@ -1000,7 +1190,9 @@
         "root": "أ م ن",
         "lemma": "إِيمان",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:5)",
+        "id": "dalam keimanan",
+        "ms": "dalam keimanan"
       },
       {
         "pos": 6,
@@ -1010,7 +1202,9 @@
         "root": "ل ح ق",
         "lemma": "أَلْحَقْ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:6)",
+        "id": "Kami pertemukan",
+        "ms": "Kami pertemukan"
       },
       {
         "pos": 7,
@@ -1020,7 +1214,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:7)",
+        "id": "dengan mereka",
+        "ms": "dengan mereka"
       },
       {
         "pos": 8,
@@ -1030,7 +1226,9 @@
         "root": "ذ ر ر",
         "lemma": "ذُرِّيَّة",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:8)",
+        "id": "anak cucu mereka",
+        "ms": "anak cucu mereka"
       },
       {
         "pos": 9,
@@ -1040,7 +1238,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:9)",
+        "id": "dan tidak",
+        "ms": "dan tidak"
       },
       {
         "pos": 10,
@@ -1050,7 +1250,9 @@
         "root": "أ ل ت",
         "lemma": "أَلَتْ",
         "pos_tag": "V+N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:10)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:10)",
+        "id": "Kami mengurangi mereka",
+        "ms": "Kami mengurangi mereka"
       },
       {
         "pos": 11,
@@ -1060,7 +1262,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:11)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:11)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 12,
@@ -1070,7 +1274,9 @@
         "root": "ع م ل",
         "lemma": "عَمَل",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:12)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:12)",
+        "id": "amal perbuatan mereka",
+        "ms": "amal perbuatan mereka"
       },
       {
         "pos": 13,
@@ -1080,7 +1286,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:13)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:13)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 14,
@@ -1090,7 +1298,9 @@
         "root": "ش ي أ",
         "lemma": "شَىْء",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:14)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:14)",
+        "id": "sedikit pun",
+        "ms": "sedikit pun"
       },
       {
         "pos": 15,
@@ -1100,7 +1310,9 @@
         "root": "ك ل ل",
         "lemma": "كُلّ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:15)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:15)",
+        "id": "tiap-tiap",
+        "ms": "tiap-tiap"
       },
       {
         "pos": 16,
@@ -1110,7 +1322,9 @@
         "root": "م ر أ",
         "lemma": "امْرِئ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:16)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:16)",
+        "id": "seseorang",
+        "ms": "seseorang"
       },
       {
         "pos": 17,
@@ -1120,7 +1334,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:17)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:17)",
+        "id": "dengan apa yang",
+        "ms": "dengan apa yang"
       },
       {
         "pos": 18,
@@ -1130,7 +1346,9 @@
         "root": "ك س ب",
         "lemma": "كَسَبَ",
         "pos_tag": "V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:18)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:18)",
+        "id": "ia kerjakan",
+        "ms": "ia kerjakan"
       },
       {
         "pos": 19,
@@ -1140,7 +1358,9 @@
         "root": "ر ه ن",
         "lemma": "رَهِين",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:19)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:21:19)",
+        "id": "terikat/tergantung",
+        "ms": "terikat/tergantung"
       }
     ],
     "22": [
@@ -1152,7 +1372,9 @@
         "root": "م د د",
         "lemma": "أَمَدَّ",
         "pos_tag": "P+V+N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:1)",
+        "id": "dan Kami tambah mereka",
+        "ms": "dan Kami tambah mereka"
       },
       {
         "pos": 2,
@@ -1162,7 +1384,9 @@
         "root": "ف ك ه",
         "lemma": "فاكِهَة",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:2)",
+        "id": "dengan buah-buahan",
+        "ms": "dengan buah-buahan"
       },
       {
         "pos": 3,
@@ -1172,7 +1396,9 @@
         "root": "ل ح م",
         "lemma": "لَحْم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:3)",
+        "id": "dan daging",
+        "ms": "dan daging"
       },
       {
         "pos": 4,
@@ -1182,7 +1408,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:4)",
+        "id": "dari apa",
+        "ms": "dari apa"
       },
       {
         "pos": 5,
@@ -1192,7 +1420,9 @@
         "root": "ش ه و",
         "lemma": "اشْتَهَتْ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:22:5)",
+        "id": "mereka ingini",
+        "ms": "mereka ingini"
       }
     ],
     "23": [
@@ -1204,7 +1434,9 @@
         "root": "ن ز ع",
         "lemma": "تَنازَعُ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:1)",
+        "id": "mereka saling mengedarkan",
+        "ms": "mereka saling mengedarkan"
       },
       {
         "pos": 2,
@@ -1214,7 +1446,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:2)",
+        "id": "didalamnya",
+        "ms": "didalamnya"
       },
       {
         "pos": 3,
@@ -1224,7 +1458,9 @@
         "root": "ك أ س",
         "lemma": "كَأْس",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:3)",
+        "id": "piala-piala",
+        "ms": "piala-piala"
       },
       {
         "pos": 4,
@@ -1234,7 +1470,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:4)",
+        "id": "tidak ada",
+        "ms": "tidak ada"
       },
       {
         "pos": 5,
@@ -1244,7 +1482,9 @@
         "root": "ل غ و",
         "lemma": "لَغْو",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:5)",
+        "id": "sesuatu yang sia-sia",
+        "ms": "sesuatu yang sia-sia"
       },
       {
         "pos": 6,
@@ -1254,7 +1494,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:6)",
+        "id": "didalamnya",
+        "ms": "didalamnya"
       },
       {
         "pos": 7,
@@ -1264,7 +1506,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:7)",
+        "id": "dan tidak ada",
+        "ms": "dan tidak ada"
       },
       {
         "pos": 8,
@@ -1274,7 +1518,9 @@
         "root": "أ ث م",
         "lemma": "تَأْثِيم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:23:8)",
+        "id": "perbuatan dosa",
+        "ms": "perbuatan dosa"
       }
     ],
     "24": [
@@ -1286,7 +1532,9 @@
         "root": "ط و ف",
         "lemma": "طافَ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:1)",
+        "id": "dan berkeliling",
+        "ms": "dan berkeliling"
       },
       {
         "pos": 2,
@@ -1296,7 +1544,9 @@
         "root": "",
         "lemma": "عَلَى",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:2)",
+        "id": "atas mereka",
+        "ms": "atas mereka"
       },
       {
         "pos": 3,
@@ -1306,7 +1556,9 @@
         "root": "غ ل م",
         "lemma": "غُلام",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:3)",
+        "id": "anak-anak muda",
+        "ms": "anak-anak muda"
       },
       {
         "pos": 4,
@@ -1316,7 +1568,9 @@
         "root": "",
         "lemma": "ل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:4)",
+        "id": "untuk mereka",
+        "ms": "untuk mereka"
       },
       {
         "pos": 5,
@@ -1326,7 +1580,9 @@
         "root": "",
         "lemma": "كَأَنّ",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:5)",
+        "id": "seakan-akan mereka",
+        "ms": "seakan-akan mereka"
       },
       {
         "pos": 6,
@@ -1336,7 +1592,9 @@
         "root": "ل ؤ ل ؤ",
         "lemma": "لُؤْلُؤ",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:6)",
+        "id": "mutiara",
+        "ms": "mutiara"
       },
       {
         "pos": 7,
@@ -1346,7 +1604,9 @@
         "root": "ك ن ن",
         "lemma": "مَكْنُون",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:24:7)",
+        "id": "tersimpan",
+        "ms": "tersimpan"
       }
     ],
     "25": [
@@ -1358,7 +1618,9 @@
         "root": "ق ب ل",
         "lemma": "أَقْبَلَ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:1)",
+        "id": "dan menghadap",
+        "ms": "dan menghadap"
       },
       {
         "pos": 2,
@@ -1368,7 +1630,9 @@
         "root": "ب ع ض",
         "lemma": "بَعْض",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:2)",
+        "id": "sebagian mereka",
+        "ms": "sebagian mereka"
       },
       {
         "pos": 3,
@@ -1378,7 +1642,9 @@
         "root": "",
         "lemma": "عَلَى",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:3)",
+        "id": "atas",
+        "ms": "atas"
       },
       {
         "pos": 4,
@@ -1388,7 +1654,9 @@
         "root": "ب ع ض",
         "lemma": "بَعْض",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:4)",
+        "id": "sebagian",
+        "ms": "sebagian"
       },
       {
         "pos": 5,
@@ -1398,7 +1666,9 @@
         "root": "س أ ل",
         "lemma": "يَتَساءَلُ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:25:5)",
+        "id": "mereka saling tanya menanya",
+        "ms": "mereka saling tanya menanya"
       }
     ],
     "26": [
@@ -1410,7 +1680,9 @@
         "root": "ق و ل",
         "lemma": "قالَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:1)",
+        "id": "mereka berkata",
+        "ms": "mereka berkata"
       },
       {
         "pos": 2,
@@ -1420,7 +1692,9 @@
         "root": "",
         "lemma": "إِنّ",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:2)",
+        "id": "sesungguhnya kami",
+        "ms": "sesungguhnya kami"
       },
       {
         "pos": 3,
@@ -1430,7 +1704,9 @@
         "root": "ك و ن",
         "lemma": "كانَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:3)",
+        "id": "adalah kami",
+        "ms": "adalah kami"
       },
       {
         "pos": 4,
@@ -1440,7 +1716,9 @@
         "root": "ق ب ل",
         "lemma": "قَبْل",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:4)",
+        "id": "dahulu",
+        "ms": "dahulu"
       },
       {
         "pos": 5,
@@ -1450,7 +1728,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:5)",
+        "id": "dalam",
+        "ms": "dalam"
       },
       {
         "pos": 6,
@@ -1460,7 +1740,9 @@
         "root": "أ ه ل",
         "lemma": "أَهْل",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:6)",
+        "id": "keluarga kami",
+        "ms": "keluarga kami"
       },
       {
         "pos": 7,
@@ -1470,7 +1752,9 @@
         "root": "ش ف ق",
         "lemma": "مُشْفِق",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:26:7)",
+        "id": "orang-orang yang takut",
+        "ms": "orang-orang yang takut"
       }
     ],
     "27": [
@@ -1482,7 +1766,9 @@
         "root": "م ن ن",
         "lemma": "مَنَّ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:1)",
+        "id": "maka memberi karunia",
+        "ms": "maka memberi karunia"
       },
       {
         "pos": 2,
@@ -1492,7 +1778,9 @@
         "root": "أ ل ه",
         "lemma": "اللَّه",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:2)",
+        "id": "Allah",
+        "ms": "Allah"
       },
       {
         "pos": 3,
@@ -1502,7 +1790,9 @@
         "root": "",
         "lemma": "عَلَى",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:3)",
+        "id": "atas kami",
+        "ms": "atas kami"
       },
       {
         "pos": 4,
@@ -1512,7 +1802,9 @@
         "root": "و ق ي",
         "lemma": "وَقَى",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:4)",
+        "id": "dan Dia memelihara kami",
+        "ms": "dan Dia memelihara kami"
       },
       {
         "pos": 5,
@@ -1522,7 +1814,9 @@
         "root": "ع ذ ب",
         "lemma": "عَذاب",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:5)",
+        "id": "azab",
+        "ms": "azab"
       },
       {
         "pos": 6,
@@ -1532,7 +1826,9 @@
         "root": "س م م",
         "lemma": "سَمُوم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:27:6)",
+        "id": "sangat panas",
+        "ms": "sangat panas"
       }
     ],
     "28": [
@@ -1544,7 +1840,9 @@
         "root": "",
         "lemma": "إِنّ",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:1)",
+        "id": "sesungguhnya kami",
+        "ms": "sesungguhnya kami"
       },
       {
         "pos": 2,
@@ -1554,7 +1852,9 @@
         "root": "ك و ن",
         "lemma": "كانَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:2)",
+        "id": "adalah kami",
+        "ms": "adalah kami"
       },
       {
         "pos": 3,
@@ -1564,7 +1864,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:3)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 4,
@@ -1574,7 +1876,9 @@
         "root": "ق ب ل",
         "lemma": "قَبْل",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:4)",
+        "id": "sebelum",
+        "ms": "sebelum"
       },
       {
         "pos": 5,
@@ -1584,7 +1888,9 @@
         "root": "د ع و",
         "lemma": "دَعا",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:5)",
+        "id": "kami menyembah-Nya",
+        "ms": "kami menyembah-Nya"
       },
       {
         "pos": 6,
@@ -1594,7 +1900,9 @@
         "root": "",
         "lemma": "إِنّ",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:6)",
+        "id": "sesungguhnya Dia",
+        "ms": "sesungguhnya Dia"
       },
       {
         "pos": 7,
@@ -1604,7 +1912,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:7)",
+        "id": "Dia",
+        "ms": "Dia"
       },
       {
         "pos": 8,
@@ -1614,7 +1924,9 @@
         "root": "ب ر ر",
         "lemma": "بَرّ",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:8)",
+        "id": "Yang Melimpahkan Kebaikan",
+        "ms": "Yang Melimpahkan Kebaikan"
       },
       {
         "pos": 9,
@@ -1624,7 +1936,9 @@
         "root": "ر ح م",
         "lemma": "رَحِيم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:28:9)",
+        "id": "Maha Penyayang",
+        "ms": "Maha Penyayang"
       }
     ],
     "29": [
@@ -1636,7 +1950,9 @@
         "root": "ذ ك ر",
         "lemma": "ذُكِّرَ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:1)",
+        "id": "maka berilah peringatan",
+        "ms": "maka berilah peringatan"
       },
       {
         "pos": 2,
@@ -1646,7 +1962,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:2)",
+        "id": "maka tidaklah",
+        "ms": "maka tidaklah"
       },
       {
         "pos": 3,
@@ -1656,7 +1974,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:3)",
+        "id": "kamu",
+        "ms": "kamu"
       },
       {
         "pos": 4,
@@ -1666,7 +1986,9 @@
         "root": "ن ع م",
         "lemma": "نِعْمَة",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:4)",
+        "id": "dengan nikmat",
+        "ms": "dengan nikmat"
       },
       {
         "pos": 5,
@@ -1676,7 +1998,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:5)",
+        "id": "Tuhanmu",
+        "ms": "Tuhanmu"
       },
       {
         "pos": 6,
@@ -1686,7 +2010,9 @@
         "root": "ك ه ن",
         "lemma": "كاهِن",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:6)",
+        "id": "dengan dukun/tukang tenung",
+        "ms": "dengan dukun/tukang tenung"
       },
       {
         "pos": 7,
@@ -1696,7 +2022,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:7)",
+        "id": "dan tidak",
+        "ms": "dan tidak"
       },
       {
         "pos": 8,
@@ -1706,7 +2034,9 @@
         "root": "ج ن ن",
         "lemma": "مَجْنُون",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:29:8)",
+        "id": "seorang gila",
+        "ms": "seorang gila"
       }
     ],
     "30": [
@@ -1718,7 +2048,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -1728,7 +2060,9 @@
         "root": "ق و ل",
         "lemma": "قالَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:2)",
+        "id": "mereka mengatakan",
+        "ms": "mereka mengatakan"
       },
       {
         "pos": 3,
@@ -1738,7 +2072,9 @@
         "root": "ش ع ر",
         "lemma": "شاعِر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:3)",
+        "id": "seorang penyair",
+        "ms": "seorang penyair"
       },
       {
         "pos": 4,
@@ -1748,7 +2084,9 @@
         "root": "ر ب ص",
         "lemma": "تَرَبَّصْ",
         "pos_tag": "V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:4)",
+        "id": "kita tunggu-tunggu",
+        "ms": "kita tunggu-tunggu"
       },
       {
         "pos": 5,
@@ -1758,7 +2096,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:5)",
+        "id": "dengannya",
+        "ms": "dengannya"
       },
       {
         "pos": 6,
@@ -1768,7 +2108,9 @@
         "root": "ر ي ب",
         "lemma": "رَيْب",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:6)",
+        "id": "ragu-ragu",
+        "ms": "ragu-ragu"
       },
       {
         "pos": 7,
@@ -1778,7 +2120,9 @@
         "root": "م ن ن",
         "lemma": "مَنُون",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:30:7)",
+        "id": "zaman/masa",
+        "ms": "zaman/masa"
       }
     ],
     "31": [
@@ -1790,7 +2134,9 @@
         "root": "ق و ل",
         "lemma": "قالَ",
         "pos_tag": "V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:1)",
+        "id": "katakanlah",
+        "ms": "katakanlah"
       },
       {
         "pos": 2,
@@ -1800,7 +2146,9 @@
         "root": "ر ب ص",
         "lemma": "تَرَبَّصْ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:2)",
+        "id": "tunggulah",
+        "ms": "tunggulah"
       },
       {
         "pos": 3,
@@ -1810,7 +2158,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:3)",
+        "id": "maka sesungguhnya aku",
+        "ms": "maka sesungguhnya aku"
       },
       {
         "pos": 4,
@@ -1820,7 +2170,9 @@
         "root": "",
         "lemma": "مَع",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:4)",
+        "id": "bersamamu",
+        "ms": "bersamamu"
       },
       {
         "pos": 5,
@@ -1830,7 +2182,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:5)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 6,
@@ -1840,7 +2194,9 @@
         "root": "ر ب ص",
         "lemma": "مُتَرَبِّص",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:31:6)",
+        "id": "orang-orang yanng menunggu",
+        "ms": "orang-orang yanng menunggu"
       }
     ],
     "32": [
@@ -1852,7 +2208,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -1862,7 +2220,9 @@
         "root": "أ م ر",
         "lemma": "أَمَرَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:2)",
+        "id": "memerintahkan mereka",
+        "ms": "memerintahkan mereka"
       },
       {
         "pos": 3,
@@ -1872,7 +2232,9 @@
         "root": "ح ل م",
         "lemma": "حُلُم",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:3)",
+        "id": "pikiran-pikiran mereka",
+        "ms": "pikiran-pikiran mereka"
       },
       {
         "pos": 4,
@@ -1882,7 +2244,9 @@
         "root": "",
         "lemma": "ب",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:4)",
+        "id": "dengan ini",
+        "ms": "dengan ini"
       },
       {
         "pos": 5,
@@ -1892,7 +2256,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:5)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 6,
@@ -1902,7 +2268,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:6)",
+        "id": "mereka",
+        "ms": "mereka"
       },
       {
         "pos": 7,
@@ -1912,7 +2280,9 @@
         "root": "ق و م",
         "lemma": "قَوْم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:7)",
+        "id": "kaum",
+        "ms": "kaum"
       },
       {
         "pos": 8,
@@ -1922,7 +2292,9 @@
         "root": "ط غ ي",
         "lemma": "طاغي",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:32:8)",
+        "id": "melampaui batas",
+        "ms": "melampaui batas"
       }
     ],
     "33": [
@@ -1934,7 +2306,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -1944,7 +2318,9 @@
         "root": "ق و ل",
         "lemma": "قالَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:2)",
+        "id": "mereka mengatakan",
+        "ms": "mereka mengatakan"
       },
       {
         "pos": 3,
@@ -1954,7 +2330,9 @@
         "root": "ق و ل",
         "lemma": "تَقَوَّلَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:3)",
+        "id": "ia mengada-adakannya",
+        "ms": "ia mengada-adakannya"
       },
       {
         "pos": 4,
@@ -1964,7 +2342,9 @@
         "root": "",
         "lemma": "بَل",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:4)",
+        "id": "bahkan",
+        "ms": "bahkan"
       },
       {
         "pos": 5,
@@ -1974,7 +2354,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:5)",
+        "id": "tidak",
+        "ms": "tidak"
       },
       {
         "pos": 6,
@@ -1984,7 +2366,9 @@
         "root": "أ م ن",
         "lemma": "آمَنَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:33:6)",
+        "id": "mereka tidak beriman",
+        "ms": "mereka tidak beriman"
       }
     ],
     "34": [
@@ -1996,7 +2380,9 @@
         "root": "أ ت ي",
         "lemma": "أَتَى",
         "pos_tag": "P+P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:1)",
+        "id": "maka hendaklah mereka mendatangkan",
+        "ms": "maka hendaklah mereka mendatangkan"
       },
       {
         "pos": 2,
@@ -2006,7 +2392,9 @@
         "root": "ح د ث",
         "lemma": "حَدِيث",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:2)",
+        "id": "dengan perkataan",
+        "ms": "dengan perkataan"
       },
       {
         "pos": 3,
@@ -2016,7 +2404,9 @@
         "root": "م ث ل",
         "lemma": "مِثْل",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:3)",
+        "id": "serupa dengannya",
+        "ms": "serupa dengannya"
       },
       {
         "pos": 4,
@@ -2026,7 +2416,9 @@
         "root": "",
         "lemma": "إِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:4)",
+        "id": "jika",
+        "ms": "jika"
       },
       {
         "pos": 5,
@@ -2036,7 +2428,9 @@
         "root": "ك و ن",
         "lemma": "كانَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:5)",
+        "id": "mereka adalah",
+        "ms": "mereka adalah"
       },
       {
         "pos": 6,
@@ -2046,7 +2440,9 @@
         "root": "ص د ق",
         "lemma": "صادِق",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:34:6)",
+        "id": "orang-orang yang benar",
+        "ms": "orang-orang yang benar"
       }
     ],
     "35": [
@@ -2058,7 +2454,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2068,7 +2466,9 @@
         "root": "خ ل ق",
         "lemma": "خَلَقَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:2)",
+        "id": "mereka diciptakan",
+        "ms": "mereka diciptakan"
       },
       {
         "pos": 3,
@@ -2078,7 +2478,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:3)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 4,
@@ -2088,7 +2490,9 @@
         "root": "غ ي ر",
         "lemma": "غَيْر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:4)",
+        "id": "selain",
+        "ms": "selain"
       },
       {
         "pos": 5,
@@ -2098,7 +2502,9 @@
         "root": "ش ي أ",
         "lemma": "شَىْء",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:5)",
+        "id": "sesuatu",
+        "ms": "sesuatu"
       },
       {
         "pos": 6,
@@ -2108,7 +2514,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:6)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 7,
@@ -2118,7 +2526,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:7)",
+        "id": "mereka",
+        "ms": "mereka"
       },
       {
         "pos": 8,
@@ -2128,7 +2538,9 @@
         "root": "خ ل ق",
         "lemma": "خالِق",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:35:8)",
+        "id": "yang menciptakan",
+        "ms": "yang menciptakan"
       }
     ],
     "36": [
@@ -2140,7 +2552,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2150,7 +2564,9 @@
         "root": "خ ل ق",
         "lemma": "خَلَقَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:2)",
+        "id": "mereka menciptakan",
+        "ms": "mereka menciptakan"
       },
       {
         "pos": 3,
@@ -2160,7 +2576,9 @@
         "root": "س م و",
         "lemma": "سَماء",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:3)",
+        "id": "langit(jamak)",
+        "ms": "langit(jamak)"
       },
       {
         "pos": 4,
@@ -2170,7 +2588,9 @@
         "root": "أ ر ض",
         "lemma": "أَرْض",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:4)",
+        "id": "dan bumi",
+        "ms": "dan bumi"
       },
       {
         "pos": 5,
@@ -2180,7 +2600,9 @@
         "root": "",
         "lemma": "بَل",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:5)",
+        "id": "tetapi",
+        "ms": "tetapi"
       },
       {
         "pos": 6,
@@ -2190,7 +2612,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:6)",
+        "id": "tidak",
+        "ms": "tidak"
       },
       {
         "pos": 7,
@@ -2200,7 +2624,9 @@
         "root": "ي ق ن",
         "lemma": "يُوقِنُ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:36:7)",
+        "id": "mereka meyakini",
+        "ms": "mereka meyakini"
       }
     ],
     "37": [
@@ -2212,7 +2638,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2222,7 +2650,9 @@
         "root": "ع ن د",
         "lemma": "عِند",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:2)",
+        "id": "di sisi mereka",
+        "ms": "di sisi mereka"
       },
       {
         "pos": 3,
@@ -2232,7 +2662,9 @@
         "root": "خ ز ن",
         "lemma": "خَزائِن",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:3)",
+        "id": "perbendaharaan",
+        "ms": "perbendaharaan"
       },
       {
         "pos": 4,
@@ -2242,7 +2674,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:4)",
+        "id": "Tuhanmu",
+        "ms": "Tuhanmu"
       },
       {
         "pos": 5,
@@ -2252,7 +2686,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:5)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 6,
@@ -2262,7 +2698,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:6)",
+        "id": "mereka",
+        "ms": "mereka"
       },
       {
         "pos": 7,
@@ -2272,7 +2710,9 @@
         "root": "س ط ر",
         "lemma": "مُصَيْطِر",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:37:7)",
+        "id": "yang berkuasa",
+        "ms": "yang berkuasa"
       }
     ],
     "38": [
@@ -2284,7 +2724,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2294,7 +2736,9 @@
         "root": "",
         "lemma": "ل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:2)",
+        "id": "bagi mereka",
+        "ms": "bagi mereka"
       },
       {
         "pos": 3,
@@ -2304,7 +2748,9 @@
         "root": "س ل م",
         "lemma": "سُلَّم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:3)",
+        "id": "tangga",
+        "ms": "tangga"
       },
       {
         "pos": 4,
@@ -2314,7 +2760,9 @@
         "root": "س م ع",
         "lemma": "اسْتَمَعَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:4)",
+        "id": "mereka mendengarkan",
+        "ms": "mereka mendengarkan"
       },
       {
         "pos": 5,
@@ -2324,7 +2772,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:5)",
+        "id": "padanya",
+        "ms": "padanya"
       },
       {
         "pos": 6,
@@ -2334,7 +2784,9 @@
         "root": "أ ت ي",
         "lemma": "أَتَى",
         "pos_tag": "P+P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:6)",
+        "id": "maka hendaklah mendatangkan",
+        "ms": "maka hendaklah mendatangkan"
       },
       {
         "pos": 7,
@@ -2344,7 +2796,9 @@
         "root": "س م ع",
         "lemma": "مُسْتَمِع",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:7)",
+        "id": "orang yang mendengarkan diantara mereka",
+        "ms": "orang yang mendengarkan diantara mereka"
       },
       {
         "pos": 8,
@@ -2354,7 +2808,9 @@
         "root": "س ل ط",
         "lemma": "سُلْطان",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:8)",
+        "id": "dengan kekuasaan/keterangan",
+        "ms": "dengan kekuasaan/keterangan"
       },
       {
         "pos": 9,
@@ -2364,7 +2820,9 @@
         "root": "ب ي ن",
         "lemma": "مُبِين",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:38:9)",
+        "id": "nyata",
+        "ms": "nyata"
       }
     ],
     "39": [
@@ -2376,7 +2834,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2386,7 +2846,9 @@
         "root": "",
         "lemma": "ل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:2)",
+        "id": "bagi-Nya",
+        "ms": "bagi-Nya"
       },
       {
         "pos": 3,
@@ -2396,7 +2858,9 @@
         "root": "ب ن ي",
         "lemma": "بِنْت",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:3)",
+        "id": "anak-anak perempuan",
+        "ms": "anak-anak perempuan"
       },
       {
         "pos": 4,
@@ -2406,7 +2870,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:4)",
+        "id": "dan bagimu",
+        "ms": "dan bagimu"
       },
       {
         "pos": 5,
@@ -2416,7 +2882,9 @@
         "root": "ب ن ي",
         "lemma": "بُنَىّ",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:39:5)",
+        "id": "anak-anak laki-laki",
+        "ms": "anak-anak laki-laki"
       }
     ],
     "40": [
@@ -2428,7 +2896,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:1)",
+        "id": "atau",
+        "ms": "atau"
       },
       {
         "pos": 2,
@@ -2438,7 +2908,9 @@
         "root": "س أ ل",
         "lemma": "سَأَلَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:2)",
+        "id": "kamu meminta kepada mereka",
+        "ms": "kamu meminta kepada mereka"
       },
       {
         "pos": 3,
@@ -2448,7 +2920,9 @@
         "root": "أ ج ر",
         "lemma": "أَجْر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:3)",
+        "id": "upah",
+        "ms": "upah"
       },
       {
         "pos": 4,
@@ -2458,7 +2932,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:4)",
+        "id": "maka mereka",
+        "ms": "maka mereka"
       },
       {
         "pos": 5,
@@ -2468,7 +2944,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:5)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 6,
@@ -2478,7 +2956,9 @@
         "root": "غ ر م",
         "lemma": "مَغْرَم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:6)",
+        "id": "hutang",
+        "ms": "hutang"
       },
       {
         "pos": 7,
@@ -2488,7 +2968,9 @@
         "root": "ث ق ل",
         "lemma": "مُثْقَل",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:40:7)",
+        "id": "orang-orang yang dibebani",
+        "ms": "orang-orang yang dibebani"
       }
     ],
     "41": [
@@ -2500,7 +2982,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2510,7 +2994,9 @@
         "root": "ع ن د",
         "lemma": "عِند",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:2)",
+        "id": "di sisi mereka",
+        "ms": "di sisi mereka"
       },
       {
         "pos": 3,
@@ -2520,7 +3006,9 @@
         "root": "غ ي ب",
         "lemma": "غَيْب",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:3)",
+        "id": "kegaiban",
+        "ms": "kegaiban"
       },
       {
         "pos": 4,
@@ -2530,7 +3018,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:4)",
+        "id": "lalu mereka",
+        "ms": "lalu mereka"
       },
       {
         "pos": 5,
@@ -2540,7 +3030,9 @@
         "root": "ك ت ب",
         "lemma": "كَتَبَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:41:5)",
+        "id": "mereka menulis",
+        "ms": "mereka menulis"
       }
     ],
     "42": [
@@ -2552,7 +3044,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2562,7 +3056,9 @@
         "root": "ر و د",
         "lemma": "أَرادَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:2)",
+        "id": "mereka hendak",
+        "ms": "mereka hendak"
       },
       {
         "pos": 3,
@@ -2572,7 +3068,9 @@
         "root": "ك ي د",
         "lemma": "كَيْد",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:3)",
+        "id": "tipu-daya",
+        "ms": "tipu-daya"
       },
       {
         "pos": 4,
@@ -2582,7 +3080,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:4)",
+        "id": "maka orang-orang yang",
+        "ms": "maka orang-orang yang"
       },
       {
         "pos": 5,
@@ -2592,7 +3092,9 @@
         "root": "ك ف ر",
         "lemma": "كَفَرَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:5)",
+        "id": "kafir/ingkar",
+        "ms": "kafir/ingkar"
       },
       {
         "pos": 6,
@@ -2602,7 +3104,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:6)",
+        "id": "mereka",
+        "ms": "mereka"
       },
       {
         "pos": 7,
@@ -2612,7 +3116,9 @@
         "root": "ك ي د",
         "lemma": "مَكِيد",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:42:7)",
+        "id": "orang-orang yang kena tipu daya",
+        "ms": "orang-orang yang kena tipu daya"
       }
     ],
     "43": [
@@ -2624,7 +3130,9 @@
         "root": "",
         "lemma": "أَم",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:1)",
+        "id": "ataukah/apakah",
+        "ms": "ataukah/apakah"
       },
       {
         "pos": 2,
@@ -2634,7 +3142,9 @@
         "root": "",
         "lemma": "ل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:2)",
+        "id": "bagi mereka",
+        "ms": "bagi mereka"
       },
       {
         "pos": 3,
@@ -2644,7 +3154,9 @@
         "root": "أ ل ه",
         "lemma": "إِلٰه",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:3)",
+        "id": "Tuhan",
+        "ms": "Tuhan"
       },
       {
         "pos": 4,
@@ -2654,7 +3166,9 @@
         "root": "غ ي ر",
         "lemma": "غَيْر",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:4)",
+        "id": "selain",
+        "ms": "selain"
       },
       {
         "pos": 5,
@@ -2664,7 +3178,9 @@
         "root": "أ ل ه",
         "lemma": "اللَّه",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:5)",
+        "id": "Allah",
+        "ms": "Allah"
       },
       {
         "pos": 6,
@@ -2674,7 +3190,9 @@
         "root": "س ب ح",
         "lemma": "سُبْحان",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:6)",
+        "id": "Maha Suci",
+        "ms": "Maha Suci"
       },
       {
         "pos": 7,
@@ -2684,7 +3202,9 @@
         "root": "أ ل ه",
         "lemma": "اللَّه",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:7)",
+        "id": "Allah",
+        "ms": "Allah"
       },
       {
         "pos": 8,
@@ -2694,7 +3214,9 @@
         "root": "",
         "lemma": "عَن",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:8)",
+        "id": "dari apa yang",
+        "ms": "dari apa yang"
       },
       {
         "pos": 9,
@@ -2704,7 +3226,9 @@
         "root": "ش ر ك",
         "lemma": "أَشْرَكَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:43:9)",
+        "id": "mereka persekutukan",
+        "ms": "mereka persekutukan"
       }
     ],
     "44": [
@@ -2716,7 +3240,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:1)",
+        "id": "dan jika",
+        "ms": "dan jika"
       },
       {
         "pos": 2,
@@ -2726,7 +3252,9 @@
         "root": "ر أ ي",
         "lemma": "رَأَى",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:2)",
+        "id": "mereka melihat",
+        "ms": "mereka melihat"
       },
       {
         "pos": 3,
@@ -2736,7 +3264,9 @@
         "root": "ك س ف",
         "lemma": "كِسْف",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:3)",
+        "id": "sepotong/sebagian",
+        "ms": "sepotong/sebagian"
       },
       {
         "pos": 4,
@@ -2746,7 +3276,9 @@
         "root": "",
         "lemma": "مِن",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:4)",
+        "id": "dari",
+        "ms": "dari"
       },
       {
         "pos": 5,
@@ -2756,7 +3288,9 @@
         "root": "س م و",
         "lemma": "سَماء",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:5)",
+        "id": "langit",
+        "ms": "langit"
       },
       {
         "pos": 6,
@@ -2766,7 +3300,9 @@
         "root": "س ق ط",
         "lemma": "ساقِط",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:6)",
+        "id": "jatuh",
+        "ms": "jatuh"
       },
       {
         "pos": 7,
@@ -2776,7 +3312,9 @@
         "root": "ق و ل",
         "lemma": "قالَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:7)",
+        "id": "mereka mengatakan",
+        "ms": "mereka mengatakan"
       },
       {
         "pos": 8,
@@ -2786,7 +3324,9 @@
         "root": "س ح ب",
         "lemma": "سَحاب",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:8)",
+        "id": "awan",
+        "ms": "awan"
       },
       {
         "pos": 9,
@@ -2796,7 +3336,9 @@
         "root": "ر ك م",
         "lemma": "مَرْكُوم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:44:9)",
+        "id": "bertumpuk-tumpuk",
+        "ms": "bertumpuk-tumpuk"
       }
     ],
     "45": [
@@ -2808,7 +3350,9 @@
         "root": "و ذ ر",
         "lemma": "يَذَرَ",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:1)",
+        "id": "maka biarkanlah mereka",
+        "ms": "maka biarkanlah mereka"
       },
       {
         "pos": 2,
@@ -2818,7 +3362,9 @@
         "root": "",
         "lemma": "حَتَّى",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:2)",
+        "id": "sehingga",
+        "ms": "sehingga"
       },
       {
         "pos": 3,
@@ -2828,7 +3374,9 @@
         "root": "ل ق ي",
         "lemma": "يُلاقُ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:3)",
+        "id": "mereka menemui",
+        "ms": "mereka menemui"
       },
       {
         "pos": 4,
@@ -2838,7 +3386,9 @@
         "root": "ي و م",
         "lemma": "يَوْم",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:4)",
+        "id": "hari mereka",
+        "ms": "hari mereka"
       },
       {
         "pos": 5,
@@ -2848,7 +3398,9 @@
         "root": "",
         "lemma": "الَّذِي",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:5)",
+        "id": "yang",
+        "ms": "yang"
       },
       {
         "pos": 6,
@@ -2858,7 +3410,9 @@
         "root": "",
         "lemma": "فِي",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:6)",
+        "id": "pada hari itu",
+        "ms": "pada hari itu"
       },
       {
         "pos": 7,
@@ -2868,7 +3422,9 @@
         "root": "ص ع ق",
         "lemma": "صَعِقَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:45:7)",
+        "id": "mereka dibinasakan",
+        "ms": "mereka dibinasakan"
       }
     ],
     "46": [
@@ -2880,7 +3436,9 @@
         "root": "ي و م",
         "lemma": "يَوْم",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:1)",
+        "id": "hari",
+        "ms": "hari"
       },
       {
         "pos": 2,
@@ -2890,7 +3448,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:2)",
+        "id": "tidak",
+        "ms": "tidak"
       },
       {
         "pos": 3,
@@ -2900,7 +3460,9 @@
         "root": "غ ن ي",
         "lemma": "أَغْنَتْ",
         "pos_tag": "V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:3)",
+        "id": "berguna",
+        "ms": "berguna"
       },
       {
         "pos": 4,
@@ -2910,7 +3472,9 @@
         "root": "",
         "lemma": "عَن",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:4)",
+        "id": "dari mereka",
+        "ms": "dari mereka"
       },
       {
         "pos": 5,
@@ -2920,7 +3484,9 @@
         "root": "ك ي د",
         "lemma": "كَيْد",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:5)",
+        "id": "tipu daya mereka",
+        "ms": "tipu daya mereka"
       },
       {
         "pos": 6,
@@ -2930,7 +3496,9 @@
         "root": "ش ي أ",
         "lemma": "شَىْء",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:6)",
+        "id": "sedikit pun",
+        "ms": "sedikit pun"
       },
       {
         "pos": 7,
@@ -2940,7 +3508,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:7)",
+        "id": "dan tidaklah",
+        "ms": "dan tidaklah"
       },
       {
         "pos": 8,
@@ -2950,7 +3520,9 @@
         "root": "",
         "lemma": "",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:8)",
+        "id": "mereka",
+        "ms": "mereka"
       },
       {
         "pos": 9,
@@ -2960,7 +3532,9 @@
         "root": "ن ص ر",
         "lemma": "نَصَرَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:46:9)",
+        "id": "mereka di tolong",
+        "ms": "mereka di tolong"
       }
     ],
     "47": [
@@ -2972,7 +3546,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:1)",
+        "id": "dan sesungguhnya",
+        "ms": "dan sesungguhnya"
       },
       {
         "pos": 2,
@@ -2982,7 +3558,9 @@
         "root": "",
         "lemma": "ل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:2)",
+        "id": "bagi orang-orang yang",
+        "ms": "bagi orang-orang yang"
       },
       {
         "pos": 3,
@@ -2992,7 +3570,9 @@
         "root": "ظ ل م",
         "lemma": "ظَلَمَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:3)",
+        "id": "zallim",
+        "ms": "zallim"
       },
       {
         "pos": 4,
@@ -3002,7 +3582,9 @@
         "root": "ع ذ ب",
         "lemma": "عَذاب",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:4)",
+        "id": "azab",
+        "ms": "azab"
       },
       {
         "pos": 5,
@@ -3012,7 +3594,9 @@
         "root": "د و ن",
         "lemma": "دُون",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:5)",
+        "id": "selain",
+        "ms": "selain"
       },
       {
         "pos": 6,
@@ -3022,7 +3606,9 @@
         "root": "",
         "lemma": "ذا",
         "pos_tag": "N+P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:6)",
+        "id": "demikian itu/dari itu",
+        "ms": "demikian itu/dari itu"
       },
       {
         "pos": 7,
@@ -3032,7 +3618,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:7)",
+        "id": "akan tetapi",
+        "ms": "akan tetapi"
       },
       {
         "pos": 8,
@@ -3042,7 +3630,9 @@
         "root": "ك ث ر",
         "lemma": "أَكْثَر",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:8)",
+        "id": "kebanyakan mereka",
+        "ms": "kebanyakan mereka"
       },
       {
         "pos": 9,
@@ -3052,7 +3642,9 @@
         "root": "",
         "lemma": "لا",
         "pos_tag": "P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:9)",
+        "id": "tidak",
+        "ms": "tidak"
       },
       {
         "pos": 10,
@@ -3062,7 +3654,9 @@
         "root": "ع ل م",
         "lemma": "عَلِمَ",
         "pos_tag": "V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:10)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:47:10)",
+        "id": "mereka mengetahui",
+        "ms": "mereka mengetahui"
       }
     ],
     "48": [
@@ -3074,7 +3668,9 @@
         "root": "ص ب ر",
         "lemma": "صَبَرَ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:1)",
+        "id": "dan bersabarlah",
+        "ms": "dan bersabarlah"
       },
       {
         "pos": 2,
@@ -3084,7 +3680,9 @@
         "root": "ح ك م",
         "lemma": "حُكْم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:2)",
+        "id": "pada ketetapan",
+        "ms": "pada ketetapan"
       },
       {
         "pos": 3,
@@ -3094,7 +3692,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:3)",
+        "id": "Tuhanmu",
+        "ms": "Tuhanmu"
       },
       {
         "pos": 4,
@@ -3104,7 +3704,9 @@
         "root": "",
         "lemma": "ف",
         "pos_tag": "P+P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:4)",
+        "id": "maka sesungguhnya kamu",
+        "ms": "maka sesungguhnya kamu"
       },
       {
         "pos": 5,
@@ -3114,7 +3716,9 @@
         "root": "ع ي ن",
         "lemma": "عَيْن",
         "pos_tag": "P+N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:5)",
+        "id": "pada pengawasan Kami",
+        "ms": "pada pengawasan Kami"
       },
       {
         "pos": 6,
@@ -3124,7 +3728,9 @@
         "root": "س ب ح",
         "lemma": "سَبَّحَ",
         "pos_tag": "P+V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:6)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:6)",
+        "id": "dan bertasbihlah",
+        "ms": "dan bertasbihlah"
       },
       {
         "pos": 7,
@@ -3134,7 +3740,9 @@
         "root": "ح م د",
         "lemma": "حَمْد",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:7)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:7)",
+        "id": "dengan memuji",
+        "ms": "dengan memuji"
       },
       {
         "pos": 8,
@@ -3144,7 +3752,9 @@
         "root": "ر ب ب",
         "lemma": "رَبّ",
         "pos_tag": "N+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:8)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:8)",
+        "id": "Tuhanmu",
+        "ms": "Tuhanmu"
       },
       {
         "pos": 9,
@@ -3154,7 +3764,9 @@
         "root": "ح ي ن",
         "lemma": "حِين",
         "pos_tag": "N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:9)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:9)",
+        "id": "ketika",
+        "ms": "ketika"
       },
       {
         "pos": 10,
@@ -3164,7 +3776,9 @@
         "root": "ق و م",
         "lemma": "قامَ",
         "pos_tag": "V",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:10)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:48:10)",
+        "id": "kamu berdiri/bangun",
+        "ms": "kamu berdiri/bangun"
       }
     ],
     "49": [
@@ -3176,7 +3790,9 @@
         "root": "",
         "lemma": "و",
         "pos_tag": "P+P",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:1)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:1)",
+        "id": "dan dari",
+        "ms": "dan dari"
       },
       {
         "pos": 2,
@@ -3186,7 +3802,9 @@
         "root": "ل ي ل",
         "lemma": "لَيْل",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:2)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:2)",
+        "id": "malam",
+        "ms": "malam"
       },
       {
         "pos": 3,
@@ -3196,7 +3814,9 @@
         "root": "س ب ح",
         "lemma": "سَبَّحَ",
         "pos_tag": "P+V+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:3)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:3)",
+        "id": "maka bertasbihlah",
+        "ms": "maka bertasbihlah"
       },
       {
         "pos": 4,
@@ -3206,7 +3826,9 @@
         "root": "د ب ر",
         "lemma": "إِدْبار",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:4)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:4)",
+        "id": "dan dibelakang/terbenam",
+        "ms": "dan dibelakang/terbenam"
       },
       {
         "pos": 5,
@@ -3216,7 +3838,9 @@
         "root": "ن ج م",
         "lemma": "نَجْم",
         "pos_tag": "P+N",
-        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:5)"
+        "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(52:49:5)",
+        "id": "bintang-bintang",
+        "ms": "bintang-bintang"
       }
     ]
   }

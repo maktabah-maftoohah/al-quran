@@ -8,6 +8,7 @@ export class VerseCardGenerator {
     this.modal = null;
     this.canvas = null;
     this.currentData = null;
+    this.logoImg = null;
   }
 
   init() {
@@ -15,6 +16,15 @@ export class VerseCardGenerator {
     this.canvas = document.getElementById('verse-card-canvas');
 
     if (!this.modal || !this.canvas) return;
+
+    // Preload brand emblem for shareable cards
+    this.logoImg = new Image();
+    this.logoImg.src = './assets/icon-192.png';
+    this.logoImg.onload = () => {
+      if (this.modal && this.modal.classList.contains('open')) {
+        this.drawCard();
+      }
+    };
 
     // Close button & overlay click
     this.modal.addEventListener('click', (e) => {
@@ -183,11 +193,25 @@ export class VerseCardGenerator {
     ctx.font = 'italic 24px Inter, sans-serif';
     ctx.fillText(this.currentData.transLabel, width / 2, currentY);
 
-    // 7. Footer Watermark
-    ctx.fillStyle = 'rgba(16, 185, 129, 0.85)';
-    ctx.font = '600 24px Inter, sans-serif';
+    // 7. Footer Watermark with Official Brand Mark
     const footerY = height - (padding + 34);
-    ctx.fillText('MAKTABAH MAFTOOHAH • AL-QURAN', width / 2, footerY);
+    if (this.logoImg && this.logoImg.complete && this.logoImg.naturalWidth > 0) {
+      const logoSize = 38;
+      const text = 'MAKTABAH MAFTOOHAH • AL-QURAN';
+      ctx.font = '600 22px Inter, sans-serif';
+      const textWidth = ctx.measureText(text).width;
+      const totalWidth = logoSize + 14 + textWidth;
+      const startX = (width - totalWidth) / 2;
+      ctx.drawImage(this.logoImg, startX, footerY - 28, logoSize, logoSize);
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.9)';
+      ctx.textAlign = 'left';
+      ctx.fillText(text, startX + logoSize + 14, footerY);
+    } else {
+      ctx.fillStyle = 'rgba(16, 185, 129, 0.85)';
+      ctx.font = '600 24px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('MAKTABAH MAFTOOHAH • AL-QURAN', width / 2, footerY);
+    }
   }
 
   drawCornerOrnament(ctx, x, y) {

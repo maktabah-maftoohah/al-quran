@@ -14,7 +14,8 @@
     "test:ui": "node scripts/test_ui_comprehensive.js",
     "test:mushaf": "node scripts/test_mushaf_authentic.js",
     "verify": "python scripts/verify_project.py && python scripts/verify_data_integrity.py",
-    "serve": "python scripts/serve.py"
+    "serve": "python scripts/serve.py",
+    "branding": "python scripts/generate_branding.py"
   },
   "devDependencies": {
     "playwright": "^1.55.0"

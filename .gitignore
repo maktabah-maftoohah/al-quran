@@ -20,3 +20,8 @@ data/.cache*
 # Node (if any tooling ever run)
 node_modules/
 dist/
+
+# Codebase bundles / AI context exports
+*codebase-context*
+repomix-output*
+

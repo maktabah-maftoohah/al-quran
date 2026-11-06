@@ -513,12 +513,16 @@ class App {
     const isSingle = activeCount <= 1;
     document.querySelectorAll('.verse-translations').forEach((el) => {
       el.classList.toggle('single-translation', isSingle);
+      const notice = el.querySelector('.no-translations-notice');
+      if (notice) {
+        notice.style.display = activeCount === 0 ? 'block' : 'none';
+      }
     });
   }
 
   populateMissingTranslations() {
     const t = store.cache.translations;
-    document.querySelectorAll('.verse-card').forEach((card) => {
+    document.querySelectorAll('.verse-card, #pane-translations').forEach((card) => {
       const sNum = card.getAttribute('data-surah');
       const aNum = card.getAttribute('data-ayah');
       if (!sNum || !aNum) return;
@@ -716,11 +720,13 @@ class App {
 
     const drawerBody = document.getElementById('morph-drawer-body');
     const concordances = store.findRootConcordances(token.root);
+    const isMalay = i18n.getLanguage() === 'ms';
+    const gloss = (isMalay ? (token.ms || token.id) : null) || token.en || '';
 
     const concordanceHtml = concordances.length
       ? `
         <div style="margin-top: 1rem;">
-          <div class="morph-kv-label">Root Concordance (${concordances.length} loaded occurrences)</div>
+          <div class="morph-kv-label">${isMalay ? `Konkordans Kata Dasar (${concordances.length} ayat ditemui)` : `Root Concordance (${concordances.length} loaded occurrences)`}</div>
           <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.4rem;">
             ${concordances
               .map(
@@ -735,13 +741,13 @@ class App {
           </div>
         </div>
       `
-      : '<div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">No other loaded occurrences in current chapters.</div>';
+      : `<div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">${isMalay ? 'Tiada kemunculan lain dalam surah yang dimuatkan.' : 'No other loaded occurrences in current chapters.'}</div>`;
 
     drawerBody.innerHTML = `
       <div class="morph-token-banner">
         <div class="morph-ar-large">${token.ar}</div>
         <div style="font-size: 1rem; color: var(--accent-blue); font-style: italic; margin-top: 0.25rem;">${token.tr}</div>
-        <div style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 0.15rem;">"${token.en}"</div>
+        <div style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 0.15rem;">"${gloss}"</div>
       </div>
 
       <div class="morph-details-grid">
@@ -1752,6 +1758,8 @@ class App {
       const isJawi = store.settings.jawiMode;
       const msDisplayText = isJawi ? rumiToJawi(msText) : msText;
       const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
+      const activeCount = Object.values(store.settings.activeTranslations || {}).filter(Boolean).length;
+      const singleClass = activeCount <= 1 ? 'single-translation' : '';
 
       const displayName = store.getSurahName(meta);
       store.setLastRead(surah, ayah, displayName);
@@ -1769,29 +1777,33 @@ class App {
       const nextAyah = ayah < meta.total_ayahs ? ayah + 1 : null;
 
       // Word cards HTML
+      const isMalay = i18n.getLanguage() === 'ms';
       const wordCardsHtml = tokens
         .map(
-          (token) => `
+          (token) => {
+            const gloss = (isMalay ? (token.ms || token.id) : null) || token.en || '';
+            return `
           <div class="word-card" data-pos="${token.pos}">
-            <button class="word-speaker-btn" title="Pronounce word" data-pos="${token.pos}">
+            <button class="word-speaker-btn" title="${isMalay ? 'Sebut perkataan' : 'Pronounce word'}" data-pos="${token.pos}">
               🔊
             </button>
             <div class="word-arabic">${token.ar}</div>
             <div class="word-translit">${token.tr}</div>
-            <div class="word-gloss">${token.en}</div>
+            <div class="word-gloss">${gloss}</div>
             ${token.root ? `<div class="word-root-badge">${token.root}</div>` : `<div class="word-root-badge" style="color: var(--text-muted); border-color: var(--border-subtle);">${token.pos_tag}</div>`}
           </div>
-        `
+        `;
+          }
         )
         .join('');
 
-      const backText = i18n.getLanguage() === 'ms' ? `Kembali ke ${displayName} (${surah})` : `Back to ${displayName} (${surah})`;
+      const backText = i18n.t('deepDive.backBtn', { n: `${displayName} (${surah})` });
 
       this.mainContainer.innerHTML = `
         <div class="deepdive-container">
           <div class="deepdive-nav-bar">
             <a href="#${surah}:${ayah}" class="breadcrumb-link">
-              ← ${backText}
+              ${backText}
             </a>
             <div class="deepdive-nav-controls">
               ${prevAyah ? `<a href="#ayah/${surah}/${prevAyah}" class="btn">← Ayah ${prevAyah}</a>` : ''}
@@ -1804,7 +1816,7 @@ class App {
           <div class="deepdive-audio-bar">
             <div class="audio-controls-left">
               <button class="btn btn-primary" id="btn-deepdive-play">
-                ▶ Play Recitation
+                ▶ ${i18n.t('deepDive.playRecitation')}
               </button>
               <select class="reciter-select" id="deepdive-reciter-select">
                 <option value="Alafasy_128kbps">Mishary Alafasy</option>
@@ -1821,7 +1833,7 @@ class App {
               </select>
               <label class="player-option-toggle" id="deepdive-loop-toggle">
                 <input type="checkbox" ${store.settings.loopAyah ? 'checked' : ''}/>
-                <span>Loop Ayah</span>
+                <span>${i18n.t('deepDive.loopAyah')}</span>
               </label>
             </div>
           </div>
@@ -1836,8 +1848,8 @@ class App {
           <!-- Interactive Word-by-Word & Morphology Grid -->
           <div class="wbw-section">
             <div class="section-title">
-              <span>Interactive Word-by-Word & Morphology</span>
-              <span style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted);">(Click word to inspect root & grammar)</span>
+              <span>${i18n.t('deepDive.wbwSectionTitle')}</span>
+              <span style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted);">${i18n.t('deepDive.wbwHint')}</span>
             </div>
             <div class="wbw-grid">
               ${wordCardsHtml}
@@ -1847,39 +1859,42 @@ class App {
           <!-- Categorized Translations & On-Demand Tafsir -->
           <div class="deepdive-tabs-section">
             <div class="tabs-header">
-              <button class="tab-btn active" data-tab="translations">Categorized Translations</button>
-              <button class="tab-btn" data-tab="tafsir">Tafsir al-Jalalayn</button>
-              <button class="tab-btn" data-tab="notes">📝 Personal Notes</button>
+              <button class="tab-btn active" data-tab="translations">${i18n.t('deepDive.tabTranslations')}</button>
+              <button class="tab-btn" data-tab="tafsir">${i18n.t('deepDive.tabTafsir')}</button>
+              <button class="tab-btn" data-tab="notes">📝 ${i18n.t('deepDive.tabNotes')}</button>
             </div>
 
-            <div class="tab-pane active" id="pane-translations">
-              <div class="verse-translations" style="border: none; padding: 0;">
-                <div class="translation-block">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu — JAKIM / Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Rumi'})</span>
-                  <p class="${msClass}" style="font-size: 1.1rem; color: var(--text-primary);">${msDisplayText}</p>
+            <div class="tab-pane active" id="pane-translations" data-surah="${surah}" data-ayah="${ayah}">
+              <div class="verse-translations ${singleClass}" style="border: none; padding: 0;">
+                <div class="translation-block translation-block-basmeih">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
+                  <p class="${msClass}">${msDisplayText}</p>
                 </div>
-                <div class="translation-block" style="margin-top: 1rem;">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Bahasa Melayu / Nusantara — Tafsir al-Jalalayn</span>
-                  <p class="translation-text" style="font-size: 1.05rem; color: var(--text-primary);">${msJalalayn}</p>
+                <div class="translation-block translation-block-jalalayn">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>
+                  <p class="translation-text">${msJalalayn}</p>
                 </div>
-                <div class="translation-block" style="margin-top: 1rem;">
-                  <span class="translation-label"><span class="lang-flag">🇮🇩</span> Bahasa Indonesia — Kemenag</span>
-                  <p class="translation-text" style="font-size: 1.05rem; color: var(--text-primary);">${idText}</p>
+                <div class="translation-block translation-block-kemenag">
+                  <span class="translation-label"><span class="lang-flag">🇮🇩</span> Kemenag (Bahasa Indonesia)</span>
+                  <p class="translation-text">${idText}</p>
                 </div>
-                <div class="translation-block" style="margin-top: 1rem;">
-                  <span class="translation-label"><span class="lang-flag">🇬🇧</span> English — Saheeh International</span>
-                  <p class="translation-text" style="font-size: 1.05rem; color: var(--text-primary);">${sahihText}</p>
+                <div class="translation-block translation-block-sahih">
+                  <span class="translation-label"><span class="lang-flag">🇬🇧</span> Sahih International (English)</span>
+                  <p class="translation-text">${sahihText}</p>
                 </div>
-                <div class="translation-block" style="margin-top: 1rem;">
-                  <span class="translation-label"><span class="lang-flag">🇬🇧</span> English — Mohammed Marmaduke Pickthall</span>
-                  <p class="translation-text" style="font-size: 1.05rem; color: var(--text-secondary);">${pickthallText}</p>
+                <div class="translation-block translation-block-pickthall">
+                  <span class="translation-label"><span class="lang-flag">🇬🇧</span> Pickthall (English Literary)</span>
+                  <p class="translation-text">${pickthallText}</p>
+                </div>
+                <div class="no-translations-notice" style="display: none; padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                  ${i18n.t('deepDive.noTranslationsNotice')}
                 </div>
               </div>
             </div>
 
             <div class="tab-pane" id="pane-tafsir">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.6rem;">
-                <span class="tafsir-source" style="margin: 0;">Classical Commentary</span>
+                <span class="tafsir-source" style="margin: 0;">${i18n.t('deepDive.classicalCommentary')}</span>
                 <select id="tafsir-edition-select" class="select-input">
                   <option value="ms-al-jalalayn" selected>🇲🇾 Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</option>
                   <option value="en-al-jalalayn">🇬🇧 Tafsir al-Jalalayn (English)</option>
@@ -1887,19 +1902,19 @@ class App {
                 </select>
               </div>
               <div class="tafsir-content" id="tafsir-body-text">
-                <div style="color: var(--text-muted);">Click to load commentary for ${surah}:${ayah}...</div>
+                <div style="color: var(--text-muted);">${i18n.t('deepDive.loadCommentaryPlaceholder', { ref: `${surah}:${ayah}` })}</div>
               </div>
             </div>
 
             <div class="tab-pane" id="pane-notes">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <span class="tafsir-source" style="margin: 0;">Personal Reflection (IndexedDB)</span>
-                <span style="font-size: 0.75rem; color: var(--text-muted);">${existingNote ? `Saved: ${new Date(existingNote.updatedAt).toLocaleDateString()}` : 'No note saved yet'}</span>
+                <span class="tafsir-source" style="margin: 0;">${i18n.t('deepDive.personalReflection')}</span>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">${existingNote ? i18n.t('deepDive.noteSaved', { date: new Date(existingNote.updatedAt).toLocaleDateString() }) : i18n.t('deepDive.noNoteYet')}</span>
               </div>
-              <textarea id="deepdive-note-textarea" class="search-input-field" style="width: 100%; height: 130px; padding: 0.75rem; border-radius: var(--radius-sm); resize: vertical; font-family: var(--font-sans); font-size: 0.9rem;" placeholder="Write your personal reflections or tafsir study notes for this ayah...">${existingNote ? this.escapeHtml(existingNote.text) : ''}</textarea>
+              <textarea id="deepdive-note-textarea" class="search-input-field" style="width: 100%; height: 130px; padding: 0.75rem; border-radius: var(--radius-sm); resize: vertical; font-family: var(--font-sans); font-size: 0.9rem;" placeholder="${i18n.t('deepDive.notePlaceholder')}">${existingNote ? this.escapeHtml(existingNote.text) : ''}</textarea>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
-                <button class="btn" id="btn-deepdive-delete-note" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.3); ${existingNote ? '' : 'display: none;'}">🗑 Delete Note</button>
-                <button class="btn btn-primary" id="btn-deepdive-save-note">💾 Save Note</button>
+                <button class="btn" id="btn-deepdive-delete-note" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.3); ${existingNote ? '' : 'display: none;'}">🗑 ${i18n.t('deepDive.deleteNote')}</button>
+                <button class="btn btn-primary" id="btn-deepdive-save-note">💾 ${i18n.t('deepDive.saveNote')}</button>
               </div>
             </div>
           </div>
@@ -1907,6 +1922,7 @@ class App {
       `;
 
       this.attachDeepDiveEvents(surah, ayah, meta, tokens);
+      this.updateActiveTranslationsDisplay();
     } catch (err) {
       console.error('Error rendering deep dive:', err);
       this.mainContainer.innerHTML = `<div style="padding: 2rem; color: var(--danger);">Failed to load Ayah Deep-Dive: ${err.message}</div>`;
@@ -1922,14 +1938,14 @@ class App {
       playBtn.addEventListener('click', () => {
         if (audio.state.currentSurah === surah && audio.state.currentAyah === ayah && audio.state.isPlaying) {
           audio.pause();
-          playBtn.innerHTML = '▶ Play Recitation';
+          playBtn.innerHTML = `▶ ${i18n.t('deepDive.playRecitation')}`;
         } else {
           audio.playAyah(surah, ayah, {
             continuous: false,
             totalAyahs: meta.total_ayahs,
             surahName: displayName,
           });
-          playBtn.innerHTML = '⏸ Pause Recitation';
+          playBtn.innerHTML = `⏸ ${i18n.t('deepDive.pauseRecitation')}`;
         }
       });
     }
