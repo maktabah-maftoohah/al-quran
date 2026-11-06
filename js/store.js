@@ -510,9 +510,36 @@ class QuranStore {
     return ans;
   }
 
-  async getSurahMeta(surahNum) {
+  async resolveSurahNumber(identifier) {
+    if (!identifier) return null;
+    const str = String(identifier).trim();
+    if (/^\d+$/.test(str)) {
+      const num = parseInt(str, 10);
+      return num >= 1 && num <= 114 ? num : null;
+    }
+    const clean = str.toLowerCase()
+      .replace(/^(?:al-|an-|at-|ar-|as-|az-|ad-|adh-|ash-|al|an)/, '')
+      .replace(/[^a-z0-9]/g, '');
+    if (!clean) return null;
+
     const surahs = await this.fetchSurahs();
-    return surahs.find((s) => s.number === parseInt(surahNum, 10)) || null;
+    const match = surahs.find((s) => {
+      const sLatin = (s.name_latin || '').toLowerCase()
+        .replace(/^(?:al-|an-|at-|ar-|as-|az-|ad-|adh-|ash-|al|an)/, '')
+        .replace(/[^a-z0-9]/g, '');
+      const sMs = (s.name_ms || '').toLowerCase()
+        .replace(/^(?:al-|an-|at-|ar-|as-|az-|ad-|adh-|ash-|al|an)/, '')
+        .replace(/[^a-z0-9]/g, '');
+      return sLatin === clean || sMs === clean;
+    });
+    return match ? match.number : null;
+  }
+
+  async getSurahMeta(surahNum) {
+    const num = await this.resolveSurahNumber(surahNum);
+    if (!num) return null;
+    const surahs = await this.fetchSurahs();
+    return surahs.find((s) => s.number === num) || null;
   }
 
   getSurahName(meta) {

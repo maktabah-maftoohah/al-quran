@@ -65,6 +65,35 @@ export class VerseCardGenerator {
         shareBtn.style.display = 'none';
       }
     }
+
+    // Copy Direct Link from Modal
+    const copyModalLinkBtn = document.getElementById('btn-copy-modal-link');
+    if (copyModalLinkBtn) {
+      copyModalLinkBtn.addEventListener('click', () => {
+        const linkInput = document.getElementById('card-modal-link-input');
+        if (linkInput && linkInput.value) {
+          navigator.clipboard.writeText(linkInput.value);
+          if (window.app && window.app.showToast) {
+            window.app.showToast(window.i18n ? window.i18n.t('surah.toastLinkCopied', { ref: this.currentData?.ref || '' }) : 'Pautan disalin!');
+          }
+        }
+      });
+    }
+
+    // Copy AI Citation from Modal
+    const copyModalAiBtn = document.getElementById('btn-copy-modal-ai');
+    if (copyModalAiBtn) {
+      copyModalAiBtn.addEventListener('click', () => {
+        if (!this.currentData) return;
+        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
+        const directUrl = `${window.location.origin}${basePath}#${this.currentData.ref}`;
+        const citation = `> "${this.currentData.trans}"\n> — Surah ${this.currentData.surahName} (${this.currentData.ref})\n${directUrl}`;
+        navigator.clipboard.writeText(citation);
+        if (window.app && window.app.showToast) {
+          window.app.showToast(window.i18n ? window.i18n.t('card.toastAiCopied', { ref: this.currentData.ref }) : 'Rujukan AI disalin!');
+        }
+      });
+    }
   }
 
   open(data) {
@@ -76,6 +105,14 @@ export class VerseCardGenerator {
       ref: data.ref || '1:1',
       ratio: document.getElementById('card-ratio-select')?.value || '1:1',
     };
+
+    const ref = data.ref || '1:1';
+    const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
+    const directUrl = `${window.location.origin}${basePath}#${ref}`;
+    const linkInput = document.getElementById('card-modal-link-input');
+    if (linkInput) linkInput.value = directUrl;
+    const refBadge = document.getElementById('card-modal-ref-badge');
+    if (refBadge) refBadge.textContent = ref;
 
     if (this.modal) {
       this.modal.classList.add('open');

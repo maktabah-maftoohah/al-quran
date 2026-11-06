@@ -104,6 +104,9 @@ export const translations = {
       toastNoteDeleted: "Nota dipadam untuk {ref}",
     },
     deepDive: {
+      btnCopyLink: "🔗 Pautan",
+      btnCopyAi: "🤖 Rujukan AI",
+      toastAiCopied: "Format rujukan AI untuk ayat {ref} disalin!",
       backBtn: "← Kembali ke Surah {n}",
       heading: "Kajian Terperinci Ayat {ref}",
       tabMorphology: "Nahu & Morfologi",
@@ -164,6 +167,10 @@ export const translations = {
     },
     card: {
       modalTitle: "📸 Kad Ayat Kongsi",
+      directLinkTitle: "Pautan Terus & Rujukan AI:",
+      btnCopyLink: "🔗 Salin",
+      btnCopyAi: "🤖 Format AI",
+      toastAiCopied: "Format rujukan AI untuk ayat {ref} disalin!",
       formatLabel: "Format:",
       squareOption: "Segi Empat (1:1 Suapan / Status)",
       storyOption: "Cerita (9:16 Potret)",
@@ -372,6 +379,9 @@ export const translations = {
       toastNoteDeleted: "Note deleted for {ref}",
     },
     deepDive: {
+      btnCopyLink: "🔗 Link",
+      btnCopyAi: "🤖 AI Citation",
+      toastAiCopied: "AI citation for verse {ref} copied!",
       backBtn: "← Back to Surah {n}",
       heading: "Verse {ref} Deep-Dive",
       tabMorphology: "Grammar & Morphology",
@@ -432,6 +442,10 @@ export const translations = {
     },
     card: {
       modalTitle: "📸 Shareable Verse Card",
+      directLinkTitle: "Direct Verse Link & AI Citation:",
+      btnCopyLink: "🔗 Copy",
+      btnCopyAi: "🤖 Copy AI",
+      toastAiCopied: "AI citation for verse {ref} copied!",
       formatLabel: "Format:",
       squareOption: "Square (1:1 Feed / Status)",
       storyOption: "Story (9:16 Portrait)",

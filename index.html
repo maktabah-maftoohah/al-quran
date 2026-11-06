@@ -411,6 +411,19 @@
             <button class="btn" id="btn-copy-card-image" data-i18n="card.btnCopy">📋 Salin</button>
           </div>
         </div>
+
+        <!-- Direct Ayah Link & AI Citation for Chat AI -->
+        <div style="width: 100%; background: var(--bg-main); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; display: flex; flex-direction: column; gap: 0.4rem; box-sizing: border-box;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--text-secondary);" data-i18n="card.directLinkTitle">Pautan Terus &amp; Rujukan AI:</span>
+            <span id="card-modal-ref-badge" class="ayah-badge" style="font-size: 0.72rem;">1:1</span>
+          </div>
+          <div style="display: flex; gap: 0.4rem; align-items: center; width: 100%;">
+            <input type="text" id="card-modal-link-input" readonly class="search-input-field" style="flex: 1; min-width: 0; font-size: 0.75rem; padding: 0.25rem 0.5rem; background: var(--bg-card); cursor: text;" />
+            <button class="btn btn-sm" id="btn-copy-modal-link" style="font-size: 0.75rem; white-space: nowrap;" data-i18n="card.btnCopyLink">🔗 Salin</button>
+            <button class="btn btn-sm" id="btn-copy-modal-ai" style="font-size: 0.75rem; white-space: nowrap;" data-i18n="card.btnCopyAi">🤖 Format AI</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

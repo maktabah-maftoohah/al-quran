@@ -3,7 +3,7 @@
  * Enables offline caching and PWA installation.
  */
 
-const CACHE_NAME = 'maktabah-quran-v20';
+const CACHE_NAME = 'maktabah-quran-v21';
 
 const APP_SHELL = [
   './',
@@ -31,7 +31,8 @@ const APP_SHELL = [
   './assets/icon-512.png',
   './assets/logo.svg',
   './data/surahs.json',
-  './data/asbabun-nuzul.json'
+  './data/asbabun-nuzul.json',
+  './llms.txt'
 ];
 
 self.addEventListener('install', (event) => {

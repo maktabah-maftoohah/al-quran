@@ -15,6 +15,7 @@
     "test:sync": "node scripts/test_gdrive_sync.js",
     "test:traffic": "python scripts/test_traffic_archiver.py",
     "test:ui": "node scripts/test_ui_comprehensive.js",
+    "test:ai": "node scripts/test_ai_direct_links.js",
     "test:mushaf": "node scripts/test_mushaf_authentic.js",
     "verify": "python scripts/verify_project.py && python scripts/verify_data_integrity.py",
     "serve": "python scripts/serve.py",

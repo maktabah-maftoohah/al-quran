@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Dedicated AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Large Language Model Context & AI Citation Reference
+# See: https://llmstxt.org/
+llms.txt: https://maktabah-maftoohah.github.io/al-quran/llms.txt

@@ -1591,6 +1591,12 @@ class App {
         const displayName = store.getSurahName(meta);
         const displayTrans = store.getSurahTranslation(meta);
         store.setLastRead(surah, targetAyah, displayName, displayTrans);
+        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
+        this.updatePageMeta({
+          title: `Surah ${displayName} ${surah}:${targetAyah} — Maktabah Maftoohah Al-Quran`,
+          description: `Surah ${displayName} ${surah}:${targetAyah}`,
+          url: `${window.location.origin}${basePath}#${surah}:${targetAyah}`
+        });
       }
 
       this.scrollToAyah(surah, targetAyah, { smooth: false });
@@ -1879,9 +1885,22 @@ class App {
       this.attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah);
 
       // Handle target ayah scroll & highlight (e.g. #surah/6/12, #surah/8/57)
+      const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
       if (targetAyah) {
+        const ayahAr = arabicData.ayahs[String(targetAyah)]?.uthmani || '';
+        const ayahTrans = basmeihSurah[String(targetAyah)] || sahihSurah[String(targetAyah)] || '';
+        this.updatePageMeta({
+          title: `Surah ${displayName} ${surah}:${targetAyah} — Maktabah Maftoohah Al-Quran`,
+          description: `${ayahAr} — "${ayahTrans}" (Surah ${displayName} ${surah}:${targetAyah})`,
+          url: `${window.location.origin}${basePath}#${surah}:${targetAyah}`
+        });
         this.scrollToAyah(surah, targetAyah, { smooth: false });
       } else {
+        this.updatePageMeta({
+          title: `Surah ${displayName} (${surah}) — Maktabah Maftoohah Al-Quran`,
+          description: `Baca dan teliti Surah ${displayName} (${surah}) dengan teks Uthmani, terjemahan Melayu & Inggeris, morfologi kata, dan audio penuh.`,
+          url: `${window.location.origin}${basePath}#surah/${surah}`
+        });
         if (this.mainContainer) {
           this.mainContainer.scrollTo({ top: 0, behavior: 'auto' });
         }
@@ -1940,6 +1959,28 @@ class App {
     }
     setTimeout(settleScroll, 100);
     setTimeout(settleScroll, 300);
+  }
+
+  updatePageMeta({ title, description, url } = {}) {
+    if (title) {
+      document.title = title;
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', title);
+      const twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.setAttribute('content', title);
+    }
+    if (description) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', description);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', description);
+      const twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc) twDesc.setAttribute('content', description);
+    }
+    if (url) {
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', url);
+    }
   }
 
   renderUnseededSurahView(meta) {
@@ -2140,7 +2181,8 @@ class App {
       btn.addEventListener('click', () => {
         const s = btn.getAttribute('data-surah');
         const a = btn.getAttribute('data-ayah');
-        const directUrl = `${window.location.origin}${window.location.pathname}#${s}:${a}`;
+        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
+        const directUrl = `${window.location.origin}${basePath}#${s}:${a}`;
         this.copyToClipboard(directUrl, i18n.t('surah.toastLinkCopied', { ref: `${s}:${a}` }));
       });
     });
@@ -2277,6 +2319,16 @@ class App {
       const displayName = store.getSurahName(meta);
       store.setLastRead(surah, ayah, displayName);
 
+      const ayahTitle = isMs
+        ? `Ayat ${surah}:${ayah} (${displayName}) — Maktabah Maftoohah Al-Quran`
+        : `Verse ${surah}:${ayah} (${displayName}) — Maktabah Maftoohah Al-Quran`;
+      const deepBasePath = window.location.pathname.replace(/\/index\.html$/, '/');
+      this.updatePageMeta({
+        title: ayahTitle,
+        description: `${uthmaniText} — "${msText || sahihText}" (Surah ${displayName} ${surah}:${ayah})`,
+        url: `${window.location.origin}${deepBasePath}#ayah/${surah}/${ayah}`
+      });
+
       if (!audio.state.isPlaying) {
         audio.state.currentSurah = surah;
         audio.state.currentAyah = ayah;
@@ -2322,6 +2374,12 @@ class App {
               ${prevAyah ? `<a href="#ayah/${surah}/${prevAyah}" class="btn">← Ayah ${prevAyah}</a>` : ''}
               <span class="ayah-badge" style="font-size: 0.95rem;">${surah}:${ayah}</span>
               ${nextAyah ? `<a href="#ayah/${surah}/${nextAyah}" class="btn">Ayah ${nextAyah} →</a>` : ''}
+              <button class="btn btn-copy-deepdive-link" data-surah="${surah}" data-ayah="${ayah}" title="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + ayah + ')' : 'Copy Direct Link (#' + surah + ':' + ayah + ')'}">
+                ${i18n.t('deepDive.btnCopyLink')}
+              </button>
+              <button class="btn btn-copy-deepdive-ai" data-surah="${surah}" data-ayah="${ayah}" title="${isMs ? 'Salin Format Rujukan untuk AI (ChatGPT/Claude/Gemini)' : 'Copy Citation for AI Chat'}">
+                ${i18n.t('deepDive.btnCopyAi')}
+              </button>
             </div>
           </div>
 
@@ -2504,6 +2562,29 @@ class App {
 
   attachDeepDiveEvents(surah, ayah, meta, tokens, initialTab) {
     const displayName = store.getSurahName(meta);
+
+    // Deep-dive Direct Link copy
+    const copyLinkBtn = this.mainContainer.querySelector('.btn-copy-deepdive-link');
+    if (copyLinkBtn) {
+      copyLinkBtn.addEventListener('click', () => {
+        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
+        const directUrl = `${window.location.origin}${basePath}#${surah}:${ayah}`;
+        this.copyToClipboard(directUrl, i18n.t('surah.toastLinkCopied', { ref: `${surah}:${ayah}` }));
+      });
+    }
+
+    // Deep-dive AI Citation copy
+    const copyAiBtn = this.mainContainer.querySelector('.btn-copy-deepdive-ai');
+    if (copyAiBtn) {
+      copyAiBtn.addEventListener('click', () => {
+        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
+        const directUrl = `${window.location.origin}${basePath}#${surah}:${ayah}`;
+        const transElem = this.mainContainer.querySelector('.tab-pane.active p.translation-text') || this.mainContainer.querySelector('.verse-translations p.translation-text');
+        const transText = (transElem?.textContent || '').trim();
+        const citation = `> "${transText}"\n> — Surah ${displayName} (${surah}:${ayah})\n${directUrl}`;
+        this.copyToClipboard(citation, i18n.t('deepDive.toastAiCopied', { ref: `${surah}:${ayah}` }));
+      });
+    }
 
     // Play Ayah button in Deep Dive
     const playBtn = document.getElementById('btn-deepdive-play');
