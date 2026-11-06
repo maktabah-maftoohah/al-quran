@@ -308,7 +308,10 @@ export class SearchEngine {
           <div class="search-result-item ${isSelected}" data-index="${index}" data-url="${item.url}">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="search-result-ref">${item.surahName} (${item.ref})</span>
-              <a href="#ayah/${item.surah}/${item.ayah}" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();">${i18n.t('search.btnDeepDive')}</a>
+              <div style="display: flex; gap: 0.35rem; align-items: center;">
+                <a href="#mushaf/${store.getPageForAyah(item.surah, item.ayah)}" class="btn btn-search-mushaf" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();" title="Buka Halaman Mushaf">📄 Mushaf</a>
+                <a href="#ayah/${item.surah}/${item.ayah}" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none;" onclick="event.stopPropagation(); window.searchEngine.close();">${i18n.t('search.btnDeepDive')}</a>
+              </div>
             </div>
             <div class="search-result-ar">${highlightedAr}</div>
             <div class="search-result-trans">${highlightedTrans}</div>

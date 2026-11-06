@@ -22,7 +22,7 @@ Before making code contributions, please be aware of the project's core invarian
    * Python scripts writing files must specify `encoding="utf-8"` and `ensure_ascii=False`.
 
 4. **Service Worker Versioning**:
-   * When modifying core stylesheets or scripts, remember to bump `CACHE_NAME` in `sw.js` (e.g., `v4` $\rightarrow$ `v5`) so offline caches invalidate cleanly across user browsers.
+   * When modifying core stylesheets or scripts, remember to bump `CACHE_NAME` in `sw.js` (e.g., `v14` $\rightarrow$ `v15`) so offline caches invalidate cleanly across user browsers.
 
 ---
 
@@ -33,20 +33,31 @@ Before making code contributions, please be aware of the project's core invarian
    ```bash
    git checkout -b feature/my-enhancement
    ```
-3. **Make Your Changes**: Keep modifications modular, clean, and well-commented.
-4. **Run the Test Suite**:
+3. **Local Development**:
    ```bash
-   # Verify Quranic data integrity and schemas
+   # Run the local development server with auto-reload and no-cache headers
+   python scripts/serve.py --port 8000
+   # or
+   npm run serve
+   ```
+4. **Make Your Changes**: Keep modifications modular, clean, and well-commented.
+5. **Run the Test & Verification Suite**:
+   ```bash
+   # 1. Verify Project Invariants & Quranic Data Schemas
+   npm run verify
+   # or:
+   python scripts/verify_project.py
    python scripts/verify_data_integrity.py
 
-   # Run automated Playwright end-to-end tests
-   node scripts/test_release_qa.js
+   # 2. Run Comprehensive QA & Browser Tests (Playwright)
+   npm test
+   npm run test:ui
    ```
-5. **Commit Your Changes**: Follow conventional commit messages:
+6. **Commit Your Changes**: Follow conventional commit messages:
    ```bash
    git commit -m "feat(ui): add new audio speed playback control"
    ```
-6. **Submit a Pull Request**: Describe your changes, motivation, and test verification results in the PR description.
+7. **Submit a Pull Request**: Describe your changes, motivation, and test verification results in the PR description.
 
 ---
 

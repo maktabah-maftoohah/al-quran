@@ -83,9 +83,9 @@ export class Router {
     }
 
     // 6. 15-Line Mushaf Page View: #mushaf/:page
-    const mushafMatch = pathPart.match(/^mushaf\/(\d+)$/);
+    const mushafMatch = pathPart.match(/^mushaf(?:\/(\d+))?$/);
     if (mushafMatch) {
-      const page = parseInt(mushafMatch[1], 10);
+      const page = mushafMatch[1] ? parseInt(mushafMatch[1], 10) : (store.getLastMushafPage() || 1);
       const handler = this.routes.get('mushaf');
       if (handler) handler({ page });
       return;

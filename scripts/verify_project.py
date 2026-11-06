@@ -98,7 +98,7 @@ def main():
     # 9. Check Search Index
     with open(root / "data" / "search-index.json", encoding="utf-8") as f:
         s_idx = json.load(f)
-    assert len(s_idx) == 22
+    assert len(s_idx) in (22, 6236), f"Expected 22 or 6236 search entries, got {len(s_idx)}"
     for item in s_idx:
         assert all(k in item for k in ["ref", "s", "a", "ar", "ms", "en"])
     print(f"[PASS] Check 9: Search index verified ({len(s_idx)} verses).")

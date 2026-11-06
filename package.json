@@ -9,7 +9,12 @@
     "url": "https://github.com/maktabah-maftoohah/al-quran.git"
   },
   "scripts": {
-    "test": "node scripts/test_release_qa.js"
+    "test": "node scripts/test_release_qa.js",
+    "test:qa": "node scripts/test_release_qa.js",
+    "test:ui": "node scripts/test_ui_comprehensive.js",
+    "test:mushaf": "node scripts/test_mushaf_authentic.js",
+    "verify": "python scripts/verify_project.py && python scripts/verify_data_integrity.py",
+    "serve": "python scripts/serve.py"
   },
   "devDependencies": {
     "playwright": "^1.55.0"

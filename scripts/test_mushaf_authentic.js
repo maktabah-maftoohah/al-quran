@@ -2,17 +2,66 @@
  * Verification test for Authentic Uthmani / Madinah Mushaf Features
  */
 
-import { chromium } from 'playwright';
+import http from 'http';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 import assert from 'assert';
+import { chromium } from 'playwright';
 
-const PORT = process.env.PORT || 8000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const ROOT_DIR = path.resolve(__dirname, '..');
+
+const mimeTypes = {
+  '.html': 'text/html',
+  '.js': 'application/javascript',
+  '.css': 'text/css',
+  '.json': 'application/json',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.webmanifest': 'application/manifest+json'
+};
+
+const server = http.createServer((req, res) => {
+  let reqPath = decodeURI(req.url.split('?')[0]);
+  if (reqPath === '/') reqPath = '/index.html';
+  const filePath = path.join(ROOT_DIR, reqPath);
+
+  fs.readFile(filePath, (err, content) => {
+    if (err) {
+      res.writeHead(404);
+      res.end('Not found: ' + reqPath);
+      return;
+    }
+    const ext = path.extname(filePath);
+    res.writeHead(200, {
+      'Content-Type': mimeTypes[ext] || 'text/plain',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(content);
+  });
+});
+
+const PORT = process.env.PORT || 8898;
 
 async function runMushafVerification() {
+  await new Promise((resolve) => server.listen(PORT, resolve));
   console.log('--- Testing Authentic Madinah Mushaf Features ---');
-  const browser = await chromium.launch({
-    headless: true,
-    executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
-  });
+  const chromePath = [
+    process.env.CHROME_BIN,
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
+  ].find(p => p && fs.existsSync(p));
+
+  const launchOptions = { headless: true };
+  if (chromePath) {
+    launchOptions.executablePath = chromePath;
+  }
+  const browser = await chromium.launch(launchOptions);
   const page = await browser.newPage();
 
   try {
@@ -197,11 +246,112 @@ async function runMushafVerification() {
     assert(activeAyahP1 !== null, 'Ayah 1:7 is active and highlighted on Page 1');
     console.log('  [PASS] Player and Mushaf cross-page auto-turn & highlight verified');
 
+    // 11. Surah View "Open Mushaf" button links dynamically to Surah start page
+    console.log('\n[11] Dynamic "Open Mushaf" Button per Surah');
+    await page.goto(`http://localhost:${PORT}/index.html#surah/36`, { waitUntil: 'networkidle' });
+    const openMushafBtn = await page.$('.surah-header-card a[href="#mushaf/440"]');
+    assert(openMushafBtn !== null, 'Surah 36 has "Open Mushaf" button pointing to page 440');
+    console.log('  [PASS] Dynamic surah-to-mushaf start page link verified (36 -> 440)');
+
+    // 12. Header Mushaf button remembers last-viewed page
+    console.log('\n[12] Header Mushaf Nav Button Remembers Last Read Page');
+    await page.goto(`http://localhost:${PORT}/index.html#mushaf/221`, { waitUntil: 'networkidle' });
+    await page.waitForSelector('.mushaf-sheet[data-page="221"]');
+    const headerMushafBtnHref = await page.$eval('#mushaf-mode-btn', (el) => el.getAttribute('href'));
+    assert(headerMushafBtnHref === '#mushaf/221' || headerMushafBtnHref === '#mushaf', `Header mushaf link matches page 221: "${headerMushafBtnHref}"`);
+    console.log('  [PASS] Resume reading & header mushaf memory verified');
+
+    // 13. Page Scrubber Slider
+    console.log('\n[13] Quick Page Scrubber Slider');
+    const slider = await page.$('#mushaf-page-slider');
+    assert(slider !== null, 'Page scrubber slider exists');
+    const sliderVal = await page.$eval('#mushaf-page-slider', (el) => el.value);
+    assert(sliderVal === '221', `Slider value initialized to 221: "${sliderVal}"`);
+    console.log('  [PASS] Page scrubber slider verified');
+
+    // 14. Translation Preview Bar on Ayah Hover/Click
+    console.log('\n[14] Verse Translation Preview Bar');
+    const firstAyahP221 = await page.$('.mushaf-ayah-span');
+    assert(firstAyahP221 !== null, 'Found ayah span on page 221');
+    await firstAyahP221.click();
+    await page.waitForTimeout(300);
+    const transBar = await page.$('#mushaf-translation-bar');
+    assert(transBar !== null, 'Translation bar exists');
+    const transBarVisible = await page.$eval('#mushaf-translation-bar', (el) => el.style.display !== 'none');
+    assert(transBarVisible, 'Translation bar is visible after ayah click');
+    const transText = await page.$eval('#mushaf-trans-text', (el) => el.textContent.trim());
+    assert(transText.length > 0, `Translation bar contains non-empty text: "${transText.slice(0, 30)}..."`);
+    console.log('  [PASS] Translation preview bar verified');
+
+    // 15. Accessibility & Text Language Standards
+    console.log('\n[15] Accessibility Attributes & Arabic Language Standards');
+    const pageContainer = await page.$('.mushaf-page-container[role="region"]');
+    assert(pageContainer !== null, 'Mushaf container has role="region"');
+    const sheetBody = await page.$('.mushaf-sheet-body[lang="ar"][dir="rtl"]');
+    assert(sheetBody !== null, 'Mushaf sheet body has lang="ar" and dir="rtl"');
+    console.log('  [PASS] Accessibility attributes & lang="ar" standards verified');
+
+    // 16. Mushaf Page-Level Bookmark Toggle
+    console.log('\n[16] Page-Level Bookmark Toggle Button');
+    const bmBtn = await page.$('#mushaf-bookmark-btn');
+    assert(bmBtn !== null, 'Bookmark button exists in Mushaf toolbar');
+    await bmBtn.click();
+    await page.waitForTimeout(300);
+    const isBookmarkedClass = await page.$('.mushaf-bookmark-btn.bookmarked');
+    assert(isBookmarkedClass !== null, 'Bookmark button acquired .bookmarked class');
+    console.log('  [PASS] Page-level bookmark toggle verified');
+
+    // 17. Sepia / Parchment Theme Toggle
+    console.log('\n[17] Sepia / Classical Parchment Theme Toggle');
+    const themeBtn = await page.$('#mushaf-theme-toggle-btn');
+    assert(themeBtn !== null, 'Theme toggle button exists');
+    await themeBtn.click();
+    await page.waitForTimeout(300);
+    const hasSepiaTheme = await page.$('.mushaf-page-container.mushaf-theme-sepia');
+    assert(hasSepiaTheme !== null, 'Mushaf container has .mushaf-theme-sepia class');
+    // Toggle back to dark
+    await page.click('#mushaf-theme-toggle-btn');
+    await page.waitForTimeout(300);
+    console.log('  [PASS] Sepia manuscript theme toggle verified');
+
+    // 18. Dual-Page Book Spread Mode
+    console.log('\n[18] Dual-Page Book Spread Mode');
+    const spreadBtn = await page.$('#mushaf-spread-toggle-btn');
+    assert(spreadBtn !== null, 'Spread toggle button exists');
+    await spreadBtn.click();
+    await page.waitForTimeout(400);
+    const spreadWrapper = await page.$('.mushaf-spread-wrapper');
+    assert(spreadWrapper !== null, 'Dual-page spread wrapper rendered');
+    const sheetsInSpread = await page.$$('.mushaf-spread-wrapper .mushaf-sheet');
+    assert(sheetsInSpread.length === 2, `Spread contains exactly 2 sheets, found ${sheetsInSpread.length}`);
+    // Toggle back to single page
+    await page.click('#mushaf-spread-toggle-btn');
+    await page.waitForTimeout(300);
+    console.log('  [PASS] Dual-page book spread toggle & 2-sheet layout verified');
+
+    // 19. Search Results Direct Mushaf Page Link
+    console.log('\n[19] Search Results Direct Mushaf Link');
+    await page.click('[data-action="open-search"]');
+    await page.waitForSelector('#search-modal-overlay.open', { timeout: 3000 });
+    await page.fill('#search-input-field', 'rahman');
+    await page.waitForTimeout(600);
+    const mushafSearchLink = await page.$('.btn-search-mushaf');
+    assert(mushafSearchLink !== null, 'Search results contain .btn-search-mushaf link');
+    await page.click('[data-action="close-search"]');
+    console.log('  [PASS] Search results Mushaf page link verified');
+
+    // 20. Print / Export Button
+    console.log('\n[20] Print / Export Action Button');
+    const printBtn = await page.$('#mushaf-print-btn');
+    assert(printBtn !== null, 'Print page button exists in toolbar');
+    console.log('  [PASS] Print button presence verified');
+
     console.log('\n====================================');
     console.log('ALL AUTHENTIC MUSHAF CHECKS PASSED!');
     console.log('====================================');
   } finally {
-    await browser.close();
+    if (browser) await browser.close();
+    server.close();
   }
 }
 

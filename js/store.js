@@ -46,11 +46,14 @@ class QuranStore {
         pickthall: false,
         kemenag: false,
       },
+      mushafTheme: 'dark',
+      mushafSpread: false,
     };
 
     this.settings = this.loadSettings();
     this.bookmarks = this.loadBookmarks();
     this.lastRead = this.loadLastRead();
+    this.lastMushafPage = this.loadLastMushafPage();
   }
 
   // --- LocalStorage Helpers ---
@@ -108,6 +111,34 @@ class QuranStore {
     return this.bookmarks.some((b) => b.ref === ref);
   }
 
+  isPageBookmarked(page) {
+    const p = parseInt(page, 10);
+    return this.bookmarks.some((b) => b.type === 'mushaf' && b.page === p);
+  }
+
+  togglePageBookmark(page, surahName) {
+    const p = parseInt(page, 10);
+    const ref = `page:${p}`;
+    const exists = this.isPageBookmarked(p);
+    if (exists) {
+      this.bookmarks = this.bookmarks.filter((b) => !(b.type === 'mushaf' && b.page === p));
+    } else {
+      this.bookmarks.unshift({
+        type: 'mushaf',
+        ref,
+        page: p,
+        surahName: surahName || `Halaman ${p}`,
+        timestamp: Date.now(),
+      });
+    }
+    try {
+      localStorage.setItem('maktabah_quran_bookmarks', JSON.stringify(this.bookmarks));
+    } catch (e) {
+      console.warn('Failed to save bookmarks:', e);
+    }
+    return !exists;
+  }
+
   toggleBookmark(item) {
     const exists = this.isBookmarked(item.ref);
     if (exists) {
@@ -154,6 +185,32 @@ class QuranStore {
       localStorage.setItem('maktabah_quran_last_read', JSON.stringify(this.lastRead));
     } catch (e) {
       console.warn('Failed to save last read:', e);
+    }
+  }
+
+  loadLastMushafPage() {
+    try {
+      const saved = localStorage.getItem('maktabah_quran_last_mushaf_page');
+      return saved ? parseInt(saved, 10) : 1;
+    } catch {
+      return 1;
+    }
+  }
+
+  getLastMushafPage() {
+    if (!this.lastMushafPage) {
+      this.lastMushafPage = this.loadLastMushafPage();
+    }
+    return this.lastMushafPage || 1;
+  }
+
+  setLastMushafPage(page) {
+    const p = Math.max(1, Math.min(604, parseInt(page, 10) || 1));
+    this.lastMushafPage = p;
+    try {
+      localStorage.setItem('maktabah_quran_last_mushaf_page', String(p));
+    } catch (e) {
+      console.warn('Failed to save last mushaf page:', e);
     }
   }
 

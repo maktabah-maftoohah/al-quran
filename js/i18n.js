@@ -157,6 +157,16 @@ export const translations = {
       selectSurah: "Pilih Surah",
       selectJuz: "Pilih Juzuk",
       sajdah: "Sujud Tilawah",
+      sliderAria: "Gelongsor pantas halaman mushaf 1 hingga 604",
+      translationTitle: "Terjemahan Ayat",
+      translationClose: "Tutup terjemahan",
+      bookmarkPage: "Tanda Halaman",
+      bookmarkedPage: "Halaman Ditanda",
+      spreadMode: "Hamparan 2 Halaman",
+      singleMode: "1 Halaman",
+      themeSepia: "Sepia (Kertas)",
+      themeDark: "Tema Gelap",
+      printPage: "Cetak Halaman",
     }
   },
   en: {
@@ -312,6 +322,16 @@ export const translations = {
       selectSurah: "Select Surah",
       selectJuz: "Select Juz",
       sajdah: "Sajdah (Prostration)",
+      sliderAria: "Quick mushaf page scrubber from 1 to 604",
+      translationTitle: "Verse Translation",
+      translationClose: "Close translation",
+      bookmarkPage: "Bookmark Page",
+      bookmarkedPage: "Page Bookmarked",
+      spreadMode: "2-Page Spread",
+      singleMode: "Single Page",
+      themeSepia: "Sepia (Parchment)",
+      themeDark: "Dark Theme",
+      printPage: "Print Page",
     }
   }
 };

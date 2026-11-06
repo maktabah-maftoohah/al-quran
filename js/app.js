@@ -9,7 +9,7 @@ import { searchEngine } from './search.js';
 import { router } from './router.js';
 import { rumiToJawi } from './jawi.js';
 import { cardGenerator } from './card-generator.js';
-import { mushafViewer } from './mushaf.js';
+import { mushafViewer, SURAH_START_PAGES } from './mushaf.js';
 import { storageDB } from './storage-db.js';
 import { wakeLockController } from './wake-lock.js';
 import { backupManager } from './backup.js';
@@ -51,6 +51,7 @@ class App {
     this.initNetworkStatus();
     this.initBackupControls();
     this.initGlobalEvents();
+    this.updateMushafNavBtn();
 
     // Register routes
     router.addRoute('surah', (params) => this.renderSurahView(params));
@@ -312,19 +313,32 @@ class App {
     }
 
     const html = bookmarks
-      .map(
-        (b) => `
-        <a href="#${b.surah}:${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
-          <div style="display: flex; justify-content: space-between; width: 100%;">
-            <span class="ayah-badge">${b.surahName} (${b.ref})</span>
-            <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
-          </div>
-          <div style="font-family: var(--font-arabic); font-size: 1.1rem; direction: rtl; text-align: right; width: 100%; color: var(--text-primary);">
-            ${b.ar.slice(0, 70)}${b.ar.length > 70 ? '...' : ''}
-          </div>
-        </a>
-      `
-      )
+      .map((b) => {
+        if (b.type === 'mushaf') {
+          return `
+            <a href="#mushaf/${b.page}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
+              <div style="display: flex; justify-content: space-between; width: 100%;">
+                <span class="ayah-badge">📄 ${i18n.currentLang === 'en' ? `Page ${b.page}` : `Halaman ${b.page}`}</span>
+                <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                ${b.surahName || (i18n.currentLang === 'en' ? `Mushaf Page ${b.page}` : `Halaman Mushaf ${b.page}`)}
+              </div>
+            </a>
+          `;
+        }
+        return `
+          <a href="#${b.surah}:${b.ayah}" class="surah-list-item" style="flex-direction: column; align-items: flex-start; gap: 0.4rem;">
+            <div style="display: flex; justify-content: space-between; width: 100%;">
+              <span class="ayah-badge">${b.surahName} (${b.ref})</span>
+              <span style="font-size: 0.75rem; color: var(--accent-gold);">★ Saved</span>
+            </div>
+            <div style="font-family: var(--font-arabic); font-size: 1.1rem; direction: rtl; text-align: right; width: 100%; color: var(--text-primary);">
+              ${b.ar ? (b.ar.slice(0, 70) + (b.ar.length > 70 ? '...' : '')) : ''}
+            </div>
+          </a>
+        `;
+      })
       .join('');
 
     this.bookmarksListContainer.innerHTML = html;
@@ -1371,7 +1385,7 @@ class App {
             <button class="btn btn-primary" id="btn-play-surah-continuous">
               ▶ ${i18n.t('surah.playFullSurah')}
             </button>
-            <a href="#mushaf/1" class="btn" style="text-decoration: none;">
+            <a href="#mushaf/${(SURAH_START_PAGES && SURAH_START_PAGES[surah]) || 1}" class="btn" style="text-decoration: none;">
               📄 ${i18n.t('surah.openMushaf')}
             </a>
           </div>
@@ -2053,7 +2067,16 @@ class App {
   /**
    * 15-Line Madinah Mushaf Page View (#mushaf/:page)
    */
+  updateMushafNavBtn() {
+    const btn = document.getElementById('mushaf-mode-btn');
+    if (btn) {
+      const lastP = store.getLastMushafPage() || 1;
+      btn.href = `#mushaf/${lastP}`;
+    }
+  }
+
   async renderMushafView({ page }) {
+    this.updateMushafNavBtn();
     this.renderedSurah = null;
     this.updatePlayerControlsDirection();
     if (this.mainContainer) {
@@ -2083,31 +2106,51 @@ class App {
     }
 
     const html = bookmarks
-      .map(
-        (b) => `
-        <div class="verse-card" style="margin-bottom: 1.25rem;">
-          <div class="verse-card-top">
-            <span class="ayah-badge">${b.surahName} (${b.ref})</span>
-            <div class="verse-actions">
-              <a href="#${b.surah}:${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
-                ${i18n.t('bookmarks.openVerse')}
-              </a>
-              <a href="#ayah/${b.surah}/${b.ayah}" class="btn" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
-                ${i18n.t('bookmarks.deepDive')}
-              </a>
-              <button class="btn btn-copy-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">
-                📋 ${i18n.t('surah.btnCopy')}
-              </button>
-              <button class="btn btn-remove-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; color: var(--danger);">
-                ${i18n.t('bookmarks.btnRemove')}
-              </button>
+      .map((b) => {
+        if (b.type === 'mushaf') {
+          return `
+            <div class="verse-card" style="margin-bottom: 1.25rem;">
+              <div class="verse-card-top">
+                <span class="ayah-badge">📄 ${i18n.currentLang === 'en' ? `Mushaf Page ${b.page}` : `Halaman Mushaf ${b.page}`}</span>
+                <div class="verse-actions">
+                  <a href="#mushaf/${b.page}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
+                    📖 ${i18n.currentLang === 'en' ? 'Open Page' : 'Buka Halaman'}
+                  </a>
+                  <button class="btn btn-remove-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; color: var(--danger);">
+                    ${i18n.t('bookmarks.btnRemove')}
+                  </button>
+                </div>
+              </div>
+              <div style="font-size: 1rem; color: var(--text-primary); margin-top: 0.5rem;">
+                ${b.surahName || (i18n.currentLang === 'en' ? `Madinah Mushaf Page ${b.page}` : `Halaman Mushaf Madinah ${b.page}`)}
+              </div>
             </div>
+          `;
+        }
+        return `
+          <div class="verse-card" style="margin-bottom: 1.25rem;">
+            <div class="verse-card-top">
+              <span class="ayah-badge">${b.surahName} (${b.ref})</span>
+              <div class="verse-actions">
+                <a href="#${b.surah}:${b.ayah}" class="btn btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
+                  ${i18n.t('bookmarks.openVerse')}
+                </a>
+                <a href="#ayah/${b.surah}/${b.ayah}" class="btn" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; text-decoration: none;">
+                  ${i18n.t('bookmarks.deepDive')}
+                </a>
+                <button class="btn btn-copy-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">
+                  📋 ${i18n.t('surah.btnCopy')}
+                </button>
+                <button class="btn btn-remove-bookmark" data-ref="${b.ref}" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; color: var(--danger);">
+                  ${i18n.t('bookmarks.btnRemove')}
+                </button>
+              </div>
+            </div>
+            <div class="verse-arabic" style="font-size: 1.6rem; margin-bottom: 0.75rem;">${b.ar || ''}</div>
+            <div class="translation-text" style="color: var(--text-secondary);">${b.en || b.ms || ''}</div>
           </div>
-          <div class="verse-arabic" style="font-size: 1.6rem; margin-bottom: 0.75rem;">${b.ar}</div>
-          <div class="translation-text" style="color: var(--text-secondary);">${b.en || b.ms}</div>
-        </div>
-      `
-      )
+        `;
+      })
       .join('');
 
     this.mainContainer.innerHTML = `

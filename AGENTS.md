@@ -15,8 +15,14 @@
    - Entry point loaded via `<script type="module" src="./js/app.js"></script>`.
 
 4. **Strict JSON Schemas**:
-   - `data/surahs.json`: Array of 114 surah metadata objects with `seeded` flag.
+   - `data/surahs.json`: Master catalogue of 114 surah metadata objects with `seeded` flag.
    - `data/arabic/{n}.json`: Uthmani and simple clean text keyed by ayah number string.
    - `data/morphology/{n}.json`: Word-by-word token array per ayah with transliteration, gloss, root, lemma, POS, and corpus link.
-   - `data/translations/{lang}/{edition}.json`: Text keyed by surah and ayah strings.
-   - `data/search-index.json`: Flat array of searchable tokens with normalized Arabic and diacritics stripped.
+   - `data/translations/{lang}/{edition}.json`: Text keyed by surah and ayah strings (`ms/basmeih`, `ms/jalalayn`, `en/sahih`, `en/pickthall`, `id/kemenag`).
+   - `data/search-index.json`: Flat array of searchable tokens with normalized Arabic and multilingual translations.
+   - `data/pages-meta.json`: 604 Madinah Mushaf page definitions.
+
+5. **Verification & Testing Commands**:
+   - Project & Data Integrity: `python scripts/verify_project.py` && `python scripts/verify_data_integrity.py`.
+   - Browser QA & E2E Suites: `npm test` (`node scripts/test_release_qa.js`) and `node scripts/test_ui_comprehensive.js`.
+   - Dev Server: `python scripts/serve.py --port 8000` (or `npm run serve`).

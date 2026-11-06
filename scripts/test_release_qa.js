@@ -44,10 +44,19 @@ const PORT = 8899;
 
 server.listen(PORT, async () => {
   console.log(`Test server running at http://localhost:${PORT}`);
-  const browser = await chromium.launch({
-    executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-    headless: true
-  });
+  const chromePath = [
+    process.env.CHROME_BIN,
+    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+    'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+    'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
+  ].find(p => p && fs.existsSync(p));
+
+  const launchOptions = { headless: true };
+  if (chromePath) {
+    launchOptions.executablePath = chromePath;
+  }
+  const browser = await chromium.launch(launchOptions);
   const page = await browser.newPage();
 
   const pageErrors = [];
