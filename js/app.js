@@ -158,11 +158,53 @@ class App {
 
   async initSidebar() {
     const filterInput = document.getElementById('sidebar-search-input');
+    const filterBox = document.querySelector('.sidebar-filter-box');
     const tabs = document.querySelectorAll('.sidebar-tab');
+
+    const updateFilterForTab = async (tabName) => {
+      if (!filterInput || !filterBox) return;
+      filterInput.value = '';
+
+      if (tabName === 'surahs') {
+        filterBox.style.display = 'block';
+        filterInput.placeholder = i18n.t('sidebar.filterPlaceholder');
+        this.surahListContainer.querySelectorAll('.surah-list-item').forEach((item) => {
+          item.style.display = 'flex';
+        });
+      } else if (tabName === 'bookmarks') {
+        const hasBookmarks = (store.bookmarks || []).length > 0;
+        filterBox.style.display = hasBookmarks ? 'block' : 'none';
+        filterInput.placeholder = i18n.t('sidebar.filterBookmarksPlaceholder');
+        this.bookmarksListContainer.querySelectorAll('.surah-list-item').forEach((item) => {
+          item.style.display = 'flex';
+        });
+      } else if (tabName === 'notes') {
+        let hasNotes = false;
+        try {
+          const notes = await storageDB.getAllNotes();
+          hasNotes = notes && notes.length > 0;
+        } catch {}
+        filterBox.style.display = hasNotes ? 'block' : 'none';
+        filterInput.placeholder = i18n.t('sidebar.filterNotesPlaceholder');
+        if (this.notesListContainer) {
+          this.notesListContainer.querySelectorAll('.sidebar-note-item').forEach((item) => {
+            item.style.display = 'block';
+          });
+        }
+      } else if (tabName === 'asbab') {
+        filterBox.style.display = 'block';
+        filterInput.placeholder = i18n.t('sidebar.filterAsbabPlaceholder');
+        if (this.asbabListContainer) {
+          this.asbabListContainer.querySelectorAll('.sidebar-asbab-item').forEach((item) => {
+            item.style.display = 'flex';
+          });
+        }
+      }
+    };
 
     // Tab switching
     tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
+      tab.addEventListener('click', async () => {
         tabs.forEach((t) => t.classList.remove('active'));
         tab.classList.add('active');
         const tabName = tab.getAttribute('data-tab');
@@ -184,7 +226,7 @@ class App {
           if (this.asbabListContainer) this.asbabListContainer.style.display = 'none';
           if (this.notesListContainer) {
             this.notesListContainer.style.display = 'block';
-            this.renderSidebarNotes();
+            await this.renderSidebarNotes();
           }
         } else if (tabName === 'asbab') {
           this.surahListContainer.style.display = 'none';
@@ -195,6 +237,7 @@ class App {
             this.renderSidebarAsbab();
           }
         }
+        await updateFilterForTab(tabName);
       });
     });
 
@@ -207,23 +250,11 @@ class App {
       if (filterInput) {
         filterInput.addEventListener('input', () => {
           const q = filterInput.value.toLowerCase().trim();
-          const items = this.surahListContainer.querySelectorAll('.surah-list-item');
-          items.forEach((item) => {
-            if (!q) {
-              item.style.display = 'flex';
-              return;
-            }
-            const sNum = item.getAttribute('data-surah') || '';
-            const latin = item.getAttribute('data-latin') || '';
-            const trans = item.getAttribute('data-trans') || '';
-            const arabic = item.getAttribute('data-arabic') || '';
-            const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q);
-            item.style.display = matches ? 'flex' : 'none';
-          });
+          const activeTab = document.querySelector('.sidebar-tab.active')?.getAttribute('data-tab') || 'surahs';
 
-          if (this.asbabListContainer) {
-            const asbabItems = this.asbabListContainer.querySelectorAll('.sidebar-asbab-item');
-            asbabItems.forEach((item) => {
+          if (activeTab === 'surahs') {
+            const items = this.surahListContainer.querySelectorAll('.surah-list-item');
+            items.forEach((item) => {
               if (!q) {
                 item.style.display = 'flex';
                 return;
@@ -232,10 +263,46 @@ class App {
               const latin = item.getAttribute('data-latin') || '';
               const trans = item.getAttribute('data-trans') || '';
               const arabic = item.getAttribute('data-arabic') || '';
-              const ayahs = (item.getAttribute('data-ayahs') || '').split(',');
-              const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q) || ayahs.includes(q);
+              const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q);
               item.style.display = matches ? 'flex' : 'none';
             });
+          } else if (activeTab === 'bookmarks') {
+            const items = this.bookmarksListContainer.querySelectorAll('.surah-list-item');
+            items.forEach((item) => {
+              if (!q) {
+                item.style.display = 'flex';
+                return;
+              }
+              const text = item.textContent.toLowerCase();
+              item.style.display = text.includes(q) ? 'flex' : 'none';
+            });
+          } else if (activeTab === 'notes') {
+            const items = this.notesListContainer.querySelectorAll('.sidebar-note-item');
+            items.forEach((item) => {
+              if (!q) {
+                item.style.display = 'block';
+                return;
+              }
+              const text = item.textContent.toLowerCase();
+              item.style.display = text.includes(q) ? 'block' : 'none';
+            });
+          } else if (activeTab === 'asbab') {
+            if (this.asbabListContainer) {
+              const asbabItems = this.asbabListContainer.querySelectorAll('.sidebar-asbab-item');
+              asbabItems.forEach((item) => {
+                if (!q) {
+                  item.style.display = 'flex';
+                  return;
+                }
+                const sNum = item.getAttribute('data-surah') || '';
+                const latin = item.getAttribute('data-latin') || '';
+                const trans = item.getAttribute('data-trans') || '';
+                const arabic = item.getAttribute('data-arabic') || '';
+                const ayahs = (item.getAttribute('data-ayahs') || '').split(',');
+                const matches = sNum.includes(q) || latin.includes(q) || trans.includes(q) || arabic.includes(q) || ayahs.includes(q);
+                item.style.display = matches ? 'flex' : 'none';
+              });
+            }
           }
         });
       }
@@ -429,6 +496,12 @@ class App {
 
     this.bookmarksListContainer.innerHTML = chipsHtml + html;
     this.attachBookmarkFolderEvents();
+
+    const filterBox = document.querySelector('.sidebar-filter-box');
+    const activeTab = document.querySelector('.sidebar-tab.active')?.getAttribute('data-tab');
+    if (filterBox && activeTab === 'bookmarks') {
+      filterBox.style.display = allBookmarks.length > 0 ? 'block' : 'none';
+    }
   }
 
   attachBookmarkFolderEvents() {
@@ -503,6 +576,12 @@ class App {
       .join('');
 
     this.notesListContainer.innerHTML = html;
+
+    const filterBox = document.querySelector('.sidebar-filter-box');
+    const activeTab = document.querySelector('.sidebar-tab.active')?.getAttribute('data-tab');
+    if (filterBox && activeTab === 'notes') {
+      filterBox.style.display = notes.length > 0 ? 'block' : 'none';
+    }
 
     this.notesListContainer.querySelectorAll('.sidebar-note-item').forEach((el) => {
       el.addEventListener('click', () => {
