@@ -50,7 +50,7 @@
           } else {
             // 3. Surah Chapter Path: surah/{surah} or {surah} (e.g. 69, al-haqqah, surah/69)
             var surahMatch = subPath.match(/^(?:surah\/)?([^/:]+)$/);
-            if (surahMatch && surahMatch[1] !== '404' && surahMatch[1] !== 'index.html' && surahMatch[1] !== 'privacy.html' && surahMatch[1] !== 'terms.html') {
+            if (surahMatch && surahMatch[1] !== '404' && surahMatch[1] !== 'index.html' && surahMatch[1] !== 'privacy.html' && surahMatch[1] !== 'terms.html' && !surahMatch[1].startsWith('google')) {
               targetHash = '#surah/' + surahMatch[1];
             } else if (hash) {
               targetHash = hash;
