@@ -9,6 +9,14 @@
       "console": "integratedTerminal"
     },
     {
+      "name": "Run Korpus Al-Quran App (Sister Repo)",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/../korpus-quran/scripts/serve.py",
+      "cwd": "${workspaceFolder}/../korpus-quran",
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Launch in Chrome (Web Debug)",
       "type": "chrome",
       "request": "launch",
