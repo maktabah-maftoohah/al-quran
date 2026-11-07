@@ -32,8 +32,9 @@
 * **Direct Ayah Deep-Linking**: Jump directly to any verse with auto-scroll and highlight using compact notation (`#6:12`), standard route (`#surah/6/12`), or deep-dive route (`#ayah/6/12`).
 
 ### 🔬 Word-by-Word Morphology & Deep-Dive
-* **Token-Level Analysis**: Interactive Arabic token cards showing phonetic transliteration, Malay/English gloss, part-of-speech (POS) tags, lemmas, and root words (`الجذر`).
-* **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the [Quranic Linguistic Corpus](https://maktabah-maftoohah.github.io/korpus-quran/).
+* **Dual-Language Morphology Engine**: Interactive Arabic token cards showing phonetic transliteration, simultaneous glosses in **🌐 Dual Mode (Malay + English)**, **🇲🇾 Bahasa Melayu (Standard)**, **🇬🇧 English**, or **🇮🇩 Bahasa Indonesia**, part-of-speech (POS) tags, lemmas, and root words (`الجذر`).
+* **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the [Quranic Linguistic Corpus](https://maktabah-maftoohah.github.io/korpus-quran/) and cross-ayah root concordances.
+* **Basmeih Harfiah (Literal De-interpolated Translation)**: Custom de-interpolated Malay translation stripped of parenthetical additions and editorial commentaries, ideal for comparative linguistics, textual debates, and cross-reference.
 * **Tafsir al-Jalalayn & Ibn Kathir**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view (featuring Bahasa Melayu / Nusantara and English).
 * **Asbabun Nuzul (Sebab Turun Wahyu)**: Comprehensive historical context and revelation occasions for 657 verses across 85 surahs, unifying *Kitab Asbab an-Nuzul* (Al-Wahidi), *Lubabun Nuqul* (As-Suyuthi), and *Sahih Asbab an-Nuzul* (Ibrahim al-Ali) with authentic Arabic hadith text, Malay/Nusantara analysis, and English translations.
 
@@ -41,8 +42,9 @@
 * **Dual-Language Interface (MY / EN)**: Complete native localization in **Bahasa Melayu (Default)** and **English**, with instant one-click switching via header and settings controls.
 * **Official Malaysian Surah Names & Titles**: In Malay mode, surah names and translations follow Malaysian standard transliteration and titles (e.g., *Al-Fatihah: Pembukaan*, *Al-Baqarah: Lembu Betina*, *Ali 'Imran: Keluarga Imran*, *An-Nisa': Wanita*, etc.).
 * **Smart Single-Translation Display**: Automatically hides repetitive translation source headers when only one translation is selected for a pristine, distraction-free reading experience.
-* **5 Full Translation & Exegesis Editions**:
-  * 🇲🇾 **Bahasa Melayu (JAKIM - Default)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
+* **6 Full Translation & Exegesis Editions**:
+  * 🇲🇾 **Basmeih Harfiah (Default)** — Direct literal translation derived from Sheikh Abdullah Basmeih with bracketed commentaries removed.
+  * 🇲🇾 **Bahasa Melayu (JAKIM)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
   * 🇲🇾 **Tafsir al-Jalalayn** — Classical Exegesis in Bahasa Melayu / Nusantara (Jalaluddin al-Mahalli & Jalaluddin as-Suyuti)
   * 🇬🇧 **English** — Saheeh International
   * 🇬🇧 **English (Literary)** — Muhammad Marmaduke Pickthall
@@ -172,7 +174,7 @@ al-quran/
 │   ├── extract_quran.py             # Python ETL pipeline for data extraction
 │   ├── serve.py                     # Zero-dependency local dev server (no-cache)
 │   ├── test_mushaf_authentic.js     # Authentic Madinah Mushaf test suite (10 checks)
-│   ├── test_release_qa.js           # Playwright master QA suite (81 checks)
+│   ├── test_release_qa.js           # Playwright master QA suite (99 checks)
 │   ├── test_ui_comprehensive.js     # Automated UI & responsive test suite (35 checks)
 │   ├── update_surah_names_ms.py     # Malaysian standard transliterations updater
 │   ├── verify_data_integrity.py     # Dataset schema and encoding validator
@@ -226,7 +228,7 @@ python scripts/verify_project.py
 python scripts/verify_data_integrity.py
 # (Or run both via: npm run verify)
 
-# 3. Run Master QA Playwright Test Suite (81 Checks)
+# 3. Run Master QA Playwright Test Suite (99 Checks)
 npm test
 # or: node scripts/test_release_qa.js
 

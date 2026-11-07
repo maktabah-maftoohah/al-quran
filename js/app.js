@@ -759,7 +759,7 @@ class App {
     }
     const selectWbwLang = document.getElementById('select-wbw-lang');
     if (selectWbwLang) {
-      selectWbwLang.value = store.settings.wbwLanguage || 'ms';
+      selectWbwLang.value = store.settings.wbwLanguage || 'dual';
       selectWbwLang.addEventListener('change', () => {
         store.updateSettings({ wbwLanguage: selectWbwLang.value });
         if (window.location.hash.startsWith('#ayah/')) {
@@ -1021,14 +1021,20 @@ class App {
     const drawerBody = document.getElementById('morph-drawer-body');
     const concordances = store.findRootConcordances(token.root);
     const isMalay = i18n.getLanguage() === 'ms';
-    const wbwLang = store.settings.wbwLanguage || (isMalay ? 'ms' : 'en');
+    const isJawi = store.settings.jawiMode;
+    const wbwLang = store.settings.wbwLanguage || 'dual';
     let gloss = '';
-    if (wbwLang === 'en') {
+    let glossSecondary = '';
+    if (wbwLang === 'dual') {
+      const ms = token.ms || token.id || '';
+      gloss = isJawi ? rumiToJawi(ms) : ms;
+      glossSecondary = token.en || '';
+    } else if (wbwLang === 'en') {
       gloss = token.en || '';
     } else if (wbwLang === 'id') {
-      gloss = token.id || token.ms || token.en || '';
+      gloss = isJawi ? rumiToJawi(token.id || token.ms || token.en || '') : (token.id || token.ms || token.en || '');
     } else {
-      gloss = token.ms || token.id || token.en || '';
+      gloss = isJawi ? rumiToJawi(token.ms || token.id || token.en || '') : (token.ms || token.id || token.en || '');
     }
 
     const concordanceHtml = concordances.length
@@ -1055,7 +1061,8 @@ class App {
       <div class="morph-token-banner">
         <div class="morph-ar-large">${token.ar}</div>
         <div style="font-size: 1rem; color: var(--accent-blue); font-style: italic; margin-top: 0.25rem;">${token.tr}</div>
-        <div style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 0.15rem;">"${gloss}"</div>
+        <div style="font-size: 1.05rem; color: var(--text-primary); font-weight: 500; margin-top: 0.25rem;">"${gloss}"</div>
+        ${glossSecondary ? `<div style="font-size: 0.88rem; color: var(--text-muted); font-style: italic; margin-top: 0.15rem;">(${glossSecondary})</div>` : ''}
       </div>
 
       <div class="morph-details-grid">
@@ -2385,19 +2392,23 @@ class App {
 
       // Word cards HTML
       const isMalay = i18n.getLanguage() === 'ms';
-      const wbwLang = store.settings.wbwLanguage || (isMalay ? 'ms' : 'en');
+      const wbwLang = store.settings.wbwLanguage || 'dual';
       const wordCardsHtml = tokens
         .map(
           (token) => {
-            let gloss = '';
-            if (wbwLang === 'en') {
-              gloss = token.en || '';
+            let glossPrimary = '';
+            let glossSecondary = '';
+            if (wbwLang === 'dual') {
+              glossPrimary = token.ms || token.id || '';
+              glossSecondary = token.en || '';
+            } else if (wbwLang === 'en') {
+              glossPrimary = token.en || '';
             } else if (wbwLang === 'id') {
-              gloss = token.id || token.ms || token.en || '';
+              glossPrimary = token.id || token.ms || token.en || '';
             } else {
-              gloss = token.ms || token.id || token.en || '';
+              glossPrimary = token.ms || token.id || token.en || '';
             }
-            const displayGloss = (isJawi && wbwLang !== 'en') ? rumiToJawi(gloss) : gloss;
+            const displayGloss = (isJawi && wbwLang !== 'en') ? rumiToJawi(glossPrimary) : glossPrimary;
             return `
           <div class="word-card" data-pos="${token.pos}">
             <button class="word-speaker-btn" title="${isMalay ? 'Sebut perkataan' : 'Pronounce word'}" data-pos="${token.pos}">
@@ -2406,6 +2417,7 @@ class App {
             <div class="word-arabic">${token.ar}</div>
             <div class="word-translit">${token.tr}</div>
             <div class="word-gloss ${isJawi && wbwLang !== 'en' ? 'jawi-text' : ''}">${displayGloss}</div>
+            ${glossSecondary ? `<div class="word-gloss-secondary">${glossSecondary}</div>` : ''}
             ${token.root ? `<div class="word-root-badge">${token.root}</div>` : `<div class="word-root-badge" style="color: var(--text-muted); border-color: var(--border-subtle);">${token.pos_tag}</div>`}
           </div>
         `;
@@ -2474,11 +2486,12 @@ class App {
                 <span>${i18n.t('deepDive.wbwSectionTitle')}</span>
                 <span style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted); margin-left: 0.4rem;">${i18n.t('deepDive.wbwHint')}</span>
               </div>
-              <div class="wbw-lang-pills" style="display: flex; gap: 0.35rem; align-items: center;">
-                <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: 0.2rem;">${isMalay ? 'Bahasa Perkata:' : 'Word Lang:'}</span>
-                <button class="btn btn-wbw-lang ${wbwLang === 'ms' ? 'btn-primary' : ''}" data-wbw="ms" style="font-size: 0.75rem; padding: 0.18rem 0.45rem;">🇲🇾 Melayu</button>
-                <button class="btn btn-wbw-lang ${wbwLang === 'en' ? 'btn-primary' : ''}" data-wbw="en" style="font-size: 0.75rem; padding: 0.18rem 0.45rem;">🇬🇧 English</button>
-                <button class="btn btn-wbw-lang ${wbwLang === 'id' ? 'btn-primary' : ''}" data-wbw="id" style="font-size: 0.75rem; padding: 0.18rem 0.45rem;">🇮🇩 Indo</button>
+              <div class="wbw-lang-pills">
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: 0.2rem;">${i18n.t('deepDive.wbwLangWord')}</span>
+                <button class="btn btn-wbw-lang ${wbwLang === 'dual' ? 'active btn-primary' : ''}" data-wbw="dual">${i18n.t('deepDive.wbwLangDual')}</button>
+                <button class="btn btn-wbw-lang ${wbwLang === 'ms' ? 'active btn-primary' : ''}" data-wbw="ms">${i18n.t('deepDive.wbwLangMs')}</button>
+                <button class="btn btn-wbw-lang ${wbwLang === 'en' ? 'active btn-primary' : ''}" data-wbw="en">${i18n.t('deepDive.wbwLangEn')}</button>
+                <button class="btn btn-wbw-lang ${wbwLang === 'id' ? 'active btn-primary' : ''}" data-wbw="id">${i18n.t('deepDive.wbwLangId')}</button>
               </div>
             </div>
             <div class="wbw-grid">
@@ -2694,6 +2707,20 @@ class App {
         this.showToast(checkbox.checked ? 'Ayah loop enabled' : 'Ayah loop disabled');
       });
     }
+
+    // Word-by-Word Language Switcher Pills
+    this.mainContainer.querySelectorAll('.btn-wbw-lang').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selected = btn.getAttribute('data-wbw');
+        if (selected && selected !== store.settings.wbwLanguage) {
+          store.updateSettings({ wbwLanguage: selected });
+          const sel = document.getElementById('select-wbw-lang');
+          if (sel) sel.value = selected;
+          this.renderAyahDeepDive({ surah, ayah, tab: initialTab });
+        }
+      });
+    });
 
     // Word cards click & speaker click
     this.mainContainer.querySelectorAll('.word-card').forEach((card) => {

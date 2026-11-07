@@ -275,7 +275,29 @@ server.listen(PORT, async () => {
     const wordCards = await page.$$('.word-card');
     assert(wordCards.length === 4, `Ayah 1:1 has 4 word tokens, found ${wordCards.length}`);
 
-    await wordCards[1].click();
+    // Verify Dual-Language Word-by-Word display
+    const dualBtn = await page.$('.btn-wbw-lang[data-wbw="dual"]');
+    assert(dualBtn !== null, 'Dual-language WBW toggle button exists');
+    const firstCardPrimary = await page.textContent('.word-card:first-child .word-gloss');
+    const firstCardSecondary = await page.textContent('.word-card:first-child .word-gloss-secondary');
+    assert(firstCardPrimary.includes('Dengan') || firstCardPrimary.includes('nama') || firstCardPrimary.length > 0, 'Primary gloss rendered');
+    assert(firstCardSecondary && (firstCardSecondary.includes('name') || firstCardSecondary.length > 0), 'Secondary English gloss rendered in dual mode');
+
+    // Test switching WBW to English mode
+    const enBtn = await page.$('.btn-wbw-lang[data-wbw="en"]');
+    if (enBtn) {
+      await enBtn.click();
+      await page.waitForTimeout(300);
+      const enGloss = await page.textContent('.word-card:first-child .word-gloss');
+      assert(enGloss.includes('name'), `English WBW displays "name", got: ${enGloss}`);
+    }
+
+    // Switch back to Dual mode
+    await page.click('.btn-wbw-lang[data-wbw="dual"]');
+    await page.waitForTimeout(300);
+
+    const updatedCards = await page.$$('.word-card');
+    await updatedCards[1].click();
     await page.waitForTimeout(400);
     const drawerOpen = await page.$eval('#morphology-drawer', el => el.classList.contains('open'));
     assert(drawerOpen, 'Morphology drawer opens upon word token click');

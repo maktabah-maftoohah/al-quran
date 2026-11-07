@@ -48,7 +48,7 @@ class QuranStore {
         pickthall: false,
         kemenag: false,
       },
-      wbwLanguage: 'ms',
+      wbwLanguage: 'dual',
       mushafTheme: 'dark',
       mushafSpread: false,
     };
@@ -84,22 +84,25 @@ class QuranStore {
       const savedStr = localStorage.getItem('maktabah_quran_settings');
       if (!savedStr) return { ...this.defaultSettings };
       const saved = JSON.parse(savedStr);
-      // Migrate older settings to new defaults: Basmeih Harfiah default and default language 'ms'
-      if (!saved.schemaVersion || saved.schemaVersion < 3) {
-        saved.activeTranslations = {
-          basmeih: false,
-          basmeihHarfiah: true,
-          jalalayn: false,
-          sahih: false,
-          pickthall: false,
-          kemenag: false,
-        };
+      // Migrate older settings to new defaults: Basmeih Harfiah default, language 'ms', and dual WBW mode
+      if (!saved.schemaVersion || saved.schemaVersion < 4) {
+        if (!saved.activeTranslations) {
+          saved.activeTranslations = {
+            basmeih: false,
+            basmeihHarfiah: true,
+            jalalayn: false,
+            sahih: false,
+            pickthall: false,
+            kemenag: false,
+          };
+        }
         saved.language = saved.language || 'ms';
-        saved.schemaVersion = 3;
+        saved.wbwLanguage = 'dual';
+        saved.schemaVersion = 4;
         localStorage.setItem('maktabah_quran_settings', JSON.stringify({ ...this.defaultSettings, ...saved }));
       }
       if (!saved.wbwLanguage) {
-        saved.wbwLanguage = 'ms';
+        saved.wbwLanguage = 'dual';
       }
       return { ...this.defaultSettings, ...saved };
     } catch {
