@@ -31,11 +31,16 @@ def main():
 
     start_time = time.time()
     surahs_file = ROOT_DIR / "data" / "surahs.json"
+    basmeih_harfiah_file = ROOT_DIR / "data" / "translations" / "ms" / "basmeih-harfiah.json"
     basmeih_file = ROOT_DIR / "data" / "translations" / "ms" / "basmeih.json"
     sahih_file = ROOT_DIR / "data" / "translations" / "en" / "sahih.json"
 
     with open(surahs_file, "r", encoding="utf-8") as f:
         surahs = json.load(f)
+    basmeih_harfiah = {}
+    if basmeih_harfiah_file.exists():
+        with open(basmeih_harfiah_file, "r", encoding="utf-8") as f:
+            basmeih_harfiah = json.load(f)
     with open(basmeih_file, "r", encoding="utf-8") as f:
         basmeih = json.load(f)
     with open(sahih_file, "r", encoding="utf-8") as f:
@@ -124,7 +129,7 @@ def main():
         for a_num in range(1, total_ayahs + 1):
             a_str = str(a_num)
             ar_text = ar_ayahs.get(a_str, {}).get("uthmani", "")
-            ms_text = basmeih.get(s_str, {}).get(a_str, "")
+            ms_text = basmeih_harfiah.get(s_str, {}).get(a_str, "") or basmeih.get(s_str, {}).get(a_str, "")
             en_text = sahih.get(s_str, {}).get(a_str, "")
 
             trans_snippet = ms_text or en_text or ""

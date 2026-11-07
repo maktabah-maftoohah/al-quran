@@ -109,10 +109,11 @@ server.listen(PORT, async () => {
     const docLang = await page.$eval('html', el => el.getAttribute('lang'));
     assert(docLang === 'ms', `Default interface language is Bahasa Melayu (MY): "${docLang}"`);
 
-    // Verify JAKIM is default and single-translation label is hidden
+    // Verify Basmeih Harfiah is default and single-translation label is hidden
+    const isBasmeihHarfiahChecked = await page.$eval('#toggle-trans-basmeih-harfiah', el => el.checked);
     const isBasmeihChecked = await page.$eval('#toggle-trans-basmeih', el => el.checked);
     const isSahihChecked = await page.$eval('#toggle-trans-sahih', el => el.checked);
-    assert(isBasmeihChecked && !isSahihChecked, 'JAKIM is default translation (sole active translation)');
+    assert(isBasmeihHarfiahChecked && !isBasmeihChecked && !isSahihChecked, 'Basmeih Harfiah is default translation (sole active translation)');
 
     const labelHiddenSingle = await page.$eval('.verse-translations .translation-label', el => window.getComputedStyle(el).display === 'none');
     assert(labelHiddenSingle, 'Translation reference label is HIDDEN when only one translation is selected');

@@ -619,16 +619,21 @@ body {
 .verse-card-top {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  direction: ltr;
   gap: 0.45rem;
   margin-bottom: 0.45rem;
   padding: 0 0.15rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .verse-card:not(.has-card-body) .verse-card-top {
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(38, 51, 77, 0.6);
+  justify-content: flex-start;
 }
 
 /* The actual Card body (clean and screenshot-friendly) */
@@ -699,6 +704,9 @@ a.ayah-badge:hover {
 .verse-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  direction: ltr;
   gap: 0.3rem;
   flex-wrap: wrap;
 }

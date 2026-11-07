@@ -718,8 +718,8 @@ class App {
 
     const updateTransSettings = async () => {
       const activeTranslations = {
-        basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
-        basmeihHarfiah: toggleBasmeihHarfiah ? toggleBasmeihHarfiah.checked : false,
+        basmeih: toggleBasmeih ? toggleBasmeih.checked : false,
+        basmeihHarfiah: toggleBasmeihHarfiah ? toggleBasmeihHarfiah.checked : true,
         jalalayn: toggleJalalayn ? toggleJalalayn.checked : false,
         sahih: toggleSahih ? toggleSahih.checked : false,
         pickthall: togglePickthall ? togglePickthall.checked : false,
@@ -1812,13 +1812,13 @@ class App {
                 <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${textObj.uthmani}</div>
 
               <div class="verse-translations ${singleClass}">
+                <div class="translation-block translation-block-basmeih-harfiah">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih Harfiah${isJawi ? ' (توليسن جاوي)' : ''}</span>
+                  <p class="${msClass}">${msHarfiahDisplayText}</p>
+                </div>
                 <div class="translation-block translation-block-basmeih">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
                   <p class="${msClass}">${msDisplayText}</p>
-                </div>
-                <div class="translation-block translation-block-basmeih-harfiah">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih Harfiah (${isJawi ? 'توليسن جاوي - بيبس سيسيڤن' : 'Bebas Sisipan / Ulasan'})</span>
-                  <p class="${msClass}">${msHarfiahDisplayText}</p>
                 </div>
                 <div class="translation-block translation-block-jalalayn">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>
@@ -1896,13 +1896,13 @@ class App {
       `;
 
       this.updateActiveTranslationsDisplay();
-      this.attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah);
+      this.attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah, basmeihHarfiahSurah);
 
       // Handle target ayah scroll & highlight (e.g. #surah/6/12, #surah/8/57)
       const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
       if (targetAyah) {
         const ayahAr = arabicData.ayahs[String(targetAyah)]?.uthmani || '';
-        const ayahTrans = basmeihSurah[String(targetAyah)] || sahihSurah[String(targetAyah)] || '';
+        const ayahTrans = basmeihHarfiahSurah[String(targetAyah)] || basmeihSurah[String(targetAyah)] || sahihSurah[String(targetAyah)] || '';
         this.updatePageMeta({
           title: `Surah ${displayName} ${surah}:${targetAyah} — Maktabah Maftoohah Al-Quran`,
           description: `${ayahAr} — "${ayahTrans}" (Surah ${displayName} ${surah}:${targetAyah})`,
@@ -2033,7 +2033,7 @@ class App {
     `;
   }
 
-  attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah) {
+  attachSurahViewEvents(surah, meta, arabicData, basmeihSurah, sahihSurah, basmeihHarfiahSurah = {}) {
     const displayName = store.getSurahName(meta);
     const isMs = i18n.getLanguage() === 'ms';
 
@@ -2077,7 +2077,7 @@ class App {
         const ref = `${surah}:${aNum}`;
         const ar = arabicData.ayahs[String(aNum)]?.uthmani || '';
         const en = sahihSurah[String(aNum)] || '';
-        const ms = basmeihSurah[String(aNum)] || '';
+        const ms = basmeihHarfiahSurah[String(aNum)] || basmeihSurah[String(aNum)] || '';
 
         const isSaved = store.toggleBookmark({
           ref,
@@ -2148,7 +2148,7 @@ class App {
         const s = parseInt(btn.getAttribute('data-surah'), 10);
         const a = parseInt(btn.getAttribute('data-ayah'), 10);
         const ar = arabicData.ayahs[String(a)]?.uthmani || '';
-        const trans = basmeihSurah[String(a)] || sahihSurah[String(a)] || '';
+        const trans = basmeihHarfiahSurah[String(a)] || basmeihSurah[String(a)] || sahihSurah[String(a)] || '';
         this.openNoteModal({
           ref,
           surah: s,
@@ -2188,7 +2188,7 @@ class App {
 
         // Fallback if no block was found
         if (!translationText) {
-          translationText = basmeihSurah[a] || sahihSurah[a] || '';
+          translationText = basmeihHarfiahSurah[a] || basmeihSurah[a] || sahihSurah[a] || '';
         }
 
         const clipboardText = `${ar}\n\n${translationText}\n\n(Al-Quran ${s}:${a})`;
@@ -2213,8 +2213,8 @@ class App {
         const ref = btn.getAttribute('data-ref');
         const [s, a] = ref.split(':');
         const ar = arabicData.ayahs[a]?.uthmani || '';
-        const trans = basmeihSurah[a] || sahihSurah[a] || '';
-        const transLabel = basmeihSurah[a] ? 'Abdullah Muhammad Basmeih' : 'Saheeh International';
+        const trans = basmeihHarfiahSurah[a] || basmeihSurah[a] || sahihSurah[a] || '';
+        const transLabel = basmeihHarfiahSurah[a] ? 'Basmeih Harfiah' : (basmeihSurah[a] ? 'Abdullah Muhammad Basmeih' : 'Saheeh International');
         cardGenerator.open({
           ar,
           trans,
@@ -2347,7 +2347,7 @@ class App {
       const deepBasePath = window.location.pathname.replace(/\/index\.html$/, '/');
       this.updatePageMeta({
         title: ayahTitle,
-        description: `${uthmaniText} — "${msText || sahihText}" (Surah ${displayName} ${surah}:${ayah})`,
+        description: `${uthmaniText} — "${msHarfiahText || msText || sahihText}" (Surah ${displayName} ${surah}:${ayah})`,
         url: `${window.location.origin}${deepBasePath}#ayah/${surah}/${ayah}`
       });
 
@@ -2460,13 +2460,13 @@ class App {
 
             <div class="tab-pane active" id="pane-translations" data-surah="${surah}" data-ayah="${ayah}">
               <div class="verse-translations ${singleClass}" style="border: none; padding: 0;">
+                <div class="translation-block translation-block-basmeih-harfiah">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih Harfiah${isJawi ? ' (توليسن جاوي)' : ''}</span>
+                  <p class="${msClass}">${msHarfiahDisplayText}</p>
+                </div>
                 <div class="translation-block translation-block-basmeih">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
                   <p class="${msClass}">${msDisplayText}</p>
-                </div>
-                <div class="translation-block translation-block-basmeih-harfiah">
-                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih Harfiah (${isJawi ? 'توليسن جاوي - بيبس سيسيڤن' : 'Bebas Sisipan / Ulasan'})</span>
-                  <p class="${msClass}">${msHarfiahDisplayText}</p>
                 </div>
                 <div class="translation-block translation-block-jalalayn">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>

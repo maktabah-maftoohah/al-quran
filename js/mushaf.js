@@ -331,10 +331,12 @@ export class MushafViewer {
       if (isEn) {
         trans = (tCache.sahih && tCache.sahih[item.surah] && tCache.sahih[item.surah][item.ayah])
           || (tCache.pickthall && tCache.pickthall[item.surah] && tCache.pickthall[item.surah][item.ayah])
+          || (tCache.basmeihHarfiah && tCache.basmeihHarfiah[item.surah] && tCache.basmeihHarfiah[item.surah][item.ayah])
           || (tCache.basmeih && tCache.basmeih[item.surah] && tCache.basmeih[item.surah][item.ayah])
           || '';
       } else {
-        trans = (tCache.basmeih && tCache.basmeih[item.surah] && tCache.basmeih[item.surah][item.ayah])
+        trans = (tCache.basmeihHarfiah && tCache.basmeihHarfiah[item.surah] && tCache.basmeihHarfiah[item.surah][item.ayah])
+          || (tCache.basmeih && tCache.basmeih[item.surah] && tCache.basmeih[item.surah][item.ayah])
           || (tCache.jalalayn && tCache.jalalayn[item.surah] && tCache.jalalayn[item.surah][item.ayah])
           || (tCache.sahih && tCache.sahih[item.surah] && tCache.sahih[item.surah][item.ayah])
           || '';

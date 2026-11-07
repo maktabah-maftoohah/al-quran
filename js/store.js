@@ -41,8 +41,8 @@ class QuranStore {
       language: 'ms',
       sidebarCollapsed: false,
       activeTranslations: {
-        basmeih: true,
-        basmeihHarfiah: false,
+        basmeih: false,
+        basmeihHarfiah: true,
         jalalayn: false,
         sahih: false,
         pickthall: false,
@@ -83,18 +83,18 @@ class QuranStore {
       const savedStr = localStorage.getItem('maktabah_quran_settings');
       if (!savedStr) return { ...this.defaultSettings };
       const saved = JSON.parse(savedStr);
-      // Migrate older settings to new defaults: JAKIM only default and default language 'ms'
-      if (!saved.schemaVersion || saved.schemaVersion < 2) {
+      // Migrate older settings to new defaults: Basmeih Harfiah default and default language 'ms'
+      if (!saved.schemaVersion || saved.schemaVersion < 3) {
         saved.activeTranslations = {
-          basmeih: true,
-          basmeihHarfiah: false,
+          basmeih: false,
+          basmeihHarfiah: true,
           jalalayn: false,
           sahih: false,
           pickthall: false,
           kemenag: false,
         };
         saved.language = saved.language || 'ms';
-        saved.schemaVersion = 2;
+        saved.schemaVersion = 3;
         localStorage.setItem('maktabah_quran_settings', JSON.stringify({ ...this.defaultSettings, ...saved }));
       }
       return { ...this.defaultSettings, ...saved };
@@ -578,7 +578,7 @@ class QuranStore {
 
   async fetchTranslations(activeOnly = true) {
     const t = this.cache.translations;
-    const act = this.settings.activeTranslations || { basmeih: true, basmeihHarfiah: false, jalalayn: false, sahih: false, pickthall: false, kemenag: false };
+    const act = this.settings.activeTranslations || { basmeih: false, basmeihHarfiah: true, jalalayn: false, sahih: false, pickthall: false, kemenag: false };
     const fetchPromises = [];
 
     if ((!activeOnly || act.basmeih) && !t.basmeih) {
