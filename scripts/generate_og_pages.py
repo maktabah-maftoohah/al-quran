@@ -85,8 +85,11 @@ def main():
   <meta property="og:title" content="{html.escape(surah_title)}">
   <meta property="og:description" content="{html.escape(surah_desc)}">
   <meta property="og:image" content="{banner_url}">
+  <meta property="og:image:secure_url" content="{banner_url}">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{html.escape(surah_title)}">
   <meta property="og:url" content="{surah_url}">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -125,9 +128,17 @@ def main():
             en_text = sahih.get(s_str, {}).get(a_str, "")
 
             trans_snippet = ms_text or en_text or ""
-            desc = f"{ar_text} — \"{trans_snippet}\"" if ar_text else trans_snippet
-            if len(desc) > 290:
-                desc = desc[:287] + "..."
+            if trans_snippet and ar_text:
+                desc = f'"{trans_snippet}" — ({ar_text})'
+            elif trans_snippet:
+                desc = f'"{trans_snippet}"'
+            elif ar_text:
+                desc = ar_text
+            else:
+                desc = f"Surah {s_name_lat} ({s_num}:{a_num})"
+
+            if len(desc) > 280:
+                desc = desc[:277] + "..."
 
             verse_title = f"Surah {s_name_lat} ({s_num}:{a_num}) — Al-Quran"
             verse_url = f"{base_url}/{s_num}/{a_num}"
@@ -149,8 +160,11 @@ def main():
   <meta property="og:title" content="{html.escape(verse_title)}">
   <meta property="og:description" content="{html.escape(desc)}">
   <meta property="og:image" content="{banner_url}">
+  <meta property="og:image:secure_url" content="{banner_url}">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{html.escape(verse_title)}">
   <meta property="og:url" content="{verse_url}">
 
   <meta name="twitter:card" content="summary_large_image">
