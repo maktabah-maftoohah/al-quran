@@ -53,6 +53,7 @@ export const translations = {
       arabicFontSize: "Saiz Fon Arab",
       translationFontSize: "Saiz Terjemahan",
       activeTranslations: "Terjemahan Aktif",
+      wbwLanguage: "Bahasa Kata-demi-Kata",
       jawiScript: "🇲🇾 Tulisan Jawi (Jawi Script)",
       wakeLockLabel: "💡 Kekalkan Skrin Menyala (Tiada Pemasa)",
       offlineStorage: "Storan Luar Talian (IndexedDB)",

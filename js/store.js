@@ -48,6 +48,7 @@ class QuranStore {
         pickthall: false,
         kemenag: false,
       },
+      wbwLanguage: 'ms',
       mushafTheme: 'dark',
       mushafSpread: false,
     };
@@ -96,6 +97,9 @@ class QuranStore {
         saved.language = saved.language || 'ms';
         saved.schemaVersion = 3;
         localStorage.setItem('maktabah_quran_settings', JSON.stringify({ ...this.defaultSettings, ...saved }));
+      }
+      if (!saved.wbwLanguage) {
+        saved.wbwLanguage = 'ms';
       }
       return { ...this.defaultSettings, ...saved };
     } catch {

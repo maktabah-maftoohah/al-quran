@@ -757,6 +757,17 @@ class App {
       toggleKemenag.checked = Boolean(store.settings.activeTranslations.kemenag);
       toggleKemenag.addEventListener('change', updateTransSettings);
     }
+    const selectWbwLang = document.getElementById('select-wbw-lang');
+    if (selectWbwLang) {
+      selectWbwLang.value = store.settings.wbwLanguage || 'ms';
+      selectWbwLang.addEventListener('change', () => {
+        store.updateSettings({ wbwLanguage: selectWbwLang.value });
+        if (window.location.hash.startsWith('#ayah/')) {
+          router.handleRouting();
+        }
+      });
+    }
+
     if (toggleJawi) {
       toggleJawi.checked = store.settings.jawiMode;
       toggleJawi.addEventListener('change', () => {
@@ -1010,7 +1021,15 @@ class App {
     const drawerBody = document.getElementById('morph-drawer-body');
     const concordances = store.findRootConcordances(token.root);
     const isMalay = i18n.getLanguage() === 'ms';
-    const gloss = (isMalay ? (token.ms || token.id) : null) || token.en || '';
+    const wbwLang = store.settings.wbwLanguage || (isMalay ? 'ms' : 'en');
+    let gloss = '';
+    if (wbwLang === 'en') {
+      gloss = token.en || '';
+    } else if (wbwLang === 'id') {
+      gloss = token.id || token.ms || token.en || '';
+    } else {
+      gloss = token.ms || token.id || token.en || '';
+    }
 
     const concordanceHtml = concordances.length
       ? `
@@ -2366,10 +2385,19 @@ class App {
 
       // Word cards HTML
       const isMalay = i18n.getLanguage() === 'ms';
+      const wbwLang = store.settings.wbwLanguage || (isMalay ? 'ms' : 'en');
       const wordCardsHtml = tokens
         .map(
           (token) => {
-            const gloss = (isMalay ? (token.ms || token.id) : null) || token.en || '';
+            let gloss = '';
+            if (wbwLang === 'en') {
+              gloss = token.en || '';
+            } else if (wbwLang === 'id') {
+              gloss = token.id || token.ms || token.en || '';
+            } else {
+              gloss = token.ms || token.id || token.en || '';
+            }
+            const displayGloss = (isJawi && wbwLang !== 'en') ? rumiToJawi(gloss) : gloss;
             return `
           <div class="word-card" data-pos="${token.pos}">
             <button class="word-speaker-btn" title="${isMalay ? 'Sebut perkataan' : 'Pronounce word'}" data-pos="${token.pos}">
@@ -2377,7 +2405,7 @@ class App {
             </button>
             <div class="word-arabic">${token.ar}</div>
             <div class="word-translit">${token.tr}</div>
-            <div class="word-gloss">${gloss}</div>
+            <div class="word-gloss ${isJawi && wbwLang !== 'en' ? 'jawi-text' : ''}">${displayGloss}</div>
             ${token.root ? `<div class="word-root-badge">${token.root}</div>` : `<div class="word-root-badge" style="color: var(--text-muted); border-color: var(--border-subtle);">${token.pos_tag}</div>`}
           </div>
         `;
@@ -2441,9 +2469,17 @@ class App {
 
           <!-- Interactive Word-by-Word & Morphology Grid -->
           <div class="wbw-section">
-            <div class="section-title">
-              <span>${i18n.t('deepDive.wbwSectionTitle')}</span>
-              <span style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted);">${i18n.t('deepDive.wbwHint')}</span>
+            <div class="section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <span>${i18n.t('deepDive.wbwSectionTitle')}</span>
+                <span style="font-size: 0.78rem; font-weight: 500; color: var(--text-muted); margin-left: 0.4rem;">${i18n.t('deepDive.wbwHint')}</span>
+              </div>
+              <div class="wbw-lang-pills" style="display: flex; gap: 0.35rem; align-items: center;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); margin-right: 0.2rem;">${isMalay ? 'Bahasa Perkata:' : 'Word Lang:'}</span>
+                <button class="btn btn-wbw-lang ${wbwLang === 'ms' ? 'btn-primary' : ''}" data-wbw="ms" style="font-size: 0.75rem; padding: 0.18rem 0.45rem;">🇲🇾 Melayu</button>
+                <button class="btn btn-wbw-lang ${wbwLang === 'en' ? 'btn-primary' : ''}" data-wbw="en" style="font-size: 0.75rem; padding: 0.18rem 0.45rem;">🇬🇧 English</button>
+                <button class="btn btn-wbw-lang ${wbwLang === 'id' ? 'btn-primary' : ''}" data-wbw="id" style="font-size: 0.75rem; padding: 0.18rem 0.45rem;">🇮🇩 Indo</button>
+              </div>
             </div>
             <div class="wbw-grid">
               ${wordCardsHtml}

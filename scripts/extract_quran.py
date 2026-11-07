@@ -222,20 +222,21 @@ def main():
     morph_data = load_morphology_cache(target_surahs)
 
     # 3. Fetch Pages & Juz metadata index
-    print("Fetching Pages & Juz metadata index...")
-    try:
-        meta_raw = fetch_json("https://api.alquran.cloud/v1/meta")
-        pages_references = meta_raw.get("data", {}).get("pages", {}).get("references", [])
-        juzs_references = meta_raw.get("data", {}).get("juzs", {}).get("references", [])
-        pages_file = DATA_DIR / "pages-meta.json"
-        with open(pages_file, "w", encoding="utf-8") as f:
-            json.dump({
-                "pages": pages_references,
-                "juzs": juzs_references
-            }, f, ensure_ascii=False, indent=2)
-        print(f"Saved {len(pages_references)} page references to {pages_file}")
-    except Exception as e:
-        print(f"  [Warning] Failed to fetch pages meta: {e}")
+    pages_file = DATA_DIR / "pages-meta.json"
+    if not pages_file.exists():
+        print("Fetching Pages & Juz metadata index...")
+        try:
+            meta_raw = fetch_json("https://api.alquran.cloud/v1/meta")
+            pages_references = meta_raw.get("data", {}).get("pages", {}).get("references", [])
+            juzs_references = meta_raw.get("data", {}).get("juzs", {}).get("references", [])
+            with open(pages_file, "w", encoding="utf-8") as f:
+                json.dump({
+                    "pages": pages_references,
+                    "juzs": juzs_references
+                }, f, ensure_ascii=False, indent=2)
+            print(f"Saved {len(pages_references)} page references to {pages_file}")
+        except Exception as e:
+            print(f"  [Warning] Failed to fetch pages meta: {e}")
 
     # Prepare containers for translations and search index
     ms_basmeih = {}
@@ -360,6 +361,19 @@ def main():
             json.dump(arabic_doc, f, ensure_ascii=False, indent=2)
 
         # 3. Fetch word-by-word morphology from Quran.com API v4
+        # Preserve existing 'id' and 'ms' translations so they are never lost on regeneration
+        existing_morph_tokens = {}
+        morph_file = MORPHOLOGY_DIR / f"{s_num}.json"
+        if morph_file.exists():
+            try:
+                with open(morph_file, "r", encoding="utf-8") as mf:
+                    old_doc = json.load(mf)
+                    for a_num_s, a_toks in old_doc.get("ayahs", {}).items():
+                        for otok in a_toks:
+                            existing_morph_tokens[(int(a_num_s), otok.get("pos"))] = otok
+            except Exception:
+                pass
+
         quran_com_url = (
             f"https://api.quran.com/api/v4/verses/by_chapter/{s_num}?"
             "language=en&words=true&per_page=300&word_fields=text_uthmani,location"
@@ -390,7 +404,7 @@ def main():
                 pos_tag = "+".join(morph_info.get("tags", [])) or "N"
                 corpus_url = f"https://corpus.quran.com/wordmorphology.jsp?location=({s_num}:{verse_num}:{pos})"
 
-                tokens.append({
+                tok_dict = {
                     "pos": pos,
                     "ar": ar_text,
                     "tr": tr_text,
@@ -399,7 +413,13 @@ def main():
                     "lemma": lemma,
                     "pos_tag": pos_tag,
                     "corpus_url": corpus_url,
-                })
+                }
+                existing_tok = existing_morph_tokens.get((verse_num, pos), {})
+                if "id" in existing_tok:
+                    tok_dict["id"] = existing_tok["id"]
+                if "ms" in existing_tok:
+                    tok_dict["ms"] = existing_tok["ms"]
+                tokens.append(tok_dict)
 
             morph_doc["ayahs"][v_str] = tokens
 
