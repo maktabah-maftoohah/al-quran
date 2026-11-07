@@ -1,256 +1,263 @@
 <p align="center">
-  <img src="./assets/site-banner.png" alt="Maktabah Maftoohah Al-Quran Banner" width="100%">
+  <img src="./assets/site-banner.png" alt="Banner Maktabah Maftoohah Al-Quran" width="100%">
 </p>
 
 # Maktabah Maftoohah — Al-Quran (المكتبة المفتوحة)
 
-[![Live Web Application](https://img.shields.io/badge/Live%20App-GitHub%20Pages-059669?style=for-the-badge&logo=github)](https://maktabah-maftoohah.github.io/al-quran/)
-[![Release](https://img.shields.io/github/v/release/maktabah-maftoohah/al-quran?style=for-the-badge&color=2563eb)](https://github.com/maktabah-maftoohah/al-quran/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![PWA Ready](https://img.shields.io/badge/PWA-Offline%20Ready-6366f1?style=for-the-badge)](manifest.webmanifest)
-[![Architecture: Zero Build](https://img.shields.io/badge/Architecture-Zero--Build%20ES6-10b981?style=for-the-badge)](js/app.js)
+<p align="center">
+  🇲🇾 <strong>Bahasa Melayu</strong> &nbsp;|&nbsp; <a href="README.en.md">🇬🇧 <strong>English Version</strong></a>
+</p>
 
-**Maktabah Maftoohah Al-Quran** is an open-source, zero-build, offline-first digital Quran study web application and Progressive Web App (PWA). It provides a fast, distraction-free environment for reading, listening, memorizing, and deeply analyzing the Holy Quran with word-by-word grammatical morphology, multilingual translations, and audio recitations.
+[![Aplikasi Web Langsung](https://img.shields.io/badge/Aplikasi%20Langsung-GitHub%20Pages-059669?style=for-the-badge&logo=github)](https://maktabah-maftoohah.github.io/al-quran/)
+[![Versi Keluaran](https://img.shields.io/github/v/release/maktabah-maftoohah/al-quran?style=for-the-badge&color=2563eb)](https://github.com/maktabah-maftoohah/al-quran/releases)
+[![Lesen: MIT](https://img.shields.io/badge/Lesen-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![PWA Siap Guna](https://img.shields.io/badge/PWA-Luar%20Talian-6366f1?style=for-the-badge)](manifest.webmanifest)
+[![Seni Bina: Zero Build](https://img.shields.io/badge/Seni%20Bina-Zero--Build%20ES6-10b981?style=for-the-badge)](js/app.js)
 
-🌐 **Live Web Application:** [https://maktabah-maftoohah.github.io/al-quran/](https://maktabah-maftoohah.github.io/al-quran/)
+**Maktabah Maftoohah Al-Quran** ialah aplikasi web kajian digital Al-Quran sumber terbuka, tanpa kompilasi (*zero-build*), dan sedia luar talian (*offline-first PWA*). Ia menyediakan persekitaran pembacaan dan tadabbur yang pantas serta bebas gangguan untuk membaca, mendengar, menghafal (tahfiz), dan meneliti Al-Quran secara mendalam melalui analisis morfologi kalimah demi kalimah, terjemahan pelbagai bahasa, tafsir, dan audio bacaan qari terkemuka.
+
+🌐 **Aplikasi Web Langsung:** [https://maktabah-maftoohah.github.io/al-quran/](https://maktabah-maftoohah.github.io/al-quran/)
 
 ---
 
-## 🌟 Key Features
+## 🌟 Ciri-Ciri Utama
 
-### 📖 Authentic Quranic Text & Traditional Mushaf
-* **Complete Quran Dataset**: All 114 Surahs and 6,236 verses in verified Uthmani script.
-* **15-Line Madinah Mushaf View**: Accurate page-by-page rendering mapping all 604 standard Madinah pages (`#mushaf/{page}`) with verse markers and quick page jumps.
-* **Royal Frontispiece Illuminations**: Authentic decorative crown arches and surah cartouches for Pages 1 (Al-Fatihah) and 2 (Al-Baqarah).
-* **Marginal Markers & Tilawah Indicators**: Precise Juz, Hizb, Rub' al-Hizb medallions, and Sajdah Tilawah indicators matching the King Fahd Glorious Quran Printing Complex layout.
-* **RTL Navigation & Auto-Flipping**: True Right-to-Left toolbar page navigation and automatic page-turning when reciting across page boundaries.
-* **Basmalah Placement Logic**: Automatically displays the decorative Basmalah banner on appropriate chapters while correctly omitting it on Surah 9 (At-Tawbah), adhering to Islamic tradition.
-* **Direct Ayah Deep-Linking**: Jump directly to any verse with auto-scroll and highlight using compact notation (`#6:12`), standard route (`#surah/6/12`), or deep-dive route (`#ayah/6/12`).
+### 📖 Teks Al-Quran Sahih & Paparan Mushaf Madinah Tradisional
+* **Dataset Al-Quran Lengkap**: Seluruh 114 Surah dan 6,236 ayat dalam rasm Uthmani yang disemak rapi.
+* **Paparan Mushaf Madinah 15 Baris**: Pemetaan susun atur halaman demi halaman merangkumi kesemua 604 halaman mushaf Madinah piawai (`#mushaf/{halaman}`) dengan penanda ayat dan navigasi pantas.
+* **Hiasan Iluminasi Awal Surah Diraja**: Gerbang mahkota dan bingkai tajuk surah beriluminasi autentik untuk Halaman 1 (Al-Fatihah) dan Halaman 2 (Al-Baqarah).
+* **Penunjuk Marginal & Tanda Tilawah**: Medalion Juzuk, Hizb, Rub' al-Hizb, serta penunjuk tanda Sajdah Tilawah berpandukan piawaian Percetakan Al-Quran Kompleks Raja Fahd.
+* **Navigasi RTL & Selak Halaman Automatik**: Bar navigasi kanan ke kiri (RTL) sebenar dan pembalikan halaman automatik semasa bacaan audio melepasi sempadan halaman.
+* **Logik Peletakan Basmalah**: Memaparkan sepanduk Basmalah hiasan secara automatik pada surah yang bersesuaian, dan meniadakannya secara tepat pada Surah 9 (At-Tawbah) mengikut tradisi disiplin ilmu Al-Quran.
+* **Pautan Terus Ayat (Deep-Linking)**: Lompat terus ke mana-mana ayat dengan tatalan automatik dan sorotan (*highlight*) menggunakan notasi ringkas (`#6:12`), laluan surah (`#surah/6/12`), atau laluan kajian terperinci (`#ayah/6/12`).
 
-### 🔬 Word-by-Word Morphology & Deep-Dive
-* **Token-Level Analysis**: Interactive Arabic token cards showing phonetic transliteration, Malay/English gloss, part-of-speech (POS) tags, lemmas, and root words (`الجذر`).
-* **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the Quranic Arabic Corpus.
-* **Tafsir al-Jalalayn & Ibn Kathir**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view (featuring Bahasa Melayu / Nusantara and English).
-* **Asbabun Nuzul (Sebab Turun Wahyu)**: Comprehensive historical context and revelation occasions for 657 verses across 85 surahs, unifying *Kitab Asbab an-Nuzul* (Al-Wahidi), *Lubabun Nuqul* (As-Suyuthi), and *Sahih Asbab an-Nuzul* (Ibrahim al-Ali) with authentic Arabic hadith text, Malay/Nusantara analysis, and English translations.
+### 🔬 Analisis Morfologi Kalimah demi Kalimah & Kajian Mendalam
+* **Analisis Tahap Token**: Kad kalimah Arab interaktif yang memaparkan transliterasi sebutan Rumi, terjemahan harfiah Bahasa Melayu/Inggeris, label golongan kata (*POS tags*), lema, serta akar kata dasar (`الجذر`).
+* **Laci Tatabahasa & Integrasi Korpus Melayu**: Huraian sintaksis dan tatabahasa lengkap bagi setiap kalimah dengan pautan terus ke [Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/).
+* **Tafsir al-Jalalayn & Ibn Kathir**: Integrasi ulasan tafsir muktabar secara terus dalam paparan kajian mendalam ayat (menampilkan Bahasa Melayu / Nusantara dan Bahasa Inggeris).
+* **Asbabun Nuzul (Sebab Turun Wahyu)**: Konteks sejarah dan sebab penurunan wahyu bagi 657 ayat merentasi 85 surah, menggabungkan riwayat daripada *Kitab Asbab an-Nuzul* (Al-Wahidi), *Lubabun Nuqul* (As-Suyuthi), dan *Sahih Asbab an-Nuzul* (Ibrahim al-Ali) lengkap dengan matan hadis Arab, ulasan Bahasa Melayu, dan rujukan kitab.
 
-### 🌍 Multilingual Translations, Jawi Script & Dual-Language UI
-* **Dual-Language Interface (MY / EN)**: Complete native localization in **Bahasa Melayu (Default)** and **English**, with instant one-click switching via header and settings controls.
-* **Official Malaysian Surah Names & Titles**: In Malay mode, surah names and translations follow Malaysian standard transliteration and titles (e.g., *Al-Fatihah: Pembukaan*, *Al-Baqarah: Lembu Betina*, *Ali 'Imran: Keluarga Imran*, *An-Nisa': Wanita*, etc.).
-* **Smart Single-Translation Display**: Automatically hides repetitive translation source headers when only one translation is selected for a pristine, distraction-free reading experience.
-* **5 Full Translation & Exegesis Editions**:
-  * 🇲🇾 **Bahasa Melayu (JAKIM - Default)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
-  * 🇲🇾 **Tafsir al-Jalalayn** — Classical Exegesis in Bahasa Melayu / Nusantara (Jalaluddin al-Mahalli & Jalaluddin as-Suyuti)
-  * 🇬🇧 **English** — Saheeh International
-  * 🇬🇧 **English (Literary)** — Muhammad Marmaduke Pickthall
+### 🌍 Terjemahan Pelbagai Bahasa, Tulisan Jawi & Antara Muka Dwi-Bahasa
+* **Antara Muka Dwi-Bahasa (MY / EN)**: Penyetempatan penuh dalam **Bahasa Melayu (Lalai)** dan **Bahasa Inggeris**, dengan penukaran pantas satu klik pada bar kepala dan panel tetapan.
+* **Nama & Tajuk Surah Piawai Malaysia**: Dalam mod Bahasa Melayu, ejaan nama surah dan terjemahan mengikut piawaian rasmi Malaysia (contoh: *Al-Fatihah: Pembukaan, Al-Baqarah: Lembu Betina, Ali 'Imran: Keluarga Imran, An-Nisa': Wanita, dll.*).
+* **Paparan Pintar Terjemahan Tunggal**: Menyembunyikan label nama terjemahan secara automatik apabila hanya satu terjemahan dipilih bagi memberikan pengalaman membaca yang tenang dan bersih.
+* **5 Edisi Terjemahan & Tafsir Lengkap**:
+  * 🇲🇾 **Bahasa Melayu (JAKIM - Lalai)** — *Tafsir Pimpinan Ar-Rahman* (Sheikh Abdullah Muhammad Basmeih / JAKIM)
+  * 🇲🇾 **Tafsir al-Jalalayn** — Tafsir Klasik Bahasa Melayu / Nusantara (Jalaluddin al-Mahalli & Jalaluddin as-Suyuti)
+  * 🇬🇧 **Bahasa Inggeris** — Saheeh International
+  * 🇬🇧 **Bahasa Inggeris (Sastera)** — Muhammad Marmaduke Pickthall
   * 🇮🇩 **Bahasa Indonesia** — Kementerian Agama Republik Indonesia (Kemenag)
-* **Selective Translation Loading**: Dynamic fetching only downloads active translations, saving network bandwidth.
-* **Dynamic Jawi Transliteration**: Built-in algorithmic Rumi-to-Jawi transliterator (`tulisan Jawi`) for Malay readers.
+* **Pemuatan Terjemahan Selektif**: Hanya memuat turun terjemahan yang sedang aktif untuk menjimatkan penggunaan kuota data internet.
+* **Transliterasi Jawi Dinamik**: Penukar algoritma Rumi ke Jawi terbina (*tulisan Jawi*) untuk kemudahan pembaca rantau Melayu.
 
-### 🎧 Audio Recitation Engine & Offline Storage
-* **Continuous & Verse-by-Verse Audio**: Sticky bottom audio player with auto-scroll and auto-advance.
-* **World-Renowned Reciters**:
+### 🎧 Enjin Audio Bacaan & Storan Luar Talian
+* **Audio Berterusan & Ayat demi Ayat**: Pemain audio melekat (*sticky audio player*) di bahagian bawah dengan tatalan dan peralihan ayat automatik.
+* **Qari Terkemuka Dunia**:
   * Mishary Rashid Alafasy
   * Abu Bakr Al-Shatri
   * Abdul Basit Murattal
-* **Word Pronunciation**: Click any individual word token in the Deep-Dive view to hear its pronunciation.
-* **Offline Audio Storage**: Download full Surah audio packages directly into browser IndexedDB storage for offline listening without an internet connection.
+* **Sebutan Setiap Perkataan**: Tekan mana-mana kalimah dalam paparan kajian mendalam untuk mendengar sebutan audio khusus bagi kalimah tersebut.
+* **Storan Audio Luar Talian**: Muat turun pakej audio surah penuh terus ke dalam storan IndexedDB pelayar untuk didengari tanpa sambungan internet.
 
-### 🧠 Tahfiz / Hifz Memorization Mode
-* **Active Recall Testing**: Toggle Hifz mode to blur Arabic text and test your memory.
-* **Tap-to-Reveal**: Tap or click any blurred verse to reveal the text for immediate self-correction.
-* **Interval Looping**: Set custom verse repeat counts and playback intervals to reinforce memorization.
+### 🧠 Mod Hafazan / Tahfiz (Hifz Mode)
+* **Ujian Ingatan Aktif**: Aktifkan mod Hifz untuk mengaburkan teks Arab bagi menguji kekuatan hafazan anda.
+* **Sentuh untuk Dedahkan (Tap-to-Reveal)**: Sentuh atau klik mana-mana ayat yang kabur untuk memaparkan teksnya bagi tujuan semakan segera.
+* **Pengulangan Selang Masa**: Tetapkan bilangan ulangan ayat dan jeda masa untuk mengukuhkan ingatan hafazan.
 
-### ⚡ Off-Thread Search Web Worker
-* **Dedicated Web Worker**: Instant search queries executed off the main UI thread, keeping the interface fluid and responsive across all 6,236 verses.
-* **Normalized Arabic Matching**: Automatically strips diacritics (tashkeel), hamza variants, and alif waslah.
-* **Instant Verse Jump**: Type `112:1`, `2:255`, or `36` to immediately jump to any chapter or verse.
+### ⚡ Enjin Carian Web Worker Luar Benang
+* **Web Worker Khas**: Carian pantas dijalankan di luar benang utama UI (*off-thread*), memastikan pelayar sentiasa lancar dan responsif merentasi kesemua 6,236 ayat.
+* **Penormalan Teks Arab**: Membuang tanda baris (*tashkeel*), variasi hamzah, dan alif waslah secara pintar untuk ketepatan hasil carian.
+* **Lompat Ayat Segera**: Taip `112:1`, `2:255`, atau nombor surah `36` untuk terus pergi ke surah atau ayat tersebut.
 
-### 🎨 Shareable Verse Card Generator
-* **HTML5 Canvas Export**: Generate high-resolution, aesthetic Quran verse cards.
-* **Aspect Ratios**: Export in **1:1 (Square)** for social feeds or **9:16 (Story/Reels)** for mobile statuses.
-* **Native Web Share**: Share directly to social media and messaging apps via the Web Share API, copy the image to clipboard, or download as PNG.
+### 🎨 Penjana Kad Ayat Media Sosial
+* **Eksport HTML5 Canvas**: Hasilkan kad ayat Al-Quran beresolusi tinggi yang indah dan kemas.
+* **Pilihan Nisbah Dimensi**: Eksport dalam format **1:1 (Segi Empat Sama)** untuk suapan media sosial atau **9:16 (Story/Status)** untuk peranti mudah alih.
+* **Perkongsian Web Asli**: Kongsi terus ke aplikasi mesej dan media sosial melalui Web Share API, salin imej ke papan keratan (*clipboard*), atau muat turun fail PNG.
 
-### 📝 Personal Study Notes & 1-Click Backup
-* **Persistent Notes Engine**: Write personal reflections, tafsir notes, and study annotations directly on any verse, securely stored in IndexedDB.
-* **1-Click JSON Backup & Restore**: Export all bookmarks, personal notes, and UI preferences into a timestamped JSON file with instant one-click restoration.
-* **Distraction-Free Sidebar Collapse**: Toggle the sidebar via <kbd>[</kbd> shortcut or sidebar header button.
-* **Screen Wake Lock API**: Keep your device display awake without dimming while reading or memorizing.
+### 📝 Nota Kajian Peribadi & Sandaran 1-Klik
+* **Enjin Nota Kekal**: Tulis refleksi peribadi, catatan tadabbur, dan nota pengajian pada mana-mana ayat, disimpan secara selamat dalam IndexedDB tempatan peranti anda.
+* **Eksport & Pulih Sandaran JSON 1-Klik**: Simpan semua penanda buku, nota peribadi, dan tetapan ke dalam fail sandaran JSON bertarikh dengan ciri pemulihan segera.
+* **Bar Sisi Bebas Gangguan**: Sembunyi atau paparkan bar sisi menggunakan pintasan papan kekunci <kbd>[</kbd> atau butang bar tajuk.
+* **API Kunci Bangun Skrin (Screen Wake Lock)**: Memastikan skrin peranti kekal menyala tanpa malap semasa anda membaca atau menghafal Al-Quran.
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## ⌨️ Pintasan Papan Kekunci
 
-| Shortcut | Action |
+| Pintasan | Tindakan |
 | :--- | :--- |
-| <kbd>/</kbd> | Open Search & Verse Jump Modal |
-| <kbd>[</kbd> | Toggle Sidebar (Distraction-Free Reading) |
-| <kbd>Esc</kbd> | Close Modal, Drawer, or Popover |
-| <kbd>Space</kbd> | Play / Pause Current Audio |
-| <kbd>Alt</kbd> + <kbd>→</kbd> | Next Ayah |
-| <kbd>Alt</kbd> + <kbd>←</kbd> | Previous Ayah |
+| <kbd>/</kbd> | Buka Modal Carian & Lompat Ayat |
+| <kbd>[</kbd> | Buka / Tutup Bar Sisi (Mod Pembacaan Tenang) |
+| <kbd>Esc</kbd> | Tutup Modal, Laci, atau Popover |
+| <kbd>Space</kbd> | Main / Jeda Audio Semasa |
+| <kbd>Alt</kbd> + <kbd>→</kbd> | Ayat Seterusnya |
+| <kbd>Alt</kbd> + <kbd>←</kbd> | Ayat Sebelumnya |
 
 ---
 
-## 🔗 URL Routing & Deep-Linking
+## 🔗 Format Pautan Terus & Penghala URL
 
-The application features a flexible hash-based router supporting instant bookmarking and sharing:
+Aplikasi ini menggunakan penghala berasaskan hash yang menyokong penandaan buku dan perkongsian pautan secara terus:
 
-| URL Route | Destination |
+| Format URL | Destinasi |
 | :--- | :--- |
-| `/#1` or `/#surah/1` | Open Surah 1 (Al-Fatihah) |
-| `/#6:12` or `/#surah/6/12` | Jump directly to Surah 6, Ayah 12 with auto-scroll and highlight |
-| `/#ayah/1/1` | Open Ayah Deep-Dive view with morphology breakdown and tafsir |
-| `/#mushaf/1` | Open Madinah Mushaf page view (pages 1 to 604) |
-| `/#search/iman` | Pre-populate and execute a search query |
+| `/#1` atau `/#surah/1` | Buka Surah 1 (Al-Fatihah) |
+| `/#6:12` atau `/#surah/6/12` | Lompat terus ke Surah 6 Ayat 12 dengan tatalan automatik dan sorotan |
+| `/#ayah/1/1` | Buka paparan kajian mendalam (Deep-Dive) berserta analisis morfologi dan tafsir |
+| `/#mushaf/1` | Buka paparan halaman Mushaf Madinah (halaman 1 hingga 604) |
+| `/#search/iman` | Buka carian dengan kata kunci sedia diisi |
 
 ---
 
-## 🏗️ Technical Architecture & Invariants
+## 🏗️ Seni Bina Teknikal & Invarian Projek
 
-This project adheres to strict architectural principles designed for longevity, performance, and simplicity:
+Projek ini berpegang kepada prinsip reka bentuk yang ketat untuk ketahanan, kelajuan, dan kemudahan jangka panjang:
 
-1. **Zero-Build ES6**:
-   * Pure native ES6 modules (`import` / `export`) executed directly by modern browsers.
-   * Zero bundlers (no Webpack, Vite, Rollup, or Babel).
-   * Zero npm runtime dependencies.
-2. **Subpath Hosting Compatibility**:
-   * All network requests use strictly relative paths (`./data/...`, `./css/...`, `./js/...`), ensuring flawless execution on subpath environments like GitHub Pages (`https://<org>.github.io/<repo>/`).
-3. **Offline-First PWA (Service Worker v14)**:
-   * Stale-while-revalidate caching provides instantaneous offline boot while seamlessly pulling background updates from GitHub.
-4. **Storage Architecture**:
-   * **IndexedDB** (`maktabah_quran_db`): Persistent offline audio MP3 blobs and user study notes.
-   * **localStorage**: UI preferences, bookmarks, and last-read marker.
-   * **Cache Storage**: App shell, stylesheets, icons, and Quran JSON datasets.
-5. **Strict Data Schemas & UTF-8 Encoding**:
-   * All files use UTF-8 encoding without BOM.
+1. **Zero-Build Vanilla ES6**:
+   * Modul ES6 asli (`import` / `export`) yang dijalankan terus oleh pelayar moden tanpa langkah kompilasi.
+   * Bebas daripada pembungkus (*bundler*) seperti Webpack, Vite, Rollup, atau Babel.
+   * Tiada sebarang pergantungan runtime npm.
+2. **Keserasian Subpath Hosting**:
+   * Semua permintaan aset dan data menggunakan laluan relatif (`./data/...`, `./css/...`, `./js/...`), memastikan aplikasi berfungsi sempurna di persekitaran subpath seperti GitHub Pages (`https://<organisasi>.github.io/<projek>/`).
+3. **PWA Sedia Luar Talian (Service Worker v14)**:
+   * Strategi *stale-while-revalidate* memberikan kelajuan pemuatan segera dari cache luar talian sambil menyelaraskan kemas kini latar belakang secara automatik dari GitHub.
+4. **Seni Bina Storan Tempatan**:
+   * **IndexedDB** (`maktabah_quran_db`): Menyimpan audio MP3 luar talian dan nota kajian peribadi.
+   * **localStorage**: Menyimpan pilihan antaramuka, penanda buku, dan penanda bacaan terakhir.
+   * **Cache Storage**: Menyimpan rangka aplikasi, helaian gaya (CSS), ikon, dan fail data JSON Al-Quran.
+5. **Skema Data Ketat & Pengekodan UTF-8**:
+   * Kesemua fail menggunakan format UTF-8 tanpa BOM.
 
 ---
 
-## 📁 Repository Structure
+## 📁 Struktur Direktori Repositori
 
 ```
 al-quran/
 ├── .agents/
 │   └── skills/
 │       └── quran-etl/
-│           └── SKILL.md             # Quran ETL pipeline skill instructions
+│           └── SKILL.md             # Panduan dan arahan ETL Al-Quran
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml               # GitHub Pages automated CI/CD pipeline
+│       └── deploy.yml               # Saluran CI/CD automatik GitHub Pages
 ├── css/
-│   └── style.css                    # Responsive layout, typography, dark theme
+│   └── style.css                    # Susun atur responsif, tipografi, tema gelap
 ├── data/
-│   ├── arabic/                      # 114 Uthmani & simple clean chapter files
-│   ├── morphology/                  # 114 Word-by-word token analysis files
-│   ├── translations/                # Multilingual translations & exegesis
-│   │   ├── en/                      # English (sahih.json, pickthall.json)
-│   │   ├── id/                      # Indonesian (kemenag.json)
-│   │   └── ms/                      # Malay (basmeih.json, jalalayn.json)
-│   ├── pages-meta.json              # 604 Madinah Mushaf page definitions
-│   ├── search-index.json            # Search index for all 6,236 verses
-│   ├── surahs.json                  # 114 Surah catalogue with official names
-│   └── icon.svg                     # Application vector icon
+│   ├── arabic/                      # 114 fail surah teks Uthmani & teks ringkas
+│   ├── morphology/                  # 114 fail analisis morfologi kalimah demi kalimah
+│   ├── translations/                # Terjemahan pelbagai bahasa & tafsir
+│   │   ├── en/                      # Bahasa Inggeris (sahih.json, pickthall.json)
+│   │   ├── id/                      # Bahasa Indonesia (kemenag.json)
+│   │   └── ms/                      # Bahasa Melayu (basmeih.json, jalalayn.json)
+│   ├── pages-meta.json              # Definisi 604 halaman Mushaf Madinah
+│   ├── search-index.json            # Indeks carian seluruh 6,236 ayat
+│   ├── surahs.json                  # Katalog 114 Surah dengan nama piawai rasmi
+│   └── icon.svg                     # Ikon vektor aplikasi
 ├── js/
-│   ├── app.js                       # Application coordinator & controller
-│   ├── audio.js                     # HTML5 Audio recitation engine
-│   ├── backup.js                    # 1-Click JSON backup & restore manager
-│   ├── card-generator.js            # HTML5 Canvas verse card generator
-│   ├── i18n.js                      # Dual-language internationalization (MY / EN)
-│   ├── jawi.js                      # Algorithmic Rumi-to-Jawi transliterator
-│   ├── mushaf.js                    # 15-line Madinah Mushaf renderer
-│   ├── router.js                    # Hash-based SPA deep-linking router
-│   ├── search-worker.js             # Dedicated background search Web Worker
-│   ├── search.js                    # Search modal UI & keyboard handler
-│   ├── storage-db.js                # IndexedDB storage engine
-│   ├── store.js                     # Reactive state management
-│   └── wake-lock.js                 # Screen Wake Lock API controller
+│   ├── app.js                       # Pengawal selia utama aplikasi
+│   ├── audio.js                     # Enjin audio bacaan HTML5
+│   ├── backup.js                    # Pengurus sandaran & pemulihan JSON 1-klik
+│   ├── card-generator.js            # Penjana kad ayat HTML5 Canvas
+│   ├── config.js                    # Konfigurasi aplikasi & pautan korpus
+│   ├── i18n.js                      # Penyetempatan dwi-bahasa (MY / EN)
+│   ├── jawi.js                      # Penukar algoritma Rumi ke Jawi
+│   ├── mushaf.js                    # Pemapar Mushaf Madinah 15 baris
+│   ├── router.js                    # Penghala SPA berasaskan hash
+│   ├── search-worker.js             # Web Worker latar belakang untuk carian
+│   ├── search.js                    # Pengendali UI & carian papan kekunci
+│   ├── storage-db.js                # Enjin storan IndexedDB
+│   ├── store.js                     # Pengurus keadaan reaktif & data
+│   └── wake-lock.js                 # Pengawal selia Screen Wake Lock API
 ├── scripts/
-│   ├── extract_quran.py             # Python ETL pipeline for data extraction
-│   ├── serve.py                     # Zero-dependency local dev server (no-cache)
-│   ├── test_mushaf_authentic.js     # Authentic Madinah Mushaf test suite (10 checks)
-│   ├── test_release_qa.js           # Playwright master QA suite (81 checks)
-│   ├── test_ui_comprehensive.js     # Automated UI & responsive test suite (35 checks)
-│   ├── update_surah_names_ms.py     # Malaysian standard transliterations updater
-│   ├── verify_data_integrity.py     # Dataset schema and encoding validator
-│   └── verify_project.py            # Project invariants and relative path validator
-├── index.html                       # Semantic HTML5 entry point
-├── manifest.webmanifest             # Progressive Web App manifest
-├── sw.js                            # PWA Service Worker (v14)
-├── AGENTS.md                        # Project invariants & instructions for AI agents
-├── CONTRIBUTING.md                  # Contribution guidelines & workflow
-├── LICENSE                          # MIT License
-├── package.json                     # Playwright testing & npm scripts
-└── README.md                        # Project documentation
+│   ├── extract_quran.py             # Saluran Python ETL untuk pengekstrakan data
+│   ├── serve.py                     # Pelayan pembangunan tempatan tanpa kebergantungan
+│   ├── test_mushaf_authentic.js     # Ujian Mushaf Madinah autentik (10 semakan)
+│   ├── test_release_qa.js           # Ujian utama Playwright QA (81 semakan)
+│   ├── test_ui_comprehensive.js     # Ujian automatik UI & responsif (35 semakan)
+│   ├── update_surah_names_ms.py     # Pengemas kini nama surah piawai Malaysia
+│   ├── verify_data_integrity.py     # Pengesah integriti data & skema UTF-8
+│   └── verify_project.py            # Pengesah invarian projek & laluan relatif
+├── index.html                       # Titik masuk semantik HTML5
+├── manifest.webmanifest             # Manifes Progressive Web App
+├── sw.js                            # Service Worker PWA (v14)
+├── AGENTS.md                        # Invarian projek untuk ejen kecerdasan buatan
+├── CONTRIBUTING.md                  # Panduan sumbangan komuniti (Bahasa Melayu)
+├── CONTRIBUTING.en.md               # Panduan sumbangan komuniti (Bahasa Inggeris)
+├── LICENSE                          # Lesen MIT
+├── package.json                     # Konfigurasi skrip ujian Playwright
+├── README.md                        # Dokumentasi utama projek (Bahasa Melayu)
+└── README.en.md                     # Dokumentasi projek (Bahasa Inggeris)
 ```
 
 ---
 
-## 🚀 Local Development
+## 🚀 Pembangunan Tempatan
 
-Because this project uses a zero-build architecture, no compilation is required. Simply serve the repository root with any local HTTP server:
+Disebabkan projek ini menggunakan seni bina *zero-build*, tiada langkah kompilasi atau *bundling* diperlukan. Anda hanya perlu melancarkan direktori ini dengan sebarang pelayan HTTP tempatan:
 
-### Option 1: Using the Built-In Local Development Server (Recommended)
+### Pilihan 1: Menggunakan Pelayan Pembangunan Terbina (Disyorkan)
 ```bash
-# Automatically launches default browser with no-cache headers enabled:
+# Melancarkan pelayan tempatan dengan mod tanpa-cache (no-cache):
 python scripts/serve.py --port 8000
-# or:
+# atau:
 npm run serve
 ```
 
-### Option 2: Using Standard Python HTTP Server
+### Pilihan 2: Menggunakan Pelayan Standard Python
 ```bash
 python -m http.server 8080
 ```
-Open [http://localhost:8080](http://localhost:8080) in your browser.
+Buka [http://localhost:8080](http://localhost:8080) pada pelayar web anda.
 
-### Option 3: Using Node.js
+### Pilihan 3: Menggunakan Node.js
 ```bash
 npx serve .
 ```
 
 ---
 
-## 🧪 Testing & Verification
+## 🧪 Pengujian & Pengesahan Kualiti
 
-The project includes comprehensive automated verification suites covering data integrity, architectural invariants, and end-to-end browser workflows:
+Projek ini dilengkapi dengan set suite ujian pengesahan automatik yang merangkumi integriti data, invarian seni bina, dan ujian aliran pelayar:
 
 ```bash
-# 1. Verify Project Invariants, Relative Paths & Schemas
+# 1. Sahkan Invarian Projek, Laluan Relatif & Skema
 python scripts/verify_project.py
 
-# 2. Verify Quranic Data Integrity (114 Surahs, 6,236 Verses, Schemas & UTF-8)
+# 2. Sahkan Integriti Data Al-Quran (114 Surah, 6,236 Ayat, Skema & UTF-8)
 python scripts/verify_data_integrity.py
-# (Or run both via: npm run verify)
+# (Atau jalankan kedua-duanya sekali gus: npm run verify)
 
-# 3. Run Master QA Playwright Test Suite (81 Checks)
+# 3. Jalankan Suite Ujian Utama QA Playwright (81 Semakan)
 npm test
-# or: node scripts/test_release_qa.js
+# atau: node scripts/test_release_qa.js
 
-# 4. Run Comprehensive UI & Responsive Test Suite (35 Checks)
+# 4. Jalankan Suite Ujian UI Komprehensif & Responsif (35 Semakan)
 npm run test:ui
-# or: node scripts/test_ui_comprehensive.js
+# atau: node scripts/test_ui_comprehensive.js
 
-# 5. Run Authentic Madinah Mushaf Test Suite (10 Checks)
+# 5. Jalankan Suite Ujian Mushaf Madinah Autentik (10 Semakan)
 npm run test:mushaf
-# or: node scripts/test_mushaf_authentic.js
+# atau: node scripts/test_mushaf_authentic.js
 ```
 
 ---
 
-## 📚 Data Sources & Acknowledgments
+## 📚 Sumber Data & Penghargaan
 
-We express our gratitude to the open-source and Islamic scholarship communities whose public resources power this project:
+Setinggi-tinggi penghargaan dirakamkan kepada komuniti sumber terbuka dan institusi keilmuan Islam yang menyediakan sumber rujukan bagi projek ini:
 
-* **[Tanzil Project](https://tanzil.net)** — Verified Quranic Uthmani text and transliterations.
-* **[Quranic Arabic Corpus](https://corpus.quran.com)** — Morphological and syntactic treebank data developed by the Language Research Group at the University of Leeds.
-* **[EveryAyah.com](https://everyayah.com)** — High-quality verse-by-verse audio recitations.
-* **[King Fahd Glorious Quran Printing Complex](https://qurancomplex.gov.sa/)** — Authentic 15-line Madinah Mushaf page layout definitions.
-* **Kementerian Agama Republik Indonesia** & **Ustaz Abdullah Muhammad Basmeih** — Official translations.
+* **[Projek Tanzil](https://tanzil.net)** — Teks Uthmani Al-Quran dan transliterasi yang disemak rapi.
+* **[Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/)** — Korpus Al-Quran Bahasa Melayu dan analisis morfologi.
+* **[EveryAyah.com](https://everyayah.com)** — Rakaman audio bacaan ayat Al-Quran berkualiti tinggi.
+* **[Kompleks Percetakan Al-Quran Raja Fahd Madinah](https://qurancomplex.gov.sa/)** — Piawaian susun atur halaman Mushaf Madinah 15 baris.
+* **Kementerian Agama Republik Indonesia** & **Sheikh Abdullah Muhammad Basmeih / JAKIM** — Terjemahan rasmi Bahasa Melayu dan Nusantara.
 
 ---
 
-## 📄 License
+## 📄 Lesen
 
-This software is released under the **[MIT License](LICENSE)**.
+Perisian ini dikeluarkan di bawah **[Lesen MIT](LICENSE)**.
 
-Quranic Arabic texts, translations, morphology data, and audio recitations remain under their respective scholarly and public domains.
+Teks Al-Quran Bahasa Arab, terjemahan, data morfologi, dan audio bacaan kekal di bawah domain keilmuan dan hak cipta awam masing-masing.
