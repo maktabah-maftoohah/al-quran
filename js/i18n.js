@@ -30,6 +30,10 @@ export const translations = {
       toggleDrawerAria: "Buka/Tutup laci navigasi",
       toggleDrawerTitle: "Togol Navigasi (Ctrl+B / [)",
       languageToggle: "Tukar Bahasa (Switch Language)",
+      korpusLabel: "Korpus",
+      korpusTitle: "Buka Korpus Linguistik & Nahu Al-Quran",
+      tajweedLabel: "Tajwid",
+      tajweedTitle: "Togol Hukum Tajwid Berwarna",
     },
     sidebar: {
       tabSurahs: "Surah (114)",
@@ -324,6 +328,10 @@ export const translations = {
       toggleDrawerAria: "Toggle navigation drawer",
       toggleDrawerTitle: "Toggle Sidebar (Ctrl+B / [)",
       languageToggle: "Switch Language / Tukar Bahasa",
+      korpusLabel: "Corpus",
+      korpusTitle: "Open Quranic Linguistic Corpus & Grammar",
+      tajweedLabel: "Tajweed",
+      tajweedTitle: "Toggle Color-Coded Tajweed Rules",
     },
     sidebar: {
       tabSurahs: "Surahs (114)",

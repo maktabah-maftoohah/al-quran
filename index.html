@@ -30,6 +30,22 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./data/icon.svg">
   <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="search" type="application/opensearchdescription+xml" title="Maktabah Al-Quran" href="./opensearch.xml">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Maktabah Maftoohah Al-Quran",
+    "alternateName": "Al-Quran Digital",
+    "url": "https://maktabah-maftoohah.github.io/al-quran/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "inLanguage": ["ar", "ms", "en", "id"],
+    "description": "Zero-build, offline-first digital Quran with word-by-word morphology, translations, and authentic 15-line Madinah Mushaf."
+  }
+  </script>
 
   <!-- Open Graph & Twitter Social Previews -->
   <meta property="og:type" content="website">
@@ -98,6 +114,18 @@
         <span class="header-btn-icon">🔥</span>
         <span class="header-btn-text" id="khatam-btn-text">0h | 0%</span>
       </button>
+
+      <!-- Tajweed Color-Coded Rules Button -->
+      <button class="btn header-btn" id="tajweed-mode-btn" title="Togol Hukum Tajwid Berwarna" data-i18n-title="nav.tajweedTitle">
+        <span class="header-btn-icon">🎨</span>
+        <span class="header-btn-text" data-i18n="nav.tajweedLabel">Tajwid</span>
+      </button>
+
+      <!-- Korpus Al-Quran Cross-Link -->
+      <a href="https://maktabah-maftoohah.github.io/korpus-quran/" target="_blank" rel="noopener noreferrer" class="btn header-btn" id="header-korpus-btn" title="Buka Korpus Linguistik & Nahu Al-Quran" data-i18n-title="nav.korpusTitle">
+        <span class="header-btn-icon">🔬</span>
+        <span class="header-btn-text" data-i18n="nav.korpusLabel">Korpus</span>
+      </a>
 
       <!-- Dual Language Switcher Pill (BM | EN) -->
       <div class="lang-switcher" id="header-lang-switcher" title="Tukar Bahasa / Switch Language" data-i18n-title="nav.languageToggle">

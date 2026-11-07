@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Maktabah Al-Quran</ShortName>
+  <Description>Cari teks Uthmani, terjemahan, dan ayat Al-Quran (Maktabah Maftoohah)</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" template="https://maktabah-maftoohah.github.io/al-quran/?q={searchTerms}"/>
+</OpenSearchDescription>

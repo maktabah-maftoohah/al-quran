@@ -30,6 +30,14 @@ class QuranStore {
       loopAyah: false,
       autoScroll: true,
       jawiMode: false,
+      tajweedMode: false,
+      loopRange: {
+        active: false,
+        startAyah: 1,
+        endAyah: 7,
+        repeatCount: 3,
+        currentCount: 0,
+      },
       hifz: {
         active: false,
         repeatCount: 1,
@@ -125,6 +133,11 @@ class QuranStore {
   applySettingsToDOM() {
     document.documentElement.style.setProperty('--arabic-size', `${this.settings.arabicSize}rem`);
     document.documentElement.style.setProperty('--translation-size', `${this.settings.translationSize}rem`);
+    if (this.settings.tajweedMode) {
+      document.body.classList.add('tajweed-active');
+    } else {
+      document.body.classList.remove('tajweed-active');
+    }
   }
 
   loadBookmarks() {

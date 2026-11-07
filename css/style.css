@@ -3184,3 +3184,88 @@ input[type="range"] {
   background: rgba(16, 185, 129, 0.22);
   border-color: rgba(16, 185, 129, 0.6);
 }
+
+/* ==========================================================================
+   Color-Coded Tajweed Rules Styles
+   ========================================================================== */
+.tajweed-active .tajweed-rule {
+  transition: color 0.15s ease;
+}
+.tajweed-active .tajweed-madd {
+  color: #f43f5e !important; /* Rose / Red */
+  font-weight: 600;
+}
+.tajweed-active .tajweed-ghunnah {
+  color: #06b6d4 !important; /* Cyan / Teal */
+  font-weight: 600;
+}
+.tajweed-active .tajweed-ikhfa {
+  color: #10b981 !important; /* Emerald Green */
+}
+.tajweed-active .tajweed-idgham {
+  color: #f59e0b !important; /* Amber Gold */
+}
+.tajweed-active .tajweed-qalqalah {
+  color: #38bdf8 !important; /* Sky Blue */
+  font-weight: 600;
+}
+.tajweed-active .tajweed-iqlab {
+  color: #a855f7 !important; /* Purple */
+}
+
+/* Tajweed Legend Drawer / Modal */
+.tajweed-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.tajweed-legend-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tajweed-legend-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.tajweed-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+/* A-B Audio Looper UI */
+.audio-looper-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.8rem;
+  margin-left: 0.5rem;
+  font-size: 0.82rem;
+}
+.audio-looper-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.15s ease;
+}
+.audio-looper-btn.active {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--accent-emerald);
+  color: var(--accent-emerald);
+  font-weight: 600;
+}

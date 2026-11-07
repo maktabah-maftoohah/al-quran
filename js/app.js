@@ -17,6 +17,7 @@ import { gdriveSync } from './gdrive-sync.js';
 import { APP_CONFIG } from './config.js';
 import { analytics } from './analytics.js';
 import { i18n } from './i18n.js';
+import { colorizeTajweed, TAJWEED_LEGEND } from './tajweed.js';
 
 class App {
   constructor() {
@@ -57,6 +58,7 @@ class App {
     this.initSidebar();
     this.initTypographyPopover();
     this.initLanguageSwitcher();
+    this.initTajweedControls();
     this.initStickyAudioPlayer();
     this.initMorphologyDrawer();
     this.initNoteModal();
@@ -136,6 +138,27 @@ class App {
     });
 
     updateLangUI(store.settings.language || 'ms');
+  }
+
+  initTajweedControls() {
+    const btn = document.getElementById('tajweed-mode-btn');
+    if (!btn) return;
+
+    const updateBtnUI = () => {
+      btn.classList.toggle('active', Boolean(store.settings.tajweedMode));
+    };
+
+    updateBtnUI();
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const next = !store.settings.tajweedMode;
+      store.updateSettings({ tajweedMode: next });
+      updateBtnUI();
+      if (typeof analytics !== 'undefined') {
+        analytics.trackEvent('toggle_tajweed', { active: next });
+      }
+    });
   }
 
   initPWA() {
@@ -1094,7 +1117,10 @@ class App {
       <div class="morph-details-grid">
         <div class="morph-kv">
           <div class="morph-kv-label">${i18n.t('deepDive.drawerRoot')}</div>
-          <div class="morph-kv-val" style="color: var(--accent-gold);">${token.root || 'N/A'}</div>
+          <div class="morph-kv-val" style="color: var(--accent-gold); display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+            <span>${token.root || 'N/A'}</span>
+            ${token.root ? `<a href="${APP_CONFIG.corpusBaseUrl}?lang=${i18n.getLanguage()}#root/${encodeURIComponent(token.root)}" target="_blank" rel="noopener noreferrer" class="btn" style="padding: 0.15rem 0.45rem; font-size: 0.72rem; text-decoration: none; color: #10b981; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.08);" title="Buka Mu'jam Akar Kata di Korpus Al-Quran">🔬 ${i18n.getLanguage() === 'ms' ? 'Teroka di Korpus' : 'Explore in Corpus'} ↗</a>` : ''}
+          </div>
         </div>
         <div class="morph-kv">
           <div class="morph-kv-label">${i18n.t('deepDive.drawerLemma')}</div>
@@ -1892,7 +1918,7 @@ class App {
               </div>
 
               <div class="verse-card-body">
-                <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${textObj.uthmani}</div>
+                <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${colorizeTajweed(textObj.uthmani)}</div>
 
               <div class="verse-translations ${singleClass}">
                 <div class="translation-block translation-block-basmeih-harfiah">
@@ -2474,7 +2500,7 @@ class App {
             <div class="word-translit">${token.tr}</div>
             <div class="word-gloss ${isJawi && wbwLang !== 'en' ? 'jawi-text' : ''}">${displayGloss}</div>
             ${glossSecondary ? `<div class="word-gloss-secondary">${glossSecondary}</div>` : ''}
-            ${token.root ? `<div class="word-root-badge">${token.root}</div>` : `<div class="word-root-badge" style="color: var(--text-muted); border-color: var(--border-subtle);">${token.pos_tag}</div>`}
+            ${token.root ? `<a href="${APP_CONFIG.corpusBaseUrl}?lang=${i18n.getLanguage()}#root/${encodeURIComponent(token.root)}" target="_blank" rel="noopener noreferrer" class="word-root-badge" title="${isMalay ? 'Buka Mu\'jam Akar di Korpus' : 'Open Root in Corpus'}">${token.root} ↗</a>` : `<div class="word-root-badge" style="color: var(--text-muted); border-color: var(--border-subtle);">${token.pos_tag}</div>`}
           </div>
         `;
           }
@@ -2531,7 +2557,7 @@ class App {
           <!-- Full Ayah Arabic Card -->
           <div class="verse-card">
             <div class="verse-arabic" style="font-size: calc(var(--arabic-size) * 1.1); margin-bottom: 0;">
-              ${uthmaniText}
+              ${colorizeTajweed(uthmaniText)}
             </div>
           </div>
 

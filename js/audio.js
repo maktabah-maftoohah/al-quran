@@ -363,7 +363,23 @@ class AudioEngine {
       return;
     }
 
-    // 4. Continuous Playback with optional recitation delay pause
+    // 4. A-B Range Looper
+    const looper = store.settings.loopRange || {};
+    if (looper.active && looper.endAyah && this.state.currentAyah >= looper.endAyah) {
+      const targetStart = looper.startAyah || 1;
+      if (!looper.repeatCount || (looper.currentCount || 0) < looper.repeatCount) {
+        looper.currentCount = (looper.currentCount || 0) + 1;
+        store.updateSettings({ loopRange: { ...looper } });
+        this.playAyah(this.state.currentSurah, targetStart, {
+          continuous: true,
+          totalAyahs: this.state.totalAyahs,
+          surahName: this.state.surahName,
+        });
+        return;
+      }
+    }
+
+    // 5. Continuous Playback with optional recitation delay pause
     if (this.state.isContinuous && this.state.currentAyah < this.state.totalAyahs) {
       const delay = (hifz.active ? (hifz.delaySeconds || 0) : 0) * 1000;
       if (delay > 0) {
