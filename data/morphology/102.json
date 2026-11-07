@@ -12,7 +12,11 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:1:1)",
         "id": "telah melalaikan kamu",
-        "ms": "telah melalaikan kamu"
+        "ms": "telah melalaikan kamu",
+        "verb_form": 4,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3MS"
       },
       {
         "pos": 2,
@@ -24,7 +28,10 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:1:2)",
         "id": "berbanyak-banyak/bermegah-megah",
-        "ms": "berbanyak-banyak/bermegah-megah"
+        "ms": "berbanyak-banyak/bermegah-megah",
+        "verb_form": 3,
+        "case": "NOM",
+        "derivation": "VN"
       }
     ],
     "2": [
@@ -38,7 +45,8 @@
         "pos_tag": "P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:2:1)",
         "id": "hingga",
-        "ms": "hingga"
+        "ms": "hingga",
+        "syntax_role": "INC"
       },
       {
         "pos": 2,
@@ -50,7 +58,11 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:2:2)",
         "id": "kamu melewati/masuk",
-        "ms": "kamu melewati/masuk"
+        "ms": "kamu melewati/masuk",
+        "verb_form": 1,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "2MP"
       },
       {
         "pos": 3,
@@ -62,7 +74,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:2:3)",
         "id": "kuburan-kuburan",
-        "ms": "kuburan-kuburan"
+        "ms": "kuburan-kuburan",
+        "case": "ACC"
       }
     ],
     "3": [
@@ -88,7 +101,8 @@
         "pos_tag": "P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:3:2)",
         "id": "kelak",
-        "ms": "kelak"
+        "ms": "kelak",
+        "syntax_role": "FUT"
       },
       {
         "pos": 3,
@@ -100,7 +114,12 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:3:3)",
         "id": "(kalian) mengetahui",
-        "ms": "(kamu) mengetahui"
+        "ms": "(kamu) mengetahui",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "2MP"
       }
     ],
     "4": [
@@ -138,7 +157,8 @@
         "pos_tag": "P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:4:3)",
         "id": "kelak",
-        "ms": "kelak"
+        "ms": "kelak",
+        "syntax_role": "FUT"
       },
       {
         "pos": 4,
@@ -150,7 +170,12 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:4:4)",
         "id": "(kalian) mengetahui",
-        "ms": "(kamu) mengetahui"
+        "ms": "(kamu) mengetahui",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "2MP"
       }
     ],
     "5": [
@@ -176,7 +201,8 @@
         "pos_tag": "P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:5:2)",
         "id": "jika",
-        "ms": "jika"
+        "ms": "jika",
+        "syntax_role": "COND"
       },
       {
         "pos": 3,
@@ -188,7 +214,12 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:5:3)",
         "id": "(kalian) mengetahui",
-        "ms": "(kamu) mengetahui"
+        "ms": "(kamu) mengetahui",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "2MP"
       },
       {
         "pos": 4,
@@ -200,7 +231,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:5:4)",
         "id": "pengetahuan",
-        "ms": "pengetahuan"
+        "ms": "pengetahuan",
+        "case": "ACC"
       },
       {
         "pos": 5,
@@ -212,7 +244,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:5:5)",
         "id": "pasti/yakin",
-        "ms": "pasti/yakin"
+        "ms": "pasti/yakin",
+        "case": "GEN"
       }
     ],
     "6": [
@@ -226,7 +259,13 @@
         "pos_tag": "P+V+P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:6:1)",
         "id": "sungguh kamu akan melihat",
-        "ms": "sungguh kamu akan melihat"
+        "ms": "sungguh kamu akan melihat",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "2MP",
+        "syntax_role": "EMPH"
       },
       {
         "pos": 2,
@@ -238,7 +277,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:6:2)",
         "id": "neraka Jahim",
-        "ms": "neraka Jahim"
+        "ms": "neraka Jahim",
+        "case": "ACC"
       }
     ],
     "7": [
@@ -264,7 +304,13 @@
         "pos_tag": "P+V+P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:7:2)",
         "id": "sungguh kamu akan melihatnya",
-        "ms": "sungguh kamu akan melihatnya"
+        "ms": "sungguh kamu akan melihatnya",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "2MP",
+        "syntax_role": "EMPH"
       },
       {
         "pos": 3,
@@ -276,7 +322,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:7:3)",
         "id": "mata/penglihatan",
-        "ms": "mata/penglihatan"
+        "ms": "mata/penglihatan",
+        "case": "ACC"
       },
       {
         "pos": 4,
@@ -288,7 +335,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:7:4)",
         "id": "pasti/yakin",
-        "ms": "pasti/yakin"
+        "ms": "pasti/yakin",
+        "case": "GEN"
       }
     ],
     "8": [
@@ -314,7 +362,13 @@
         "pos_tag": "P+V+P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:8:2)",
         "id": "sungguh kamu akan ditanya",
-        "ms": "sungguh kamu akan ditanya"
+        "ms": "sungguh kamu akan ditanya",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "PASS",
+        "mood": "IND",
+        "pgn": "2MP",
+        "syntax_role": "EMPH"
       },
       {
         "pos": 3,
@@ -326,7 +380,8 @@
         "pos_tag": "N+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:8:3)",
         "id": "pada hari itu",
-        "ms": "pada hari itu"
+        "ms": "pada hari itu",
+        "syntax_role": "T"
       },
       {
         "pos": 4,
@@ -350,7 +405,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(102:8:5)",
         "id": "kenikmatan",
-        "ms": "kenikmatan"
+        "ms": "kenikmatan",
+        "case": "GEN"
       }
     ]
   }

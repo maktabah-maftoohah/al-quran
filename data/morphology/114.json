@@ -12,7 +12,11 @@
         "pos_tag": "V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:1:1)",
         "id": "katakanlah",
-        "ms": "katakanlah"
+        "ms": "katakanlah",
+        "verb_form": 1,
+        "aspect": "IMPV",
+        "voice": "ACT",
+        "pgn": "2MS"
       },
       {
         "pos": 2,
@@ -24,7 +28,12 @@
         "pos_tag": "V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:1:2)",
         "id": "aku berlindung",
-        "ms": "aku berlindung"
+        "ms": "aku berlindung",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "1S"
       },
       {
         "pos": 3,
@@ -36,7 +45,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:1:3)",
         "id": "Tuhannya",
-        "ms": "Tuhannya"
+        "ms": "Tuhannya",
+        "case": "GEN"
       },
       {
         "pos": 4,
@@ -48,7 +58,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:1:4)",
         "id": "manusia",
-        "ms": "manusia"
+        "ms": "manusia",
+        "case": "GEN"
       }
     ],
     "2": [
@@ -62,7 +73,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:2:1)",
         "id": "Rajanya",
-        "ms": "Rajanya"
+        "ms": "Rajanya",
+        "case": "GEN"
       },
       {
         "pos": 2,
@@ -74,7 +86,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:2:2)",
         "id": "manusia",
-        "ms": "manusia"
+        "ms": "manusia",
+        "case": "GEN"
       }
     ],
     "3": [
@@ -88,7 +101,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:3:1)",
         "id": "Tuhannya",
-        "ms": "Tuhannya"
+        "ms": "Tuhannya",
+        "case": "GEN"
       },
       {
         "pos": 2,
@@ -100,7 +114,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:3:2)",
         "id": "manusia",
-        "ms": "manusia"
+        "ms": "manusia",
+        "case": "GEN"
       }
     ],
     "4": [
@@ -126,7 +141,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:4:2)",
         "id": "kejahatan",
-        "ms": "kejahatan"
+        "ms": "kejahatan",
+        "case": "GEN"
       },
       {
         "pos": 3,
@@ -138,7 +154,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:4:3)",
         "id": "bisikkan",
-        "ms": "bisikkan"
+        "ms": "bisikkan",
+        "case": "GEN"
       },
       {
         "pos": 4,
@@ -150,7 +167,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:4:4)",
         "id": "menunggu-nunggu/bersembunyi",
-        "ms": "menunggu-nunggu/bersembunyi"
+        "ms": "menunggu-nunggu/bersembunyi",
+        "case": "GEN"
       }
     ],
     "5": [
@@ -164,7 +182,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:5:1)",
         "id": "yang",
-        "ms": "yang"
+        "ms": "yang",
+        "syntax_role": "REL"
       },
       {
         "pos": 2,
@@ -176,7 +195,12 @@
         "pos_tag": "V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:5:2)",
         "id": "membisik-bisikan",
-        "ms": "membisik-bisikan"
+        "ms": "membisik-bisikan",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "3MS"
       },
       {
         "pos": 3,
@@ -200,7 +224,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:5:4)",
         "id": "dada",
-        "ms": "dada"
+        "ms": "dada",
+        "case": "GEN"
       },
       {
         "pos": 5,
@@ -212,7 +237,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:5:5)",
         "id": "manusia",
-        "ms": "manusia"
+        "ms": "manusia",
+        "case": "GEN"
       }
     ],
     "6": [
@@ -238,7 +264,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:6:2)",
         "id": "jin",
-        "ms": "jin"
+        "ms": "jin",
+        "case": "GEN"
       },
       {
         "pos": 3,
@@ -250,7 +277,8 @@
         "pos_tag": "P+P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(114:6:3)",
         "id": "dan manusia",
-        "ms": "dan manusia"
+        "ms": "dan manusia",
+        "case": "GEN"
       }
     ]
   }

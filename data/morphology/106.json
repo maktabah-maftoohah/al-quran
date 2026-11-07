@@ -12,7 +12,10 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:1:1)",
         "id": "karena kebiasaan",
-        "ms": "karena kebiasaan"
+        "ms": "karena kebiasaan",
+        "verb_form": 4,
+        "case": "GEN",
+        "derivation": "VN"
       },
       {
         "pos": 2,
@@ -24,7 +27,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:1:2)",
         "id": "orang-orang Qurais",
-        "ms": "orang-orang Qurais"
+        "ms": "orang-orang Qurais",
+        "case": "GEN"
       }
     ],
     "2": [
@@ -38,7 +42,11 @@
         "pos_tag": "N+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:1)",
         "id": "kebiasaan mereka",
-        "ms": "kebiasaan mereka"
+        "ms": "kebiasaan mereka",
+        "verb_form": 4,
+        "case": "GEN",
+        "pgn": "3MP",
+        "derivation": "VN"
       },
       {
         "pos": 2,
@@ -50,7 +58,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:2)",
         "id": "perjalanan/bepergian",
-        "ms": "perjalanan/bepergian"
+        "ms": "perjalanan/bepergian",
+        "case": "ACC"
       },
       {
         "pos": 3,
@@ -62,7 +71,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:3)",
         "id": "dimusim dingin",
-        "ms": "dimusim dingin"
+        "ms": "dimusim dingin",
+        "case": "GEN"
       },
       {
         "pos": 4,
@@ -74,7 +84,8 @@
         "pos_tag": "P+P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:2:4)",
         "id": "dan musim panas",
-        "ms": "dan musim panas"
+        "ms": "dan musim panas",
+        "case": "GEN"
       }
     ],
     "3": [
@@ -88,7 +99,12 @@
         "pos_tag": "P+P+V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:1)",
         "id": "maka hendaklah mereka menyembah",
-        "ms": "maka hendaklah mereka menyembah"
+        "ms": "maka hendaklah mereka menyembah",
+        "verb_form": 1,
+        "aspect": "IMPV",
+        "voice": "ACT",
+        "mood": "JUS",
+        "pgn": "3MP"
       },
       {
         "pos": 2,
@@ -100,7 +116,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:2)",
         "id": "Tuhan",
-        "ms": "Tuhan"
+        "ms": "Tuhan",
+        "case": "ACC"
       },
       {
         "pos": 3,
@@ -112,7 +129,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:3)",
         "id": "ini",
-        "ms": "ini"
+        "ms": "ini",
+        "syntax_role": "DEM"
       },
       {
         "pos": 4,
@@ -124,7 +142,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:3:4)",
         "id": "rumah",
-        "ms": "rumah"
+        "ms": "rumah",
+        "case": "GEN"
       }
     ],
     "4": [
@@ -138,7 +157,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:1)",
         "id": "yang",
-        "ms": "yang"
+        "ms": "yang",
+        "syntax_role": "REL"
       },
       {
         "pos": 2,
@@ -150,7 +170,11 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:2)",
         "id": "Dia memberi makan mereka",
-        "ms": "Dia memberi makan mereka"
+        "ms": "Dia memberi makan mereka",
+        "verb_form": 4,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3MS"
       },
       {
         "pos": 3,
@@ -174,7 +198,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:4)",
         "id": "kelaparan",
-        "ms": "kelaparan"
+        "ms": "kelaparan",
+        "case": "GEN"
       },
       {
         "pos": 5,
@@ -186,7 +211,11 @@
         "pos_tag": "P+V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:5)",
         "id": "dan Dia memberikan keamanan mereka",
-        "ms": "dan Dia memberikan keamanan mereka"
+        "ms": "dan Dia memberikan keamanan mereka",
+        "verb_form": 4,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3MS"
       },
       {
         "pos": 6,
@@ -210,7 +239,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(106:4:7)",
         "id": "ketakutan",
-        "ms": "ketakutan"
+        "ms": "ketakutan",
+        "case": "GEN"
       }
     ]
   }

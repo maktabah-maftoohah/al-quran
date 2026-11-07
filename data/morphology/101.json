@@ -12,7 +12,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:1:1)",
         "id": "hari kiamat",
-        "ms": "hari kiamat"
+        "ms": "hari kiamat",
+        "case": "NOM"
       }
     ],
     "2": [
@@ -26,7 +27,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:2:1)",
         "id": "apakah",
-        "ms": "apakah"
+        "ms": "apakah",
+        "syntax_role": "INTG"
       },
       {
         "pos": 2,
@@ -38,7 +40,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:2:2)",
         "id": "hari kiamat",
-        "ms": "hari kiamat"
+        "ms": "hari kiamat",
+        "case": "NOM"
       }
     ],
     "3": [
@@ -52,7 +55,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:3:1)",
         "id": "dan apakah",
-        "ms": "dan apakah"
+        "ms": "dan apakah",
+        "syntax_role": "INTG"
       },
       {
         "pos": 2,
@@ -64,7 +68,11 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:3:2)",
         "id": "kamu tahu",
-        "ms": "kamu tahu"
+        "ms": "kamu tahu",
+        "verb_form": 4,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3MS"
       },
       {
         "pos": 3,
@@ -76,7 +84,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:3:3)",
         "id": "apa",
-        "ms": "apa"
+        "ms": "apa",
+        "syntax_role": "INTG"
       },
       {
         "pos": 4,
@@ -88,7 +97,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:3:4)",
         "id": "hari kiamat",
-        "ms": "hari kiamat"
+        "ms": "hari kiamat",
+        "case": "NOM"
       }
     ],
     "4": [
@@ -102,7 +112,9 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:4:1)",
         "id": "hari",
-        "ms": "hari"
+        "ms": "hari",
+        "case": "ACC",
+        "syntax_role": "T"
       },
       {
         "pos": 2,
@@ -114,7 +126,12 @@
         "pos_tag": "V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:4:2)",
         "id": "adalah",
-        "ms": "adalah"
+        "ms": "adalah",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "3MS"
       },
       {
         "pos": 3,
@@ -126,7 +143,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:4:3)",
         "id": "manusia",
-        "ms": "manusia"
+        "ms": "manusia",
+        "case": "NOM"
       },
       {
         "pos": 4,
@@ -138,7 +156,8 @@
         "pos_tag": "P+P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:4:4)",
         "id": "seperti anai-anai",
-        "ms": "seperti anai-anai"
+        "ms": "seperti anai-anai",
+        "case": "GEN"
       },
       {
         "pos": 5,
@@ -150,7 +169,10 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:4:5)",
         "id": "bertebaran",
-        "ms": "bertebaran"
+        "ms": "bertebaran",
+        "verb_form": 1,
+        "case": "GEN",
+        "derivation": "PASS_PCPL"
       }
     ],
     "5": [
@@ -164,7 +186,12 @@
         "pos_tag": "P+V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:5:1)",
         "id": "dan adalah",
-        "ms": "dan adalah"
+        "ms": "dan adalah",
+        "verb_form": 1,
+        "aspect": "IMPF",
+        "voice": "ACT",
+        "mood": "IND",
+        "pgn": "3FS"
       },
       {
         "pos": 2,
@@ -176,7 +203,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:5:2)",
         "id": "gunung-gunung",
-        "ms": "gunung-gunung"
+        "ms": "gunung-gunung",
+        "case": "NOM"
       },
       {
         "pos": 3,
@@ -188,7 +216,8 @@
         "pos_tag": "P+P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:5:3)",
         "id": "seperti bulu",
-        "ms": "seperti bulu"
+        "ms": "seperti bulu",
+        "case": "GEN"
       },
       {
         "pos": 4,
@@ -200,7 +229,10 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:5:4)",
         "id": "dihambur-hamburkan",
-        "ms": "dihambur-hamburkan"
+        "ms": "dihambur-hamburkan",
+        "verb_form": 1,
+        "case": "GEN",
+        "derivation": "PASS_PCPL"
       }
     ],
     "6": [
@@ -214,7 +246,8 @@
         "pos_tag": "P+P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:6:1)",
         "id": "maka adapun",
-        "ms": "maka adapun"
+        "ms": "maka adapun",
+        "syntax_role": "REM"
       },
       {
         "pos": 2,
@@ -226,7 +259,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:6:2)",
         "id": "siapa/orang",
-        "ms": "siapa/orang"
+        "ms": "siapa/orang",
+        "syntax_role": "COND"
       },
       {
         "pos": 3,
@@ -238,7 +272,11 @@
         "pos_tag": "V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:6:3)",
         "id": "berat",
-        "ms": "berat"
+        "ms": "berat",
+        "verb_form": 1,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3FS"
       },
       {
         "pos": 4,
@@ -250,7 +288,9 @@
         "pos_tag": "N+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:6:4)",
         "id": "timbangannya",
-        "ms": "timbangannya"
+        "ms": "timbangannya",
+        "case": "NOM",
+        "pgn": "3MS"
       }
     ],
     "7": [
@@ -264,7 +304,9 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:7:1)",
         "id": "maka dia",
-        "ms": "maka dia"
+        "ms": "maka dia",
+        "pgn": "3MS",
+        "syntax_role": "RSLT"
       },
       {
         "pos": 2,
@@ -288,7 +330,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:7:3)",
         "id": "kehidupan",
-        "ms": "kehidupan"
+        "ms": "kehidupan",
+        "case": "GEN"
       },
       {
         "pos": 4,
@@ -300,7 +343,10 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:7:4)",
         "id": "memuaskan",
-        "ms": "memuaskan"
+        "ms": "memuaskan",
+        "verb_form": 1,
+        "case": "GEN",
+        "derivation": "ACT_PCPL"
       }
     ],
     "8": [
@@ -314,7 +360,8 @@
         "pos_tag": "P+P",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:8:1)",
         "id": "dan adapun",
-        "ms": "dan adapun"
+        "ms": "dan adapun",
+        "syntax_role": "EXL"
       },
       {
         "pos": 2,
@@ -326,7 +373,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:8:2)",
         "id": "orang",
-        "ms": "orang"
+        "ms": "orang",
+        "syntax_role": "COND"
       },
       {
         "pos": 3,
@@ -338,7 +386,11 @@
         "pos_tag": "V",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:8:3)",
         "id": "ringan",
-        "ms": "ringan"
+        "ms": "ringan",
+        "verb_form": 1,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3FS"
       },
       {
         "pos": 4,
@@ -350,7 +402,9 @@
         "pos_tag": "N+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:8:4)",
         "id": "timbangannya",
-        "ms": "timbangannya"
+        "ms": "timbangannya",
+        "case": "NOM",
+        "pgn": "3MS"
       }
     ],
     "9": [
@@ -364,7 +418,10 @@
         "pos_tag": "P+N+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:9:1)",
         "id": "maka tempat kembalinya",
-        "ms": "maka tempat kembalinya"
+        "ms": "maka tempat kembalinya",
+        "case": "NOM",
+        "pgn": "3MS",
+        "syntax_role": "RSLT"
       },
       {
         "pos": 2,
@@ -376,7 +433,10 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:9:2)",
         "id": "jurang yang dalam/neraka Hawiyah",
-        "ms": "jurang yang dalam/neraka Hawiyah"
+        "ms": "jurang yang dalam/neraka Hawiyah",
+        "verb_form": 1,
+        "case": "NOM",
+        "derivation": "ACT_PCPL"
       }
     ],
     "10": [
@@ -390,7 +450,8 @@
         "pos_tag": "P+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:10:1)",
         "id": "dan apakah",
-        "ms": "dan apakah"
+        "ms": "dan apakah",
+        "syntax_role": "INTG"
       },
       {
         "pos": 2,
@@ -402,7 +463,11 @@
         "pos_tag": "V+N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:10:2)",
         "id": "kamu tahu",
-        "ms": "kamu tahu"
+        "ms": "kamu tahu",
+        "verb_form": 4,
+        "aspect": "PERF",
+        "voice": "ACT",
+        "pgn": "3MS"
       },
       {
         "pos": 3,
@@ -414,7 +479,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:10:3)",
         "id": "apa",
-        "ms": "apa"
+        "ms": "apa",
+        "syntax_role": "INTG"
       },
       {
         "pos": 4,
@@ -426,7 +492,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:10:4)",
         "id": "itu",
-        "ms": "itu"
+        "ms": "itu",
+        "pgn": "3FS"
       }
     ],
     "11": [
@@ -440,7 +507,8 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:11:1)",
         "id": "api",
-        "ms": "api"
+        "ms": "api",
+        "case": "NOM"
       },
       {
         "pos": 2,
@@ -452,7 +520,10 @@
         "pos_tag": "N",
         "corpus_url": "https://corpus.quran.com/wordmorphology.jsp?location=(101:11:2)",
         "id": "sangat panas",
-        "ms": "sangat panas"
+        "ms": "sangat panas",
+        "verb_form": 1,
+        "case": "NOM",
+        "derivation": "ACT_PCPL"
       }
     ]
   }

@@ -1091,6 +1091,36 @@ class App {
           <div class="morph-kv-label">${i18n.t('deepDive.drawerPosition')}</div>
           <div class="morph-kv-val">${surahNum}:${ayahNum}:${token.pos}</div>
         </div>
+        ${token.verb_form ? `
+          <div class="morph-kv">
+            <div class="morph-kv-label">${isMalay ? 'Wazan Kata Kerja' : 'Verb Form'}</div>
+            <div class="morph-kv-val" style="color: var(--accent-gold);">Form ${token.verb_form}</div>
+          </div>
+        ` : ''}
+        ${token.aspect ? `
+          <div class="morph-kv">
+            <div class="morph-kv-label">${isMalay ? 'Kala (Aspect)' : 'Aspect'}</div>
+            <div class="morph-kv-val">${token.aspect === 'PERF' ? (isMalay ? 'Madhi (Lalu)' : 'Past (Perf)') : (token.aspect === 'IMPF' ? (isMalay ? 'Mudhari\' (Kini)' : 'Imperfect') : 'Amr (Command)')}</div>
+          </div>
+        ` : ''}
+        ${token.voice === 'PASS' ? `
+          <div class="morph-kv">
+            <div class="morph-kv-label">${isMalay ? 'Ragam' : 'Voice'}</div>
+            <div class="morph-kv-val" style="color: var(--accent-rose);">${isMalay ? 'Majhul (Pasif)' : 'Passive'}</div>
+          </div>
+        ` : ''}
+        ${token.derivation ? `
+          <div class="morph-kv">
+            <div class="morph-kv-label">${isMalay ? 'Terbitan' : 'Derivation'}</div>
+            <div class="morph-kv-val" style="color: var(--accent-emerald);">${token.derivation === 'ACT_PCPL' ? 'Ism Fa\'il' : (token.derivation === 'PASS_PCPL' ? 'Ism Maf\'ul' : 'Masdar')}</div>
+          </div>
+        ` : ''}
+        ${token.case ? `
+          <div class="morph-kv">
+            <div class="morph-kv-label">${isMalay ? 'Keadaan I\'rab' : 'Case'}</div>
+            <div class="morph-kv-val">${token.case === 'NOM' ? 'Marfu\' (NOM)' : (token.case === 'ACC' ? 'Mansub (ACC)' : 'Majrur (GEN)')}</div>
+          </div>
+        ` : ''}
       </div>
 
       <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
