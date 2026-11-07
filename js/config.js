@@ -12,6 +12,37 @@ export const APP_CONFIG = {
   syncFileName: 'maktabah-quran-sync.json',
   corpusBaseUrl: 'https://maktabah-maftoohah.github.io/korpus-quran/',
 
+  // Google Tag Manager / Analytics ID
+  defaultAnalyticsId: 'GTM-W6BKLCZK',
+
+  /**
+   * Gets the active Google Analytics Measurement ID (from localStorage override, or default).
+   */
+  getAnalyticsId() {
+    try {
+      const stored = localStorage.getItem('maktabah_ga_id');
+      if (stored && stored.trim()) return stored.trim();
+    } catch {
+      // ignore localStorage error
+    }
+    return this.defaultAnalyticsId;
+  },
+
+  /**
+   * Sets a custom Google Analytics Measurement ID in localStorage.
+   */
+  setAnalyticsId(analyticsId) {
+    try {
+      if (analyticsId && analyticsId.trim()) {
+        localStorage.setItem('maktabah_ga_id', analyticsId.trim());
+      } else {
+        localStorage.removeItem('maktabah_ga_id');
+      }
+    } catch (e) {
+      console.warn('Failed to persist custom Analytics ID:', e);
+    }
+  },
+
   /**
    * Generates a corpus reference URL retaining the active interface language.
    */

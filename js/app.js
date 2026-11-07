@@ -15,6 +15,7 @@ import { wakeLockController } from './wake-lock.js';
 import { backupManager } from './backup.js';
 import { gdriveSync } from './gdrive-sync.js';
 import { APP_CONFIG } from './config.js';
+import { analytics } from './analytics.js';
 import { i18n } from './i18n.js';
 
 class App {
@@ -73,12 +74,28 @@ class App {
 
     // Register routes
     store.fetchAsbab().catch(() => {});
-    router.addRoute('surah', (params) => this.renderSurahView(params));
-    router.addRoute('ayah', (params) => this.renderAyahDeepDive(params));
-    router.addRoute('mushaf', (params) => this.renderMushafView(params));
-    router.addRoute('bookmarks', () => this.renderBookmarksView());
+    router.addRoute('surah', (params) => {
+      this.renderSurahView(params);
+      analytics.trackPageView(window.location.pathname + window.location.hash);
+      analytics.trackSurahView(params.surah);
+    });
+    router.addRoute('ayah', (params) => {
+      this.renderAyahDeepDive(params);
+      analytics.trackPageView(window.location.pathname + window.location.hash);
+      analytics.trackAyahView(params.surah, params.ayah);
+    });
+    router.addRoute('mushaf', (params) => {
+      this.renderMushafView(params);
+      analytics.trackPageView(window.location.pathname + window.location.hash);
+      analytics.trackMushafPage(params.page);
+    });
+    router.addRoute('bookmarks', () => {
+      this.renderBookmarksView();
+      analytics.trackPageView(window.location.pathname + window.location.hash);
+    });
 
     // Start routing
+    analytics.init();
     router.init();
   }
 

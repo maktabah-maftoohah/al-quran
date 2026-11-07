@@ -6,6 +6,7 @@
 
 import { store } from './store.js';
 import { storageDB } from './storage-db.js';
+import { analytics } from './analytics.js';
 
 export const RECITERS = {
   Alafasy_128kbps: {
@@ -156,6 +157,7 @@ class AudioEngine {
     try {
       await this.recitationAudio.play();
       this.updateMediaSession();
+      analytics.trackAudioPlay(this.state.currentSurah, this.state.currentAyah, store.settings.reciter || 'Alafasy_128kbps');
     } catch (err) {
       console.error('Audio play error:', err);
     }
