@@ -73,18 +73,21 @@
       </button>
 
       <!-- Mushaf Page View Link -->
-      <a href="#mushaf" class="btn" id="mushaf-mode-btn" title="Paparan Mushaf Madinah 15-Baris" data-i18n-title="nav.mushafTitle" style="text-decoration: none; font-size: 0.8rem; padding: 0.35rem 0.65rem;">
-        <span data-i18n="nav.mushafBtn">📄 Mushaf</span>
+      <a href="#mushaf" class="btn header-btn" id="mushaf-mode-btn" title="Paparan Mushaf Madinah 15-Baris" data-i18n-title="nav.mushafTitle">
+        <span class="header-btn-icon">📄</span>
+        <span class="header-btn-text" data-i18n="nav.mushafLabel">Mushaf</span>
       </a>
 
       <!-- Tahfiz / Hifz Memorization Mode Button -->
-      <button class="btn" id="hifz-mode-btn" title="Togol Mod Ujian Hafazan (Hifz)" data-i18n-title="nav.hifzTitle" style="font-size: 0.8rem; padding: 0.35rem 0.65rem;">
-        <span data-i18n="nav.hifzBtn">🧠 Hifz</span>
+      <button class="btn header-btn" id="hifz-mode-btn" title="Togol Mod Ujian Hafazan (Hifz)" data-i18n-title="nav.hifzTitle">
+        <span class="header-btn-icon">🧠</span>
+        <span class="header-btn-text" data-i18n="nav.hifzLabel">Hifz</span>
       </button>
 
       <!-- Khatam Tracker & Streak Header Button -->
-      <button class="btn" id="khatam-tracker-btn" title="Sasaran Khatam & Jejak Bacaan Harian" data-i18n-title="khatam.streakTitle" style="font-size: 0.8rem; padding: 0.35rem 0.65rem; display: flex; align-items: center; gap: 0.35rem;">
-        <span>🔥</span> <span id="khatam-btn-text">0h | 0%</span>
+      <button class="btn header-btn" id="khatam-tracker-btn" title="Sasaran Khatam & Jejak Bacaan Harian" data-i18n-title="khatam.streakTitle">
+        <span class="header-btn-icon">🔥</span>
+        <span class="header-btn-text" id="khatam-btn-text">0h | 0%</span>
       </button>
 
       <!-- Dual Language Switcher Pill (BM | EN) -->
@@ -95,7 +98,7 @@
 
       <!-- Offline Network Status Indicator -->
       <div class="offline-pill" id="offline-status-pill" style="display: none;" title="Mod Luar Talian: Teks dan audio sedia ada tanpa internet" data-i18n-title="nav.offlineTitle">
-        <span data-i18n="nav.offlinePill">📶 Luar Talian</span>
+        <span data-i18n="nav.offlinePill">📵 Luar Talian</span>
       </div>
 
       <!-- Screen Wake Lock Toggle Button -->
@@ -123,16 +126,16 @@
       </button>
 
       <!-- Bookmarks Direct Navigation -->
-      <a href="#bookmarks" class="btn btn-icon" aria-label="Penanda Buku" title="Penanda Buku" data-i18n-title="nav.bookmarksTitle">
+      <a href="#bookmarks" class="btn btn-icon" id="header-bookmarks-btn" aria-label="Penanda Buku" title="Penanda Buku" data-i18n-title="nav.bookmarksTitle">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
         </svg>
       </a>
 
       <!-- Google Login & Drive Sync Button -->
-      <button class="btn" id="header-login-btn" title="Log Masuk Google & Penyegerakan Drive" data-i18n-title="nav.loginTitle" style="font-size: 0.8rem; padding: 0.35rem 0.65rem; display: flex; align-items: center; gap: 0.35rem;">
-        <span id="header-login-icon">☁️</span>
-        <span id="header-login-text" data-i18n="nav.loginBtn">Log Masuk</span>
+      <button class="btn header-btn" id="header-login-btn" title="Log Masuk Google & Penyegerakan Drive" data-i18n-title="nav.loginTitle">
+        <span id="header-login-icon" class="header-btn-icon">☁️</span>
+        <span id="header-login-text" class="header-btn-text" data-i18n="nav.loginBtn">Log Masuk</span>
       </button>
     </div>
 
