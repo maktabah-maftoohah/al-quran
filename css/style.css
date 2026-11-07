@@ -558,30 +558,45 @@ body {
 }
 
 .verse-card {
+  position: relative;
+  scroll-margin-top: calc(var(--header-height, 64px) + 1.25rem);
+}
+
+/* Standalone verse-card without separate body (e.g. bookmarks or deep-dive) */
+.verse-card:not(.has-card-body) {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   transition: all var(--transition-normal);
-  position: relative;
   box-shadow: var(--shadow-card);
-  scroll-margin-top: calc(var(--header-height, 64px) + 1.25rem);
 }
 
-.verse-card:hover {
+.verse-card:not(.has-card-body):hover {
   border-color: rgba(56, 189, 248, 0.4);
 }
 
-.verse-card.playing {
+.verse-card:not(.has-card-body).playing {
   border-color: var(--accent-emerald);
   background: var(--bg-card-active);
   box-shadow: 0 0 24px var(--accent-emerald-glow);
 }
 
-.verse-card.highlight-target {
+.verse-card:not(.has-card-body).highlight-target {
   animation: pulseHighlight 3s ease forwards;
   border-color: var(--accent-gold) !important;
   scroll-margin-top: calc(var(--header-height, 64px) + 1.25rem);
+}
+
+/* Verse card with top toolbar placed cleanly outside & above the card */
+.verse-card.has-card-body {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 @keyframes pulseHighlight {
@@ -600,13 +615,63 @@ body {
   }
 }
 
+/* Top toolbar outside & above the card */
 .verse-card-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+  padding: 0 0.15rem;
+  flex-wrap: wrap;
+}
+
+.verse-card:not(.has-card-body) .verse-card-top {
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(38, 51, 77, 0.6);
+}
+
+/* The actual Card body (clean and screenshot-friendly) */
+.verse-card-body {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  box-shadow: var(--shadow-card);
+}
+
+.verse-card.has-card-body:hover .verse-card-body {
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.verse-card.has-card-body.playing .verse-card-body {
+  border-color: var(--accent-emerald);
+  background: var(--bg-card-active);
+  box-shadow: 0 0 24px var(--accent-emerald-glow);
+}
+
+.verse-card.has-card-body.highlight-target .verse-card-body {
+  animation: pulseHighlight 3s ease forwards;
+  border-color: var(--accent-gold) !important;
+}
+
+.verse-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.15rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed rgba(38, 51, 77, 0.4);
+}
+
+.verse-citation {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  opacity: 0.85;
 }
 
 .ayah-badge {
@@ -634,7 +699,8 @@ a.ayah-badge:hover {
 .verse-actions {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.3rem;
+  flex-wrap: wrap;
 }
 
 .verse-action-btn {
@@ -642,19 +708,29 @@ a.ayah-badge:hover {
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
-  padding: 0.35rem 0.55rem;
-  font-size: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 0.88rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
   transition: all var(--transition-fast);
+  flex-shrink: 0;
+  position: relative;
+  user-select: none;
 }
 
 .verse-action-btn:hover {
   background: var(--bg-surface-elevated);
   color: var(--text-primary);
   border-color: var(--text-muted);
+  transform: translateY(-1px);
+}
+
+.verse-action-btn:active {
+  transform: translateY(0);
 }
 
 .verse-action-btn.bookmarked {

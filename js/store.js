@@ -42,6 +42,7 @@ class QuranStore {
       sidebarCollapsed: false,
       activeTranslations: {
         basmeih: true,
+        basmeihHarfiah: false,
         jalalayn: false,
         sahih: false,
         pickthall: false,
@@ -86,6 +87,7 @@ class QuranStore {
       if (!saved.schemaVersion || saved.schemaVersion < 2) {
         saved.activeTranslations = {
           basmeih: true,
+          basmeihHarfiah: false,
           jalalayn: false,
           sahih: false,
           pickthall: false,
@@ -576,7 +578,7 @@ class QuranStore {
 
   async fetchTranslations(activeOnly = true) {
     const t = this.cache.translations;
-    const act = this.settings.activeTranslations || { basmeih: true, jalalayn: false, sahih: false, pickthall: false, kemenag: false };
+    const act = this.settings.activeTranslations || { basmeih: true, basmeihHarfiah: false, jalalayn: false, sahih: false, pickthall: false, kemenag: false };
     const fetchPromises = [];
 
     if ((!activeOnly || act.basmeih) && !t.basmeih) {
@@ -585,6 +587,14 @@ class QuranStore {
           .then((r) => r.json())
           .then((d) => (t.basmeih = d))
           .catch(() => (t.basmeih = {}))
+      );
+    }
+    if ((!activeOnly || act.basmeihHarfiah) && !t.basmeihHarfiah) {
+      fetchPromises.push(
+        fetch('./data/translations/ms/basmeih-harfiah.json')
+          .then((r) => r.json())
+          .then((d) => (t.basmeihHarfiah = d))
+          .catch(() => (t.basmeihHarfiah = {}))
       );
     }
     if ((!activeOnly || act.jalalayn) && !t.jalalayn) {

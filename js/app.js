@@ -709,6 +709,7 @@ class App {
 
     // Translation Toggles
     const toggleBasmeih = document.getElementById('toggle-trans-basmeih');
+    const toggleBasmeihHarfiah = document.getElementById('toggle-trans-basmeih-harfiah');
     const toggleJalalayn = document.getElementById('toggle-trans-jalalayn');
     const toggleSahih = document.getElementById('toggle-trans-sahih');
     const togglePickthall = document.getElementById('toggle-trans-pickthall');
@@ -718,6 +719,7 @@ class App {
     const updateTransSettings = async () => {
       const activeTranslations = {
         basmeih: toggleBasmeih ? toggleBasmeih.checked : true,
+        basmeihHarfiah: toggleBasmeihHarfiah ? toggleBasmeihHarfiah.checked : false,
         jalalayn: toggleJalalayn ? toggleJalalayn.checked : false,
         sahih: toggleSahih ? toggleSahih.checked : false,
         pickthall: togglePickthall ? togglePickthall.checked : false,
@@ -735,6 +737,10 @@ class App {
     if (toggleBasmeih) {
       toggleBasmeih.checked = store.settings.activeTranslations.basmeih;
       toggleBasmeih.addEventListener('change', updateTransSettings);
+    }
+    if (toggleBasmeihHarfiah) {
+      toggleBasmeihHarfiah.checked = Boolean(store.settings.activeTranslations.basmeihHarfiah);
+      toggleBasmeihHarfiah.addEventListener('change', updateTransSettings);
     }
     if (toggleJalalayn) {
       toggleJalalayn.checked = Boolean(store.settings.activeTranslations.jalalayn);
@@ -766,6 +772,9 @@ class App {
     const act = store.settings.activeTranslations || {};
     document.querySelectorAll('.translation-block-basmeih').forEach((el) => {
       el.style.display = act.basmeih ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.translation-block-basmeih-harfiah').forEach((el) => {
+      el.style.display = act.basmeihHarfiah ? 'flex' : 'none';
     });
     document.querySelectorAll('.translation-block-jalalayn').forEach((el) => {
       el.style.display = act.jalalayn ? 'flex' : 'none';
@@ -808,6 +817,12 @@ class App {
         const pEl = card.querySelector('.translation-block-basmeih p');
         if (pEl && !pEl.textContent.trim()) {
           pEl.textContent = store.settings.jawiMode ? rumiToJawi(t.basmeih[sNum][aNum]) : t.basmeih[sNum][aNum];
+        }
+      }
+      if (t.basmeihHarfiah && t.basmeihHarfiah[sNum]?.[aNum]) {
+        const pEl = card.querySelector('.translation-block-basmeih-harfiah p');
+        if (pEl && !pEl.textContent.trim()) {
+          pEl.textContent = store.settings.jawiMode ? rumiToJawi(t.basmeihHarfiah[sNum][aNum]) : t.basmeihHarfiah[sNum][aNum];
         }
       }
       if (t.jalalayn && t.jalalayn[sNum]?.[aNum]) {
@@ -936,9 +951,13 @@ class App {
         const s = parseInt(btn.getAttribute('data-surah'), 10);
         const a = parseInt(btn.getAttribute('data-ayah'), 10);
         if (s === state.currentSurah && a === state.currentAyah && state.isPlaying) {
-          btn.innerHTML = '⏸ Pause';
+          btn.innerHTML = '⏸';
+          btn.title = i18n.t('surah.tooltipPause');
+          btn.setAttribute('aria-label', btn.title);
         } else {
-          btn.innerHTML = '▶ Play';
+          btn.innerHTML = '▶';
+          btn.title = i18n.t('surah.tooltipPlay');
+          btn.setAttribute('aria-label', btn.title);
         }
       });
 
@@ -1663,6 +1682,7 @@ class App {
 
       const sStr = String(surah);
       const basmeihSurah = translations.basmeih?.[sStr] || {};
+      const basmeihHarfiahSurah = translations.basmeihHarfiah?.[sStr] || {};
       const jalalaynSurah = translations.jalalayn?.[sStr] || {};
       const sahihSurah = translations.sahih?.[sStr] || {};
       const pickthallSurah = translations.pickthall?.[sStr] || {};
@@ -1744,6 +1764,8 @@ class App {
           const hasAsbab = store.hasAsbab(surah, aNum);
           const msRawText = basmeihSurah[ayahNumStr] || '';
           const msDisplayText = isJawi ? rumiToJawi(msRawText) : msRawText;
+          const msHarfiahRawText = basmeihHarfiahSurah[ayahNumStr] || '';
+          const msHarfiahDisplayText = isJawi ? rumiToJawi(msHarfiahRawText) : msHarfiahRawText;
           const msJalalaynText = jalalaynSurah[ayahNumStr] || '';
           const enSahihText = sahihSurah[ayahNumStr] || '';
           const enPickthallText = pickthallSurah[ayahNumStr] || '';
@@ -1768,48 +1790,35 @@ class App {
           }
 
           return `
-            <div class="verse-card" data-surah="${surah}" data-ayah="${aNum}" id="verse-${surah}-${aNum}">
+            <div class="verse-card has-card-body" data-surah="${surah}" data-ayah="${aNum}" id="verse-${surah}-${aNum}">
               <div class="verse-card-top">
                 <a href="#${surah}:${aNum}" class="ayah-badge" title="${isMs ? 'Pautan terus ke ayat ini' : 'Direct link to this verse'}">${ref}</a>
                 <div class="verse-actions">
-                  <button class="verse-action-btn btn-play-ayah" data-surah="${surah}" data-ayah="${aNum}">
-                    ▶ ${i18n.t('surah.btnPlay')}
-                  </button>
-                  <button class="verse-action-btn btn-share-card" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
-                    📸 ${i18n.t('surah.btnCard')}
-                  </button>
-                  <button class="verse-action-btn btn-hifz-mastery ${hifzClass}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}" title="${i18n.t('hifzMastery.badgeTitle')}">
-                    🧠 ${hifzLabel}
-                  </button>
-                  <button class="verse-action-btn btn-bookmark-ayah ${isSaved ? 'bookmarked' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
-                    ★ ${isSaved ? i18n.t('surah.btnBookmarked') : i18n.t('surah.btnBookmark')}
-                  </button>
-                  <button class="verse-action-btn btn-note-ayah ${hasNote ? 'has-note' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}">
-                    📝 ${i18n.t('surah.btnNote')}
-                  </button>
-                  <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}">
-                    📋 ${i18n.t('surah.btnCopy')}
-                  </button>
-                  <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}">
-                    🔗 ${i18n.t('surah.btnLink')}
-                  </button>
-                  <a href="#ayah/${surah}/${aNum}" class="verse-action-btn" style="text-decoration: none;">
-                    🔬 ${i18n.t('surah.btnDeepDive')}
-                  </a>
+                  <button class="verse-action-btn btn-play-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${i18n.t('surah.tooltipPlay')}" aria-label="${i18n.t('surah.tooltipPlay')}">▶</button>
+                  <button class="verse-action-btn btn-share-card" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}" title="${i18n.t('surah.tooltipCard')}" aria-label="${i18n.t('surah.tooltipCard')}">📸</button>
+                  <button class="verse-action-btn btn-hifz-mastery ${hifzClass}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}" title="${i18n.t('hifzMastery.badgeTitle')}: ${hifzLabel}" aria-label="${i18n.t('hifzMastery.badgeTitle')}: ${hifzLabel}">🧠</button>
+                  <button class="verse-action-btn btn-bookmark-ayah ${isSaved ? 'bookmarked' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}" title="${isSaved ? i18n.t('surah.tooltipBookmarked') : i18n.t('surah.tooltipBookmark')}" aria-label="${isSaved ? i18n.t('surah.tooltipBookmarked') : i18n.t('surah.tooltipBookmark')}">★</button>
+                  <button class="verse-action-btn btn-note-ayah ${hasNote ? 'has-note' : ''}" data-ref="${ref}" data-surah="${surah}" data-ayah="${aNum}" title="${i18n.t('surah.tooltipNote')}" aria-label="${i18n.t('surah.tooltipNote')}">📝</button>
+                  <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}" title="${i18n.t('surah.tooltipCopy')}" aria-label="${i18n.t('surah.tooltipCopy')}">📋</button>
+                  <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}" aria-label="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}">🔗</button>
+                  <a href="#ayah/${surah}/${aNum}" class="verse-action-btn btn-deepdive-ayah" style="text-decoration: none;" title="${i18n.t('surah.tooltipDeepDive')}" aria-label="${i18n.t('surah.tooltipDeepDive')}">🔬</a>
                   ${hasAsbab ? `
-                    <a href="#ayah/${surah}/${aNum}?tab=asbab" class="verse-action-btn btn-asbab-badge" title="${isMs ? 'Lihat Asbabun Nuzul (Sebab Turun Wahyu)' : 'View Asbab al-Nuzul (Occasion of Revelation)'}">
-                      📜 ${i18n.t('surah.btnAsbab')}
-                    </a>
+                    <a href="#ayah/${surah}/${aNum}?tab=asbab" class="verse-action-btn btn-asbab-badge" title="${i18n.t('surah.tooltipAsbab')}" aria-label="${i18n.t('surah.tooltipAsbab')}">📜</a>
                   ` : ''}
                 </div>
               </div>
 
-              <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${textObj.uthmani}</div>
+              <div class="verse-card-body">
+                <div class="${arabicClass}" title="${isBlurred ? 'Click to reveal verse for memorization test' : ''}">${textObj.uthmani}</div>
 
               <div class="verse-translations ${singleClass}">
                 <div class="translation-block translation-block-basmeih">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
                   <p class="${msClass}">${msDisplayText}</p>
+                </div>
+                <div class="translation-block translation-block-basmeih-harfiah">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih Harfiah (${isJawi ? 'توليسن جاوي - بيبس سيسيڤن' : 'Bebas Sisipan / Ulasan'})</span>
+                  <p class="${msClass}">${msHarfiahDisplayText}</p>
                 </div>
                 <div class="translation-block translation-block-jalalayn">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>
@@ -1842,6 +1851,11 @@ class App {
               `
                   : `<div id="note-snippet-${ref}"></div>`
               }
+
+                <div class="verse-card-footer">
+                  <span class="verse-citation">${displayName} : ${aNum}</span>
+                </div>
+              </div>
             </div>
           `;
         })
@@ -2077,7 +2091,10 @@ class App {
         });
 
         btn.classList.toggle('bookmarked', isSaved);
-        btn.innerHTML = `★ ${isSaved ? i18n.t('surah.btnBookmarked') : i18n.t('surah.btnBookmark')}`;
+        btn.innerHTML = '★';
+        const bmTitle = isSaved ? i18n.t('surah.tooltipBookmarked') : i18n.t('surah.tooltipBookmark');
+        btn.title = bmTitle;
+        btn.setAttribute('aria-label', bmTitle);
         this.showToast(isSaved ? i18n.t('surah.toastBookmarkAdded', { ref }) : i18n.t('surah.toastBookmarkRemoved', { ref }));
         this.renderSidebarBookmarks();
       });
@@ -2116,7 +2133,10 @@ class App {
           label = i18n.t('hifzMastery.needsReview');
           btn.classList.add('hifz-needs_review');
         }
-        btn.innerHTML = `🧠 ${label}`;
+        btn.innerHTML = '🧠';
+        const hifzTooltip = `${i18n.t('hifzMastery.badgeTitle')}: ${label}`;
+        btn.title = hifzTooltip;
+        btn.setAttribute('aria-label', hifzTooltip);
         this.showToast(i18n.t('hifzMastery.toastUpdated', { ref, status: label }));
       });
     });
@@ -2304,6 +2324,7 @@ class App {
       const uthmaniText = arabicData.ayahs[aStr]?.uthmani || '';
       const tokens = morphologyData.ayahs[aStr] || [];
       const msText = translations.basmeih?.[sStr]?.[aStr] || '';
+      const msHarfiahText = translations.basmeihHarfiah?.[sStr]?.[aStr] || '';
       const msJalalayn = translations.jalalayn?.[sStr]?.[aStr] || '';
       const idText = translations.kemenag?.[sStr]?.[aStr] || '';
       const sahihText = translations.sahih?.[sStr]?.[aStr] || '';
@@ -2312,6 +2333,7 @@ class App {
       const isMs = i18n.getLanguage() === 'ms';
       const isJawi = store.settings.jawiMode;
       const msDisplayText = isJawi ? rumiToJawi(msText) : msText;
+      const msHarfiahDisplayText = isJawi ? rumiToJawi(msHarfiahText) : msHarfiahText;
       const msClass = isJawi ? 'translation-text jawi-text' : 'translation-text';
       const activeCount = Object.values(store.settings.activeTranslations || {}).filter(Boolean).length;
       const singleClass = activeCount <= 1 ? 'single-translation' : '';
@@ -2441,6 +2463,10 @@ class App {
                 <div class="translation-block translation-block-basmeih">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> JAKIM — Pimpinan Ar-Rahman (${isJawi ? 'توليسن جاوي' : 'Bahasa Melayu'})</span>
                   <p class="${msClass}">${msDisplayText}</p>
+                </div>
+                <div class="translation-block translation-block-basmeih-harfiah">
+                  <span class="translation-label"><span class="lang-flag">🇲🇾</span> Basmeih Harfiah (${isJawi ? 'توليسن جاوي - بيبس سيسيڤن' : 'Bebas Sisipan / Ulasan'})</span>
+                  <p class="${msClass}">${msHarfiahDisplayText}</p>
                 </div>
                 <div class="translation-block translation-block-jalalayn">
                   <span class="translation-label"><span class="lang-flag">🇲🇾</span> Tafsir al-Jalalayn (Bahasa Melayu / Nusantara)</span>
