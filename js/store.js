@@ -18,6 +18,7 @@ class QuranStore {
       },
       tafsir: new Map(),
       asbab: null,
+      hadithRefs: null,
       searchIndex: null,
       pagesMeta: null,
     };

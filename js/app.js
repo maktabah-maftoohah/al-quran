@@ -76,6 +76,7 @@ class App {
 
     // Register routes
     store.fetchAsbab().catch(() => {});
+    store.fetchHadithRefs().catch(() => {});
     router.addRoute('surah', (params) => {
       this.renderSurahView(params);
       analytics.trackPageView(window.location.pathname + window.location.hash);
@@ -1871,6 +1872,8 @@ class App {
           const note = notesMap.get(ref);
           const hasNote = Boolean(note);
           const hasAsbab = store.hasAsbab(surah, aNum);
+          const hadithRefs = store.getHadithRefs(surah, aNum);
+          const firstHadith = hadithRefs.length > 0 ? hadithRefs[0] : null;
           const msRawText = basmeihSurah[ayahNumStr] || '';
           const msDisplayText = isJawi ? rumiToJawi(msRawText) : msRawText;
           const msHarfiahRawText = basmeihHarfiahSurah[ayahNumStr] || '';
@@ -1911,6 +1914,9 @@ class App {
                   <button class="verse-action-btn btn-copy-ayah" data-ref="${ref}" title="${i18n.t('surah.tooltipCopy')}" aria-label="${i18n.t('surah.tooltipCopy')}">📋</button>
                   <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}" aria-label="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}">🔗</button>
                   <a href="#ayah/${surah}/${aNum}" class="verse-action-btn btn-deepdive-ayah" style="text-decoration: none;" title="${i18n.t('surah.tooltipDeepDive')}" aria-label="${i18n.t('surah.tooltipDeepDive')}">🔬</a>
+                  ${firstHadith ? `
+                    <a href="../${firstHadith.repo}/#hadith-${firstHadith.hadith_number}" target="_blank" rel="noopener" class="verse-action-btn btn-hadith-badge" style="text-decoration:none; color: #d97706;" title="${isMs ? 'Buka Hadis Berkaitan (' + firstHadith.title + ')' : 'Open Related Hadith (' + firstHadith.title + ')'}" aria-label="Hadith">📖</a>
+                  ` : ''}
                   ${hasAsbab ? `
                     <a href="#ayah/${surah}/${aNum}?tab=asbab" class="verse-action-btn btn-asbab-badge" title="${i18n.t('surah.tooltipAsbab')}" aria-label="${i18n.t('surah.tooltipAsbab')}">📜</a>
                   ` : ''}
