@@ -1,7 +1,7 @@
 /**
  * scripts/test_ai_direct_links.js
- * E2E tests verifying direct verse deep-linking, query parameter routing,
- * AI citation formatting, and llms.txt / robots.txt metadata.
+ * E2E tests verifying direct verse deep-linking, clean path routing (/69/47),
+ * query parameter routing, AI citation formatting, and llms.txt / robots.txt metadata.
  */
 
 import http from 'http';
@@ -30,10 +30,22 @@ const MIME_TYPES = {
 function createStaticServer() {
   return http.createServer((req, res) => {
     let reqPath = req.url.split('?')[0].split('#')[0];
-    if (reqPath === '/') reqPath = '/index.html';
+    if (reqPath.startsWith('/al-quran')) {
+      reqPath = reqPath.slice('/al-quran'.length);
+    }
+    if (!reqPath || reqPath === '/') {
+      reqPath = '/index.html';
+    }
 
     const filePath = path.join(ROOT_DIR, reqPath);
     if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+      // Mimic GitHub Pages: Serve 404.html when path does not exist on disk
+      const p404 = path.join(ROOT_DIR, '404.html');
+      if (fs.existsSync(p404)) {
+        res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+        fs.createReadStream(p404).pipe(res);
+        return;
+      }
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.end('Not Found');
       return;
@@ -77,8 +89,6 @@ async function runTests() {
     permissions: ['clipboard-read', 'clipboard-write'],
   });
   const page = await context.newPage();
-  page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-  page.on('pageerror', err => console.log('PAGE ERROR:', err.message));
 
   try {
     // 1. Direct Verse Hash (#2:255 - Ayat Al-Kursi)
@@ -95,8 +105,30 @@ async function runTests() {
     assert(pageTitle.includes('2:255'), `Page title contains 2:255: "${pageTitle}"`);
     assert(pageTitle.includes('Al-Baqarah'), `Page title contains surah name Al-Baqarah: "${pageTitle}"`);
 
-    // 2. Direct Verse Deep-Dive (#ayah/2/255)
-    console.log('\n--- 2. Single Ayah Deep-Dive View (#ayah/2/255) ---');
+    // 2. Clean Path Routing: /al-quran/69/47 (Surah Al-Haqqah Ayah 47)
+    console.log('\n--- 2. Clean Path Routing (/al-quran/69/47) ---');
+    await page.goto(`http://localhost:${PORT}/al-quran/69/47`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(1000);
+
+    const card69_47 = await page.$('#verse-69-47');
+    assert(card69_47 !== null, 'Clean path /al-quran/69/47 successfully rendered verse card #verse-69-47');
+    const is69Highlighted = await page.$eval('#verse-69-47', (el) => el.classList.contains('highlight-target'));
+    assert(is69Highlighted, 'Verse 69:47 has .highlight-target class');
+
+    const title69 = await page.title();
+    assert(title69.includes('69:47'), `Page title contains 69:47: "${title69}"`);
+    assert(title69.includes('Al-Haqqah') || title69.includes('Al-Haaqqa'), `Page title contains surah name: "${title69}"`);
+
+    // 3. Clean Path Root Routing (/69/47)
+    console.log('\n--- 3. Clean Path Root Routing (/69/47) ---');
+    await page.goto(`http://localhost:${PORT}/69/47`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(1000);
+
+    const rootCard69_47 = await page.$('#verse-69-47');
+    assert(rootCard69_47 !== null, 'Clean path /69/47 successfully rendered verse card #verse-69-47');
+
+    // 4. Single Ayah Deep-Dive View (#ayah/2/255)
+    console.log('\n--- 4. Single Ayah Deep-Dive View (#ayah/2/255) ---');
     await page.goto(`http://localhost:${PORT}/index.html#ayah/2/255`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
 
@@ -115,8 +147,8 @@ async function runTests() {
     assert(aiClipboard.includes('#2:255'), `AI citation clipboard text contains canonical link #2:255: "${aiClipboard}"`);
     assert(aiClipboard.includes('Surah Al-Baqarah (2:255)'), `AI citation contains Surah reference: "${aiClipboard}"`);
 
-    // 3. Query Parameter Direct Link (?surah=2&ayah=255)
-    console.log('\n--- 3. Query Parameter Direct Link (?surah=2&ayah=255) ---');
+    // 5. Query Parameter Direct Link (?surah=2&ayah=255)
+    console.log('\n--- 5. Query Parameter Direct Link (?surah=2&ayah=255) ---');
     await page.goto(`http://localhost:${PORT}/index.html?surah=2&ayah=255`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
 
@@ -125,8 +157,8 @@ async function runTests() {
     const qHighlighted = await page.$eval('#verse-2-255', (el) => el.classList.contains('highlight-target'));
     assert(qHighlighted, 'Verse 2:255 highlighted from query parameter link');
 
-    // 4. Query Parameter Short Reference (?ref=18:10)
-    console.log('\n--- 4. Query Parameter Short Reference (?ref=18:10) ---');
+    // 6. Query Parameter Short Reference (?ref=18:10)
+    console.log('\n--- 6. Query Parameter Short Reference (?ref=18:10) ---');
     await page.goto(`http://localhost:${PORT}/index.html?ref=18:10`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
 
@@ -135,15 +167,15 @@ async function runTests() {
     const kahfHighlighted = await page.$eval('#verse-18-10', (el) => el.classList.contains('highlight-target'));
     assert(kahfHighlighted, 'Verse 18:10 highlighted from ?ref=18:10');
 
-    // 5. Named Surah Slug Deep-Link (#al-baqarah:255)
-    console.log('\n--- 5. Named Surah Slug Deep-Link ---');
+    // 7. Named Surah Slug Deep-Link (#al-baqarah:255)
+    console.log('\n--- 7. Named Surah Slug Deep-Link ---');
     await page.goto(`http://localhost:${PORT}/index.html#al-baqarah:255`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(600);
     const slugCard = await page.$('#verse-2-255');
     assert(slugCard !== null, 'Named slug #al-baqarah:255 successfully resolved to verse 2:255');
 
-    // 6. Share Card Modal with Direct Link & AI Copy
-    console.log('\n--- 6. Share Card Modal Direct Link & AI Citation ---');
+    // 8. Share Card Modal with Direct Link & AI Copy
+    console.log('\n--- 8. Share Card Modal Direct Link & AI Citation ---');
     await page.goto(`http://localhost:${PORT}/index.html#surah/1`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(500);
 
@@ -164,13 +196,13 @@ async function runTests() {
     const modalAiClip = await page.evaluate(() => navigator.clipboard.readText());
     assert(modalAiClip.includes('#1:1'), `Modal AI citation clipboard text contains #1:1: "${modalAiClip}"`);
 
-    // 7. llms.txt and robots.txt
-    console.log('\n--- 7. llms.txt & robots.txt Metadata ---');
+    // 9. llms.txt and robots.txt
+    console.log('\n--- 9. llms.txt & robots.txt Metadata ---');
     const llmsRes = await page.goto(`http://localhost:${PORT}/llms.txt`);
     assert(llmsRes.status() === 200, 'llms.txt returns HTTP 200 OK');
     const llmsContent = await llmsRes.text();
     assert(llmsContent.includes('# Maktabah Maftoohah Al-Quran'), 'llms.txt contains app header');
-    assert(llmsContent.includes('https://maktabah-maftoohah.github.io/al-quran/#{surah}:{ayah}'), 'llms.txt documents #{surah}:{ayah} schema');
+    assert(llmsContent.includes('69/47'), 'llms.txt documents 69/47 clean path example');
     assert(llmsContent.includes('Al-Baqarah'), 'llms.txt lists Surah catalogue');
 
     const robotsRes = await page.goto(`http://localhost:${PORT}/robots.txt`);
@@ -181,7 +213,7 @@ async function runTests() {
     assert(robotsContent.includes('ClaudeBot'), 'robots.txt declares ClaudeBot');
 
     console.log('\n====================================');
-    console.log('ALL AI DIRECT LINK TESTS PASSED (7/7)');
+    console.log('ALL AI DIRECT LINK TESTS PASSED (9/9)');
     console.log('====================================');
   } finally {
     await browser.close();

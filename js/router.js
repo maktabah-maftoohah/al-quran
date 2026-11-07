@@ -18,7 +18,35 @@ export class Router {
   }
 
   async init() {
-    // 1. Process query parameters in URL if no hash is specified (e.g. ?surah=2&ayah=255, ?ref=2:255, ?ayah=2:255)
+    // 1. Process path-based routes like /al-quran/69/47 or /69/47 if no hash is specified
+    if (!window.location.hash) {
+      const pathname = window.location.pathname;
+      let subPath = pathname;
+      if (pathname.startsWith('/al-quran')) {
+        subPath = pathname.slice('/al-quran'.length);
+      }
+      subPath = subPath.replace(/^\/+|\/+$/g, '');
+      if (subPath && subPath !== 'index.html' && subPath !== '404.html' && !subPath.includes('.')) {
+        const pathAyahMatch = subPath.match(/^([^/:]+)[/:](\d+)$/);
+        if (pathAyahMatch) {
+          const s = await store.resolveSurahNumber(pathAyahMatch[1]);
+          if (s) {
+            window.location.hash = `#${s}:${pathAyahMatch[2]}`;
+            return;
+          }
+        }
+        const pathSurahMatch = subPath.match(/^(?:surah\/)?([^/:]+)$/);
+        if (pathSurahMatch && pathSurahMatch[1] !== 'bookmarks' && !pathSurahMatch[1].startsWith('mushaf')) {
+          const s = await store.resolveSurahNumber(pathSurahMatch[1]);
+          if (s) {
+            window.location.hash = `#surah/${s}`;
+            return;
+          }
+        }
+      }
+    }
+
+    // 2. Process query parameters in URL if no hash is specified (e.g. ?surah=2&ayah=255, ?ref=2:255, ?ayah=2:255)
     if (!window.location.hash && window.location.search) {
       const sp = new URLSearchParams(window.location.search);
       let s = sp.get('surah') || sp.get('s');

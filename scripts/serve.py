@@ -31,6 +31,22 @@ class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         super().end_headers()
 
+    def do_GET(self):
+        # Extract relative path without query or hash
+        req_path = self.path.split("?")[0].split("#")[0].strip("/")
+        if req_path.startswith("al-quran"):
+            req_path = req_path[len("al-quran"):].strip("/")
+
+        file_path = ROOT_DIR / req_path if req_path else ROOT_DIR / "index.html"
+        if not file_path.exists() and (ROOT_DIR / "404.html").exists():
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.end_headers()
+            self.wfile.write((ROOT_DIR / "404.html").read_bytes())
+            return
+
+        super().do_GET()
+
     def log_message(self, fmt, *args):
         # Format clean, readable access logs
         sys.stderr.write(f"[{self.log_date_time_string()}] {args[0]} {args[1]} -> {args[2]}\n")
