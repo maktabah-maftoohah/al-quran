@@ -33,7 +33,7 @@
 
 ### 🔬 Word-by-Word Morphology & Deep-Dive
 * **Token-Level Analysis**: Interactive Arabic token cards showing phonetic transliteration, Malay/English gloss, part-of-speech (POS) tags, lemmas, and root words (`الجذر`).
-* **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the [Malay Quranic Corpus](https://maktabah-maftoohah.github.io/korpus-quran/).
+* **Slide-out Grammar Drawer**: Detailed syntactic and linguistic breakdowns per word with direct references to the [Quranic Linguistic Corpus](https://maktabah-maftoohah.github.io/korpus-quran/).
 * **Tafsir al-Jalalayn & Ibn Kathir**: Integrated classical exegesis available directly inside the Ayah Deep-Dive view (featuring Bahasa Melayu / Nusantara and English).
 * **Asbabun Nuzul (Sebab Turun Wahyu)**: Comprehensive historical context and revelation occasions for 657 verses across 85 surahs, unifying *Kitab Asbab an-Nuzul* (Al-Wahidi), *Lubabun Nuqul* (As-Suyuthi), and *Sahih Asbab an-Nuzul* (Ibrahim al-Ali) with authentic Arabic hadith text, Malay/Nusantara analysis, and English translations.
 
@@ -246,7 +246,7 @@ npm run test:mushaf
 We express our gratitude to the open-source and Islamic scholarship communities whose public resources power this project:
 
 * **[Tanzil Project](https://tanzil.net)** — Verified Quranic Uthmani text and transliterations.
-* **[Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/)** — Malay Quranic Corpus and morphological analysis.
+* **[Maktabah Maftoohah Quranic Corpus](https://maktabah-maftoohah.github.io/korpus-quran/)** — Quranic linguistic corpus and morphological analysis.
 * **[EveryAyah.com](https://everyayah.com)** — High-quality verse-by-verse audio recitations.
 * **[King Fahd Glorious Quran Printing Complex](https://qurancomplex.gov.sa/)** — Authentic 15-line Madinah Mushaf page layout definitions.
 * **Kementerian Agama Republik Indonesia** & **Sheikh Abdullah Muhammad Basmeih / JAKIM** — Official translations.

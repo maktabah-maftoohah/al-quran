@@ -33,7 +33,7 @@
 
 ### 🔬 Analisis Morfologi Kalimah demi Kalimah & Kajian Mendalam
 * **Analisis Tahap Token**: Kad kalimah Arab interaktif yang memaparkan transliterasi sebutan Rumi, terjemahan harfiah Bahasa Melayu/Inggeris, label golongan kata (*POS tags*), lema, serta akar kata dasar (`الجذر`).
-* **Laci Tatabahasa & Integrasi Korpus Melayu**: Huraian sintaksis dan tatabahasa lengkap bagi setiap kalimah dengan pautan terus ke [Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/).
+* **Laci Tatabahasa & Integrasi Korpus Al-Quran**: Huraian sintaksis dan tatabahasa lengkap bagi setiap kalimah dengan pautan terus ke [Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/).
 * **Tafsir al-Jalalayn & Ibn Kathir**: Integrasi ulasan tafsir muktabar secara terus dalam paparan kajian mendalam ayat (menampilkan Bahasa Melayu / Nusantara dan Bahasa Inggeris).
 * **Asbabun Nuzul (Sebab Turun Wahyu)**: Konteks sejarah dan sebab penurunan wahyu bagi 657 ayat merentasi 85 surah, menggabungkan riwayat daripada *Kitab Asbab an-Nuzul* (Al-Wahidi), *Lubabun Nuqul* (As-Suyuthi), dan *Sahih Asbab an-Nuzul* (Ibrahim al-Ali) lengkap dengan matan hadis Arab, ulasan Bahasa Melayu, dan rujukan kitab.
 
@@ -249,7 +249,7 @@ npm run test:mushaf
 Setinggi-tinggi penghargaan dirakamkan kepada komuniti sumber terbuka dan institusi keilmuan Islam yang menyediakan sumber rujukan bagi projek ini:
 
 * **[Projek Tanzil](https://tanzil.net)** — Teks Uthmani Al-Quran dan transliterasi yang disemak rapi.
-* **[Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/)** — Korpus Al-Quran Bahasa Melayu dan analisis morfologi.
+* **[Maktabah Maftoohah Korpus Al-Quran](https://maktabah-maftoohah.github.io/korpus-quran/)** — Korpus Al-Quran dan analisis morfologi.
 * **[EveryAyah.com](https://everyayah.com)** — Rakaman audio bacaan ayat Al-Quran berkualiti tinggi.
 * **[Kompleks Percetakan Al-Quran Raja Fahd Madinah](https://qurancomplex.gov.sa/)** — Piawaian susun atur halaman Mushaf Madinah 15 baris.
 * **Kementerian Agama Republik Indonesia** & **Sheikh Abdullah Muhammad Basmeih / JAKIM** — Terjemahan rasmi Bahasa Melayu dan Nusantara.
