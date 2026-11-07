@@ -204,11 +204,13 @@ class QuranStore {
     return this.lastRead;
   }
 
-  setLastRead(surah, ayah, surahName) {
+  setLastRead(surah, ayah, surahName, { silent = false } = {}) {
     this.lastRead = { surah, ayah, surahName, timestamp: Date.now() };
     try {
       localStorage.setItem('maktabah_quran_last_read', JSON.stringify(this.lastRead));
-      this.notifyUserDataChanged();
+      if (!silent) {
+        this.notifyUserDataChanged();
+      }
     } catch (e) {
       console.warn('Failed to save last read:', e);
     }
@@ -263,11 +265,13 @@ class QuranStore {
     return this.khatam;
   }
 
-  saveKhatam(partial = {}) {
+  saveKhatam(partial = {}, { silent = false } = {}) {
     this.khatam = { ...this.getKhatam(), ...partial, updatedAt: Date.now() };
     try {
       localStorage.setItem('maktabah_quran_khatam', JSON.stringify(this.khatam));
-      this.notifyUserDataChanged();
+      if (!silent) {
+        this.notifyUserDataChanged();
+      }
     } catch (e) {
       console.warn('Failed to save khatam state:', e);
     }
@@ -399,7 +403,7 @@ class QuranStore {
     return this.audioState;
   }
 
-  saveAudioState(surah, ayah, reciter) {
+  saveAudioState(surah, ayah, reciter, { silent = false } = {}) {
     this.audioState = {
       surah: parseInt(surah, 10),
       ayah: parseInt(ayah, 10),
@@ -408,7 +412,9 @@ class QuranStore {
     };
     try {
       localStorage.setItem('maktabah_quran_audio_state', JSON.stringify(this.audioState));
-      this.notifyUserDataChanged();
+      if (!silent) {
+        this.notifyUserDataChanged();
+      }
     } catch (e) {
       console.warn('Failed to save audio state:', e);
     }
@@ -434,11 +440,13 @@ class QuranStore {
     return this.bookmarkFolders;
   }
 
-  saveBookmarkFolders(folders) {
+  saveBookmarkFolders(folders, { silent = false } = {}) {
     this.bookmarkFolders = folders;
     try {
       localStorage.setItem('maktabah_quran_bookmark_folders', JSON.stringify(folders));
-      this.notifyUserDataChanged();
+      if (!silent) {
+        this.notifyUserDataChanged();
+      }
     } catch (e) {
       console.warn('Failed to save bookmark folders:', e);
     }

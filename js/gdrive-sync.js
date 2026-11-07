@@ -167,7 +167,7 @@ class GDriveSyncManager {
 
             // Perform initial bidirectional sync
             try {
-              await this.sync();
+              await this.sync({ manual: true });
               resolve(true);
             } catch (syncErr) {
               console.warn('Initial sync warning:', syncErr);
@@ -456,7 +456,8 @@ class GDriveSyncManager {
         store.setLastRead(
           remoteData.lastRead.surah,
           remoteData.lastRead.ayah,
-          remoteData.lastRead.surahName
+          remoteData.lastRead.surahName,
+          { silent: true }
         );
       }
     }
@@ -473,23 +474,34 @@ class GDriveSyncManager {
 
     // 5. Merge Khatam & Streaks
     if (remoteData.khatam && store.getKhatam) {
-      const localKhatam = store.getKhatam();
+      const localKhatam = store.getKhatam() || {};
+      const localPages = localKhatam.completedPages || [];
+      const remotePages = remoteData.khatam.completedPages || [];
       const mergedPages = Array.from(new Set([
-        ...(localKhatam.completedPages || []),
-        ...(remoteData.khatam.completedPages || []),
+        ...localPages,
+        ...remotePages,
       ])).sort((a, b) => a - b);
 
       const maxStreak = Math.max(localKhatam.dailyStreak || 0, remoteData.khatam.dailyStreak || 0);
       const latestActive = (remoteData.khatam.lastActiveDate || '') > (localKhatam.lastActiveDate || '')
         ? remoteData.khatam.lastActiveDate
-        : localKhatam.lastActiveDate;
+        : (localKhatam.lastActiveDate || '');
+      const targetDays = remoteData.khatam.targetDays || localKhatam.targetDays || 30;
 
-      store.saveKhatam({
-        targetDays: remoteData.khatam.targetDays || localKhatam.targetDays || 30,
-        completedPages: mergedPages,
-        dailyStreak: maxStreak,
-        lastActiveDate: latestActive,
-      });
+      const pagesChanged = mergedPages.length !== localPages.length ||
+        mergedPages.some((p, i) => p !== localPages[i]);
+      const streakChanged = maxStreak !== (localKhatam.dailyStreak || 0);
+      const activeChanged = latestActive !== (localKhatam.lastActiveDate || '');
+      const targetChanged = targetDays !== (localKhatam.targetDays || 30);
+
+      if (pagesChanged || streakChanged || activeChanged || targetChanged) {
+        store.saveKhatam({
+          targetDays,
+          completedPages: mergedPages,
+          dailyStreak: maxStreak,
+          lastActiveDate: latestActive,
+        }, { silent: true });
+      }
     }
 
     // 6. Merge Hifz Mastery
@@ -519,7 +531,8 @@ class GDriveSyncManager {
         store.saveAudioState(
           remoteData.audioState.surah,
           remoteData.audioState.ayah,
-          remoteData.audioState.reciter
+          remoteData.audioState.reciter,
+          { silent: true }
         );
         this.emit({
           type: 'audio_resume_available',
@@ -541,7 +554,7 @@ class GDriveSyncManager {
         }
       }
       if (foldersChanged && store.saveBookmarkFolders) {
-        store.saveBookmarkFolders(localFolders);
+        store.saveBookmarkFolders(localFolders, { silent: true });
       }
     }
 
@@ -571,11 +584,14 @@ class GDriveSyncManager {
 
   /**
    * Executes a bidirectional synchronization run.
+   * @param {Object} [options]
+   * @param {boolean} [options.manual=false] Whether this sync was explicitly triggered by user action
    */
-  async sync() {
+  async sync(options = {}) {
     if (this.isSyncing) return;
     this.isSyncing = true;
-    this.emit({ type: 'syncing' });
+    const isManual = Boolean(options.manual);
+    this.emit({ type: 'syncing', manual: isManual });
 
     try {
       const token = await this.ensureToken();
@@ -599,6 +615,7 @@ class GDriveSyncManager {
 
       this.emit({
         type: 'synced',
+        manual: isManual,
         lastSyncedAt: this.lastSyncedAt,
         notesCount: finalPayload.data.notes.length,
         bookmarksCount: finalPayload.data.bookmarks.length,
@@ -606,11 +623,12 @@ class GDriveSyncManager {
 
       return {
         success: true,
+        manual: isManual,
         lastSyncedAt: this.lastSyncedAt,
       };
     } catch (err) {
       console.error('Google Drive sync error:', err);
-      this.emit({ type: 'error', error: err.message });
+      this.emit({ type: 'error', error: err.message, manual: isManual });
       throw err;
     } finally {
       this.isSyncing = false;
@@ -622,10 +640,11 @@ class GDriveSyncManager {
    */
   triggerDebouncedSync(delayMs = 4000) {
     if (!this.isConnected()) return;
+    if (this.isSyncing) return;
 
     if (this.debounceTimer) clearTimeout(this.debounceTimer);
     this.debounceTimer = setTimeout(() => {
-      this.sync().catch((e) => console.warn('Debounced sync error:', e));
+      this.sync({ manual: false }).catch((e) => console.warn('Debounced sync error:', e));
     }, delayMs);
   }
   /**

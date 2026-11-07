@@ -1477,7 +1477,9 @@ class App {
       } else if (event.type === 'synced') {
         if (syncBtn) syncBtn.classList.remove('loading');
         updateUI();
-        this.showToast(`Penyegerakan berjaya (${event.notesCount} nota, ${event.bookmarksCount} penanda buku)`);
+        if (event.manual) {
+          this.showToast(`Penyegerakan berjaya (${event.notesCount} nota, ${event.bookmarksCount} penanda buku)`);
+        }
         this.renderSidebarBookmarks();
         this.renderSidebarNotes();
       } else if (event.type === 'error') {
@@ -1533,7 +1535,7 @@ class App {
     if (syncBtn) {
       syncBtn.addEventListener('click', async () => {
         try {
-          await gdriveSync.sync();
+          await gdriveSync.sync({ manual: true });
         } catch (e) {
           this.showToast(`Gagal menyegerak: ${e.message}`);
         }
