@@ -2176,13 +2176,13 @@ class App {
       });
     });
 
-    // Copy Direct Ayah Link
+    // Copy Direct Ayah Link (Clean Path for Rich Social Unfurling)
     this.mainContainer.querySelectorAll('.btn-copy-link-ayah').forEach((btn) => {
       btn.addEventListener('click', () => {
         const s = btn.getAttribute('data-surah');
         const a = btn.getAttribute('data-ayah');
-        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
-        const directUrl = `${window.location.origin}${basePath}#${s}:${a}`;
+        const repoBase = window.location.pathname.startsWith('/al-quran') ? '/al-quran/' : '/';
+        const directUrl = `${window.location.origin}${repoBase}${s}/${a}`;
         this.copyToClipboard(directUrl, i18n.t('surah.toastLinkCopied', { ref: `${s}:${a}` }));
       });
     });
@@ -2563,22 +2563,22 @@ class App {
   attachDeepDiveEvents(surah, ayah, meta, tokens, initialTab) {
     const displayName = store.getSurahName(meta);
 
-    // Deep-dive Direct Link copy
+    // Deep-dive Direct Link copy (Clean Path for Rich Social Unfurling)
     const copyLinkBtn = this.mainContainer.querySelector('.btn-copy-deepdive-link');
     if (copyLinkBtn) {
       copyLinkBtn.addEventListener('click', () => {
-        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
-        const directUrl = `${window.location.origin}${basePath}#${surah}:${ayah}`;
+        const repoBase = window.location.pathname.startsWith('/al-quran') ? '/al-quran/' : '/';
+        const directUrl = `${window.location.origin}${repoBase}${surah}/${ayah}`;
         this.copyToClipboard(directUrl, i18n.t('surah.toastLinkCopied', { ref: `${surah}:${ayah}` }));
       });
     }
 
-    // Deep-dive AI Citation copy
+    // Deep-dive AI Citation copy (Clean Path for Rich Social Unfurling)
     const copyAiBtn = this.mainContainer.querySelector('.btn-copy-deepdive-ai');
     if (copyAiBtn) {
       copyAiBtn.addEventListener('click', () => {
-        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
-        const directUrl = `${window.location.origin}${basePath}#${surah}:${ayah}`;
+        const repoBase = window.location.pathname.startsWith('/al-quran') ? '/al-quran/' : '/';
+        const directUrl = `${window.location.origin}${repoBase}${surah}/${ayah}`;
         const transElem = this.mainContainer.querySelector('.tab-pane.active p.translation-text') || this.mainContainer.querySelector('.verse-translations p.translation-text');
         const transText = (transElem?.textContent || '').trim();
         const citation = `> "${transText}"\n> — Surah ${displayName} (${surah}:${ayah})\n${directUrl}`;

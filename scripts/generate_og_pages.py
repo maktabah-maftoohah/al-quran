@@ -45,7 +45,7 @@ def main():
     surah_count = 0
 
     base_url = "https://maktabah-maftoohah.github.io/al-quran"
-    banner_url = f"{base_url}/assets/site-banner.png"
+    banner_url = f"{base_url}/assets/og-banner.jpg"
 
     for s in surahs:
         s_num = s["number"]

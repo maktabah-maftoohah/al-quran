@@ -80,13 +80,14 @@ export class VerseCardGenerator {
       });
     }
 
-    // Copy AI Citation from Modal
+    // Copy AI Citation from Modal (Clean Path for Rich Social Unfurling)
     const copyModalAiBtn = document.getElementById('btn-copy-modal-ai');
     if (copyModalAiBtn) {
       copyModalAiBtn.addEventListener('click', () => {
         if (!this.currentData) return;
-        const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
-        const directUrl = `${window.location.origin}${basePath}#${this.currentData.ref}`;
+        const repoBase = window.location.pathname.startsWith('/al-quran') ? '/al-quran/' : '/';
+        const cleanRef = (this.currentData.ref || '1:1').replace(':', '/');
+        const directUrl = `${window.location.origin}${repoBase}${cleanRef}`;
         const citation = `> "${this.currentData.trans}"\n> — Surah ${this.currentData.surahName} (${this.currentData.ref})\n${directUrl}`;
         navigator.clipboard.writeText(citation);
         if (window.app && window.app.showToast) {
@@ -107,8 +108,9 @@ export class VerseCardGenerator {
     };
 
     const ref = data.ref || '1:1';
-    const basePath = window.location.pathname.replace(/\/index\.html$/, '/');
-    const directUrl = `${window.location.origin}${basePath}#${ref}`;
+    const repoBase = window.location.pathname.startsWith('/al-quran') ? '/al-quran/' : '/';
+    const cleanRef = ref.replace(':', '/');
+    const directUrl = `${window.location.origin}${repoBase}${cleanRef}`;
     const linkInput = document.getElementById('card-modal-link-input');
     if (linkInput) linkInput.value = directUrl;
     const refBadge = document.getElementById('card-modal-ref-badge');

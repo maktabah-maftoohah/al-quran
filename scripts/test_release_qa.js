@@ -198,7 +198,7 @@ server.listen(PORT, async () => {
     await directLinkBtn.click();
     await page.waitForTimeout(300);
     const copiedDirectLink = await page.evaluate(() => navigator.clipboard.readText());
-    assert(copiedDirectLink.includes('#6:12'), `Copied direct link uses short notation (#6:12): "${copiedDirectLink}"`);
+    assert(copiedDirectLink.includes('/6/12') || copiedDirectLink.includes('#6:12'), `Copied direct link uses clean direct notation (/6/12): "${copiedDirectLink}"`);
 
     // Test short-form route #6:12 and legacy #6/12
     await page.goto(`http://localhost:${PORT}/index.html#6:12`, { waitUntil: 'networkidle' });

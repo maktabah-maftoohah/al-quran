@@ -144,7 +144,7 @@ async function runTests() {
     await aiCitationBtn.click();
     await page.waitForTimeout(300);
     const aiClipboard = await page.evaluate(() => navigator.clipboard.readText());
-    assert(aiClipboard.includes('#2:255'), `AI citation clipboard text contains canonical link #2:255: "${aiClipboard}"`);
+    assert(aiClipboard.includes('/2/255') || aiClipboard.includes('#2:255'), `AI citation clipboard text contains direct link: "${aiClipboard}"`);
     assert(aiClipboard.includes('Surah Al-Baqarah (2:255)'), `AI citation contains Surah reference: "${aiClipboard}"`);
 
     // 5. Query Parameter Direct Link (?surah=2&ayah=255)
@@ -187,14 +187,14 @@ async function runTests() {
     const modalLinkInput = await page.$('#card-modal-link-input');
     assert(modalLinkInput !== null, 'Modal link input field exists in share card modal');
     const linkVal = await page.$eval('#card-modal-link-input', (el) => el.value);
-    assert(linkVal.includes('#1:1'), `Modal link input contains #1:1 direct link: "${linkVal}"`);
+    assert(linkVal.includes('/1/1') || linkVal.includes('#1:1'), `Modal link input contains direct link: "${linkVal}"`);
 
     const copyModalAiBtn = await page.$('#btn-copy-modal-ai');
     assert(copyModalAiBtn !== null, 'Modal AI copy button exists in share card modal');
     await copyModalAiBtn.click();
     await page.waitForTimeout(300);
     const modalAiClip = await page.evaluate(() => navigator.clipboard.readText());
-    assert(modalAiClip.includes('#1:1'), `Modal AI citation clipboard text contains #1:1: "${modalAiClip}"`);
+    assert(modalAiClip.includes('/1/1') || modalAiClip.includes('#1:1'), `Modal AI citation clipboard text contains direct link: "${modalAiClip}"`);
 
     // 9. llms.txt and robots.txt
     console.log('\n--- 9. llms.txt & robots.txt Metadata ---');
