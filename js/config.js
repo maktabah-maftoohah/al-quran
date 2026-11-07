@@ -13,6 +13,16 @@ export const APP_CONFIG = {
   corpusBaseUrl: 'https://maktabah-maftoohah.github.io/korpus-quran/',
 
   /**
+   * Generates a corpus reference URL retaining the active interface language.
+   */
+  getCorpusUrl(lang = 'ms', hash = '') {
+    const l = lang === 'en' ? 'en' : 'ms';
+    const base = this.corpusBaseUrl.replace(/\/?$/, '/');
+    const h = hash ? (hash.startsWith('#') ? hash : `#${hash}`) : '';
+    return `${base}?lang=${l}${h}`;
+  },
+
+  /**
    * Gets the active Google Client ID (from localStorage override, or default).
    */
   getGoogleClientId() {

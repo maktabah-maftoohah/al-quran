@@ -39,6 +39,15 @@ class App {
       history.scrollRestoration = 'manual';
     }
 
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      if (urlLang === 'en' || urlLang === 'ms') {
+        store.settings.language = urlLang;
+        store.saveSettings();
+      }
+    } catch {}
+
     i18n.init(store.settings.language || 'ms');
     store.applySettingsToDOM();
     searchEngine.init();
@@ -1088,7 +1097,7 @@ class App {
         <button class="btn btn-primary" style="flex: 1;" onclick="window.audioEngine.playWord(${surahNum}, ${ayahNum}, ${token.pos})">
           🔊 ${i18n.t('deepDive.drawerPronounce')}
         </button>
-        <a href="${APP_CONFIG.corpusBaseUrl}#word/${surahNum}:${ayahNum}:${token.pos}" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-decoration: none;" title="Buka analisis morfologi dalam Bahasa Melayu">
+        <a href="${APP_CONFIG.getCorpusUrl(i18n.getLanguage() || 'ms', `#word/${surahNum}:${ayahNum}:${token.pos}`)}" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-decoration: none;" title="${isMalay ? 'Buka analisis morfologi dalam Korpus Al-Quran' : 'Open morphological analysis in Quran Corpus'}">
           ${i18n.t('deepDive.drawerCorpusBtn')}
         </a>
       </div>
