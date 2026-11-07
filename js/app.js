@@ -57,7 +57,6 @@ class App {
     this.initBackupControls();
     this.initGDriveSync();
     this.initKhatamTracker();
-    this.initAudioResume();
     this.initCalendarReminders();
     this.initGDriveExtraTools();
     this.initGlobalEvents();
@@ -2913,66 +2912,6 @@ class App {
 
     document.querySelectorAll('.khatam-target-btn').forEach((b) => {
       b.classList.toggle('active', parseInt(b.getAttribute('data-days'), 10) === targetDays);
-    });
-  }
-
-  initAudioResume() {
-    const banner = document.getElementById('audio-resume-banner');
-    const textEl = document.getElementById('audio-resume-text');
-    const playBtn = document.getElementById('btn-audio-resume-play');
-    const dismissBtn = document.getElementById('btn-audio-resume-dismiss');
-
-    if (!banner || !playBtn || !dismissBtn) return;
-
-    let pendingAudioState = null;
-
-    const checkResume = () => {
-      if (!store.getAudioState) return;
-      const state = store.getAudioState();
-      if (!state || !state.surah || !state.ayah) return;
-      if (audio.state.isPlaying) return;
-
-      pendingAudioState = state;
-      const reciterName = RECITERS[state.reciter]?.name || state.reciter || 'Mishary Alafasy';
-      if (textEl) {
-        textEl.textContent = i18n.t('audioResume.prompt', {
-          surah: state.surah,
-          ayah: state.ayah,
-          reciter: reciterName.split(' ')[0],
-        });
-      }
-      banner.style.display = 'block';
-    };
-
-    playBtn.addEventListener('click', async () => {
-      if (pendingAudioState) {
-        banner.style.display = 'none';
-        try {
-          const surahs = await store.fetchSurahs();
-          const meta = surahs.find((s) => s.number === pendingAudioState.surah);
-          const totalAyahs = meta ? meta.total_ayahs : 7;
-          const sName = meta ? store.getSurahName(meta) : `Surah ${pendingAudioState.surah}`;
-          await audio.playAyah(pendingAudioState.surah, pendingAudioState.ayah, {
-            continuous: true,
-            totalAyahs,
-            surahName: sName,
-          });
-        } catch (e) {
-          console.warn('Audio resume error:', e);
-        }
-      }
-    });
-
-    dismissBtn.addEventListener('click', () => {
-      banner.style.display = 'none';
-    });
-
-    setTimeout(checkResume, 800);
-
-    gdriveSync.subscribe((event) => {
-      if (event.type === 'synced' || event.type === 'audio_resume_available') {
-        checkResume();
-      }
     });
   }
 

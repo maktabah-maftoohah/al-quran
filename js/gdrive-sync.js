@@ -534,10 +534,6 @@ class GDriveSyncManager {
           remoteData.audioState.reciter,
           { silent: true }
         );
-        this.emit({
-          type: 'audio_resume_available',
-          audioState: remoteData.audioState,
-        });
       }
     }
 
