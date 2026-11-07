@@ -46,6 +46,10 @@ jobs:
         run: |
           python scripts/extract_quran.py --all
 
+      - name: Generate Social Share & Open Graph Verse Pages
+        run: |
+          python scripts/generate_og_pages.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

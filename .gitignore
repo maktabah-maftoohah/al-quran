@@ -30,3 +30,6 @@ client_secret*.json
 *codebase-context*
 repomix-output*
 
+
+# Generated Open Graph & Social Preview Pages (generated during GitHub Pages build)
+/[0-9]*/

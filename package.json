@@ -19,6 +19,7 @@
     "test:mushaf": "node scripts/test_mushaf_authentic.js",
     "verify": "python scripts/verify_project.py && python scripts/verify_data_integrity.py",
     "serve": "python scripts/serve.py",
+    "og:generate": "python scripts/generate_og_pages.py",
     "branding": "python scripts/generate_branding.py"
   },
   "devDependencies": {
