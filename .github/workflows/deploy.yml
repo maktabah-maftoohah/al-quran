@@ -37,10 +37,8 @@ jobs:
         id: cache-quran-data
         uses: actions/cache@v4
         with:
-          path: data/
-          key: quran-data-${{ hashFiles('scripts/extract_quran.py') }}
-          restore-keys: |
-            quran-data-
+          path: scripts/.quran-morphology.cache.txt
+          key: quran-morph-${{ hashFiles('scripts/extract_quran.py') }}
 
       - name: Run Quran ETL Pipeline (All 114 Surahs)
         run: |
