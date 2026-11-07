@@ -10,6 +10,7 @@ export const APP_CONFIG = {
   defaultGoogleClientId: '850493350755-g12kg4snt6h6uacmgb40jcoqk3o6kmgt.apps.googleusercontent.com',
   googleDriveScope: 'https://www.googleapis.com/auth/drive.appdata',
   syncFileName: 'maktabah-quran-sync.json',
+  corpusBaseUrl: 'https://maktabah-maftoohah.github.io/korpus-quran/',
 
   /**
    * Gets the active Google Client ID (from localStorage override, or default).

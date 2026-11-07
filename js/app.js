@@ -1081,8 +1081,8 @@ class App {
         <button class="btn btn-primary" style="flex: 1;" onclick="window.audioEngine.playWord(${surahNum}, ${ayahNum}, ${token.pos})">
           🔊 ${i18n.t('deepDive.drawerPronounce')}
         </button>
-        <a href="${token.corpus_url}" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-decoration: none;">
-          Corpus Quran ↗
+        <a href="${APP_CONFIG.corpusBaseUrl}#word/${surahNum}:${ayahNum}:${token.pos}" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-decoration: none;" title="Buka analisis morfologi dalam Bahasa Melayu">
+          ${i18n.t('deepDive.drawerCorpusBtn')}
         </a>
       </div>
 
