@@ -249,7 +249,7 @@ async function runMushafVerification() {
     // 11. Surah View "Open Mushaf" button links dynamically to Surah start page
     console.log('\n[11] Dynamic "Open Mushaf" Button per Surah');
     await page.goto(`http://localhost:${PORT}/index.html#surah/36`, { waitUntil: 'networkidle' });
-    const openMushafBtn = await page.$('.surah-header-card a[href="#mushaf/440"]');
+    const openMushafBtn = await page.waitForSelector('.surah-header-card a[href="#mushaf/440"]', { timeout: 5000 });
     assert(openMushafBtn !== null, 'Surah 36 has "Open Mushaf" button pointing to page 440');
     console.log('  [PASS] Dynamic surah-to-mushaf start page link verified (36 -> 440)');
 
