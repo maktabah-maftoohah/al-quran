@@ -731,6 +731,27 @@ class QuranStore {
     return Boolean(this.cache.asbab[key]);
   }
 
+  async fetchHadithRefs() {
+    if (this.cache.hadithRefs) return this.cache.hadithRefs;
+    try {
+      const res = await fetch('./data/hadith-references.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      this.cache.hadithRefs = data || {};
+      return this.cache.hadithRefs;
+    } catch (err) {
+      console.warn('Failed to load hadith-references:', err);
+      this.cache.hadithRefs = {};
+      return this.cache.hadithRefs;
+    }
+  }
+
+  getHadithRefs(surah, ayah) {
+    if (!this.cache.hadithRefs) return [];
+    const key = `${parseInt(surah, 10)}:${parseInt(ayah, 10)}`;
+    return this.cache.hadithRefs[key] || [];
+  }
+
   async fetchSearchIndex() {
     if (this.cache.searchIndex) return this.cache.searchIndex;
     const res = await fetch('./data/search-index.json');
