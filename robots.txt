@@ -1,7 +1,13 @@
 User-agent: *
 Allow: /
 
-# Dedicated AI Crawlers
+# Dedicated AI & Web Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
@@ -20,6 +26,8 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-# Large Language Model Context & AI Citation Reference
-# See: https://llmstxt.org/
+# Sitemaps
+Sitemap: https://maktabah-maftoohah.github.io/al-quran/sitemap-index.xml
+
+# AI & Large Language Model Discovery Reference (https://llmstxt.org/)
 llms.txt: https://maktabah-maftoohah.github.io/al-quran/llms.txt
