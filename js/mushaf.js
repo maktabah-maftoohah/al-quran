@@ -466,7 +466,7 @@ export class MushafViewer {
       mushafNavBtn.href = `#mushaf/${page}`;
     }
 
-    const isSepia = store.settings.mushafTheme === 'sepia';
+    const isSepia = store.settings.mushafTheme === 'sepia' || store.settings.theme === 'sepia';
     const isSpread = store.settings.mushafSpread === true;
     const isBookmarked = store.isPageBookmarked(page);
 
@@ -805,7 +805,8 @@ export class MushafViewer {
     const themeBtn = document.getElementById('mushaf-theme-toggle-btn');
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {
-        store.updateSettings({ mushafTheme: isSepia ? 'dark' : 'sepia' });
+        const nextTheme = isSepia ? 'dark' : 'sepia';
+        store.updateSettings({ theme: nextTheme, mushafTheme: nextTheme });
         this.renderPage(page, container);
       });
     }

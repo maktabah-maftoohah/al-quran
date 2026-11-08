@@ -730,6 +730,18 @@ class App {
       }
     });
 
+    // Reader Theme Switcher (Sepia / Dark / Light)
+    const themeBtns = document.querySelectorAll('#popover-theme-switcher .theme-opt-btn');
+    const curTheme = store.settings.theme || store.settings.mushafTheme || 'dark';
+    themeBtns.forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-theme-val') === curTheme);
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-theme-val');
+        themeBtns.forEach((b) => b.classList.toggle('active', b === btn));
+        store.updateSettings({ theme: val, mushafTheme: val === 'sepia' ? 'sepia' : 'dark' });
+      });
+    });
+
     // Sliders
     const arSlider = document.getElementById('slider-arabic-size');
     const trSlider = document.getElementById('slider-trans-size');

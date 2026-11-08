@@ -58,6 +58,7 @@ class QuranStore {
         kemenag: false,
       },
       wbwLanguage: 'dual',
+      theme: 'dark',
       mushafTheme: 'dark',
       mushafSpread: false,
     };
@@ -138,6 +139,14 @@ class QuranStore {
       document.body.classList.add('tajweed-active');
     } else {
       document.body.classList.remove('tajweed-active');
+    }
+
+    // Apply Tri-Mode Reader Theme (dark | sepia | light)
+    const activeTheme = this.settings.theme || this.settings.mushafTheme || 'dark';
+    document.documentElement.setAttribute('data-theme', activeTheme);
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.content = activeTheme === 'sepia' ? '#f5eedc' : (activeTheme === 'light' ? '#047857' : '#0b0f19');
     }
   }
 
