@@ -1915,7 +1915,7 @@ class App {
                   <button class="verse-action-btn btn-copy-link-ayah" data-surah="${surah}" data-ayah="${aNum}" title="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}" aria-label="${isMs ? 'Salin Pautan Terus (#' + surah + ':' + aNum + ')' : 'Copy Direct Link (#' + surah + ':' + aNum + ')'}">🔗</button>
                   <a href="#ayah/${surah}/${aNum}" class="verse-action-btn btn-deepdive-ayah" style="text-decoration: none;" title="${i18n.t('surah.tooltipDeepDive')}" aria-label="${i18n.t('surah.tooltipDeepDive')}">🔬</a>
                   ${firstHadith ? `
-                    <a href="../${firstHadith.repo}/#hadith-${firstHadith.hadith_number}" target="_blank" rel="noopener" class="verse-action-btn btn-hadith-badge" style="text-decoration:none; color: #d97706;" title="${isMs ? 'Buka Hadis Berkaitan (' + firstHadith.title + ')' : 'Open Related Hadith (' + firstHadith.title + ')'}" aria-label="Hadith">📖</a>
+                    <a href="${firstHadith.url || `https://maktabah-maftoohah.github.io/sahih-al-bukhari/${firstHadith.hadith_number}`}" target="_blank" rel="noopener" class="verse-action-btn btn-hadith-badge" title="${isMs ? `Buka Hadis Berkaitan di Sahih al-Bukhari (#${firstHadith.hadith_number})${hadithRefs.length > 1 ? ` (+${hadithRefs.length - 1} hadis lagi)` : ''}` : `Open Related Hadith in Sahih al-Bukhari (#${firstHadith.hadith_number})${hadithRefs.length > 1 ? ` (+${hadithRefs.length - 1} more)` : ''}`}" aria-label="Sahih al-Bukhari">📖</a>
                   ` : ''}
                   ${hasAsbab ? `
                     <a href="#ayah/${surah}/${aNum}?tab=asbab" class="verse-action-btn btn-asbab-badge" title="${i18n.t('surah.tooltipAsbab')}" aria-label="${i18n.t('surah.tooltipAsbab')}">📜</a>
@@ -2433,6 +2433,7 @@ class App {
       ]);
 
       const asbab = store.getAsbab(surah, ayah);
+      const hadithRefs = store.getHadithRefs(surah, ayah);
 
       const aStr = String(ayah);
       const sStr = String(surah);
@@ -2593,6 +2594,7 @@ class App {
               <button class="tab-btn active" data-tab="translations">${i18n.t('deepDive.tabTranslations')}</button>
               <button class="tab-btn" data-tab="tafsir">${i18n.t('deepDive.tabTafsir')}</button>
               <button class="tab-btn" data-tab="asbab">📜 ${i18n.t('deepDive.tabAsbab')}${asbab ? ' •' : ''}</button>
+              <button class="tab-btn" data-tab="hadith">📖 ${i18n.t('deepDive.tabHadith')}${hadithRefs.length > 0 ? ` (${hadithRefs.length})` : ''}</button>
               <button class="tab-btn" data-tab="notes">📝 ${i18n.t('deepDive.tabNotes')}</button>
             </div>
 
@@ -2687,6 +2689,18 @@ class App {
                       <p class="asbab-text-body" style="font-size: 0.95rem;">${this.escapeHtml(asbab.text_en)}</p>
                     </div>
                   ` : ''}
+
+                  ${hadithRefs.length > 0 ? `
+                    <div class="asbab-hadith-crossref-bar" style="margin-top: 0.85rem; padding: 0.65rem 0.95rem; border-radius: var(--radius-sm); background: rgba(217, 119, 6, 0.08); border: 1px solid rgba(217, 119, 6, 0.25); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                      <span style="font-size: 0.83rem; color: var(--text-primary);">
+                        📖 ${isMs ? 'Riwayat hadis sahih berkaitan di' : 'Related authentic hadith in'} <strong>Sahih al-Bukhari</strong>:
+                        <strong style="color: #d97706;">${hadithRefs.map(h => '#' + h.hadith_number).join(', ')}</strong>
+                      </span>
+                      <a href="${hadithRefs[0].url || 'https://maktabah-maftoohah.github.io/sahih-al-bukhari/' + hadithRefs[0].hadith_number}" target="_blank" rel="noopener" style="font-size: 0.82rem; color: #d97706; text-decoration: underline; font-weight: 500;">
+                        ${isMs ? 'Buka Hadis' : 'Open Hadith'} #${hadithRefs[0].hadith_number} ↗
+                      </a>
+                    </div>
+                  ` : ''}
                 </div>
               ` : `
                 <div class="asbab-empty-state">
@@ -2697,6 +2711,37 @@ class App {
                     <span>ℹ️</span>
                     <span>${isMs ? 'Hanya sekitar ~500 daripada 6,236 ayat Al-Quran yang mempunyai riwayat peristiwa khusus (asbabun nuzul). Ayat-ayat selebihnya diturunkan sebagai prinsip am Islam.' : 'Only about ~500 of 6,236 verses in the Quran have specific historical revelation occasions. Other verses were revealed as universal timeless guidance.'}</span>
                   </div>
+                </div>
+              `}
+            </div>
+
+            <div class="tab-pane" id="pane-hadith">
+              ${hadithRefs.length > 0 ? `
+                <div class="hadith-refs-container" style="display: flex; flex-direction: column; gap: 0.85rem; padding: 0.5rem 0;">
+                  <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    ${isMs ? `Terdapat <strong>${hadithRefs.length}</strong> riwayat hadis berkaitan ayat ini dalam <strong>Sahih al-Bukhari</strong>:` : `Found <strong>${hadithRefs.length}</strong> authentic hadith narrations for this verse in <strong>Sahih al-Bukhari</strong>:`}
+                  </div>
+                  ${hadithRefs.map(h => `
+                    <div class="hadith-ref-card" style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface-elevated, rgba(217, 119, 6, 0.05)); border: 1px solid rgba(217, 119, 6, 0.25); border-radius: var(--radius-md, 8px); padding: 0.85rem 1rem; gap: 0.75rem; flex-wrap: wrap;">
+                      <div>
+                        <div style="font-weight: 600; color: #d97706; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem;">
+                          <span>📖</span>
+                          <span>${this.escapeHtml(h.title || `Sahih al-Bukhari #${h.hadith_number}`)}</span>
+                        </div>
+                        ${h.scholarly_source ? `<div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">${this.escapeHtml(h.scholarly_source)}</div>` : ''}
+                      </div>
+                      <a href="${h.url || `https://maktabah-maftoohah.github.io/sahih-al-bukhari/${h.hadith_number}`}" target="_blank" rel="noopener" class="btn btn-primary" style="text-decoration: none; padding: 0.35rem 0.85rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.35rem; background: #d97706; border-color: #d97706; color: #fff;">
+                        <span>${isMs ? 'Buka Hadis' : 'Open Hadith'} #${h.hadith_number}</span>
+                        <span>↗</span>
+                      </a>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : `
+                <div class="asbab-empty-state">
+                  <div class="asbab-empty-icon">📖</div>
+                  <div class="asbab-empty-title">${isMs ? 'Tiada Pautan Hadis Khusus' : 'No Direct Hadith Linked'}</div>
+                  <p class="asbab-empty-desc">${isMs ? 'Tiada riwayat hadis khusus dari Sahih al-Bukhari yang memetik ayat ini secara langsung dalam pangkalan data semasa.' : 'No specific narration from Sahih al-Bukhari directly citing this verse in the current cross-reference database.'}</p>
                 </div>
               `}
             </div>
