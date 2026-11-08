@@ -752,6 +752,12 @@ class QuranStore {
     return this.cache.hadithRefs[key] || [];
   }
 
+  hasHadithRefs(surah, ayah) {
+    if (!this.cache.hadithRefs) return false;
+    const key = `${parseInt(surah, 10)}:${parseInt(ayah, 10)}`;
+    return Boolean(this.cache.hadithRefs[key] && this.cache.hadithRefs[key].length > 0);
+  }
+
   async fetchSearchIndex() {
     if (this.cache.searchIndex) return this.cache.searchIndex;
     const res = await fetch('./data/search-index.json');
